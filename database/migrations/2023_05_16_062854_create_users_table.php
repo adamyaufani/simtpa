@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('fullname')->nullable();
             $table->string('agency')->nullable();
             $table->string('phone')->nullable();
+            $table->string('verification_status')->nullable();
+            $table->timestamp('verification_date')->nullable();
             $table->unsignedBigInteger('role_id')->default(1)->nullable();
             $table->rememberToken();
             $table->timestamps();

@@ -16,8 +16,9 @@ class TrainingService
     public static function storeTraining($request)
     {
         DB::transaction(function () use ($request) {
-            $training = Training::create(Arr::except($request, ['trainer_id', 'image']));
 
+            dd($request);
+            $training = Training::create(Arr::except($request, ['trainer_id', 'image']));
             $file = $request['image'];
             $fileName = $file->getClientOriginalName();
             $fileLocation = 'trainings/training_banner' . '/' . $training['id'] . '/';

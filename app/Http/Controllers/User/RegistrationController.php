@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class RegistrationController extends Controller
@@ -23,7 +24,7 @@ class RegistrationController extends Controller
     {
         $validated_request = $request->validated();
 
-        $user = User::create($validated_request);
+        $user = User::create(Arr::add($validated_request, 'verification_status', 0));
 
         Auth::login($user);
 

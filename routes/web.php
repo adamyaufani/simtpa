@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\TrainingController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Users\CertificateController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\User\AuthController as UserAuthController;
@@ -72,6 +74,10 @@ Route::prefix('admin')->group(function () {
         Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
+        Route::prefix('users')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name('admin.user_index');
+        });
+
         Route::prefix('trainings')->group(function () {
             Route::get('/', [TrainingController::class, 'index'])->name('admin.training_index');
             Route::get('create', [TrainingController::class, 'create'])->name('admin.create_new_training');
@@ -85,6 +91,12 @@ Route::prefix('admin')->group(function () {
             Route::get('trainerByName', [TrainerController::class, 'trainerByName'])->name('admin.get_trainer_by_name');
             Route::get('create', [TrainerController::class, 'create'])->name('admin.create_new_trainer');
             Route::post('create', [TrainerController::class, 'store'])->name('admin.store_new_trainer');
+        });
+
+        Route::prefix('categories')->group(function () {
+            Route::get('categoryByName', [CategoryController::class, 'categoryByName'])->name('admin.get_category_by_name');
+            Route::get('create', [CategoryController::class, 'create'])->name('admin.create_new_category');
+            Route::post('create', [CategoryController::class, 'store'])->name('admin.store_new_category');
         });
 
         Route::prefix('orders')->group(function () {

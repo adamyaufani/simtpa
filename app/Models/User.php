@@ -27,6 +27,7 @@ class User extends Authenticatable
         'role_id',
         'email',
         'password',
+        'verification_status',
     ];
 
     /**
@@ -53,5 +54,42 @@ class User extends Authenticatable
         return Attribute::make(
             set: fn ($value) => bcrypt($value)
         );
+    }
+
+    protected function scopeWaitingVerification($query)
+    {
+        $query->where('verification_status', '=', 0);
+    }
+
+    protected function scopeVerified($query)
+    {
+        $query->where('verification_status', '=', 1);
+    }
+
+    protected function scopeVerificationDenied($query)
+    {
+        $query->where('verification_status', '=', 2);
+    }
+
+    protected function getStatusAttribute()
+    {
+        if ($this->verification_status == 0) {
+            return [
+                'badge' => 'warning',
+                'message' => 'menunggu verifikasi'
+            ];
+        }
+        if ($this->verification_status == 1) {
+            return [
+                'badge' => 'success',
+                'message' => 'pengguna terverifikasi'
+            ];
+        }
+        if ($this->verification_status == 2) {
+            return [
+                'badge' => 'danger',
+                'message' => 'verifikasi ditolak'
+            ];
+        }
     }
 }
