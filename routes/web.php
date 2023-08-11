@@ -76,6 +76,9 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('users')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('admin.user_index');
+            Route::get('{id}', [UserController::class, 'show'])->name('admin.detail_user');
+            Route::get('verify/{id}', [UserController::class, 'userRegistrationDetail'])->name('admin.verify_user');
+            Route::get('verify/{id}/accept', [UserController::class, 'verifyUser'])->name('admin.accept_user_registration');
         });
 
         Route::prefix('trainings')->group(function () {
