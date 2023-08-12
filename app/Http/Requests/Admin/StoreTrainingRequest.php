@@ -35,14 +35,14 @@ class StoreTrainingRequest extends FormRequest
             'place' => ['required', 'string'],
             'type' => ['required', new Enum(TrainingTypeEnum::class)],
             'cost' => ['required', new Enum(CostEnum::class)],
-            'quota' => ['required', 'numeric'],
             'trainer_id' => ['required', 'numeric', 'exists:trainers,id'],
             'category_id' => ['required', 'numeric', 'exists:categories,id'],
             // optionals price field
-            'price_earlybird' => ['required_if:cost,paid', 'numeric'],
-            'earlybird_end' => ['required_if:cost,paid', 'date'],
-            'price_normal' => ['required_if:cost,paid', 'numeric'],
-            'price_onsite' => ['required_if:cost,paid', 'numeric'],
+            'quota' => ['nullable', 'numeric'],
+            'price_earlybird' => ['required_if:cost,paid', 'numeric', 'nullable'],
+            'earlybird_end' => ['required_if:cost,paid', 'date', 'nullable'],
+            'price_normal' => ['required_if:cost,paid', 'numeric', 'nullable'],
+            'price_onsite' => ['required_if:cost,paid', 'numeric', 'nullable'],
         ];
     }
 }

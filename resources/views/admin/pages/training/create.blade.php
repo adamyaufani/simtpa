@@ -18,7 +18,7 @@
         enctype="multipart/form-data">
         @csrf
         <div class="col-4">
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <h4 class="mb-3">Detail Training</h4>
                     <div class="form-group">
@@ -76,6 +76,31 @@
                     </div>
                     <div class="form-group">
                         <label for="trainingQuota">Kuota</label>
+                        <input name="quota" type="number"
+                            class="form-control {{ $errors->has('quota') ? 'is-invalid' : '' }}"
+                            id="trainingQuota" aria-describedby="quota" value="{{ old('quota') }}">
+                        <small class="invalid-feedback">
+                            {{ $errors->first('quota') }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mb-3">Kuota</h4>
+                    <div class="form-group">
+                        <label for="trainingQuota">Total Kuota</label>
+                        <small>(Kosongkan untuk kuota tak terbatas)</small>
+                        <input name="quota" type="number"
+                            class="form-control {{ $errors->has('quota') ? 'is-invalid' : '' }}"
+                            id="trainingQuota" aria-describedby="quota" value="{{ old('quota') }}">
+                        <small class="invalid-feedback">
+                            {{ $errors->first('quota') }}
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="trainingQuota">Kuota per organisasi</label>
+                        <small>(Kosongkan untuk kuota tak terbatas)</small>
                         <input name="quota" type="number"
                             class="form-control {{ $errors->has('quota') ? 'is-invalid' : '' }}"
                             id="trainingQuota" aria-describedby="quota" value="{{ old('quota') }}">
@@ -179,44 +204,46 @@
                 </div>
             </div>
 
-            <div class="card mb-3" id="price-card">
-                <div class="card-body">
-                    <h4 class="mb-3">Harga</h4>
-                    <div class="form-group">
-                        <label for="earlyBirdPrice">Early Bird</label>
-                        <input name="price_earlybird" type="text"
-                            class="form-control {{ $errors->has('price_earlybird') ? 'is-invalid' : '' }}"
-                            id="earlyBirdPrice" value="{{ old('price_earlybird') }}">
-                        <small class="invalid-feedback">
-                            {{ $errors->first('price_earlybird') }}
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label for="startDate">Early Bird selesai</label>
-                        <input name="earlybird_end" type="date"
-                            class="form-control {{ $errors->has('earlybird_end') ? 'is-invalid' : '' }}"
-                            id="startDate" value="{{ old('earlybird_end') }}">
-                        <small class="invalid-feedback">
-                            {{ $errors->first('earlybird_end') }}
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label for="NormalPrice">Normal</label>
-                        <input name="price_normal" type="text"
-                            class="form-control {{ $errors->has('price_normal') ? 'is-invalid' : '' }}"
-                            id="NormalPrice" value="{{ old('price_normal') }}">
-                        <small class="invalid-feedback">
-                            {{ $errors->first('price_normal') }}
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label for="studentPrice">Onsite</label>
-                        <input name="price_onsite" type="text"
-                            class="form-control {{ $errors->has('price_onsite') ? 'is-invalid' : '' }}"
-                            id="studentPrice" value="{{ old('price_onsite') }}">
-                        <small class="invalid-feedback">
-                            {{ $errors->first('price_onsite') }}
-                        </small>
+            <div>
+                <div class="card mb-3" id="price-card">
+                    <div class="card-body">
+                        <h4 class="mb-3">Harga</h4>
+                        <div class="form-group">
+                            <label for="earlyBirdPrice">Early Bird</label>
+                            <input name="price_earlybird" type="text"
+                                class="form-control {{ $errors->has('price_earlybird') ? 'is-invalid' : '' }}"
+                                id="earlyBirdPrice" value="{{ old('price_earlybird') }}">
+                            <small class="invalid-feedback">
+                                {{ $errors->first('price_earlybird') }}
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="startDate">Early Bird selesai</label>
+                            <input name="earlybird_end" type="date"
+                                class="form-control {{ $errors->has('earlybird_end') ? 'is-invalid' : '' }}"
+                                id="startDate" value="{{ old('earlybird_end') }}">
+                            <small class="invalid-feedback">
+                                {{ $errors->first('earlybird_end') }}
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="NormalPrice">Normal</label>
+                            <input name="price_normal" type="text"
+                                class="form-control {{ $errors->has('price_normal') ? 'is-invalid' : '' }}"
+                                id="NormalPrice" value="{{ old('price_normal') }}">
+                            <small class="invalid-feedback">
+                                {{ $errors->first('price_normal') }}
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentPrice">Onsite</label>
+                            <input name="price_onsite" type="text"
+                                class="form-control {{ $errors->has('price_onsite') ? 'is-invalid' : '' }}"
+                                id="studentPrice" value="{{ old('price_onsite') }}">
+                            <small class="invalid-feedback">
+                                {{ $errors->first('price_onsite') }}
+                            </small>
+                        </div>
                     </div>
                 </div>
             </div>

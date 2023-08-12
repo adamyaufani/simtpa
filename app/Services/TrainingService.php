@@ -17,8 +17,16 @@ class TrainingService
     {
         DB::transaction(function () use ($request) {
 
-            dd($request);
-            $training = Training::create(Arr::except($request, ['trainer_id', 'image']));
+            $data = Arr::except($request, ['trainer_id', 'image']);
+
+            if ($request['cost'] == 'free') {
+                $data = Arr::except($data, ['price_earlybird', 'earlybird_end', 'price_normal', 'price_onsite']);
+            }
+
+
+            dd($data);
+
+            $training = Training::create($data);
             $file = $request['image'];
             $fileName = $file->getClientOriginalName();
             $fileLocation = 'trainings/training_banner' . '/' . $training['id'] . '/';

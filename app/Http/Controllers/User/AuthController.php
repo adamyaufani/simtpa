@@ -9,6 +9,7 @@ use App\Models\PasswordReset as ModelsPasswordReset;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -26,7 +27,7 @@ class AuthController extends Controller
     public function authenticate(LoginRequest $request): RedirectResponse
     {
         $credentials = $request->validated();
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt(Arr::add($credentials, 'verification_status', 1))) {
             $request->session()->regenerate();
             return redirect()->intended();
         }
