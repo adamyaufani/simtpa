@@ -24,10 +24,8 @@ class RegistrationController extends Controller
     {
         $validated_request = $request->validated();
 
-        $user = User::create(Arr::add($validated_request, 'verification_status', 0));
+        User::create(Arr::add($validated_request, 'verification_status', 0));
 
-        Auth::login($user);
-
-        return redirect()->intended();
+        return redirect()->back()->with('success', 'Akun berhasil didaftarkan. Mohon tunggu verifikasi dari admin untuk bisa login ke akun anda.');
     }
 }

@@ -68,9 +68,9 @@ class OrderService
 
         if ($order->payment_method == "Transfer") {
             $trainingPrice = '';
-            if (time() < $training->earlybird_end) {
+            if (now() < $training->earlybird_end) {
                 $trainingPrice = $training->price_earlybird;
-            } elseif (time() == $training->start_date) {
+            } elseif (now() == $training->start_date) {
                 $trainingPrice = $training->price_onsite;
             } else {
                 $trainingPrice = $training->price_normal;
@@ -100,9 +100,9 @@ class OrderService
         }
 
         $trainingPrice = '';
-        if (time() < $training->earlybird_end) {
+        if (now() < $training->earlybird_end) {
             $trainingPrice = $training->price_earlybird;
-        } elseif (time() == $training->start_date) {
+        } elseif (now() == $training->start_date) {
             $trainingPrice = $training->price_onsite;
         } else {
             $trainingPrice = $training->price_normal;

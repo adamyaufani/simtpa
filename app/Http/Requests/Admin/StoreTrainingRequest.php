@@ -39,10 +39,10 @@ class StoreTrainingRequest extends FormRequest
             'category_id' => ['required', 'numeric', 'exists:categories,id'],
             // optionals price field
             'quota' => ['nullable', 'numeric'],
-            'price_earlybird' => ['required_if:cost,paid', 'numeric', 'nullable'],
-            'earlybird_end' => ['required_if:cost,paid', 'date', 'nullable'],
+            // 'price_earlybird' => ['required_if:cost,paid', 'numeric', 'nullable'],
+            // 'earlybird_end' => ['required_if:cost,paid', 'date', 'nullable'],
             'price_normal' => ['required_if:cost,paid', 'numeric', 'nullable'],
-            'price_onsite' => ['required_if:cost,paid', 'numeric', 'nullable'],
+            // 'price_onsite' => ['required_if:cost,paid', 'numeric', 'nullable'],
         ];
     }
 }

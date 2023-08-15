@@ -2,6 +2,11 @@
     <div class="col-12">
         <section class="py-5" id="features">
             <div class="container px-5 my-5">
+                @if(session()->has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session()->get('error') }}
+                    </div>
+                @endif
                 <div class="row mb-5">
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <img src="{{ route('training.image').'?q='.$training->image }}"
@@ -14,7 +19,7 @@
                             <p class="text-secondary">{{ $training->start_date }}</p>
                             <span>Tanggal Selesai</span>
                             <p class="text-secondary">{{ $training->end_date }}</p>
-                            <p class="text-secondary">Sisa kuota {{ $training->quota }}</p>
+                            <p class="text-secondary">Sisa kuota {{ $leftoverQuota }}</p>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -28,9 +33,9 @@
                                 <br>
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <button class="plus_minus btn badge bg-primary">+</button>
-                                        <span class="number">1</span>
                                         <button class="minus_plus btn badge bg-primary">-</button>
+                                        <span class="number">1</span>
+                                        <button class="plus_minus btn badge bg-primary">+</button>
                                     </div>
                                 </div>
                                 <div class="d-grid gap-2 mt-3">
@@ -75,14 +80,17 @@
             const plus = document.querySelector('.plus_minus');
             const minus = document.querySelector('.minus_plus');
             const register = document.getElementById("registration_button");
+            const leftoverQuota = "{{ $leftoverQuota }}";
             let number = 1;
 
             let number_el = document.querySelector('.number');
 
             plus.addEventListener('click', () => {
                 let val = parseInt(number_el.innerText);
-                number = ++val;
-                console.log(number);
+                if (number < leftoverQuota) {
+                    number = ++val;
+                }
+                // console.log(number);
                 number_el.innerText = number;
             });
 
@@ -91,7 +99,7 @@
                 if (number > 1) {
                     number = --val;
                 }
-                console.log(number);
+                // console.log(number);
                 number_el.innerText = number;
             });
 

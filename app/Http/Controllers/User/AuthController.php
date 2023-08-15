@@ -33,7 +33,7 @@ class AuthController extends Controller
         }
 
         return back()
-            ->withErrors(['login_failed' => 'Email atau password yang anda masukkan tidak sesuai.'])
+            ->withErrors(['login_failed' => 'Email atau password yang anda masukkan tidak sesuai atau akun anda belum diverifikasi.'])
             ->onlyInput('email');
     }
 

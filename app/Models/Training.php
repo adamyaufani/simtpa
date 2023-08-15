@@ -38,6 +38,11 @@ class Training extends Model
         return $this->belongsToMany(Trainer::class, 'training_trainer');
     }
 
+    public function quotaPerOrg()
+    {
+        return $this->hasOne(QuotaPerOrg::class);
+    }
+
     protected function image(): Attribute
     {
         return Attribute::make(

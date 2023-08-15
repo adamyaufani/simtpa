@@ -2,6 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\Order;
+use App\Models\OrderParticipant;
+use App\Models\QuotaPerOrg;
 use App\Models\Training;
 use App\Models\TrainingTrainer;
 use Illuminate\Support\Arr;
@@ -15,16 +18,21 @@ class TrainingService
 
     public static function storeTraining($request)
     {
+        // dd($request);
         DB::transaction(function () use ($request) {
 
-            $data = Arr::except($request, ['trainer_id', 'image']);
+            $data = Arr::except($request, ['trainer_id', 'image', 'quota']);
 
             if ($request['cost'] == 'free') {
-                $data = Arr::except($data, ['price_earlybird', 'earlybird_end', 'price_normal', 'price_onsite']);
+                $data = Arr::except($data, [
+                    // 'price_earlybird',
+                    // 'earlybird_end',
+                    'price_normal',
+                    // 'price_onsite'
+                ]);
             }
 
-
-            dd($data);
+            // dd($data);
 
             $training = Training::create($data);
             $file = $request['image'];
@@ -38,6 +46,11 @@ class TrainingService
             TrainingTrainer::create([
                 'training_id' => $training->id,
                 'trainer_id' => $request['trainer_id'],
+            ]);
+
+            QuotaPerOrg::create([
+                'quota' => $request['quota'],
+                'training_id' => $training->id
             ]);
         });
     }
@@ -85,18 +98,38 @@ class TrainingService
 
     public static function trainingPrice()
     {
+
         $training = static::$training;
 
         // dd($training->earlybird_end);
-        if (time() < $training->earlybird_end) {
+        if (now() < $training->earlybird_end) {
             return $training->price_earlybird;
         }
 
-        if (time() == $training->start_date) {
+        if (now() == $training->start_date) {
             return $training->price_onsite;
         }
 
         return $training->price_normal;
+    }
+
+    public static function quotaPerOrgLeft($user_id)
+    {
+        $training = static::$training;
+
+        $order = Order::where([
+            ['training_id', '=', $training->id],
+            ['user_id', '=', $user_id]
+        ])->first();
+
+        if ($order) {
+            $participants = OrderParticipant::where('order_id', '=', $order->id)->count();
+            $leftoverQuota = $training->quotaPerOrg->quota - $participants;
+
+            return $leftoverQuota;
+        }
+
+        return $training->quotaPerOrg->quota;
     }
 
     public static function trainingIndex()
