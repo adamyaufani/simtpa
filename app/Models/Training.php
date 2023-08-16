@@ -24,7 +24,8 @@ class Training extends Model
         'type',
         'description',
         'quota',
-        'image'
+        'image',
+        'cost'
     ];
 
     protected $casts = [

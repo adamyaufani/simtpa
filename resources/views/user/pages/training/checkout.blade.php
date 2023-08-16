@@ -43,12 +43,14 @@
                                 </table>
                             </div>
                         </div>
-                        <select class="form-select form-select-sm mt-2" name="payment_method">
-                            <option>Metode Pembayaran</option>
-                            @foreach($paymentMethod as $method)
-                                <option value="{{ $method->name }}">{{ $method->value }}</option>
-                            @endforeach
-                        </select>
+                        @if($training->cost=='paid')
+                            <select class="form-select form-select-sm mt-2" name="payment_method">
+                                <option>Metode Pembayaran</option>
+                                @foreach($paymentMethod as $method)
+                                    <option value="{{ $method->name }}">{{ $method->value }}</option>
+                                @endforeach
+                            </select>
+                        @endif
                         <div class="d-grid gap-2 mt-2">
                             <button class="btn btn-primary" type="submit">Lanjutkan pembayaran</button>
                         </div>

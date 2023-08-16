@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Users\CertificateController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\User\AgreementController;
 use App\Http\Controllers\User\AuthController as UserAuthController;
 use App\Http\Controllers\User\RegistrationController;
 use App\Http\Controllers\User\TrainingController as UserTrainingController;
@@ -47,19 +48,22 @@ Route::get('trainings/{id}', [UserTrainingController::class, 'show'])->name('use
 
 Route::middleware('auth.user')->group(function () {
     Route::get('logout', [UserAuthController::class, 'logout'])->name('user.logout');
-    Route::prefix('trainings')->group(function () {
-        Route::get('{id}/checkout', [UserTrainingController::class, 'checkout'])->name('user.checkout_training');
-        Route::post('{id}/order', [OrderController::class, 'placeOrder'])->name('user.order_training');
-    });
-    Route::prefix('orders')->group(function () {
-        Route::get('/', [OrderController::class, 'index'])->name('user.order_index');
-        Route::get('{id}', [OrderController::class, 'show'])->name('user.detail_order');
-        Route::get('{id}/pay-order', [OrderController::class, 'midtransCheckoutProcess'])->name('user.pay_order');
-    });
-    Route::prefix('certificates')->group(function () {
-        Route::get('/', [CertificateController::class, 'index'])->name('user.certificate_index');
-        Route::get('{id}', [CertificateController::class, 'show'])->name('user.preview_certificate');
-        Route::get('{id}/download', [CertificateController::class, 'show'])->name('user.download_certificate');
+    Route::get('agreement', [AgreementController::class, 'index'])->name('user.agreement');
+    Route::middleware('agreed.user')->group(function () {
+        Route::prefix('trainings')->group(function () {
+            Route::get('{id}/checkout', [UserTrainingController::class, 'checkout'])->name('user.checkout_training');
+            Route::post('{id}/order', [OrderController::class, 'placeOrder'])->name('user.order_training');
+        });
+        Route::prefix('orders')->group(function () {
+            Route::get('/', [OrderController::class, 'index'])->name('user.order_index');
+            Route::get('{id}', [OrderController::class, 'show'])->name('user.detail_order');
+            Route::get('{id}/pay-order', [OrderController::class, 'midtransCheckoutProcess'])->name('user.pay_order');
+        });
+        Route::prefix('certificates')->group(function () {
+            Route::get('/', [CertificateController::class, 'index'])->name('user.certificate_index');
+            Route::get('{id}', [CertificateController::class, 'show'])->name('user.preview_certificate');
+            Route::get('{id}/download', [CertificateController::class, 'show'])->name('user.download_certificate');
+        });
     });
 });
 

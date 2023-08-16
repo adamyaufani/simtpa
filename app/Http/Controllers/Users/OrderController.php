@@ -32,20 +32,30 @@ class OrderController extends Controller
 
         $order = OrderService::detailOrder($id)->fetch();
 
-        if ($order['order']['payment_method']->value == 'Transfer') {
-            return view('user.pages.order.detail')
-                ->with([
-                    'data' => $order
-                ]);
+        // dd($order);
+
+        if ($order['training']->cost == 'paid') {
+            if ($order['order']['payment_method']->value == 'Transfer') {
+                return view('user.pages.order.detail')
+                    ->with([
+                        'data' => $order
+                    ]);
+            }
+
+            if ($order['order']['payment_method']->value == 'Midtrans') {
+                return view('user.pages.order.detail-midtrans')
+                    ->with([
+                        'data' => $order,
+                        // 'midtransClientKey' => "SB-Mid-client-NUHDTW6uipcvE7sz"
+                    ]);
+            }
         }
 
-        if ($order['order']['payment_method']->value == 'Midtrans') {
-            return view('user.pages.order.detail-midtrans')
-                ->with([
-                    'data' => $order,
-                    // 'midtransClientKey' => "SB-Mid-client-NUHDTW6uipcvE7sz"
-                ]);
-        }
+        return view('user.pages.order.detail-free')
+            ->with([
+                'data' => $order,
+                // 'midtransClientKey' => "SB-Mid-client-NUHDTW6uipcvE7sz"
+            ]);
     }
 
     public function placeOrder(StoreParticipantRequest $request)

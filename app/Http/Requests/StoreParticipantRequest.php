@@ -27,7 +27,7 @@ class StoreParticipantRequest extends FormRequest
     {
         return [
             'training_id' => ['required', 'exists:trainings,id'],
-            'payment_method' => ['required', new Enum(PaymentMethodEnum::class)],
+            'payment_method' => ['sometimes', new Enum(PaymentMethodEnum::class)],
             'fullname' => ['array', 'required'],
             'fullname.*' => ['string', 'required'],
             'email' => ['array', 'required'],

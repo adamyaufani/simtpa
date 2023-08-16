@@ -28,12 +28,20 @@ class OrderService
     public static function createOrder($request, $userId)
     {
         DB::transaction(function () use ($request, $userId) {
-            $order = Order::create([
-                'training_id' => $request['training_id'],
-                'user_id' => $userId,
-                'order_date' => now(),
-                'payment_method' => $request['payment_method']
-            ]);
+            if (isset($request['payment_method'])) {
+                $order = Order::create([
+                    'training_id' => $request['training_id'],
+                    'user_id' => $userId,
+                    'order_date' => now(),
+                    'payment_method' => $request['payment_method']
+                ]);
+            } else {
+                $order = Order::create([
+                    'training_id' => $request['training_id'],
+                    'user_id' => $userId,
+                    'order_date' => now(),
+                ]);
+            }
 
             $training_participants = Arr::except($request, ['training_id']);
 

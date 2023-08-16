@@ -58,6 +58,7 @@ class Kernel extends HttpKernel
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'auth.admin' => \App\Http\Middleware\EnsureAdminLogin::class,
         'auth.user' => \App\Http\Middleware\EnsureUserIsLoggedIn::class,
+        'agreed.user' => \App\Http\Middleware\EnsureUserSignedAgreement::class,
         'role.admin' => \App\Http\Middleware\AuthenticateAdmin::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,

@@ -19,38 +19,45 @@ class OrderStatus extends Component
     {
         $order = Order::find($id);
 
-        if ($order->payment_method->name == 'Midtrans') {
-            if ($order->status_order == 'success') {
-                $this->status = 'Success';
-                $this->statusClass = 'bg-success';
-            } elseif ($order->status_order ==  'settlement') {
-                $this->status = 'Settlement';
-                $this->statusClass = 'bg-success';
-            } elseif ($order->status_order == 'pending') {
-                $this->status = 'Pending';
-                $this->statusClass = 'bg-info';
-            } elseif ($order->status_order == 'denied') {
-                $this->status = 'Denied';
-                $this->statusClass = 'bg-danger';
-            } elseif ($order->status_order == 'expired') {
-                $this->status = 'Expired';
-                $this->statusClass = 'bg-warning';
+
+        if ($order->training->cost == 'paid') {
+            if ($order->payment_method->name == 'Midtrans') {
+                if ($order->status_order == 'success') {
+                    $this->status = 'Success';
+                    $this->statusClass = 'bg-success';
+                } elseif ($order->status_order ==  'settlement') {
+                    $this->status = 'Settlement';
+                    $this->statusClass = 'bg-success';
+                } elseif ($order->status_order == 'pending') {
+                    $this->status = 'Pending';
+                    $this->statusClass = 'bg-info';
+                } elseif ($order->status_order == 'denied') {
+                    $this->status = 'Denied';
+                    $this->statusClass = 'bg-danger';
+                } elseif ($order->status_order == 'expired') {
+                    $this->status = 'Expired';
+                    $this->statusClass = 'bg-warning';
+                } else {
+                    $this->status = 'Menunggu Pembayaran';
+                    $this->statusClass = 'bg-secondary';
+                }
             } else {
-                $this->status = 'Menunggu Pembayaran';
-                $this->statusClass = 'bg-secondary';
+                if ($order->status == 'Lunas') {
+                    $this->status = 'Lunas';
+                    $this->statusClass = 'bg-success';
+                } elseif ($order->status == 'Expired') {
+                    $this->status = 'Expired';
+                    $this->statusClass = 'bg-warning';
+                } else {
+                    $this->status = 'Menunggu Pembayaran';
+                    $this->statusClass = 'bg-info';
+                }
             }
         } else {
-            if ($order->status == 'Lunas') {
-                $this->status = 'Lunas';
-                $this->statusClass = 'bg-success';
-            } elseif ($order->status == 'Expired') {
-                $this->status = 'Expired';
-                $this->statusClass = 'bg-warning';
-            } else {
-                $this->status = 'Menunggu Pembayaran';
-                $this->statusClass = 'bg-info';
-            }
+            $this->status = 'Gratis';
+            $this->statusClass = 'bg-success';
         }
+
 
         // $this->status = $order->payment_method->name;
         // $this->statusClass = 'bg-dark';
