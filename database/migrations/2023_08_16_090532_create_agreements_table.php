@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('agreements', function (Blueprint $table) {
             $table->id();
-            $table->smallInteger('year_start')->nullable();
-            $table->smallInteger('year_end')->nullable();
+            $table->date('year_start')->nullable();
+            $table->date('year_end')->nullable();
             $table->timestamps();
         });
     }
