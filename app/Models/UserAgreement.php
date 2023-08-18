@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class UserAgreement extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'agreement_id',
+        'sign',
+    ];
 }

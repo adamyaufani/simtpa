@@ -49,6 +49,7 @@ Route::get('trainings/{id}', [UserTrainingController::class, 'show'])->name('use
 Route::middleware('auth.user')->group(function () {
     Route::get('logout', [UserAuthController::class, 'logout'])->name('user.logout');
     Route::get('agreement', [AgreementController::class, 'index'])->name('user.agreement');
+    Route::get('agreement/sign', [AgreementController::class, 'sign'])->name('user.sign_agreement');
     Route::middleware('agreed.user')->group(function () {
         Route::prefix('trainings')->group(function () {
             Route::get('{id}/checkout', [UserTrainingController::class, 'checkout'])->name('user.checkout_training');

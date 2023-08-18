@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-class EnsureUserIsLoggedIn
+class EnsureUserSignedAgreement
 {
     /**
      * Handle an incoming request.
@@ -21,7 +21,11 @@ class EnsureUserIsLoggedIn
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            $current_agreement = Agreement::where('year_start', '=', Carbon::now()->format('Y'))->first();
+
+            $current_agreement = Agreement::where([
+                ['year_start', '<=', Carbon::now()->format('Y-m-d')],
+                ['year_end', '>=', Carbon::now()->format('Y-m-d')],
+            ])->first();
             $user_sign = UserAgreement::where([
                 ['user_id', '=', Auth::id()],
                 ['agreement_id', '=', $current_agreement->id],
