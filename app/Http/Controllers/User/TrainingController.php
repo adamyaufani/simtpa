@@ -4,7 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Enums\PaymentMethodEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\StoreParticipantRequest;
+use App\Services\OrderService;
 use App\Services\TrainingService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -23,6 +25,8 @@ class TrainingController extends Controller
         return view('user.pages.training.detail_unli')
             ->with(compact('training'));
     }
+
+
 
     public function checkout($id, Request $request)
     {

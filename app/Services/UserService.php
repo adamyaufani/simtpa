@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class UserService
@@ -40,6 +41,38 @@ class UserService
                 'verification_status' => 1,
                 'verification_date' => now()
             ]);
+        });
+    }
+
+    public static function bannedUser()
+    {
+        $user = static::$user;
+
+        DB::transaction(function () use ($user) {
+            $user->update([
+                'verification_status' => 2,
+                'verification_date' => now()
+            ]);
+        });
+    }
+
+    public static function unbannedUser()
+    {
+        $user = static::$user;
+
+        DB::transaction(function () use ($user) {
+            $user->update([
+                'verification_status' => 1,
+                'verification_date' => now()
+            ]);
+        });
+    }
+
+    public static function storeNewUser($request)
+    {
+        DB::transaction(function () use ($request) {
+            $user_data = Arr::add($request, 'verification_status', 1);
+            User::create($user_data);
         });
     }
 }

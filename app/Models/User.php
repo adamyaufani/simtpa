@@ -23,7 +23,7 @@ class User extends Authenticatable
         'fullname',
         'phone',
         'agency',
-        'username',
+        // 'username',
         'role_id',
         'email',
         'password',
@@ -89,7 +89,7 @@ class User extends Authenticatable
         if ($this->verification_status == 2) {
             return [
                 'badge' => 'danger',
-                'message' => 'verifikasi ditolak'
+                'message' => 'dibekukan'
             ];
         }
     }

@@ -27,13 +27,34 @@ class AuthController extends Controller
     public function authenticate(LoginRequest $request): RedirectResponse
     {
         $credentials = $request->validated();
-        if (Auth::attempt(Arr::add($credentials, 'verification_status', 1))) {
+
+        if (Auth::attempt($credentials)) {
+
+            if (Auth::user()->verification_status == 0) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return back()
+                    ->withErrors(['login_failed' => 'Mohon maaf, pendaftaran akun anda belum disetujui oleh admin.'])
+                    ->onlyInput('email');
+            }
+
+
+            if (Auth::user()->verification_status == 2) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return back()
+                    ->withErrors(['login_failed' => 'Akun anda dibekukan.'])
+                    ->onlyInput('email');
+            }
+
             $request->session()->regenerate();
             return redirect()->intended();
         }
 
         return back()
-            ->withErrors(['login_failed' => 'Email atau password yang anda masukkan tidak sesuai atau akun anda belum diverifikasi.'])
+            ->withErrors(['login_failed' => 'Email atau password yang anda masukkan tidak sesuai.'])
             ->onlyInput('email');
     }
 

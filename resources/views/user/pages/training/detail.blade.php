@@ -31,17 +31,27 @@
                                     Jumlah Peserta
                                 </span>
                                 <br>
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <button class="minus_plus btn badge bg-primary">-</button>
-                                        <span class="number">1</span>
-                                        <button class="plus_minus btn badge bg-primary">+</button>
+                                <form
+                                    action="{{ route('user.create_training_order',$training->id) }}"
+                                    method="POST">
+                                    @csrf
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <input name="training_id" type="hidden" value="{{ $training->id }}">
+                                            <input name="qty" type="number"
+                                                class="form-control {{ $errors->has('qty') ? 'is-invalid' : '' }}"
+                                                id="qty" min="1">
+                                            <small class="invalid-feedback">
+                                                {{ $errors->first('qty') }}
+                                            </small>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-grid gap-2 mt-3">
-                                    <button class="btn btn-success" id="registration_button"
-                                        type="button">Daftar</button>
-                                </div>
+                                    <div class="d-grid gap-2 mt-3">
+                                        <button type="submit" class="btn btn-success">
+                                            Daftar
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -74,40 +84,4 @@
             </div>
         </section>
     </div>
-
-    @push('js')
-        <script>
-            const plus = document.querySelector('.plus_minus');
-            const minus = document.querySelector('.minus_plus');
-            const register = document.getElementById("registration_button");
-            const leftoverQuota = "{{ $leftoverQuota }}";
-            let number = 1;
-
-            let number_el = document.querySelector('.number');
-
-            plus.addEventListener('click', () => {
-                let val = parseInt(number_el.innerText);
-                if (number < leftoverQuota) {
-                    number = ++val;
-                }
-                // console.log(number);
-                number_el.innerText = number;
-            });
-
-            minus.addEventListener('click', () => {
-                let val = parseInt(number_el.innerText);
-                if (number > 1) {
-                    number = --val;
-                }
-                // console.log(number);
-                number_el.innerText = number;
-            });
-
-            register.addEventListener('click', () => {
-                location.href = "{{ route('user.checkout_training',$training->id) }}" +
-                    "?q=" + number;
-            });
-
-        </script>
-    @endpush
 </x-user.layout>

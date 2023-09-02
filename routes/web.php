@@ -52,13 +52,18 @@ Route::middleware('auth.user')->group(function () {
     Route::get('agreement/sign', [AgreementController::class, 'sign'])->name('user.sign_agreement');
     Route::middleware('agreed.user')->group(function () {
         Route::prefix('trainings')->group(function () {
-            Route::get('{id}/checkout', [UserTrainingController::class, 'checkout'])->name('user.checkout_training');
-            Route::post('{id}/order', [OrderController::class, 'placeOrder'])->name('user.order_training');
+            // Route::get('{id}/checkout', [UserTrainingController::class, 'checkout'])->name('user.checkout_training');
+            Route::post('{id}/order', [OrderController::class, 'createOrder'])->name('user.create_training_order');
+            // Route::post('{id}/order', [OrderController::class, 'placeOrder'])->name('user.order_training');
         });
         Route::prefix('orders')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('user.order_index');
             Route::get('{id}', [OrderController::class, 'show'])->name('user.detail_order');
-            Route::get('{id}/pay-order', [OrderController::class, 'midtransCheckoutProcess'])->name('user.pay_order');
+            Route::get('{id}/complete-order', [OrderController::class, 'completeOrder'])->name('user.complete_order');
+            Route::put('{id}/complete-order', [OrderController::class, 'storeCompletedOrder'])->name('user.store_completed_order');
+            Route::get('{id}/select-payment', [OrderController::class, 'selectPayment'])->name('user.select_order_payment');
+            Route::put('{id}/checkout', [OrderController::class, 'checkout'])->name('user.checkout_order');
+            // Route::put('{id}/checkout', [OrderController::class, 'midtransCheckoutProcess'])->name('user.pay_order');
         });
         Route::prefix('certificates')->group(function () {
             Route::get('/', [CertificateController::class, 'index'])->name('user.certificate_index');
@@ -79,9 +84,18 @@ Route::prefix('admin')->group(function () {
         Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
+        Route::prefix('agreement')->group(function () {
+            Route::get('create', [AgreementController::class, 'create'])->name('admin.create_agreement');
+            Route::post('create', [AgreementController::class, 'store'])->name('admin.store_new_agreement');
+        });
+
         Route::prefix('users')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('admin.user_index');
+            Route::get('create', [UserController::class, 'create'])->name('admin.create_new_user');
+            Route::post('create', [UserController::class, 'store'])->name('admin.store_new_user');
             Route::get('{id}', [UserController::class, 'show'])->name('admin.detail_user');
+            Route::get('{id}/banned', [UserController::class, 'banned'])->name('admin.banned_user');
+            Route::get('{id}/unbannd', [UserController::class, 'unbanned'])->name('admin.unbanned_user');
             Route::get('verify/{id}', [UserController::class, 'userRegistrationDetail'])->name('admin.verify_user');
             Route::get('verify/{id}/accept', [UserController::class, 'verifyUser'])->name('admin.accept_user_registration');
         });

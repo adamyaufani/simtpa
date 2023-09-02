@@ -1,9 +1,18 @@
 <x-layout>
     <x-slot:title>
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Daftar Pengguna</h1>
+        <div class="d-sm-flex align-items-center mb-4">
+            <h1 class="h3 mb-0 mr-2 text-gray-800">Daftar Pengguna</h1>
+            <a href="{{ route('admin.create_new_user') }}" class="btn btn-sm btn-primary">
+                tambah
+            </a>
         </div>
     </x-slot:title>
+
+    @if(session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session()->get('success') }}
+        </div>
+    @endif
 
     @foreach($users as $user)
         <div class="card mb-2 border-bottom-{{ $user->status['badge'] }}">
@@ -21,14 +30,14 @@
                                 </a>
                             </h6>
                         </div>
-                        <div>
-                            <p>
-                                Username :
-                            </p>
-                            <h6 class="font-weight-bold">
-                                {{ $user->username }}
-                            </h6>
-                        </div>
+                        {{-- <div> --}}
+                        {{-- <p> --}}
+                        {{-- Username : --}}
+                        {{-- </p> --}}
+                        {{-- <h6 class="font-weight-bold"> --}}
+                        {{-- {{ $user->username }} --}}
+                        {{-- </h6> --}}
+                        {{-- </div> --}}
                         <div>
                             <p>
                                 Alamat Email :

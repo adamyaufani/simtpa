@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Training;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -15,6 +16,8 @@ class HomeController extends Controller
             $query->where('category_id', '=', $request->category);
         })->get();
         $categories = Category::all();
+
+        // dd(Auth::user()->verification_status);
 
         return view('user.pages.home')
             ->with(compact('trainings', 'categories'));

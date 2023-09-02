@@ -10,6 +10,7 @@ class Agreement extends Model
     use HasFactory;
 
     protected $fillable = [
-        ''
+        'year_start',
+        'year_end',
     ];
 }

@@ -1,69 +1,71 @@
 <x-layout>
     <x-slot:title>
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Konfirmasi Pengguna</h1>
+        <div class="d-sm-flex align-items-center mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Tambah Pengguna Baru</h1>
         </div>
     </x-slot:title>
 
-    <div class="col-xl-8 mx-auto">
-        <!-- Account details card-->
-        <div class="card mb-4">
-            <div class="card-header">
-                <h5>Detail pengguna</h5>
-            </div>
-            <div class="card-body">
-                @if(session()->has('succeed'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session()->get('succeed') }}
-                    </div>
-                @endif
-                <div>
-                    <div class="mb-2">
-                        <span> Nama Lengkap :</span>
-                        <h6 class="font-weight-bold">
-                            {{ $user->fullname }}
-                        </h6>
-                    </div>
-                    <div class="mb-2">
-                        <span> Username :</span>
-                        <h6 class="font-weight-bold">
-                            {{ $user->username }}
-                        </h6>
+    <form action="{{ route('admin.store_new_user') }}" method="POST">
+        @csrf
+        <div class="row mb-3">
+            <div class="col-8 mx-auto">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h4 class="mb-3">Detail Pengguna</h4>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="email">Alamat Email</label>
+                                <input name="email" type="email"
+                                    class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                                    id="email" value="{{ $user->email }}">
+                                <small class="invalid-feedback">
+                                    {{ $errors->first('email') }}
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="agency">Nama Organisasi</label>
+                                <input name="agency" type="text"
+                                    class="form-control {{ $errors->has('agency') ? 'is-invalid' : '' }}"
+                                    id="agency" value="{{ $user->agency }}">
+                                <small class="invalid-feedback">
+                                    {{ $errors->first('agency') }}
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="fullname">Nama Lengkap</label>
+                                <input name="fullname" type="text"
+                                    class="form-control {{ $errors->has('fullname') ? 'is-invalid' : '' }}"
+                                    id="fullname" value="{{ $user->fullname }}">
+                                <small class="invalid-feedback">
+                                    {{ $errors->first('fullname') }}
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Nomor Telepon</label>
+                                <input name="phone" type="text"
+                                    class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}"
+                                    id="phone" value="{{ $user->phone }}">
+                                <small class="invalid-feedback">
+                                    {{ $errors->first('phone') }}
+                                </small>
+                            </div>
+                            <div class="form-group d-flex">
+                                <label for="email">Status Akun</label>
+                                <h6 class="font-weight-bold ml-2">
+                                    <span class="badge badge-{{ $user->status['badge'] }}">
+                                        {{ $user->status['message'] }}
+                                    </span>
+                                </h6>
+                            </div>
+                            <div class="form-group d-flex">
+                                <x-verification-options :userId="$user->id" />
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-6 mb-2">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span> Alamat Email :</span>
-                        <h6 class="font-weight-bold">
-                            {{ $user->email }}
-                        </h6>
-                    </div>
-                    <div class="col-6 mb-2">
-                        <i class="fa-solid fa-phone"></i>
-                        <span> No. Telp :</span>
-                        <h6 class="font-weight-bold">
-                            {{ $user->phone }}
-                        </h6>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <i class="fa-solid fa-building"></i>
-                        <span> Organisasi </span>
-                        <h6 class="font-weight-bold">
-                            {{ $user->agency }}
-                        </h6>
-                    </div>
-                </div>
-                <div>
-                    <a href="{{ route('admin.accept_user_registration',$user->id) }}"
-                        class="btn btn-success">
-                        Terima Pendaftaran
-                    </a>
-                </div>
+                <button class="btn btn-success btn-block">Save</button>
             </div>
         </div>
-    </div>
+    </form>
 
 </x-layout>

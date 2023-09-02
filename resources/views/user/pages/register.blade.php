@@ -30,18 +30,18 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mb-4">
-                        <label for="inputUserName" class="form-label">Nama Pengguna</label>
-                        <input type="text" name="username"
+                    {{-- <div class="mb-4"> --}}
+                    {{-- <label for="inputUserName" class="form-label">Nama Pengguna</label> --}}
+                    {{-- <input type="text" name="username"
                             class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}"
-                            id="inputUserName" placeholder="Nama Pengguna"
-                            value="{{ old('username') }}">
-                        @error('username')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
+                    id="inputUserName" placeholder="Nama Pengguna"
+                    value="{{ old('username') }}"> --}}
+                    {{-- @error('username') --}}
+                    {{-- <div class="invalid-feedback"> --}}
+                    {{-- {{ $message }} --}}
+                    {{-- </div> --}}
+                    {{-- @enderror --}}
+                    {{-- </div> --}}
                     <div class="mb-4">
                         <label for="inputPhone" class="form-label">Nomor Telepon</label>
                         <input type="text" name="phone"
@@ -54,7 +54,7 @@
                         @enderror
                     </div>
                     <div class="mb-4">
-                        <label for="inputPhone" class="form-label">Instansi</label>
+                        <label for="inputPhone" class="form-label">Organisasi</label>
                         <input type="text" name="agency"
                             class="form-control {{ $errors->has('agency') ? 'is-invalid' : '' }}"
                             id="inputPhone" placeholder="Instansi" value="{{ old('agency') }}">

@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\OrderParticipant;
 use App\Models\Participant;
 use App\Models\Training;
+use Carbon\Carbon;
 use Error;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -28,44 +29,93 @@ class OrderService
     public static function createOrder($request, $userId)
     {
         DB::transaction(function () use ($request, $userId) {
-            if (isset($request['payment_method'])) {
-                $order = Order::create([
-                    'training_id' => $request['training_id'],
+
+            $order = Order::create([
+                'training_id' => $request['training_id'],
+                'user_id' => $userId,
+                'order_date' => now(),
+            ]);
+
+            $amount_of_participants = $request['qty'];
+
+            $order_participant = [];
+            for ($i = 0; $i < $amount_of_participants; $i++) {
+                $participant = Participant::create([
                     'user_id' => $userId,
-                    'order_date' => now(),
-                    'payment_method' => $request['payment_method']
+                    'fullname' => null,
+                    'email' => null
                 ]);
-            } else {
-                $order = Order::create([
-                    'training_id' => $request['training_id'],
-                    'user_id' => $userId,
-                    'order_date' => now(),
-                ]);
-            }
 
-            $training_participants = Arr::except($request, ['training_id']);
-
-            foreach ($training_participants['email'] as $key => $value) {
-
-                $participant = Participant::where([['user_id', '=', $userId], ['email', '=', $value]])->first();
-
-                if (!$participant) {
-                    $participant = Participant::create([
-                        'user_id' => $userId,
-                        'fullname' => $training_participants['fullname'][$key],
-                        'email' => $value
-                    ]);
-                }
-
-                OrderParticipant::create([
+                $order_participant[] = [
                     'participant_id' => $participant->id,
-                    'order_id' => $order->id
-                ]);
+                    'order_id' => $order->id,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ];
             }
+
+            OrderParticipant::insert($order_participant);
 
             static::$order = $order->id;
         });
+
         return static::$order;
+    }
+
+    public static function completeOrder($request, $userId)
+    {
+        DB::transaction(function () use ($request, $userId) {
+            // if (isset($request['payment_method'])) {
+            //     $order = Order::create([
+            //         'training_id' => $request['training_id'],
+            //         'user_id' => $userId,
+            //         'order_date' => now(),
+            //         'payment_method' => $request['payment_method']
+            //     ]);
+            // } else {
+            //     $order = Order::create([
+            //         'training_id' => $request['training_id'],
+            //         'user_id' => $userId,
+            //         'order_date' => now(),
+            //     ]);
+            // }
+
+
+            $training_participants = Arr::except($request, ['training_id']);
+            // dd(count($training_participants['id']));
+
+            $participants = [];
+            for ($i = 0; $i < count($training_participants['id']); $i++) {
+                $participants[] = [
+                    'id' => $training_participants['id'][$i],
+                    'fullname' => $training_participants['fullname'][$i],
+                    'email' => $training_participants['email'][$i],
+                ];
+            }
+
+            // dd($participants);
+
+            // foreach ($training_participants['email'] as $key => $value) {
+
+            //     $participant = Participant::where([['user_id', '=', $userId], ['email', '=', $value]])->first();
+
+            //     if (!$participant) {
+            //         $participant = Participant::create([
+            //             'user_id' => $userId,
+            //             'fullname' => $training_participants['fullname'][$key],
+            //             'email' => $value
+            //         ]);
+            //     }
+
+            // OrderParticipant::create([
+            //     'participant_id' => $participant->id,
+            //     'order_id' => $order->id
+            // ]);
+            // }
+
+            // static::$order = $order->id;
+            Participant::upsert($participants, 'id', ['fullname', 'email']);
+        });
     }
 
     public static function detailOrder($orderId)
@@ -89,6 +139,7 @@ class OrderService
             $participants = [];
             foreach ($order->orderParticipants()->get() as $data) {
                 $participants[] = [
+                    'id' => $data->participant->id,
                     'fullname' => $data->participant->fullname,
                     'email' => $data->participant->email,
                 ];
@@ -121,6 +172,7 @@ class OrderService
         $participants = [];
         foreach ($order->orderParticipants()->get() as $data) {
             $participants[] = [
+                'id' => $data->participant->id,
                 'fullname' => $data->participant->fullname,
                 'email' => $data->participant->email,
             ];

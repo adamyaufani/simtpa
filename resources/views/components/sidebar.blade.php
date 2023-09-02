@@ -56,6 +56,21 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
+    <div class="sidebar-heading">
+        Pengaturan
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.create_agreement') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Persetujuan</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
     {{-- <div class="sidebar-heading">
         Pengaturan
     </div>
