@@ -12,6 +12,7 @@ use App\Http\Controllers\Users\CertificateController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\User\AgreementController;
 use App\Http\Controllers\User\AuthController as UserAuthController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RegistrationController;
 use App\Http\Controllers\User\TrainingController as UserTrainingController;
 use App\Http\Controllers\Users\HomeController;
@@ -71,6 +72,9 @@ Route::middleware('auth.user')->group(function () {
             Route::get('{id}/download', [CertificateController::class, 'show'])->name('user.download_certificate');
         });
     });
+    Route::get('profile', [ProfileController::class, 'show'])->name('user.profile');
+    Route::put('profile/update/{id}', [ProfileController::class, 'update'])->name('user.update_profile');
+    Route::get('images', [FileController::class, 'trainingBanner'])->name('user.images');
 });
 
 // Admin Routes
