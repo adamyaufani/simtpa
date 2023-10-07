@@ -1,6 +1,5 @@
 <x-user.layout>
     <form action="{{ route('user.store_completed_order',$orderId) }}" method="POST">
-        @method('PUT')
         <div class="col-12">
             <section class="py-5" id="features">
                 <div class="container px-5 my-5 d-flex">
@@ -23,13 +22,7 @@
                                         value="{{ $participant['id'] }}">
                                     <div class="mb-3">
                                         <small class="form-label text-secondary"><b>Nama lengkap</b></small>
-                                        <input type="text" name="fullname[]" class="form-control"
-                                            value="{{ $participant['fullname'] }}">
-                                    </div>
-                                    <div class="mb-3">
-                                        <small class="form-label text-secondary"><b>Alamat Email</b></small>
-                                        <input type="email" name="email[]" class="form-control"
-                                            value="{{ $participant['email'] }}">
+                                        <input type="text" name="fullname[]" class="form-control">
                                     </div>
                                 </div>
                             </div>

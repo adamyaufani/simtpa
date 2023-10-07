@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNewUserRequest;
 use App\Models\User;
+use App\Models\UserProfile;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,11 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = UserService::userIndex($request);
+        $profile = UserProfile::all();
+
 
         return view('admin.pages.users.index')
-            ->with(compact('users'));
+            ->with(compact('users', 'profile'));
     }
 
     public function show($id)

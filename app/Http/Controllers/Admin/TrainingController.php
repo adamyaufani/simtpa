@@ -49,7 +49,7 @@ class TrainingController extends Controller
 
     public function update(UpdateTrainingRequest $request, $id): RedirectResponse
     {
-        TrainingService::getTrainingById($id)->updateTraining($request->validated());
+        TrainingService::getTrainingById($id)->updateTraining($request);
         return redirect()->back();
     }
 }

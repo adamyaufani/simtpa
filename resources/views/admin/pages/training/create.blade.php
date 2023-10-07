@@ -10,7 +10,7 @@
 
     <x-slot:title>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Training Baru</h1>
+            <h1 class="h3 mb-0 text-gray-800">Event Baru</h1>
         </div>
     </x-slot:title>
 
@@ -20,9 +20,9 @@
         <div class="col-4">
             <div class="card mb-3">
                 <div class="card-body">
-                    <h4 class="mb-3">Detail Training</h4>
+                    <h4 class="mb-3">Detail Event</h4>
                     <div class="form-group">
-                        <label for="trainingName">Nama Training</label>
+                        <label for="trainingName">Nama Event</label>
                         <input name="name" type="text"
                             class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
                             id="trainingName" aria-describedby="name" value="{{ old('name') }}">
@@ -31,7 +31,7 @@
                         </small>
                     </div>
                     <div class="form-group">
-                        <label for="trainingName">Banner Training</label>
+                        <label for="trainingName">Banner Event</label>
                         <input name="image" type="file"
                             class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}"
                             id="trainingImage" value="{{ old('image') }}">
@@ -55,23 +55,6 @@
                             id="trainingPlace" aria-describedby="place" value="{{ old('place') }}">
                         <small class="invalid-feedback">
                             {{ $errors->first('place') }}
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label for="trainingType">Tipe Training</label>
-                        <select name="type"
-                            class="form-control {{ $errors->has('type') ? 'is-invalid' : '' }}"
-                            id="">
-                            <option value="">tipe training</option>
-                            @foreach($types as $type)
-                                <option value="{{ $type->value }}"
-                                    {{ old('type') == $type->value ? 'selected' : '' }}>
-                                    {{ $type->value }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <small class="invalid-feedback">
-                            {{ $errors->first('type') }}
                         </small>
                     </div>
                 </div>
@@ -101,26 +84,6 @@
                     </div>
                 </div>
             </div>
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h4 class="mb-3">Pemateri</h4>
-                    <div class="form-group">
-                        <label for="trainerName">Cari berdasarkan nama pemateri</label>
-                        <select class="form-control" name="trainer_id" id="select_trainer">
-                        </select>
-                        @error('trainer_id')
-                            <small class="text-danger">
-                                {{ $errors->first('trainer_id') }}
-                            </small>
-                        @enderror
-                    </div>
-                    <p>atau</p>
-                    <a href="{{ route('admin.create_new_trainer') }}" target="_blank"
-                        class="btn btn-primary">
-                        Tambah pemateri baru
-                    </a>
-                </div>
-            </div>
             <div class="card">
                 <div class="card-body">
                     <h4 class="mb-3">Kategori</h4>
@@ -146,16 +109,6 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h4 class="mb-3">Kuota</h4>
-                    {{-- <div class="form-group"> --}}
-                    {{-- <label for="trainingQuota">Total Kuota</label> --}}
-                    {{-- <small>(Kosongkan untuk kuota tak terbatas)</small> --}}
-                    {{-- <input name="quota" type="number"
-                            class="form-control {{ $errors->has('quota') ? 'is-invalid' : '' }}"
-                    id="trainingQuota" aria-describedby="quota" value="{{ old('quota') }}"> --}}
-                    {{-- <small class="invalid-feedback"> --}}
-                    {{-- {{ $errors->first('quota') }} --}}
-                    {{-- </small> --}}
-                    {{-- </div> --}}
                     <div class="form-group">
                         <label for="trainingQuota">Kuota per organisasi</label>
                         <small>(Kosongkan untuk kuota tak terbatas)</small>
@@ -192,50 +145,6 @@
                     <small class="text-danger">
                         {{ $errors->first('cost') }}
                     </small>
-                </div>
-            </div>
-
-            <div>
-                <div class="card mb-3" id="price-card">
-                    <div class="card-body">
-                        <h4 class="mb-3">Harga</h4>
-                        {{-- <div class="form-group"> --}}
-                        {{-- <label for="earlyBirdPrice">Early Bird</label> --}}
-                        {{-- <input name="price_earlybird" type="text"
-                                class="form-control {{ $errors->has('price_earlybird') ? 'is-invalid' : '' }}"
-                        id="earlyBirdPrice" value="{{ old('price_earlybird') }}"> --}}
-                        {{-- <small class="invalid-feedback"> --}}
-                        {{-- {{ $errors->first('price_earlybird') }} --}}
-                        {{-- </small> --}}
-                        {{-- </div> --}}
-                        {{-- <div class="form-group"> --}}
-                        {{-- <label for="startDate">Early Bird selesai</label> --}}
-                        {{-- <input name="earlybird_end" type="date"
-                                class="form-control {{ $errors->has('earlybird_end') ? 'is-invalid' : '' }}"
-                        id="startDate" value="{{ old('earlybird_end') }}"> --}}
-                        {{-- <small class="invalid-feedback"> --}}
-                        {{-- {{ $errors->first('earlybird_end') }} --}}
-                        {{-- </small> --}}
-                        {{-- </div> --}}
-                        <div class="form-group">
-                            <label for="NormalPrice">Normal</label>
-                            <input name="price_normal" type="text"
-                                class="form-control {{ $errors->has('price_normal') ? 'is-invalid' : '' }}"
-                                id="NormalPrice" value="{{ old('price_normal') }}">
-                            <small class="invalid-feedback">
-                                {{ $errors->first('price_normal') }}
-                            </small>
-                        </div>
-                        {{-- <div class="form-group"> --}}
-                        {{-- <label for="studentPrice">Onsite</label> --}}
-                        {{-- <input name="price_onsite" type="text"
-                                class="form-control {{ $errors->has('price_onsite') ? 'is-invalid' : '' }}"
-                        id="studentPrice" value="{{ old('price_onsite') }}"> --}}
-                        {{-- <small class="invalid-feedback"> --}}
-                        {{-- {{ $errors->first('price_onsite') }} --}}
-                        {{-- </small> --}}
-                        {{-- </div> --}}
-                    </div>
                 </div>
             </div>
 
@@ -331,6 +240,23 @@
                         cache: true
                     }
                 });
+
+                $("input[name='cost']").change(function () {
+                    if ($(this).val() === "paid") {
+                        // Add the price field to the DOM
+
+                        let price_normal = "{{ old('price_normal') }}";
+
+                        $('<div class="form-group mt-3" id="priceField">' +
+                            '<label for="price_normal">Harga</label>' +
+                            '<input type="text" class="form-control" id="price_normal" name="price_normal"' +
+                            ` value="${ price_normal }">` +
+                            ' </div>').insertAfter('.text-danger:last');
+                    } else if ($(this).val() === "free") {
+                        // Remove the price field from the DOM
+                        $("#priceField").remove();
+                    }
+                });
             });
 
         </script>
@@ -353,6 +279,26 @@
                     "{{ App\Models\Category::find(old('category_id'))->name }}";
                 $("#select_category").html('<option value="' + category_id + '" selected>' + category_name +
                     '</option>');
+
+            </script>
+        @endif
+
+        @if(old('cost')=='paid')
+            <script>
+                $(document).ready(function () {
+                    let price_normal = "{{ old('price_normal') }}";
+                    let invalid_class =
+                        "{{ $errors->has('price_normal') ? 'is-invalid' : '' }}";
+
+                    $('<div class="form-group mt-3" id="priceField">' +
+                        '<label for="price_normal">Harga</label>' +
+                        `<input type="text" class="form-control ${invalid_class}" id="price_normal" name="price_normal"
+                            value="${ price_normal }">` +
+                        `<span class="invalid-feedback">` +
+                        "{{ $errors->first('price_normal') }}" +
+                        '</span>' +
+                        '</div>').insertAfter('.text-danger:last');
+                });
 
             </script>
         @endif

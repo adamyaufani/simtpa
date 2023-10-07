@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->unsignedBigInteger('user_id')->nullable();
 
             #Identitas Lembaga
@@ -26,15 +25,15 @@ return new class extends Migration
 
             #Lokasi Lembaga
             $table->string('address')->nullable();
-            $table->string('rt')->nullable();
-            $table->string('rw')->nullable();
-            $table->string('district')->nullable();
-            $table->string('subdistrict')->nullable();
-            $table->string('regency')->nullable();
-            $table->string('province')->nullable();
+            $table->string('village')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('social_media')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('website')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('tiktok')->nullable();
             $table->string('gmap_address')->nullable();
 
             #Perijinan
@@ -42,6 +41,8 @@ return new class extends Migration
             $table->date('sk_number_starting_date')->nullable();
             $table->date('sk_number_ending_date')->nullable();
             $table->text('sk_file')->nullable();
+
+            $table->timestamps();
         });
 
         Schema::table('user_profiles', function (Blueprint $table) {

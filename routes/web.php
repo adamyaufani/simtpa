@@ -12,6 +12,7 @@ use App\Http\Controllers\Users\CertificateController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\User\AgreementController;
 use App\Http\Controllers\User\AuthController as UserAuthController;
+use App\Http\Controllers\User\OrderController as UserOrderController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RegistrationController;
 use App\Http\Controllers\User\TrainingController as UserTrainingController;
@@ -19,6 +20,10 @@ use App\Http\Controllers\Users\HomeController;
 use App\Http\Controllers\Users\OrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\User\OrganizationController;
+use App\Http\Controllers\User\StaffController;
+use App\Http\Controllers\User\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,18 +58,20 @@ Route::middleware('auth.user')->group(function () {
     Route::get('agreement/sign', [AgreementController::class, 'sign'])->name('user.sign_agreement');
     Route::middleware('agreed.user')->group(function () {
         Route::prefix('trainings')->group(function () {
+            Route::get('{id}/order', [UserOrderController::class, 'orderTraining'])->name('user.order_training');
+            Route::post('{id}/fill-order', [UserOrderController::class, 'fillOrder'])->name('user.fill_order');
             // Route::get('{id}/checkout', [UserTrainingController::class, 'checkout'])->name('user.checkout_training');
-            Route::post('{id}/order', [OrderController::class, 'createOrder'])->name('user.create_training_order');
+            // Route::post('{id}/order', [OrderController::class, 'createOrder'])->name('user.create_training_order');
             // Route::post('{id}/order', [OrderController::class, 'placeOrder'])->name('user.order_training');
         });
         Route::prefix('orders')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('user.order_index');
-            Route::get('{id}', [OrderController::class, 'show'])->name('user.detail_order');
-            Route::get('{id}/complete-order', [OrderController::class, 'completeOrder'])->name('user.complete_order');
-            Route::put('{id}/complete-order', [OrderController::class, 'storeCompletedOrder'])->name('user.store_completed_order');
-            Route::get('{id}/select-payment', [OrderController::class, 'selectPayment'])->name('user.select_order_payment');
-            Route::put('{id}/checkout', [OrderController::class, 'checkout'])->name('user.checkout_order');
-            // Route::put('{id}/checkout', [OrderController::class, 'midtransCheckoutProcess'])->name('user.pay_order');
+            Route::get('{id}', [UserOrderController::class, 'show'])->name('user.detail_order');
+            // Route::get('{id}/complete-order', [OrderController::class, 'completeOrder'])->name('user.complete_order');
+            // Route::put('{id}/complete-order', [OrderController::class, 'storeCompletedOrder'])->name('user.store_completed_order');
+            // Route::get('{id}/select-payment', [OrderController::class, 'selectPayment'])->name('user.select_order_payment');
+            // Route::put('{id}/checkout', [OrderController::class, 'checkout'])->name('user.checkout_order');
+            Route::put('{id}/checkout', [OrderController::class, 'midtransCheckoutProcess'])->name('user.pay_order');
         });
         Route::prefix('certificates')->group(function () {
             Route::get('/', [CertificateController::class, 'index'])->name('user.certificate_index');
@@ -75,6 +82,31 @@ Route::middleware('auth.user')->group(function () {
     Route::get('profile', [ProfileController::class, 'show'])->name('user.profile');
     Route::put('profile/update/{id}', [ProfileController::class, 'update'])->name('user.update_profile');
     Route::get('images', [FileController::class, 'trainingBanner'])->name('user.images');
+    Route::get('get-staff-by-name', [StaffController::class, 'staffByName'])->name('user.get_staff_by_name');
+
+    Route::group(['prefix' => 'pengurus'], function () {
+        Route::get('/', [OrganizationController::class, 'show'])->name('user.organization');
+        Route::put('{id}', [OrganizationController::class, 'update'])->name('user.update_organization');
+    });
+
+    Route::group(['prefix' => 'staf-pengajar'], function () {
+        Route::get('/', [StaffController::class, 'index'])->name('user.staff');
+        Route::get('create', [StaffController::class, 'create'])->name('user.create_staff');
+        Route::post('create', [StaffController::class, 'store'])->name('user.store_staff');
+        Route::get('{id}', [StaffController::class, 'edit'])->name('user.staff_edit');
+        Route::put('{id}', [StaffController::class, 'update'])->name('user.update_staff');
+        Route::delete('{id}', [StaffController::class, 'destroy'])->name('user.delete_staff');
+    });
+
+    Route::group(['prefix' => 'santri'], function () {
+        Route::get('/', [StudentController::class, 'index'])->name('user.students');
+        Route::get('student_by_name', [StudentController::class, 'studentByName'])->name('user.student_by_name');
+        Route::get('create', [StudentController::class, 'create'])->name('user.create_student');
+        Route::post('create', [StudentController::class, 'store'])->name('user.store_student');
+        Route::get('{id}', [StudentController::class, 'edit'])->name('user.edit_student');
+        Route::put('{id}', [StudentController::class, 'update'])->name('user.update_student');
+        Route::delete('{id}', [StudentController::class, 'destroy'])->name('user.delete_student');
+    });
 });
 
 // Admin Routes
@@ -104,7 +136,7 @@ Route::prefix('admin')->group(function () {
             Route::get('verify/{id}/accept', [UserController::class, 'verifyUser'])->name('admin.accept_user_registration');
         });
 
-        Route::prefix('trainings')->group(function () {
+        Route::prefix('events')->group(function () {
             Route::get('/', [TrainingController::class, 'index'])->name('admin.training_index');
             Route::get('create', [TrainingController::class, 'create'])->name('admin.create_new_training');
             Route::post('create', [TrainingController::class, 'store'])->name('admin.store_new_training');

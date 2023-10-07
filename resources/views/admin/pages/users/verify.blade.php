@@ -19,9 +19,10 @@
                 @endif
                 <div>
                     <div class="mb-2">
-                        <span> Nama Lengkap :</span>
+                        <i class="fa-solid fa-building"></i>
+                        <span> Nama Organisasi </span>
                         <h6 class="font-weight-bold">
-                            {{ $user->fullname }}
+                            {{ $user->userProfile->institution_name }}
                         </h6>
                     </div>
                     {{-- <div class="mb-2"> --}}
@@ -43,16 +44,7 @@
                         <i class="fa-solid fa-phone"></i>
                         <span> No. Telp :</span>
                         <h6 class="font-weight-bold">
-                            {{ $user->phone }}
-                        </h6>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <i class="fa-solid fa-building"></i>
-                        <span> Organisasi </span>
-                        <h6 class="font-weight-bold">
-                            {{ $user->agency }}
+                            {{ $user->userProfile->phone_number }}
                         </h6>
                     </div>
                 </div>

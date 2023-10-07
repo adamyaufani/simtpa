@@ -12,12 +12,12 @@ class OrderParticipant extends Model
     protected $table = 'order_participant';
 
     protected $fillable = [
-        'participant_id',
+        'user_id',
         'order_id'
     ];
 
-    public function participant()
+    public function student()
     {
-        return $this->belongsTo(Participant::class);
+        return $this->belongsTo(Student::class);
     }
 }

@@ -30,12 +30,12 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.training_index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Pelatihan</span></a>
+            <span>Event</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.order_index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Pembayaran Pelatihan</span></a>
+            <span>Pembayaran Event</span></a>
     </li>
 
     <!-- Divider -->

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserProfileRequest;
+use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -15,10 +17,11 @@ class ProfileController extends Controller
 {
     public function show()
     {
-        $userProfile = UserProfile::firstOrCreate(['user_id' => Auth::user()->id]);
+        $userProfile = UserProfile::where('user_id', Auth::user()->id)->first();
+        $villages = Village::all();
 
         return view('user.pages.profile.detail')
-            ->with(compact('userProfile'));
+            ->with(compact('userProfile', 'villages'));
     }
 
     public function update($id, UpdateUserProfileRequest $request)

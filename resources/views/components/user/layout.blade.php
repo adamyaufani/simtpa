@@ -13,6 +13,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('vendor/start-bootstrap/css/styles.css') }}" rel="stylesheet" />
+
+    @stack('css')
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -30,14 +32,27 @@
                         @if(auth()->check())
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->fullname }}</a>
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">{{ auth()->user()->userProfile->institution_name }}</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                                     <li><a class="dropdown-item"
-                                            href="{{ route('user.profile') }}">Profile</a></li>
+                                            href="{{ route('user.profile') }}">Profil TPA</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('user.organization') }}">Pengurus</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('user.staff') }}">
+                                            Staf Pengajar
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('user.students') }}">
+                                            Santri
+                                        </a>
+                                    </li>
                                     <li>
                                         <a class="dropdown-item"
                                             href="{{ route('user.order_index') }}">
-                                            My Trainings
+                                            Aktifitas
                                         </a>
                                     </li>
                                     <li>
@@ -82,6 +97,8 @@
             </div>
         </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->

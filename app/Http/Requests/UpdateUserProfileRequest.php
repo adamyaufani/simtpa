@@ -32,15 +32,21 @@ class UpdateUserProfileRequest extends FormRequest
 
             #Lokasi Lembaga
             'address' => ['required', 'string'],
-            'rt' => ['required', 'string'],
-            'rw' => ['required', 'string'],
-            'district' => ['required', 'string'],
-            'subdistrict' => ['required', 'string'],
-            'regency' => ['required', 'string'],
-            'province' => ['required', 'string'],
+            // 'rt' => ['required', 'string'],
+            // 'rw' => ['required', 'string'],
+            'village' => ['required', 'string'],
+            // 'subdistrict' => ['required', 'string'],
+            // 'regency' => ['required', 'string'],
+            // 'province' => ['required', 'string'],
             'postal_code' => ['required', 'string'],
             'phone_number' => ['required', 'string'],
             'social_media' => ['nullable', 'string'],
+            'facebook' => ['nullable', 'string'],
+            'instagram' => ['nullable', 'string'],
+            'twitter' => ['nullable', 'string'],
+            'youtube' => ['nullable', 'string'],
+            'tiktok' => ['nullable', 'string'],
+            'website' => ['nullable', 'string'],
             'gmap_address' => ['nullable', 'string'],
 
             #Dokumen Izin

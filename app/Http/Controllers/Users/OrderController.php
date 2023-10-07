@@ -129,8 +129,7 @@ class OrderController extends Controller
 
     public function placeOrder(StoreParticipantRequest $request)
     {
-        $userId = Auth::id();
-        $orderId = OrderService::createOrder($request->validated(), $userId);
+        $orderId = OrderService::createOrder($request->validated(), Auth::id());
         return redirect()->to(route('user.detail_order', $orderId));
     }
 

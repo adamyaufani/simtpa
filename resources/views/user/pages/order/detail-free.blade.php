@@ -33,10 +33,7 @@
                                         @foreach(
                                             $data['participants'] as $participant)
                                             <li class="list-group-item">
-                                                <span>{{ $participant['fullname'] }}</span><br>
-                                                <span class="text-secondary">
-                                                    {{ $participant['email'] }}
-                                                </span>
+                                                <span>{{ $participant['fullname'] }}</span>
                                             </li>
                                         @endforeach
                                     </ul>

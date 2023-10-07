@@ -18,21 +18,26 @@ class UserProfile extends Model
         'supervisory_institution_name',
         'years_of_establishment',
         'address',
-        'rt',
-        'rw',
-        'district',
-        'subdistrict',
-        'regency',
-        'province',
+        'village',
         'postal_code',
         'phone_number',
-        'social_media',
+        'facebook',
+        'instagram',
+        'twitter',
+        'youtube',
+        'tiktok',
+        'website',
         'gmap_address',
         'sk_number',
         'sk_number_starting_date',
         'sk_number_ending_date',
         'sk_file'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     protected function skFile(): Attribute
     {

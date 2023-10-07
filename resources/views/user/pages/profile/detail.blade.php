@@ -92,73 +92,20 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">RT/RW</label>
-                                    <div class="col-sm-10">
-                                        <div class="row mb-1">
-                                            <label for="RT" class="col-sm-1 col-form-label">RT</label>
-                                            <div class="col-sm-2">
-                                                <input type="text"
-                                                    class="form-control {{ $errors->has('rt') ? 'is-invalid' : '' }}"
-                                                    name="rt" value="{{ $userProfile->rt }}" id="RT">
-                                                <span class="invalid-feedback">
-                                                    {{ $errors->first('rt') }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label for="RT" class="col-sm-1 col-form-label">RW</label>
-                                            <div class="col-sm-2">
-                                                <input type="text"
-                                                    class="form-control {{ $errors->has('rw') ? 'is-invalid' : '' }}"
-                                                    name="rw" value="{{ $userProfile->rw }}" id="RT">
-                                                <span class="invalid-feedback">
-                                                    {{ $errors->first('rw') }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
                                     <label for="district" class="col-sm-2 col-form-label">Desa/Kelurahan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="district"
-                                            class="form-control {{ $errors->has('district') ? 'is-invalid' : '' }}"
-                                            value="{{ $userProfile->district }}" id="district">
+                                        <select name="village" id="village"
+                                            class="form-control {{ $errors->has('district') ? 'is-invalid' : '' }}">
+                                            <option value="" disabled selected>Pilih Desa/Kelurahan</option>
+                                            @foreach($villages as $village)
+                                                <option value="{{ $village->id }}"
+                                                    {{ $village->id == $userProfile->village ? 'selected' : '' }}>
+                                                    {{ $village->village_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                         <span class="invalid-feedback">
                                             {{ $errors->first('district') }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="subdistrict" class="col-sm-2 col-form-label">Kecamatan</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="subdistrict"
-                                            class="form-control {{ $errors->has('subdistrict') ? 'is-invalid' : '' }}"
-                                            value="{{ $userProfile->subdistrict }}" id="subdistrict">
-                                        <span class="invalid-feedback">
-                                            {{ $errors->first('subdistrict') }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="regency" class="col-sm-2 col-form-label">Kabupaten/Kota</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="regency"
-                                            class="form-control {{ $errors->has('regency') ? 'is-invalid' : '' }}"
-                                            value="{{ $userProfile->regency }}" id="regency">
-                                        <span class="invalid-feedback">
-                                            {{ $errors->first('regency') }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="province" class="col-sm-2 col-form-label">Provinsi</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="province"
-                                            class="form-control {{ $errors->has('province') ? 'is-invalid' : '' }}"
-                                            value="{{ $userProfile->province }}" id="province">
-                                        <span class="invalid-feedback">
-                                            {{ $errors->first('province') }}
                                         </span>
                                     </div>
                                 </div>
@@ -189,12 +136,48 @@
                                         Alamat Media Sosial (bila ada)
                                     </label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="social_media"
-                                            class="form-control {{ $errors->has('social_media') ? 'is-invalid' : '' }}"
-                                            value="{{ $userProfile->social_media }}" id="social_media">
-                                        <span class="invalid-feedback">
-                                            {{ $errors->first('social_media') }}
-                                        </span>
+                                        <div class="row mb-3">
+                                            <label for="facebook" class="col-sm-2 col-form-label">Facebook</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="facebook" name="facebook"
+                                                    value="{{ $userProfile->facebook }}">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="instagram" class="col-sm-2 col-form-label">Instagram</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="instagram" name="instagram"
+                                                    value="{{ $userProfile->instagram }}">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="twitter" class="col-sm-2 col-form-label">Twitter</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="twitter" name="twitter"
+                                                    value="{{ $userProfile->twitter }}">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="website" class="col-sm-2 col-form-label">Website</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="website" name="website"
+                                                    value="{{ $userProfile->website }}">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="youtube" class="col-sm-2 col-form-label">Youtube</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="youtube" name="youtube"
+                                                    value="{{ $userProfile->youtube }}">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="tiktok" class="col-sm-2 col-form-label">tiktok</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="tiktok" name="tiktok"
+                                                    value="{{ $userProfile->tiktok }}">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mb-3">

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Enums\TrainingTypeEnum;
+use App\Enums\CostEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
@@ -28,17 +28,18 @@ class UpdateTrainingRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'image' =>  ['required', 'image', 'mimes:jpg,png', 'max:512'],
+            'image' =>  ['nullable', 'image', 'mimes:jpg,png', 'max:512'],
             'start_date' => ['required', 'date'],
             'end_date' => ['required', 'date', 'after:start_date'],
             'place' => ['required', 'string'],
-            'type' => ['required', new Enum(TrainingTypeEnum::class)],
+            // 'type' => ['required', new Enum(TrainingTypeEnum::class)],
             'quota' => ['required', 'numeric'],
-            'trainer_id' => ['required', 'numeric', 'exists:trainers,id'],
-            'price_earlybird' => ['required', 'numeric'],
-            'earlybird_end' => ['required', 'date'],
-            'price_normal' => ['required', 'numeric'],
-            'price_onsite' => ['required', 'numeric'],
+            // 'trainer_id' => ['required', 'numeric', 'exists:trainers,id'],
+            // 'price_earlybird' => ['required', 'numeric'],
+            // 'earlybird_end' => ['required', 'date'],
+            'cost' => ['required', new Enum(CostEnum::class)],
+            'price_normal' => ['required_if:cost,paid', 'numeric', 'nullable'],
+            // 'price_onsite' => ['required', 'numeric'],
         ];
     }
 }

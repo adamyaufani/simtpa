@@ -33,9 +33,6 @@
                                             $data['participants'] as $participant)
                                             <li class="list-group-item">
                                                 <span>{{ $participant['fullname'] }}</span><br>
-                                                <span class="text-secondary">
-                                                    {{ $participant['email'] }}
-                                                </span>
                                             </li>
                                         @endforeach
                                     </ul>

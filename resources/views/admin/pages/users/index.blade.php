@@ -21,12 +21,12 @@
                     <div class="col-12 d-flex justify-content-between">
                         <div>
                             <p>
-                                Nama Lengkap :
+                                Nama TPA/TKA/TPQ :
                             </p>
                             <h6 class="font-weight-bold">
                                 <a href="{{ route('admin.detail_user',$user->id) }}"
                                     class="stretched-link">
-                                    {{ $user->fullname }}
+                                    {{ $user->userProfile->institution_name }}
                                 </a>
                             </h6>
                         </div>
@@ -51,7 +51,7 @@
                                 Nomor Telepon :
                             </p>
                             <h6 class="font-weight-bold">
-                                {{ $user->phone }}
+                                {{ $user->userProfile->phone_number }}
                             </h6>
                         </div>
                         <div>

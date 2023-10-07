@@ -50,6 +50,8 @@ class AuthController extends Controller
             }
 
             $request->session()->regenerate();
+            $user = User::with('userProfile')->find(Auth::user()->id);
+            Auth::setUser($user);
             return redirect()->intended();
         }
 

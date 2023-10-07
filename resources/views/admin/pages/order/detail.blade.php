@@ -42,9 +42,6 @@
                                             <li class="list-group-item">
                                                 <span class="text-dark">
                                                     {{ $participant['fullname'] }}
-                                                </span><br>
-                                                <span class="text-secondary">
-                                                    {{ $participant['email'] }}
                                                 </span>
                                             </li>
                                         @endforeach

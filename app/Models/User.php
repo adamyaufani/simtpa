@@ -20,13 +20,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'fullname',
-        'phone',
-        'agency',
+        // 'fullname',
+        // 'phone',
+        // 'agency',
         // 'username',
         'role_id',
         'email',
         'password',
+        'institution_name',
         'verification_status',
         'verification_date',
     ];
@@ -40,6 +41,26 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function userProfile()
+    {
+        return $this->hasOne(UserProfile::class);
+    }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    public function staffs()
+    {
+        return $this->hasMany(Staff::class);
+    }
+
+    public function administrators()
+    {
+        return $this->hasMany(Administrator::class);
+    }
 
     /**
      * The attributes that should be cast.

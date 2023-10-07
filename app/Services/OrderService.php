@@ -28,26 +28,45 @@ class OrderService
 
     public static function createOrder($request, $userId)
     {
-        DB::transaction(function () use ($request, $userId) {
+        // DB::transaction(function () use ($request, $userId) {
 
+        //     $order = Order::create([
+        //         'training_id' => $request['training_id'],
+        //         'user_id' => $userId,
+        //         'order_date' => now(),
+        //     ]);
+
+        //     $amount_of_participants = $request['qty'];
+
+        //     $order_participant = [];
+        //     for ($i = 0; $i < $amount_of_participants; $i++) {
+
+        //         $order_participant[] = [
+        //             'student_id' => null,
+        //             'order_id' => $order->id,
+        //             'created_at' => Carbon::now(),
+        //             'updated_at' => Carbon::now(),
+        //         ];
+        //     }
+
+        //     OrderParticipant::insert($order_participant);
+
+        //     static::$order = $order->id;
+        // });
+
+        DB::transaction(function () use ($request, $userId) {
             $order = Order::create([
                 'training_id' => $request['training_id'],
                 'user_id' => $userId,
                 'order_date' => now(),
+                'payment_method' => $request['payment_method']
             ]);
 
-            $amount_of_participants = $request['qty'];
-
             $order_participant = [];
-            for ($i = 0; $i < $amount_of_participants; $i++) {
-                $participant = Participant::create([
-                    'user_id' => $userId,
-                    'fullname' => null,
-                    'email' => null
-                ]);
 
+            foreach ($request['student_id'] as $participant) {
                 $order_participant[] = [
-                    'participant_id' => $participant->id,
+                    'student_id' => $participant,
                     'order_id' => $order->id,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
@@ -124,24 +143,17 @@ class OrderService
 
         $training = Training::find($order->training_id);
 
-        if ($order->payment_method == "Transfer") {
-            $trainingPrice = '';
-            if (now() < $training->earlybird_end) {
-                $trainingPrice = $training->price_earlybird;
-            } elseif (now() == $training->start_date) {
-                $trainingPrice = $training->price_onsite;
-            } else {
-                $trainingPrice = $training->price_normal;
-            }
+
+        if ($order->payment_method->value == "Transfer") {
+            $trainingPrice = $trainingPrice = $training->price_normal;
 
             $totalPrice = $trainingPrice * $order->orderParticipants()->count();
 
             $participants = [];
             foreach ($order->orderParticipants()->get() as $data) {
                 $participants[] = [
-                    'id' => $data->participant->id,
-                    'fullname' => $data->participant->fullname,
-                    'email' => $data->participant->email,
+                    'id' => $data->student->id,
+                    'fullname' => $data->student->name,
                 ];
             }
 
@@ -172,9 +184,8 @@ class OrderService
         $participants = [];
         foreach ($order->orderParticipants()->get() as $data) {
             $participants[] = [
-                'id' => $data->participant->id,
-                'fullname' => $data->participant->fullname,
-                'email' => $data->participant->email,
+                'id' => $data->student->id,
+                'fullname' => $data->student->name,
             ];
         }
 

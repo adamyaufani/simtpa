@@ -33,9 +33,9 @@ class StoreTrainingRequest extends FormRequest
             'start_date' => ['required', 'date'],
             'end_date' => ['required', 'date', 'after:start_date'],
             'place' => ['required', 'string'],
-            'type' => ['required', new Enum(TrainingTypeEnum::class)],
+            // 'type' => ['required', new Enum(TrainingTypeEnum::class)],
             'cost' => ['required', new Enum(CostEnum::class)],
-            'trainer_id' => ['required', 'numeric', 'exists:trainers,id'],
+            // 'trainer_id' => ['required', 'numeric', 'exists:trainers,id'],
             'category_id' => ['required', 'numeric', 'exists:categories,id'],
             // optionals price field
             'quota' => ['nullable', 'numeric'],

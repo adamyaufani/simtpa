@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('quota_per_org', function (Blueprint $table) {
+        Schema::create('villages', function (Blueprint $table) {
             $table->id();
+            $table->string('village_name')->nullable();
             $table->timestamps();
-            $table->integer('quota')->nullable();
-            $table->unsignedBigInteger('training_id')->nullable();
-        });
-
-        Schema::table('quota_per_org', function (Blueprint $table) {
-            $table->foreign('training_id')->references('id')->on('trainings')->onDelete('cascade');
         });
     }
 
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quota_per_org');
+        Schema::dropIfExists('villages');
     }
 };

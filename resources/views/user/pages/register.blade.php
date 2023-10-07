@@ -5,10 +5,30 @@
                 <h4 class="card-title">
                     Pendaftaran Akun Baru
                 </h4>
+
                 <form action="{{ route('user.submit_registration') }}" method="POST" class="mt-5">
                     @csrf
+                    @if(session()->has('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
                     <div class="mb-4">
-                        <label for="inputEmail" class="form-label">Alamat Email</label>
+                        <label for="institution_name" class="form-label">Nama TPA/TKA/TPQ/RTQ/RA</label>
+                        <input type="text" name="institution_name"
+                            class="form-control
+                            {{ $errors->has('institution_name') ? 'is-invalid' : '' }}"
+                            id="institution_name" placeholder="Nama TPA/TKA/TPQ/RTQ/RA"
+                            value="{{ old('institution_name') }}">
+                        @error('institution_name')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="inputEmail" class="form-label">Email</label>
                         <input type="email" name="email"
                             class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
                             id="inputEmail" placeholder="Email" value="{{ old('email') }}">
@@ -19,29 +39,37 @@
                         @enderror
                     </div>
                     <div class="mb-4">
-                        <label for="inputFullname" class="form-label">Nama Lengkap</label>
-                        <input type="text" name="fullname"
-                            class="form-control {{ $errors->has('fullname') ? 'is-invalid' : '' }}"
-                            id="inputFullname" placeholder="Nama Lengkap"
-                            value="{{ old('fullname') }}">
-                        @error('fullname')
+                        <label for="inputAddress" class="form-label">Alamat</label>
+                        <input type="address" name="address"
+                            class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}"
+                            id="inputAddress" placeholder="Alamat" value="{{ old('address') }}">
+                        @error('address')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
-                    {{-- <div class="mb-4"> --}}
-                    {{-- <label for="inputUserName" class="form-label">Nama Pengguna</label> --}}
-                    {{-- <input type="text" name="username"
-                            class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}"
-                    id="inputUserName" placeholder="Nama Pengguna"
-                    value="{{ old('username') }}"> --}}
-                    {{-- @error('username') --}}
-                    {{-- <div class="invalid-feedback"> --}}
-                    {{-- {{ $message }} --}}
-                    {{-- </div> --}}
-                    {{-- @enderror --}}
-                    {{-- </div> --}}
+
+                    <div class="mb-4">
+                        <label for="village">Kalurahan</label>
+                        <select name="village"
+                            class="form-control {{ $errors->has('village') ? 'is-invalid' : '' }}"
+                            id="village">
+                            <option value="">Pilih Kalurahan</option>
+                            @foreach($villages as $village)
+                                <option value="{{ $village->id }}"
+                                    {{ old('village') == $village->id ? 'selected' : '' }}>
+                                    {{ $village->village_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('village')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
                     <div class="mb-4">
                         <label for="inputPhone" class="form-label">Nomor Telepon</label>
                         <input type="text" name="phone"
@@ -53,17 +81,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mb-4">
-                        <label for="inputPhone" class="form-label">Organisasi</label>
-                        <input type="text" name="agency"
-                            class="form-control {{ $errors->has('agency') ? 'is-invalid' : '' }}"
-                            id="inputPhone" placeholder="Instansi" value="{{ old('agency') }}">
-                        @error('agency')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
+
                     <div class="mb-4">
                         <label for="inputPassword" class="form-label">Password</label>
                         <input type="password" name="password"

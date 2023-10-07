@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>SIM TPA</title>
 
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/f53b268512.js" crossorigin="anonymous"></script>

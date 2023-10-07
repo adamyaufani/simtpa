@@ -28,7 +28,7 @@
         <div class="container px-5 my-5">
             <div class="row gx-5">
                 <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h2 class="fw-bolder mb-0">Available Courses</h2>
+                    <h2 class="fw-bolder mb-0">Daftar Event</h2>
                     <a href="{{ route('user.homepage') }}"
                         class="badge rounded-pill text-bg-secondary" style="text-decoration: none">
                         semua kategori
@@ -54,7 +54,7 @@
                                         <p class="card-text">
                                             {{ str()->limit($training->description,300) }}
                                         </p>
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                                        {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small> --}}
                                         </p>
                                     </div>
                                 </div>
