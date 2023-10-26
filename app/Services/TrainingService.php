@@ -7,6 +7,7 @@ use App\Models\OrderParticipant;
 use App\Models\QuotaPerOrg;
 use App\Models\Training;
 use App\Models\TrainingTrainer;
+use App\Models\Transaction;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -18,10 +19,12 @@ class TrainingService
 
     public static function storeTraining($request)
     {
-        // dd($request);
+        // dd(implode(', ', $request['category_id']));
         DB::transaction(function () use ($request) {
 
-            $data = Arr::except($request, ['trainer_id', 'image', 'quota']);
+            $data = Arr::except($request, ['trainer_id', 'image', 'quota', 'category_id']);
+            $data = Arr::add($data, 'category_id', implode(',', $request['category_id']));
+            // dd($data);
 
             if ($request['cost'] == 'free') {
                 $data = Arr::except($data, [
@@ -65,8 +68,10 @@ class TrainingService
         DB::transaction(function () use ($request) {
 
             $training = static::$training;
-
-            $training->update($request->validated());
+            $idCategories = implode(',', $request['category_id']);
+            $validatedRequest = $request->validated();
+            $data = Arr::set($validatedRequest, 'category_id', $idCategories);
+            $training->update($data);
 
             if ($request->has('image')) {
                 $file = $request['image'];
@@ -110,22 +115,39 @@ class TrainingService
     {
         $training = static::$training;
 
-        $order = Order::where([
-            ['training_id', '=', $training->id],
-            ['user_id', '=', $user_id]
+        $transactions = Transaction::where([
+            'user_id' => $user_id,
         ])->get();
 
-        if ($order) {
+        if ($transactions) {
             $participants = [];
-            foreach ($order as $item) {
-                $participants[] = $item->orderParticipants->count();
+            foreach ($transactions as $transaction) {
+                foreach ($transaction->orders->where('training_id', '=', $training->id) as $order) {
+                    $participants[] = $order->orderParticipants->count();
+                }
             }
-            // $participants = OrderParticipant::where('order_id', '=', $order->id)->count();
             $usedQuota = collect($participants)->sum();
             $leftoverQuota = $training->quotaPerOrg->quota - $usedQuota;
 
             return $leftoverQuota;
         }
+
+        // $order = Order::where([
+        //     ['training_id', '=', $training->id],
+        //     ['user_id', '=', $user_id]
+        // ])->get();
+
+        // if ($order) {
+        //     $participants = [];
+        //     foreach ($order as $item) {
+        //         $participants[] = $item->orderParticipants->count();
+        //     }
+        //     // $participants = OrderParticipant::where('order_id', '=', $order->id)->count();
+        //     $usedQuota = collect($participants)->sum();
+        //     $leftoverQuota = $training->quotaPerOrg->quota - $usedQuota;
+
+        //     return $leftoverQuota;
+        // }
 
         return $training->quotaPerOrg->quota;
     }

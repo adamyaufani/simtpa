@@ -26,6 +26,7 @@ class StoreNewAgreementRequest extends FormRequest
         return [
             'year_start' => ['required', 'date'],
             'year_end' => ['required', 'date'],
+            'content' => ['required', 'string'],
         ];
     }
 }

@@ -65,10 +65,20 @@ class StudentController extends Controller
         $trainer = Student::when($request->has('q'), function ($q) use ($request) {
             $q->where('name', 'LIKE', "%{$request->q}%");
         })
+            ->when($request->extraData['gender'] != null, function ($q) use ($request) {
+                $q->where('gender', '=', "{$request->extraData['gender']}");
+            })
+            ->when($request->extraData['birth_date'] != null, function ($q) use ($request) {
+                $q->whereDate('birth_date', '<', "{$request->extraData['birth_date']}");
+            })
             ->where('user_id', '=', Auth::user()->id)
             ->limit(10)
             ->get();
 
+        // if ($request->extraData['gender'] != null) {
+        //     return response()->json($request->extraData['gender'], 200);
+        // }
+        // return response()->json($request->extraData, 200);
         return response()->json($trainer, 200);
     }
 }

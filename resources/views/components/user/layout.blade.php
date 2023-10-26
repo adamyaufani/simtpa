@@ -23,6 +23,20 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-5">
                 <a class="navbar-brand" href="{{ route('user.homepage') }}">SIM TPA</a>
+
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        @if(auth()->check())
+                            <a class="nav-link" href="{{ route('user.profile') }}">Profil TPA</a>
+                            <a class="nav-link" href="{{ route('user.cart_index') }}">
+                                <i class="bi bi bi-cart-check-fill"></i>
+                                Keranjang
+                            </a>
+                        @endif
+                    </div>
+                </div>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation"><span

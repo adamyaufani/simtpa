@@ -9,10 +9,9 @@ class OrderParticipant extends Model
 {
     use HasFactory;
 
-    protected $table = 'order_participant';
-
     protected $fillable = [
         'user_id',
+        'student_id',
         'order_id'
     ];
 

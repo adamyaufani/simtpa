@@ -4,12 +4,17 @@ namespace App\Http\Controllers\User;
 
 use App\Enums\PaymentMethodEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SelectPaymentMethodRequest;
 use App\Http\Requests\StoreParticipantRequest;
 use App\Models\Order;
+use App\Models\Transaction;
+use App\Services\CartService;
 use App\Services\OrderService;
 use App\Services\TrainingService;
+use App\Services\TransactionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Arr;
 
 class OrderController extends Controller
 {
@@ -43,33 +48,62 @@ class OrderController extends Controller
 
     public function fillOrder(StoreParticipantRequest $request)
     {
-        $order = OrderService::createOrder($request->validated(), Auth::id());
+        $userId = Auth::id();
 
-        return redirect()->route('user.detail_order', $order);
+        // $order = OrderService::createOrder(Arr::add($request->validated(), 'total_price', $request->total_price), $userId);
+
+        CartService::addToCart($userId, $request);
+
+
+        return redirect()->route('user.cart_index');
+    }
+
+    public function createOrder(SelectPaymentMethodRequest $request)
+    {
+        $userId = Auth::id();
+
+        $validated = $request->validated();
+
+        $items = CartService::cartItems($userId);
+
+        // dd($items);
+
+        $order = OrderService::createOrder($items, $userId, $validated);
+
+        return redirect()->to(route('user.detail_order', $order));
     }
 
     public function show($id)
     {
-        if (Auth::id() != Order::findOrFail($id)->user_id) {
+        if (Auth::id() != Transaction::findOrFail($id)->user_id) {
             abort(403);
         }
 
-        $order = OrderService::detailOrder($id)->fetch();
+        $transaction = TransactionService::transactionDetail($id);
 
-        // dd($order);
+        // dd($transaction);
 
-        if ($order['training']->cost == 'paid') {
-            if ($order['order']['payment_method']->value == 'Transfer') {
+        // foreach ($transaction->orders as $order) {
+        //     // foreach ($order->orderparticipants as $participant) {
+        //     //     dump($participant->student->name);
+        //     // }
+        //     dump($order->training->cost);
+        // }
+
+        // die();
+
+        if ($transaction->payment_amount > 0) {
+            if ($transaction->payment_method == 'Transfer') {
                 return view('user.pages.order.detail')
                     ->with([
-                        'data' => $order
+                        'data' => $transaction
                     ]);
             }
 
-            if ($order['order']['payment_method']->value == 'Midtrans') {
+            if ($transaction->payment_method == 'Midtrans') {
                 return view('user.pages.order.detail-midtrans')
                     ->with([
-                        'data' => $order,
+                        'data' => $transaction,
                         // 'midtransClientKey' => "SB-Mid-client-NUHDTW6uipcvE7sz"
                     ]);
             }
@@ -77,7 +111,7 @@ class OrderController extends Controller
 
         return view('user.pages.order.detail-free')
             ->with([
-                'data' => $order,
+                'data' => $transaction,
                 // 'midtransClientKey' => "SB-Mid-client-NUHDTW6uipcvE7sz"
             ]);
     }

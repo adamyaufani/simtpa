@@ -13,8 +13,9 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $trainings = Training::when($request->has('category'), function ($query) use ($request) {
-            $query->where('category_id', '=', $request->category);
+            $query->whereRaw("FIND_IN_SET(?, category_id)", $request->category);
         })->get();
+        // dd($trainings);
         $categories = Category::all();
 
         // dd(Auth::user()->verification_status);

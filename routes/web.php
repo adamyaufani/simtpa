@@ -25,6 +25,8 @@ use App\Http\Controllers\User\OrganizationController;
 use App\Http\Controllers\User\StaffController;
 use App\Http\Controllers\User\StudentController;
 
+use App\Http\Controllers\User\CartController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,21 +52,21 @@ Route::post('reset-password', [UserAuthController::class, 'resetPasswordAttempt'
 
 Route::get('t_image', [FileController::class, 'trainingBanner'])->name('training.image');
 
-Route::get('trainings/{id}', [UserTrainingController::class, 'show'])->name('user.training_detail');
+Route::get('events/{id}', [UserTrainingController::class, 'show'])->name('user.training_detail');
 
 Route::middleware('auth.user')->group(function () {
     Route::get('logout', [UserAuthController::class, 'logout'])->name('user.logout');
     Route::get('agreement', [AgreementController::class, 'index'])->name('user.agreement');
     Route::get('agreement/sign', [AgreementController::class, 'sign'])->name('user.sign_agreement');
     Route::middleware('agreed.user')->group(function () {
-        Route::prefix('trainings')->group(function () {
+        Route::prefix('events')->group(function () {
             Route::get('{id}/order', [UserOrderController::class, 'orderTraining'])->name('user.order_training');
             Route::post('{id}/fill-order', [UserOrderController::class, 'fillOrder'])->name('user.fill_order');
             // Route::get('{id}/checkout', [UserTrainingController::class, 'checkout'])->name('user.checkout_training');
             // Route::post('{id}/order', [OrderController::class, 'createOrder'])->name('user.create_training_order');
             // Route::post('{id}/order', [OrderController::class, 'placeOrder'])->name('user.order_training');
         });
-        Route::prefix('orders')->group(function () {
+        Route::prefix('transactions')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('user.order_index');
             Route::get('{id}', [UserOrderController::class, 'show'])->name('user.detail_order');
             // Route::get('{id}/complete-order', [OrderController::class, 'completeOrder'])->name('user.complete_order');
@@ -77,6 +79,13 @@ Route::middleware('auth.user')->group(function () {
             Route::get('/', [CertificateController::class, 'index'])->name('user.certificate_index');
             Route::get('{id}', [CertificateController::class, 'show'])->name('user.preview_certificate');
             Route::get('{id}/download', [CertificateController::class, 'show'])->name('user.download_certificate');
+        });
+
+        Route::prefix('keranjang')->group(function () {
+            Route::get('/', [CartController::class, 'index'])->name('user.cart_index');
+            Route::delete('/{id}/hapus', [CartController::class, 'destroy'])->name('user.remove_from_cart');
+            Route::get('beli', [CartController::class, 'buy'])->name('user.buy_cart');
+            Route::post('beli', [UserOrderController::class, 'createOrder'])->name('user.store_order');
         });
     });
     Route::get('profile', [ProfileController::class, 'show'])->name('user.profile');
@@ -121,6 +130,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
         Route::prefix('agreement')->group(function () {
+            Route::get('/', [AgreementController::class, 'index'])->name('admin.agreement_index');
             Route::get('create', [AgreementController::class, 'create'])->name('admin.create_agreement');
             Route::post('create', [AgreementController::class, 'store'])->name('admin.store_new_agreement');
         });
@@ -157,7 +167,7 @@ Route::prefix('admin')->group(function () {
             Route::post('create', [CategoryController::class, 'store'])->name('admin.store_new_category');
         });
 
-        Route::prefix('orders')->group(function () {
+        Route::prefix('transactions')->group(function () {
             Route::get('/', [AdminOrderController::class, 'index'])->name('admin.order_index');
             Route::get('{id}', [AdminOrderController::class, 'show'])->name('admin.detail_order');
             Route::get('{id}/confirm', [AdminOrderController::class, 'confirmPayment'])->name('admin.finish_order');

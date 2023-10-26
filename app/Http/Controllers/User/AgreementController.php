@@ -15,7 +15,18 @@ class AgreementController extends Controller
 {
     public function index()
     {
-        return view('user.pages.agreement');
+
+        // $agreements = Agreement::all();
+
+        // return view('admin.pages.agreement.index')
+        //     ->with(compact('agreements'));
+        $current_agreement = Agreement::where([
+            ['year_start', '<=', Carbon::now()->format('Y-m-d')],
+            ['year_end', '>=', Carbon::now()->format('Y-m-d')],
+        ])->first();
+
+        return view('user.pages.agreement')
+            ->with(compact('current_agreement'));
     }
 
     public function create()
@@ -26,6 +37,7 @@ class AgreementController extends Controller
 
     public function store(StoreNewAgreementRequest $request)
     {
+        // dd($request->validated());
         DB::transaction(function () use ($request) {
             Agreement::create($request->validated());
         });

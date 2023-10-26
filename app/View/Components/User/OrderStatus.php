@@ -2,7 +2,7 @@
 
 namespace App\View\Components\User;
 
-use App\Models\Order;
+use App\Models\Transaction;
 use Illuminate\View\Component;
 
 class OrderStatus extends Component
@@ -17,24 +17,23 @@ class OrderStatus extends Component
     public $statusClass;
     public function __construct($id)
     {
-        $order = Order::find($id);
+        $transaction = Transaction::with(['orders.training'])->find($id);
 
-
-        if ($order->training->cost == 'paid') {
-            if ($order->payment_method->name == 'Midtrans') {
-                if ($order->status_order == 'success') {
+        if ($transaction->payment_amount > 0) {
+            if ($transaction->payment_method == 'Midtrans') {
+                if ($transaction->status_order == 'success') {
                     $this->status = 'Success';
                     $this->statusClass = 'bg-success';
-                } elseif ($order->status_order ==  'settlement') {
+                } elseif ($transaction->status_order ==  'settlement') {
                     $this->status = 'Settlement';
                     $this->statusClass = 'bg-success';
-                } elseif ($order->status_order == 'pending') {
+                } elseif ($transaction->status_order == 'pending') {
                     $this->status = 'Pending';
                     $this->statusClass = 'bg-info';
-                } elseif ($order->status_order == 'denied') {
+                } elseif ($transaction->status_order == 'denied') {
                     $this->status = 'Denied';
                     $this->statusClass = 'bg-danger';
-                } elseif ($order->status_order == 'expired') {
+                } elseif ($transaction->status_order == 'expired') {
                     $this->status = 'Expired';
                     $this->statusClass = 'bg-warning';
                 } else {
@@ -42,10 +41,10 @@ class OrderStatus extends Component
                     $this->statusClass = 'bg-secondary';
                 }
             } else {
-                if ($order->status == 'Lunas') {
+                if ($transaction->status == 'Lunas') {
                     $this->status = 'Lunas';
                     $this->statusClass = 'bg-success';
-                } elseif ($order->status == 'Expired') {
+                } elseif ($transaction->status == 'Expired') {
                     $this->status = 'Expired';
                     $this->statusClass = 'bg-warning';
                 } else {

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Enums\CostEnum;
+use App\Enums\GenderRequirementEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
@@ -33,6 +34,8 @@ class UpdateTrainingRequest extends FormRequest
             'end_date' => ['required', 'date', 'after:start_date'],
             'place' => ['required', 'string'],
             // 'type' => ['required', new Enum(TrainingTypeEnum::class)],
+            'category_id' => ['required', 'array'],
+            'category_id.*' => ['sometimes', 'numeric', 'exists:categories,id'],
             'quota' => ['required', 'numeric'],
             // 'trainer_id' => ['required', 'numeric', 'exists:trainers,id'],
             // 'price_earlybird' => ['required', 'numeric'],
@@ -40,6 +43,8 @@ class UpdateTrainingRequest extends FormRequest
             'cost' => ['required', new Enum(CostEnum::class)],
             'price_normal' => ['required_if:cost,paid', 'numeric', 'nullable'],
             // 'price_onsite' => ['required', 'numeric'],
+            'gender_requirement' => ['required', new Enum(GenderRequirementEnum::class)],
+            'date_of_birth_requirement' => ['required', 'date'],
         ];
     }
 }

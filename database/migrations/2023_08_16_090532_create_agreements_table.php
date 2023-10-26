@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->date('year_start')->nullable();
             $table->date('year_end')->nullable();
+            $table->text('content')->nullable();
             $table->timestamps();
         });
     }

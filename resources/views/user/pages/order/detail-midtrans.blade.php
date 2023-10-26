@@ -9,35 +9,27 @@
                             <h5>Keterangan</h5>
                             <h6 class="text-secondary">
                                 ID Pendaftaran :
-                                {{ $data['order']['id'] }}
+                                {{ $data->id }}
                             </h6>
-                            <div class="my-3 d-flex">
-                                <div class="me-3">
-                                    <img src="{{ route('training.image').'?q='.$data['training']['image'] }}"
-                                        class="rounded img-thumbnail" style="max-width: 150px" alt="...">
+                            @foreach($data->orders as $order)
+                                <div class="mt-3 d-flex">
+                                    <div>
+                                        <span><b>{{ $order->training->name }}</b></span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span><b>{{ $data['training']['name'] }}</b></span>
-                                    <p class="text-secondary">
-                                        Rp. {{ $data['trainingPrice'] }}
-                                    </p>
+                                <h6>Peserta</h6>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            @foreach($order->orderparticipants as $participant)
+                                                <li class="list-group-item">
+                                                    <span>{{ $participant->student->name }}</span><br>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <h6>Jumlah Peserta : {{ $data['numberOfParticipants'] }}</h6>
-                            <div class="card">
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush" style="max-height: 250px;margin-bottom: 10px; overflow-y:auto;
-                                        -webkit-overflow-scrolling: touch;">
-
-                                        @foreach(
-                                            $data['participants'] as $participant)
-                                            <li class="list-group-item">
-                                                <span>{{ $participant['fullname'] }}</span><br>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <div class="col-6">
                             <h5><b>Detail Pembayaran</b></h5>
@@ -46,7 +38,7 @@
                                     <h6 class="text-secondary">
                                         Status Pembayaran
                                         :
-                                        <x-user.order-status :id="$data['order']['id']" />
+                                        <x-user.order-status :id="$data->id" />
                                     </h6>
                                 </div>
                             </div>
@@ -54,12 +46,12 @@
                             <div class="card bg-light">
                                 <div class="card-body">
                                     <h6 class="text-secondary">
-                                        Rp. {{ $data['totalPrice'] }}
+                                        Rp. {{ $data->payment_amount }}
                                     </h6>
                                 </div>
                             </div>
                             @if(
-                                $data['order']['status_order'] != '')
+                                $data->status != '')
                                 <h5 class="mt-3"><b>Tanggal Pembayaran</b></h5>
                                 <div class="card bg-light">
                                     <div class="card-body">
@@ -71,9 +63,8 @@
                             @endif
 
                             @if(
-                                $data['order']['status_order'] == '')
-                                <form
-                                    action="{{ route('user.pay_order',$data['order']['id']) }}"
+                                $data->status == '')
+                                <form action="{{ route('user.pay_order',$data->id) }}"
                                     method="GET">
                                     <div class="d-grid gap-2 mt-3">
                                         <button class="btn btn-primary" type="submit">Bayar</button>
