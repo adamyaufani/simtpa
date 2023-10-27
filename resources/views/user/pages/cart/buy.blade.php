@@ -66,7 +66,8 @@
                                     <p class="fs-5 text-danger fw-bold">
                                         Rp {{ $orders['total_price'] }}
                                     </p>
-                                    <select name="payment_method" class="form-control">
+                                    <select name="payment_method"
+                                        class="form-control {{ $errors->has('payment_method') ? 'is-invalid' : '' }}">
                                         <option>
                                             Pilih Metode Pembayaran
                                         </option>
@@ -76,6 +77,9 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                    <span class="invalid-feedback">
+                                        {{ $errors->first('payment_method') }}
+                                    </span>
                                     @csrf
                                     <div class="d-grid gap-2 mt-3">
                                         <button class="btn btn-primary" type="submit">

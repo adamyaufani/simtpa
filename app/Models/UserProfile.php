@@ -39,6 +39,11 @@ class UserProfile extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function villageDetail()
+    {
+        return $this->belongsTo(Village::class, 'village');
+    }
+
     protected function skFile(): Attribute
     {
         return Attribute::make(

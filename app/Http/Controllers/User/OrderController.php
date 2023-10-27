@@ -80,6 +80,7 @@ class OrderController extends Controller
         }
 
         $transaction = TransactionService::transactionDetail($id);
+        // dd($transaction);
 
         // dd($transaction);
 
@@ -94,6 +95,7 @@ class OrderController extends Controller
 
         if ($transaction->payment_amount > 0) {
             if ($transaction->payment_method == 'Transfer') {
+                // dump($transaction);
                 return view('user.pages.order.detail')
                     ->with([
                         'data' => $transaction
@@ -101,6 +103,8 @@ class OrderController extends Controller
             }
 
             if ($transaction->payment_method == 'Midtrans') {
+                // dump($transaction);
+
                 return view('user.pages.order.detail-midtrans')
                     ->with([
                         'data' => $transaction,
@@ -108,6 +112,10 @@ class OrderController extends Controller
                     ]);
             }
         }
+
+        // dump($transaction);
+
+        // die();
 
         return view('user.pages.order.detail-free')
             ->with([
