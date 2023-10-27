@@ -15,7 +15,7 @@ class Navbar extends Component
     public $profileName;
     public function __construct()
     {
-        $this->profileName = "Douglas McGee";
+        $this->profileName = "Admin";
     }
 
     /**
