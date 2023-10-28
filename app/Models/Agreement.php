@@ -15,7 +15,7 @@ class Agreement extends Model
         'content',
     ];
 
-    public function useragreement()
+    public function userAgreement()
     {
         return $this->hasMany(UserAgreement::class);
     }

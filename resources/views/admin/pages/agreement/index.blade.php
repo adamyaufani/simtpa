@@ -1,8 +1,14 @@
 <x-layout>
     <x-slot:title>
-        <div class="d-sm-flex flex-column mb-3">
-            <h1 class="h3 mb-0 text-gray-800">Perjanjian Anggota</h1>
-            <p class="h6 mb-0 text-gray-800">Perjanjian Anggota Setiap Periode Kepengurusan Baru</h1>
+        <div class="d-sm-flex flex-row mb-3 justify-content-between align-items-center">
+            <div class="flex flex-column">
+                <h1 class="h3 mb-0 text-gray-800">Perjanjian Anggota</h1>
+                <h1 class="h6 mb-0 text-gray-800">Perjanjian Anggota Setiap Periode Kepengurusan Baru</h1>
+            </div>
+            <a href="{{ route('admin.create_agreement') }}"
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i> Persetujuan Baru
+            </a>
         </div>
     </x-slot:title>
 
@@ -10,18 +16,26 @@
 
         <div class="card mb-4 py-3 border-left-primary">
             <div class="card-body">
-                <p class="h6">Periode</p>
-                <h4> {{ $agreement->year_start }} - {{ $agreement->year_end }} </h4>
+                <p class="h6">
+                    <strong>
+                        Periode
+                    </strong>
+                </p>
+                <span> {{ $agreement->year_start }} - {{ $agreement->year_end }} </span>
 
-                <p class="h6">Jumlah yang menandatangani</p>
-                <h4> {{ $agreement->useragreement->count() }} </h4>
+                <p class="h6"><strong>Jumlah yang menandatangani</strong></p>
+                <span> {{ $agreement->userAgreement->count() }} </span>
 
-                <p class="h6">Isi Perjanjian</p>
-                <h4> </h4>
+                <p class="h6"><strong>Isi Perjanjian</strong></p>
+                <p>
+                    {!! $agreement->content !!}
+                </p>
 
             </div>
         </div>
 
     @endforeach
+
+    {{ $agreements->links() }}
 
 </x-layout>

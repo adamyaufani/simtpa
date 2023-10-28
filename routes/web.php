@@ -26,6 +26,7 @@ use App\Http\Controllers\User\StaffController;
 use App\Http\Controllers\User\StudentController;
 
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\UserAgreementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,8 +57,8 @@ Route::get('events/{id}', [UserTrainingController::class, 'show'])->name('user.t
 
 Route::middleware('auth.user')->group(function () {
     Route::get('logout', [UserAuthController::class, 'logout'])->name('user.logout');
-    Route::get('agreement', [AgreementController::class, 'index'])->name('user.agreement');
-    Route::get('agreement/sign', [AgreementController::class, 'sign'])->name('user.sign_agreement');
+    Route::get('agreement', [UserAgreementController::class, 'index'])->name('user.agreement');
+    Route::get('agreement/sign', [UserAgreementController::class, 'sign'])->name('user.sign_agreement');
     Route::middleware('agreed.user')->group(function () {
         Route::prefix('events')->group(function () {
             Route::get('{id}/order', [UserOrderController::class, 'orderTraining'])->name('user.order_training');

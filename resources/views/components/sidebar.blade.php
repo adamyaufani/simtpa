@@ -62,7 +62,7 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.create_agreement') }}">
+        <a class="nav-link" href="{{ route('admin.agreement_index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Persetujuan</span>
         </a>
