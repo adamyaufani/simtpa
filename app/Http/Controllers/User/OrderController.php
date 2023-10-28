@@ -18,6 +18,17 @@ use Illuminate\Support\Arr;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        // foreach (TransactionService::transactionIndex() as $transaction) {
+        //     dump($transaction->orders);
+        // }
+        return view('user.pages.order.index')
+            ->with([
+                'transactions' => TransactionService::transactionIndex(Auth::id())
+            ]);
+    }
+
     public function orderTraining($id, Request $request)
     {
         $request = $request->validate(

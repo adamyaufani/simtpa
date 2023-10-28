@@ -67,7 +67,7 @@ Route::middleware('auth.user')->group(function () {
             // Route::post('{id}/order', [OrderController::class, 'placeOrder'])->name('user.order_training');
         });
         Route::prefix('transactions')->group(function () {
-            Route::get('/', [OrderController::class, 'index'])->name('user.order_index');
+            Route::get('/', [UserOrderController::class, 'index'])->name('user.order_index');
             Route::get('{id}', [UserOrderController::class, 'show'])->name('user.detail_order');
             // Route::get('{id}/complete-order', [OrderController::class, 'completeOrder'])->name('user.complete_order');
             // Route::put('{id}/complete-order', [OrderController::class, 'storeCompletedOrder'])->name('user.store_completed_order');

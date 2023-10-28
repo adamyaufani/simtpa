@@ -19,6 +19,11 @@ class Transaction extends Model
         'status',
         'transaction_id'
     ];
+    protected $casts = [
+        // 'payment_method' => PaymentMethodEnum::class,
+        'transaction_date' => 'datetime',
+        'payment_date' => 'datetime'
+    ];
 
     public function orders()
     {
