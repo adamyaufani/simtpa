@@ -35,6 +35,7 @@ class StudentController extends Controller
     {
         $gender = GenderEnum::cases();
         $student = Student::find($id);
+        // dd($student->birth_certificate);
         if ($student->user_id != Auth::user()->id) {
             abort(403);
         }
@@ -69,7 +70,7 @@ class StudentController extends Controller
                 $q->where('gender', '=', "{$request->extraData['gender']}");
             })
             ->when($request->extraData['birth_date'] != null, function ($q) use ($request) {
-                $q->whereDate('birth_date', '<', "{$request->extraData['birth_date']}");
+                $q->whereDate('birth_date', '>', "{$request->extraData['birth_date']}");
             })
             ->where('user_id', '=', Auth::user()->id)
             ->limit(10)
