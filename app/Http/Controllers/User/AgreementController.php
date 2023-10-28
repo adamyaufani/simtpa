@@ -35,4 +35,21 @@ class AgreementController extends Controller
 
         return redirect()->back()->with('success', 'Syarat dan Persetujuan berhasil diupdate');
     }
+
+    public function edit($id)
+    {
+        $agreement = Agreement::findOrFail($id);
+
+        return view('admin.pages.agreement.edit')
+            ->with(compact('agreement'));
+    }
+
+    public function update($id, StoreNewAgreementRequest $request)
+    {
+        $agreement = Agreement::findOrFail($id);
+        DB::transaction(function () use ($request, $agreement) {
+            $agreement->update($request->validated());
+        });
+        return redirect()->back()->with('success', 'Syarat dan Persetujuan berhasil diupdate');
+    }
 }

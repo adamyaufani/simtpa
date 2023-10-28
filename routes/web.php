@@ -132,8 +132,10 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('agreement')->group(function () {
             Route::get('/', [AgreementController::class, 'index'])->name('admin.agreement_index');
+            Route::get('/{id}', [AgreementController::class, 'edit'])->name('admin.edit_agreement');
             Route::get('create', [AgreementController::class, 'create'])->name('admin.create_agreement');
             Route::post('create', [AgreementController::class, 'store'])->name('admin.store_new_agreement');
+            Route::put('update/{id}', [AgreementController::class, 'update'])->name('admin.update_agreement');
         });
 
         Route::prefix('users')->group(function () {

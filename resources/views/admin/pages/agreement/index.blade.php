@@ -18,7 +18,10 @@
             <div class="card-body">
                 <p class="h6">
                     <strong>
-                        Periode
+                        <a href="{{ route('admin.edit_agreement', $agreement->id) }}"
+                            class="stretched-link">
+                            Periode
+                        </a>
                     </strong>
                 </p>
                 <span> {{ $agreement->year_start }} - {{ $agreement->year_end }} </span>
