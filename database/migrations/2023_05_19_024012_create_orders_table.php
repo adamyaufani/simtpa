@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('transaction_id')->nullable();
+            $table->unsignedBigInteger('transaction_id')->nullable();
             $table->unsignedBigInteger('training_id')->nullable();
             // $table->enum('payment_method', ['Transfer', 'Midtrans'])->nullable();
             // $table->unsignedBigInteger('user_id')->nullable();
