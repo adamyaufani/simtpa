@@ -8,6 +8,7 @@ use App\Http\Requests\StoreNewStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use App\Models\Transaction;
+use App\Models\User;
 use App\Services\StudentService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -77,15 +78,17 @@ class StudentController extends Controller
         //     }
         // }
 
-        $userTransactions = Transaction::with('orders')->where('user_id', Auth::user()->id)->get();
-        $participantIds = $userTransactions->flatMap(function ($transaction) {
-            return $transaction->orders->flatMap(function ($order) {
-                if ($order->training->start_date >= Carbon::now()) {
-                    return $order->orderParticipants->pluck('student_id');
-                }
-                return [];
-            });
-        });
+        // $userTransactions = Transaction::with('orders')->where('user_id', Auth::user()->id)->get();
+        // $participantIds = $userTransactions->flatMap(function ($transaction) {
+        //     return $transaction->orders->flatMap(function ($order) {
+        //         if ($order->training->start_date >= Carbon::now()) {
+        //             return $order->orderParticipants->pluck('student_id');
+        //         }
+        //         return [];
+        //     });
+        // });
+
+        $participantIds = User::find(Auth::user()->id)->students->pluck('id');
 
         $trainer = Student::when($request->has('q'), function ($q) use ($request) {
             $q->where('name', 'LIKE', "%{$request->q}%");
