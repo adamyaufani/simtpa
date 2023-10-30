@@ -79,19 +79,27 @@ class StudentController extends Controller
         //     }
         // }
 
-        // $userTransactions = Transaction::with('orders')->where('user_id', Auth::user()->id)->get();
-        // $participantIds = $userTransactions->flatMap(function ($transaction) {
-        //     return $transaction->orders->flatMap(function ($order) {
-        //         if ($order->training->start_date >= Carbon::now()) {
-        //             return $order->orderParticipants->pluck('student_id');
-        //         }
-        //         return [];
-        //     });
-        // });
+        $userTransactions = Transaction::with('orders')->where('user_id', Auth::user()->id)->get();
+        $boughtParticipants = $userTransactions->flatMap(function ($transaction) {
+            return $transaction->orders->flatMap(function ($order) {
+                if ($order->training->start_date >= Carbon::now()) {
+                    return $order->orderParticipants->pluck('student_id');
+                }
+                return [];
+            });
+        });
 
-        $participantIds = Cart::with('items')->where('user_id', '=', Auth::user()->id)->get()->flatMap(function ($cart) {
+        $orderedParticipant = Cart::with('items')->where('user_id', '=', Auth::user()->id)->get()->flatMap(function ($cart) {
             return $cart->items->pluck('student_id');
         });
+
+        $collection1 = collect($boughtParticipants);
+        $collection2 = collect($orderedParticipant);
+
+        $mergedCollection = $collection1->merge($collection2);
+
+        $participantIds = $mergedCollection->all();
+
         // dd($participantIds);
 
         $trainer = Student::when($request->has('q'), function ($q) use ($request) {
@@ -105,6 +113,7 @@ class StudentController extends Controller
             })
             ->where('user_id', '=', Auth::user()->id)
             ->whereNotIn('students.id', $participantIds)
+            // ->orWhereNotIn('students.id', $orderedParticipant)
             ->limit(10)
             ->get();
 
