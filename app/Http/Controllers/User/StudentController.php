@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNewStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
+use App\Models\Transaction;
 use App\Services\StudentService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,6 +65,28 @@ class StudentController extends Controller
 
     public function studentByName(Request $request)
     {
+        // $participants = [];
+        // $userTransactions = Transaction::where('user_id', Auth::user()->id)->get();
+        // foreach ($userTransactions as $transaction) {
+        //     foreach ($transaction->orders as $order) {
+        //         if ($order->training->start_date > Carbon::now()) {
+        //             foreach ($order->orderParticipants as $participant) {
+        //                 $participants[] = $participant->student_id;
+        //             }
+        //         }
+        //     }
+        // }
+
+        $userTransactions = Transaction::with('orders')->where('user_id', Auth::user()->id)->get();
+        $participantIds = $userTransactions->flatMap(function ($transaction) {
+            return $transaction->orders->flatMap(function ($order) {
+                if ($order->training->start_date >= Carbon::now()) {
+                    return $order->orderParticipants->pluck('student_id');
+                }
+                return [];
+            });
+        });
+
         $trainer = Student::when($request->has('q'), function ($q) use ($request) {
             $q->where('name', 'LIKE', "%{$request->q}%");
         })
@@ -73,6 +97,7 @@ class StudentController extends Controller
                 $q->whereDate('birth_date', '>', "{$request->extraData['birth_date']}");
             })
             ->where('user_id', '=', Auth::user()->id)
+            ->whereNotIn('students.id', $participantIds)
             ->limit(10)
             ->get();
 
