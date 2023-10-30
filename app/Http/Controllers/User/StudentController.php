@@ -6,9 +6,10 @@ use App\Enums\GenderEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNewStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Models\Cart;
+use App\Models\CartItem;
 use App\Models\Student;
 use App\Models\Transaction;
-use App\Models\User;
 use App\Services\StudentService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -88,7 +89,10 @@ class StudentController extends Controller
         //     });
         // });
 
-        $participantIds = User::find(Auth::user()->id)->students->pluck('id');
+        $participantIds = Cart::with('items')->where('user_id', '=', Auth::user()->id)->get()->flatMap(function ($cart) {
+            return $cart->items->pluck('student_id');
+        });
+        // dd($participantIds);
 
         $trainer = Student::when($request->has('q'), function ($q) use ($request) {
             $q->where('name', 'LIKE', "%{$request->q}%");
