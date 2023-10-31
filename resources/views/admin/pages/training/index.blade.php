@@ -9,6 +9,12 @@
         </div>
     </x-slot:title>
 
+    @if(session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
     @foreach($trainings as $training)
         <div class="card mb-2">
             <div class="card-body">
@@ -29,9 +35,31 @@
                             {{ $training->description }}
                         </p>
                     </div>
+                    <div class="col-1 d-flex justify-content-end">
+                        <form action="{{ route('admin.delete_training',$training->id) }}"
+                            method="POST" onsubmit="return confirmSubmit()">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     @endforeach
+
+    @push('page_js')
+        <script>
+            function confirmSubmit() {
+                var confirmSubmission = confirm(
+                    "Anda yakin ingin menghapus event ini? Event yang sudah dihapus tidak dapat dikembalikan dengan cara apapun."
+                );
+                return confirmSubmission;
+            }
+
+        </script>
+    @endpush
 
 </x-layout>

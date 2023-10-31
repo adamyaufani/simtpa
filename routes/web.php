@@ -155,6 +155,7 @@ Route::prefix('admin')->group(function () {
             Route::post('create', [TrainingController::class, 'store'])->name('admin.store_new_training');
             Route::get('{id}', [TrainingController::class, 'edit'])->name('admin.edit_training');
             Route::put('{id}', [TrainingController::class, 'update'])->name('admin.update_training');
+            Route::delete('{id}', [TrainingController::class, 'destroy'])->name('admin.delete_training');
         });
 
         Route::prefix('trainers')->group(function () {

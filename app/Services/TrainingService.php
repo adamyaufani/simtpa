@@ -9,6 +9,7 @@ use App\Models\Training;
 use App\Models\TrainingTrainer;
 use App\Models\Transaction;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -150,6 +151,16 @@ class TrainingService
         // }
 
         return $training->quotaPerOrg->quota;
+    }
+
+    public static function deleteTraining()
+    {
+        $training = static::$training;
+        $filePath = Crypt::decryptString($training->image);
+        if (Storage::exists($filePath)) {
+            Storage::delete($filePath);
+        }
+        $training->delete();
     }
 
     public static function trainingIndex()

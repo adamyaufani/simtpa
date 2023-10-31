@@ -66,4 +66,10 @@ class TrainingController extends Controller
         TrainingService::getTrainingById($id)->updateTraining($request);
         return redirect()->back();
     }
+
+    public function destroy($id)
+    {
+        TrainingService::getTrainingById($id)->deleteTraining();
+        return redirect()->back()->with('success', 'Event berhasil dihapus');
+    }
 }
