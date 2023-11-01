@@ -29,13 +29,31 @@ class StoreNewStaffRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'gender' => ['required', 'string'],
-            'employment_status' => ['required', new Enum(EmploymentStatusEnum::class)],
-            'civil_registration_number' => ['required', 'string'],
+            // 'employment_status' => ['required', new Enum(EmploymentStatusEnum::class)],
+            // 'civil_registration_number' => ['required', 'string'],
             'last_formal_education' => ['required', new Enum(LastFormalEducationEnum::class)],
-            'length_of_islamic_education' => ['required', 'string'],
+            // 'length_of_islamic_education' => ['required', 'string'],
             'core_competency' => ['required', 'string'],
             'phone' => ['required', 'string'],
             'email' => ['required', 'string'],
+        ];
+    }
+
+     /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama wajib diisi',
+            'gender.required' => 'Jenis Kelamin wajib diisi',
+            'last_formal_education.required' => 'Pendidikan Terakhir wajib diisi',
+            'core_competency.required' => 'Kompetensi wajib diisi',
+            'phone.required' => 'Telepon wajib diisi',
+            'email.required' => 'Email wajib diisi',
+           
         ];
     }
 }

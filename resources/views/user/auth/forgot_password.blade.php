@@ -23,18 +23,19 @@
                     <div class="mb-4">
                         <label for="inputEmail" class="form-label">Alamat Email</label>
                         <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                    <div class="mb-5 d-flex flex-column">
-                        <a href="{{ route('user.registration_form') }}" class="mb-3">
-                            Daftar Akun Baru
-                        </a>
-                        <a href="{{ route('user.login_form') }}">Login</a>
-                    </div>
+                    </div>                    
 
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary btn-block">
-                            Submit
+                            Kirim
                         </button>
+                    </div>
+
+                    <div class="mt-2 mb-5 d-flex flex-row justify-content-between">
+                        <a href="{{ route('user.registration_form') }}" class="mb-3">
+                            Buat Akun Baru
+                        </a>
+                        <a href="{{ route('user.login_form') }}">Login</a>
                     </div>
 
                 </form>

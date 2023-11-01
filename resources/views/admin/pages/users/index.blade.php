@@ -21,7 +21,7 @@
                     <div class="col-12 d-flex justify-content-between">
                         <div>
                             <p>
-                                Nama TPA/TKA/TPQ :
+                                Nama TPA :
                             </p>
                             <h6 class="font-weight-bold">
                                 <a href="{{ route('admin.detail_user',$user->id) }}"

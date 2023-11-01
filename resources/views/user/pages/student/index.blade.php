@@ -23,7 +23,7 @@
                         <div class="col-12">
                             @foreach($students as $student)
                                 <div class="card border-success mb-3">
-                                    <div class="card-body text-success">
+                                    <div class="card-body">
                                         <div class="col-12">
                                             <div class="row">
                                                 <div class="col-4">
@@ -54,9 +54,9 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <span class="card-text">
-                                                        <strong>Tanggal Bergabung :</strong>
+                                                        <strong>Tanggal Lahir :</strong>
                                                         <br>
-                                                        {{ $student->join_date }}
+                                                        {{ $student->birth_date }}
                                                     </span>
                                                     <br>
                                                     <span class="card-text">
@@ -72,7 +72,7 @@
                                                 class="btn btn-outline-warning btn-sm mr-3">
                                                 edit
                                             </a>
-                                            <form
+                                            {{-- <form
                                                 action="{{ route('user.delete_student',$student->id) }}"
                                                 method="POST" onsubmit="return confirmDelete()">
                                                 @csrf
@@ -80,7 +80,7 @@
                                                 <button class="btn btn-outline-danger btn-sm">
                                                     hapus
                                                 </button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </div>
                                 </div>

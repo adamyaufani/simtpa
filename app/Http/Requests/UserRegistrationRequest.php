@@ -50,7 +50,7 @@ class UserRegistrationRequest extends FormRequest
             'phone.required' => 'Telepon wajib diisi',
             'phone.unique' => 'Nomor telepon sudah terdaftar',
             'phone.min' => 'Nomor telepon terlalu pendek',
-            'institution_name.required' => 'Nama TPA/TKA/TPQ/RTQ/RA wajib diisi',
+            'institution_name.required' => 'Nama TPA wajib diisi',
             'village.required' => 'Kalurahan wajib diisi',
             'password.required' => 'Password wajib diisi',
             'password.min' => 'Password terlalu pendek',

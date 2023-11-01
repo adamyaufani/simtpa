@@ -14,11 +14,11 @@
                         </div>
                     @endif
                     <div class="mb-4">
-                        <label for="institution_name" class="form-label">Nama TPA/TKA/TPQ/RTQ/RA</label>
-                        <input type="text" name="institution_name"
+                        <label for="institution_name" class="form-label">Nama TPA</label>
+                        <input type="text" name="institution_name" 
                             class="form-control
                             {{ $errors->has('institution_name') ? 'is-invalid' : '' }}"
-                            id="institution_name" placeholder="Nama TPA/TKA/TPQ/RTQ/RA"
+                            id="institution_name" placeholder="Contoh : Istiqomah"
                             value="{{ old('institution_name') }}">
                         @error('institution_name')
                             <div class="invalid-feedback">
@@ -40,7 +40,7 @@
                     </div>
                     <div class="mb-4">
                         <label for="inputAddress" class="form-label">Alamat</label>
-                        <input type="address" name="address"
+                        <input type="address" name="address" placeholder="Contoh : Masjid Nurul Iman, Kembaran RT 01"
                             class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}"
                             id="inputAddress" placeholder="Alamat" value="{{ old('address') }}">
                         @error('address')
@@ -72,7 +72,7 @@
 
                     <div class="mb-4">
                         <label for="inputPhone" class="form-label">Nomor Telepon</label>
-                        <input type="text" name="phone"
+                        <input type="text" name="phone" placeholder="Contoh : 08561234567"
                             class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}"
                             id="inputPhone" placeholder="Nomor Telepon" value="{{ old('phone') }}">
                         @error('phone')
@@ -93,20 +93,21 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mb-5">
-                        <label for="inputPasswordConfirmation" class="form-label">Konfirmasi Password</label>
+                    <div class="mb-4">
+                        <label for="inputPasswordConfirmation" class="form-label">Ulangi Password</label>
                         <input type="password" name="password_confirmation" class="form-control"
-                            id="inputPasswordConfirmation" placeholder="Konfirmasi Password">
+                            id="inputPasswordConfirmation" placeholder="Tulis ulang Password">
                     </div>
-                    <div class="mb-5 d-flex flex-column">
-                        <a href="{{ route('user.login_form') }}" class="mb-3">Login</a>
-                        <a href="">Forgot Password</a>
+                    
+
+                    <div class="d-grid mb-2 ">
+                        <button class="btn btn-primary btn-block">
+                            Buat Akun
+                        </button>
                     </div>
 
-                    <div class="d-grid">
-                        <button class="btn btn-primary btn-block">
-                            Daftar
-                        </button>
+                    <div class="d-flex flex-row">
+                        Sudah punya akun? <a href="{{ route('user.login_form') }}" class=" ms-2 mb-3">Login di sini</a>.
                     </div>
 
                 </form>

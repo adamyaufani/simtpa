@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIM TPA</title>
+    <title>Unit TPA Badko Rayon Kasihan</title>
 
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/f53b268512.js" crossorigin="anonymous"></script>

@@ -21,8 +21,6 @@
                         <div class="col-lg-12">
                             <h4 class="mb-3">Sturuktur Pengurus TPA</h4>
 
-                            Induk Organisasi (input text)
-
                             <div class="mb-4">
                                 <label for="director">Direktur TPA</label>
                                 <select name="director"

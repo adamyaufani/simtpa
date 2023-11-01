@@ -2,7 +2,7 @@
     <div class="col-12">
         <section class="py-2" id="features">
             <div class="container px-5 my-5">
-                <h4 class="mb-3">Pelatihan Saya</h4>
+                <h4 class="mb-3">Transaksi</h4>
                 <div class="btn-group mb-3">
                     {{-- <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">

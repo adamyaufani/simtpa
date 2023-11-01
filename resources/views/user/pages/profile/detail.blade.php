@@ -3,6 +3,7 @@
         <section class="py-5" id="features">
             <div class="container px-5 my-5">
                 <h4 class="mb-3">Profil TPA</h4>
+                <p class="mb-3">Lengkapi Profil TPA di bawah ini. Yang diberi tanda * (bintang) wajib diisi.</p>
                 @if(session()->has('success'))
                     <div class="alert alert-success" role="alert">
                         {{ session()->get('success') }}
@@ -19,7 +20,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row mb-3">
-                                    <label for="institution_name" class="col-sm-2 col-form-label">Nama Lembaga</label>
+                                    <label for="institution_name" class="col-sm-2 col-form-label">Nama Lembaga *</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="institution_name"
                                             class="form-control {{ $errors->has('institution_name') ? 'is-invalid' : '' }}"
@@ -30,17 +31,18 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="nspq_number" class="col-sm-2 col-form-label">Nomor NSPQ</label>
+                                    <label for="nspq_number" class="col-sm-2 col-form-label">Nomor NSPQ </label>
                                     <div class="col-sm-10">
                                         <input type="text" name="nspq_number"
                                             class="form-control {{ $errors->has('nspq_number') ? 'is-invalid' : '' }}"
                                             value="{{ $userProfile->nspq_number }}" id="nspq_number">
+                                           
                                         <span class="invalid-feedback">
                                             {{ $errors->first('nspq_number') }}
                                         </span>
                                     </div>
                                 </div>
-                                <div class="row mb-3">
+                                {{-- <div class="row mb-3">
                                     <label for="supervisory_institution_name" class="col-sm-2 col-form-label">
                                         Nama Lembaga Pembina
                                     </label>
@@ -53,10 +55,10 @@
                                             {{ $errors->first('supervisory_institution_name') }}
                                         </span>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row mb-3">
                                     <label for="years_of_establishment" class="col-sm-2 col-form-label">
-                                        Tahun Berdiri
+                                        Tahun Berdiri *
                                     </label>
                                     <div class="col-sm-10">
                                         <input type="text" name="years_of_establishment"
@@ -80,7 +82,7 @@
                             <div class="card-body">
                                 <div class="row mb-3">
                                     <label for="address" class="col-sm-2 col-form-label">
-                                        Alamat (Jalan/Kampung & Nomor)
+                                        Alamat * <small class="label">(Nama Masjid, jalan, pedukuhan, RT & Nomor)</small>
                                     </label>
                                     <div class="col-sm-10">
                                         <textarea name="address" id="address"
@@ -121,7 +123,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="phone_number" class="col-sm-2 col-form-label">Nomor Telepon</label>
+                                    <label for="phone_number" class="col-sm-2 col-form-label">Nomor Telepon / Whatsapp *</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="phone_number"
                                             class="form-control {{ $errors->has('phone_number') ? 'is-invalid' : '' }}"
@@ -198,7 +200,7 @@
                         </div>
                     </div>
 
-                    <div class="card mb-3">
+                    {{-- <div class="card mb-3">
                         <div class="col-12">
                             <div class="card-header">
                                 <h6>
@@ -268,7 +270,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="d-grid gap-2">
                         <button class="btn btn-success" type="submit">Simpan</button>
                     </div>

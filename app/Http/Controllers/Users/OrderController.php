@@ -27,7 +27,7 @@ class OrderController extends Controller
         if ($training->quotaPerOrg->quota != null) {
             $leftoverQuota = TrainingService::getTrainingById($id)->quotaPerOrgLeft(Auth::id());
             if ($participant > $leftoverQuota) {
-                return redirect()->to(route('user.training_detail', $id))->with('error', 'Peserta yang anda daftarkan melebihi jumlah kuota anda.');
+                return redirect()->to(route('user.training_detail', $id))->with('error', 'Peserta melebihi jumlah kuota yang ditentukan.');
             }
         }
 

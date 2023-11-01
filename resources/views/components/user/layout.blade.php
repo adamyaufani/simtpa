@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>SIM TPA</title>
+    <title>Unit TPA Badko Rayon Kasihan</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -22,7 +22,8 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-5">
-                <a class="navbar-brand" href="{{ route('user.homepage') }}">UNIT TPA</a>
+                <a class="navbar-brand" href="{{ route('user.homepage') }}">                
+                <img src="{{ url('img/logo.png') }}" alt=""></a>
 
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
@@ -54,7 +55,7 @@
                                             href="{{ route('user.organization') }}">Pengurus</a></li>
                                     <li>
                                         <a class="dropdown-item" href="{{ route('user.staff') }}">
-                                            Staf Pengajar
+                                            Staf Pengurus
                                         </a>
                                     </li>
                                     <li>
@@ -83,7 +84,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.registration_form') }}">
-                                    Register
+                                    Daftar
                                 </a>
                             </li>
                         @endif

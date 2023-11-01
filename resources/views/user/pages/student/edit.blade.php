@@ -15,8 +15,9 @@
                 <div class="row mb-5">
 
                     <div class="col-lg-12">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-column">
                             <h4 class="mb-3">Data Santri Baru</h4>
+                            <p class="mb-3">Yang diberi tanda * (bintang) wajib diisi.</p>
                         </div>
 
                         <div class="card">
@@ -30,7 +31,7 @@
                                     {{-- Name --}}
                                     <div class="mb-3">
                                         <label for="name"
-                                            class="form-label">{{ __('Nama Lengkap') }}</label>
+                                            class="form-label">{{ __('Nama Lengkap *') }}</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                                             id="name" name="name" value="{{ $student->name }}">
                                         @error('name')
@@ -41,7 +42,7 @@
                                     {{-- Gender --}}
                                     <div class="mb-3">
                                         <label for="gender"
-                                            class="form-label">{{ __('Jenis Kelamin') }}</label>
+                                            class="form-label">{{ __('Jenis Kelamin *') }}</label>
                                         <select class="form-select @error('gender') is-invalid @enderror" id="gender"
                                             name="gender">
                                             @foreach($gender as $gender)
@@ -59,7 +60,7 @@
                                     {{-- Birth Place --}}
                                     <div class="mb-3">
                                         <label for="birth_place"
-                                            class="form-label">{{ __('Tempat Lahir') }}</label>
+                                            class="form-label">{{ __('Tempat Lahir *') }}</label>
                                         <input type="text"
                                             class="form-control @error('birth_place') is-invalid @enderror"
                                             id="birth_place" name="birth_place" value="{{ $student->birth_place }}">
@@ -71,7 +72,7 @@
                                     {{-- Birth Date --}}
                                     <div class="mb-3">
                                         <label for="birth_date"
-                                            class="form-label">{{ __('Tanggal Lahir') }}</label>
+                                            class="form-label">{{ __('Tanggal Lahir *') }}</label>
                                         <input type="date"
                                             class="form-control @error('birth_date') is-invalid @enderror"
                                             id="birth_date" name="birth_date" value="{{ $student->birth_date }}">
@@ -83,7 +84,7 @@
                                     {{-- Address --}}
                                     <div class="mb-3">
                                         <label for="address"
-                                            class="form-label">{{ __('Alamat') }}</label>
+                                            class="form-label">{{ __('Alamat *') }}</label>
                                         <textarea class="form-control @error('address') is-invalid @enderror"
                                             id="address" name="address" rows="3">{{ $student->address }}</textarea>
                                         @error('address')
@@ -94,7 +95,7 @@
                                     {{-- Father's Name --}}
                                     <div class="mb-3">
                                         <label for="father_name"
-                                            class="form-label">{{ __('Nama Ayah') }}</label>
+                                            class="form-label">{{ __('Nama Ayah *') }}</label>
                                         <input type="text"
                                             class="form-control @error('father_name') is-invalid @enderror"
                                             id="father_name" name="father_name" value="{{ $student->father_name }}">
@@ -106,7 +107,7 @@
                                     {{-- Mother's Name --}}
                                     <div class="mb-3">
                                         <label for="mother_name"
-                                            class="form-label">{{ __('Nama Ibu') }}</label>
+                                            class="form-label">{{ __('Nama Ibu *') }}</label>
                                         <input type="text"
                                             class="form-control @error('mother_name') is-invalid @enderror"
                                             id="mother_name" name="mother_name" value="{{ $student->mother_name }}">
@@ -118,7 +119,7 @@
                                     {{-- Phone --}}
                                     <div class="mb-3">
                                         <label for="phone"
-                                            class="form-label">{{ __('Nomor Telephone (jika ada)') }}</label>
+                                            class="form-label">{{ __('Nomor Telepon /Whatsapp') }}</label>
                                         <input type="tel" class="form-control @error('phone') is-invalid @enderror"
                                             id="phone" name="phone" value="{{ $student->phone }}">
                                         @error('phone')
@@ -184,7 +185,7 @@
                                     {{-- Birth Certificate --}}
                                     <div class="mb-3">
                                         <label for="birth_certificate"
-                                            class="form-label">{{ __('Akta Kelahiran') }}</label>
+                                            class="form-label">{{ __('Akta Kelahiran *') }}</label>
                                         <input type="file"
                                             class="form-control @error('birth_certificate') is-invalid @enderror"
                                             id="birth_certificate" name="birth_certificate">

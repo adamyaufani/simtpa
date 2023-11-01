@@ -35,10 +35,10 @@ class UpdateStudentRequest extends FormRequest
             'father_name' => ['required', 'string'],
             'mother_name' => ['required', 'string'],
             'phone' => ['required', 'string'],
-            'school' => ['required', 'string'],
-            'join_date' => ['required', 'date'],
-            'status' => ['required', new Enum(StudentStatusEnum::class)],
-            'ability_level_upon_entry' => ['required', 'string'],
+            // 'school' => ['required', 'string'],
+            // 'join_date' => ['required', 'date'],
+            // 'status' => ['required', new Enum(StudentStatusEnum::class)],
+            // 'ability_level_upon_entry' => ['required', 'string'],
             'birth_certificate' => ['nullable', 'image', 'mimes:jpg,png'],
         ];
     }

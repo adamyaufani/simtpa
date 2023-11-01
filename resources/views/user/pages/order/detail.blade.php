@@ -46,7 +46,7 @@
                             <div class="card bg-light">
                                 <div class="card-body">
                                     <h6 class="text-secondary">
-                                        Rp. {{ $data->payment_amount }}
+                                        Rp. {{ number_format($data->payment_amount) }}
                                     </h6>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                             <div class="card bg-light">
                                 <div class="card-body">
                                     <h6 class="text-secondary">
-                                        04820-23424-23425-456
+                                        BSI no. <strong>714-775-842-6</strong> an Yaufani Adam
                                     </h6>
                                 </div>
                             </div>
@@ -65,10 +65,11 @@
                                         kirimkan bukti pembayaran ke nomor :
                                     </span>
                                     <h6 class="text-secondary">
-                                        04820-23424-23425-456
+                                        0856 256 3456 
                                     </h6>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

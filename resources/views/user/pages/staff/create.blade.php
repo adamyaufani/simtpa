@@ -15,8 +15,9 @@
                 <div class="row mb-5">
 
                     <div class="col-lg-12">
-                        <div class="d-flex justify-content-between">
-                            <h4 class="mb-3">Data Santri Baru</h4>
+                        <div class="d-flex flex-column">
+                            <h4 class="mb-3">Tambah Staf</h4>
+                            <p class="mb-3">Yang diberi tanda * (bintang) wajib diisi.</p>
                         </div>
 
                         <div class="card">
@@ -26,7 +27,7 @@
                                     {{-- Name --}}
                                     <div class="mb-3">
                                         <label for="name"
-                                            class="form-label">{{ __('Nama Lengkap') }}</label>
+                                            class="form-label">{{ __('Nama Lengkap *') }}</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                                             id="name" name="name" value="{{ old('name') }}">
                                         @error('name')
@@ -37,7 +38,7 @@
                                     {{-- Gender --}}
                                     <div class="mb-3">
                                         <label for="gender"
-                                            class="form-label">{{ __('Jenis Kelamin') }}</label>
+                                            class="form-label">{{ __('Jenis Kelamin *') }}</label>
                                         <select class="form-select @error('gender') is-invalid @enderror" id="gender"
                                             name="gender">
                                             <option value="laki-laki"
@@ -55,7 +56,7 @@
                                     </div>
 
                                     {{-- Employment Status --}}
-                                    <div class="mb-3">
+                                    {{-- <div class="mb-3">
                                         <label for="employment_status"
                                             class="form-label">{{ __('Status Kepegawaian') }}</label>
                                         <select class="form-select @error('gender') is-invalid @enderror"
@@ -70,10 +71,10 @@
                                         @error('employment_status')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
                                     {{-- Civil Registration Number --}}
-                                    <div class="mb-3">
+                                    {{-- <div class="mb-3">
                                         <label for="civil_registration_number"
                                             class="form-label">{{ __('NIK') }}</label>
                                         <input type="text"
@@ -83,14 +84,16 @@
                                         @error('civil_registration_number')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
                                     {{-- Last Formal Education --}}
                                     <div class="mb-3">
                                         <label for="last_formal_education"
-                                            class="form-label">{{ __('Pendidikan Formal Terakhir') }}</label>
+                                            class="form-label">{{ __('Pendidikan Formal Terakhir *') }}</label>
                                         <select class="form-select @error('gender') is-invalid @enderror"
                                             id="last_formal_education" name="last_formal_education">
+                                            <option>Pilih Pendidikan Formal Terakhir
+                                            </option>
                                             @foreach(
                                                 $last_formal_educations as $last_formal_education )
                                                 <option value="{{ $last_formal_education->value }}"
@@ -107,7 +110,7 @@
                                     {{-- Length of Islamic Education --}}
                                     <div class="mb-3">
                                         <label for="length_of_islamic_education"
-                                            class="form-label">{{ __('Lama Pendidikan Pesantren') }}</label>
+                                            class="form-label">{{ __('Lama Pendidikan Pesantren (jika ada)') }}</label>
                                         <input type="text"
                                             class="form-control @error('length_of_islamic_education') is-invalid @enderror"
                                             id="length_of_islamic_education" name="length_of_islamic_education"
@@ -120,7 +123,7 @@
                                     {{-- Core Competency --}}
                                     <div class="mb-3">
                                         <label for="core_competency"
-                                            class="form-label">{{ __('Kompetensi Utama Bidang Ilmu Yang Dikuasai') }}</label>
+                                            class="form-label">{{ __('Kompetensi Utama Bidang Ilmu Yang Dikuasai *') }}</label>
                                         <input type="text"
                                             class="form-control @error('core_competency') is-invalid @enderror"
                                             id="core_competency" name="core_competency"
