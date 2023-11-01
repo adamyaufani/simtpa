@@ -10,6 +10,7 @@ use App\Models\UserProfile;
 use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -48,7 +49,7 @@ class RegistrationController extends Controller
             $profile->village  = $validated_request['village'];
             $profile->save();
 
-            Mail::to('bokergaming002@gmail.com')->send(new NewUserRegistration($user->id));
+            Mail::to(Env::get('MAIL_USERNAME'))->send(new NewUserRegistration($user->id));
         });
 
 

@@ -51,11 +51,11 @@
                                                 {{ $training->name }}
                                             </a>
                                         </h5>
-                                        <p class="card-text">
+                                        {{-- <p class="card-text">
                                             {{ str()->limit($training->description,300) }}
-                                        </p>
+                                        </p> --}}
                                         {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small> --}}
-                                        </p>
+                                        {{-- </p> --}}
                                     </div>
                                 </div>
                             </div>

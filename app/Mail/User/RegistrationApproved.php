@@ -2,6 +2,7 @@
 
 namespace App\Mail\User;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,14 +14,17 @@ class RegistrationApproved extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $user;
+    public $url;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($userId)
     {
-        //
+        $this->user = User::find($userId);
+        $this->url = route('user.login_form');
     }
 
     /**
@@ -31,7 +35,7 @@ class RegistrationApproved extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Registration Approved',
+            subject: 'Pendaftaran Diterima',
         );
     }
 
@@ -43,7 +47,7 @@ class RegistrationApproved extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.name',
+            markdown: 'emails.user.registration-approved',
         );
     }
 

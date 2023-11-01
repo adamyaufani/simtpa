@@ -59,9 +59,13 @@
                                     </p>
                                 </div>
                                 <div class="d-flex align-items-center">
+                                    <a href="{{ route('user.homepage') }}"
+                                        class="btn btn-primary btn-md mx-1">
+                                        Tambah
+                                    </a>
                                     <a href="{{ route('user.buy_cart') }}"
                                         class="btn btn-success btn-md">
-                                        Beli
+                                        Lanjut bayar
                                     </a>
                                 </div>
                             </div>

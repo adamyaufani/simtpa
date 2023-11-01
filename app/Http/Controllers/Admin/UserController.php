@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNewUserRequest;
+use App\Mail\User\RegistrationApproved;
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -61,7 +63,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         if ($user->verification_status == 0) {
             UserService::detailUser($id)->verifyUser();
-
+            Mail::to($user->email)->send(new RegistrationApproved($user->id));
             return redirect()->back()->with('succeed', 'Pendaftaran Diterima');
         }
         return redirect()->back()->with('error', 'Terjadi Kesalahan');

@@ -22,11 +22,10 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-5">
-                <a class="navbar-brand" href="{{ route('user.homepage') }}">SIM TPA</a>
+                <a class="navbar-brand" href="{{ route('user.homepage') }}">UNIT TPA</a>
 
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
                         @if(auth()->check())
                             <a class="nav-link" href="{{ route('user.profile') }}">Profil TPA</a>
                             <a class="nav-link" href="{{ route('user.cart_index') }}">
@@ -99,15 +98,16 @@
         <div class="container px-5">
             <div class="row align-items-center justify-content-between flex-column flex-sm-row">
                 <div class="col-auto">
-                    <div class="small m-0 text-white">Copyright &copy; Your Website 2023</div>
+                    <div class="small m-0 text-white">Copyright &copy; {{ config('app.name') }}
+                        {{ date('Y') }}</div>
                 </div>
-                <div class="col-auto">
-                    <a class="link-light small" href="#!">Privacy</a>
-                    <span class="text-white mx-1">&middot;</span>
-                    <a class="link-light small" href="#!">Terms</a>
-                    <span class="text-white mx-1">&middot;</span>
-                    <a class="link-light small" href="#!">Contact</a>
-                </div>
+                {{-- <div class="col-auto"> --}}
+                {{-- <a class="link-light small" href="#!">Privacy</a> --}}
+                {{-- <span class="text-white mx-1">&middot;</span> --}}
+                {{-- <a class="link-light small" href="#!">Terms</a> --}}
+                {{-- <span class="text-white mx-1">&middot;</span> --}}
+                {{-- <a class="link-light small" href="#!">Contact</a> --}}
+                {{-- </div> --}}
             </div>
         </div>
     </footer>

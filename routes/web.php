@@ -18,7 +18,7 @@ use App\Http\Controllers\User\RegistrationController;
 use App\Http\Controllers\User\TrainingController as UserTrainingController;
 use App\Http\Controllers\Users\HomeController;
 use App\Http\Controllers\Users\OrderController;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\User\OrganizationController;
@@ -27,7 +27,10 @@ use App\Http\Controllers\User\StudentController;
 
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\UserAgreementController;
-use App\Mail\Admin\NewUserRegistration;
+// use App\Mail\Admin\NewUserRegistration;
+// use App\Mail\User\RegistrationApproved;
+// use Illuminate\Support\Env;
+// use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -124,10 +127,11 @@ Route::middleware('auth.user')->group(function () {
 
 Route::prefix('admin')->group(function () {
 
-    Route::get('email_test', function () {
-        // Mail::to('bokergaming002@gmail.com')->send(new NewUserRegistration());
-        return new NewUserRegistration(1);
-    });
+    // Route::get('email_test', function () {
+    //     Mail::to(Env::get('MAIL_USERNAME'))->send(new NewUserRegistration(2));
+    //     return new NewUserRegistration(1);
+    //     return new RegistrationApproved(1);
+    // });
 
     Route::get('login', [AuthController::class, 'form'])->name('admin.login_form');
     Route::post('login', [AuthController::class, 'authenticate'])->name('admin.login_attempt');

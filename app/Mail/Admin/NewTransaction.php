@@ -2,6 +2,7 @@
 
 namespace App\Mail\Admin;
 
+use App\Services\TransactionService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -9,7 +10,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class NewUserRegistration extends Mailable
+class NewTransaction extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,13 +20,12 @@ class NewUserRegistration extends Mailable
      * @return void
      */
 
-    public $userId;
+    public $transaction;
     public $url;
-
-    public function __construct($userId)
+    public function __construct($transationId)
     {
-        $this->userId = $userId;
-        $this->url = route('admin.detail_user', $userId);
+        $this->transaction = TransactionService::transactionDetail($transationId);
+        $this->url = route('admin.detail_order', $transationId);
     }
 
     /**
@@ -36,7 +36,7 @@ class NewUserRegistration extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Pendaftaran Pengguna Baru',
+            subject: 'Transaksi Baru',
         );
     }
 
@@ -48,7 +48,7 @@ class NewUserRegistration extends Mailable
     public function content()
     {
         return new Content(
-            markdown: 'emails.admin.new-user-registration',
+            markdown: 'emails.admin.new-transaction',
         );
     }
 
