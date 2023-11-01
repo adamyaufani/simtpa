@@ -27,6 +27,7 @@ use App\Http\Controllers\User\StudentController;
 
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\UserAgreementController;
+use App\Mail\Admin\NewUserRegistration;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +123,11 @@ Route::middleware('auth.user')->group(function () {
 // Admin Routes
 
 Route::prefix('admin')->group(function () {
+
+    Route::get('email_test', function () {
+        // Mail::to('bokergaming002@gmail.com')->send(new NewUserRegistration());
+        return new NewUserRegistration(1);
+    });
 
     Route::get('login', [AuthController::class, 'form'])->name('admin.login_form');
     Route::post('login', [AuthController::class, 'authenticate'])->name('admin.login_attempt');

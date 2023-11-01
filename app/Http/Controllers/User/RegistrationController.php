@@ -4,12 +4,15 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegistrationRequest;
+use App\Mail\Admin\NewUserRegistration;
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrationController extends Controller
 {
@@ -30,19 +33,25 @@ class RegistrationController extends Controller
     {
         $validated_request = $request->validated();
 
-        $user = new User;
-        $user->email = $validated_request['email'];
-        $user->password = $validated_request['password'];
-        $user->verification_status = '0';
-        $user->save();
+        DB::transaction(function () use ($validated_request) {
+            $user = new User;
+            $user->email = $validated_request['email'];
+            $user->password = $validated_request['password'];
+            $user->verification_status = '0';
+            $user->save();
 
-        $profile = new UserProfile;
-        $profile->user_id = $user->id;
-        $profile->institution_name  = $validated_request['institution_name'];
-        $profile->phone_number  = $validated_request['phone'];
-        $profile->address  = $validated_request['address'];
-        $profile->village  = $validated_request['village'];
-        $profile->save();
+            $profile = new UserProfile;
+            $profile->user_id = $user->id;
+            $profile->institution_name  = $validated_request['institution_name'];
+            $profile->phone_number  = $validated_request['phone'];
+            $profile->address  = $validated_request['address'];
+            $profile->village  = $validated_request['village'];
+            $profile->save();
+
+            Mail::to('bokergaming002@gmail.com')->send(new NewUserRegistration($user->id));
+        });
+
+
 
         // dd($validated_request);
 

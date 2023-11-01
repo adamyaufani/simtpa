@@ -37,6 +37,10 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
+        if ($user->verification_status == 1) {
+            return redirect()->to(route('admin.detail_user', $user->id));
+        }
+
         return view('admin.pages.users.verify')
             ->with(compact('user'));
     }
@@ -49,7 +53,6 @@ class UserController extends Controller
     public function store(StoreNewUserRequest $request)
     {
         UserService::storeNewUser($request->validated());
-
         return redirect()->to(route('admin.user_index'))->with('success', 'Pengguna baru berhasil ditambahkan');
     }
 
