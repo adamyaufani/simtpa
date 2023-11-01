@@ -4,9 +4,9 @@
             <h5 class="font-weight-bold mb-5">
                 Nota Kesepahaman
             </h5>
-            <textarea style="width:100%; height:100vh;">
+            <div style="width:100%; height:100vh;overflow:auto;">
                 {!! $current_agreement->content !!}
-            </textarea>
+            </div>
             <a href="{{ route('user.sign_agreement') }}" class="btn btn-primary">
                 Saya Setuju
             </a>
