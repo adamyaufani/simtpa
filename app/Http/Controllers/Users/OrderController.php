@@ -31,9 +31,9 @@ class OrderController extends Controller
             }
         }
 
-        $orderId = OrderService::createOrder($request, Auth::id());
+        // $orderId = OrderService::createOrder($request, Auth::id());
 
-        return redirect()->to(route('user.complete_order', $orderId));
+        // return redirect()->to(route('user.complete_order', $orderId));
     }
 
     public function completeOrder($id)
@@ -129,8 +129,8 @@ class OrderController extends Controller
 
     public function placeOrder(StoreParticipantRequest $request)
     {
-        $orderId = OrderService::createOrder($request->validated(), Auth::id());
-        return redirect()->to(route('user.detail_order', $orderId));
+        // $orderId = OrderService::createOrder($request->validated(), Auth::id());
+        // return redirect()->to(route('user.detail_order', $orderId));
     }
 
     public function midtransCheckoutProcess($id)

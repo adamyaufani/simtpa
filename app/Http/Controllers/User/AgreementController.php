@@ -15,7 +15,9 @@ class AgreementController extends Controller
 {
     public function index()
     {
-        return view('user.pages.agreement');
+        $agreements = Agreement::orderBy('created_at', 'desc')->paginate(1);
+        return view('admin.pages.agreement.index')
+            ->with(compact('agreements'));
     }
 
     public function create()
@@ -26,6 +28,7 @@ class AgreementController extends Controller
 
     public function store(StoreNewAgreementRequest $request)
     {
+        // dd($request->validated());
         DB::transaction(function () use ($request) {
             Agreement::create($request->validated());
         });
@@ -33,19 +36,20 @@ class AgreementController extends Controller
         return redirect()->back()->with('success', 'Syarat dan Persetujuan berhasil diupdate');
     }
 
-    public function sign()
+    public function edit($id)
     {
-        $current_agreement = Agreement::where([
-            ['year_start', '<=', Carbon::now()->format('Y-m-d')],
-            ['year_end', '>=', Carbon::now()->format('Y-m-d')],
-        ])->first();
+        $agreement = Agreement::findOrFail($id);
 
-        UserAgreement::create([
-            'user_id' => Auth::id(),
-            'agreement_id' => $current_agreement->id,
-            'sign' => 1
-        ]);
+        return view('admin.pages.agreement.edit')
+            ->with(compact('agreement'));
+    }
 
-        return redirect()->intended();
+    public function update($id, StoreNewAgreementRequest $request)
+    {
+        $agreement = Agreement::findOrFail($id);
+        DB::transaction(function () use ($request, $agreement) {
+            $agreement->update($request->validated());
+        });
+        return redirect()->back()->with('success', 'Syarat dan Persetujuan berhasil diupdate');
     }
 }

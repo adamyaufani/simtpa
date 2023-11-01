@@ -22,47 +22,40 @@
         </div>
     </div> --}}
 
-    @foreach($orders as $order)
+    @foreach($transactions as $transaction)
         <div class="card mb-2">
             <div class="card-header d-flex justify-content-between">
                 <div>
                     <span class="text-dark font-weight-bold">
-                        {{ $order->order_date->isoFormat('D MMMM Y') }}
+                        {{ $transaction->transaction_date }}
                     </span>
                     <br>
-                    <span>ID Pendaftaran : {{ $order->id }}</span>
+                    <span>ID Pendaftaran : {{ $transaction->id }}</span>
                 </div>
                 <div>
-                    @if($order->status_order == "Lunas")
-                        <span class="badge badge-success">Lunas</span>
-                    @elseif($order->status_order == "Expired")
-                        <span class="badge badge-danger">Expired</span>
-                    @else
-                        <span class="badge badge-warning">Menunggu Pembayaran</span>
-                    @endif
+                    <x-user.order-status :id="$transaction->id" />
                 </div>
             </div>
             <div class="card-body">
-                <div class="row">
-                    {{-- <div class="col-2 mr-3"> --}}
-                    {{-- <img src="{{ route('training.image').'?q='.$order->training()->first()->image }}"
-                    width="200" alt=""> --}}
-                    {{-- </div> --}}
-                    <div class="col-8">
-                        <div class="mb-2">
-                            <h5 class="font-weight-bold">
-                                <a href="{{ route('admin.detail_order',$order->id) }}"
-                                    class="stretched-link">
-                                    {{ $order->training()->first()->name }}
-                                </a>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
+                <a href="{{ route('admin.detail_order',$transaction->id) }}"
+                    class="stretched-link" style="text-decoration: none;">
+                    @foreach($transaction->orders as $order)
+                        <span class="font-weight-bold text-dark">
+                            {{ $order->training->name }}
+                        </span><br>
+                        <span class="text-dark">
+                            {{ $order->orderparticipants->count() }} peserta
+                        </span><br>
+                    @endforeach
+                    {{-- {{ $transaction->training()->first()->name }} --}}
+                </a>
+            </div>
+            <div class="card-footer">
+                <span>Total Pembayaran : Rp. {{ $transaction->payment_amount }}</span>
             </div>
         </div>
     @endforeach
 
-    {{ $orders->links() }}
+    {{ $transactions->links() }}
 
 </x-layout>

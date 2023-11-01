@@ -14,4 +14,9 @@ class UserAgreement extends Model
         'agreement_id',
         'sign',
     ];
+
+    public function agreement()
+    {
+        return $this->belongsTo(Agreement::class);
+    }
 }

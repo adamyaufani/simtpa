@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderParticipant;
 use App\Models\Participant;
 use App\Models\Training;
+use App\Models\Transaction;
 use Carbon\Carbon;
-use Error;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Midtrans\Config;
@@ -26,7 +27,7 @@ class OrderService
             ->withQueryString();
     }
 
-    public static function createOrder($request, $userId)
+    public static function createOrder($items, $userId, $request)
     {
         // DB::transaction(function () use ($request, $userId) {
 
@@ -54,28 +55,55 @@ class OrderService
         //     static::$order = $order->id;
         // });
 
-        DB::transaction(function () use ($request, $userId) {
-            $order = Order::create([
-                'training_id' => $request['training_id'],
+        // DB::transaction(function () use ($request, $userId) {
+        //     $order = Order::create([
+        //         'training_id' => $request['training_id'],
+        //         'user_id' => $userId,
+        //         'order_date' => now(),
+        //         'payment_method' => $request['payment_method'],
+        //         'payment_amount' => $request['total_price']
+        //     ]);
+
+        //     $order_participant = [];
+
+        //     foreach ($request['student_id'] as $participant) {
+        //         $order_participant[] = [
+        //             'student_id' => $participant,
+        //             'order_id' => $order->id,
+        //             'created_at' => Carbon::now(),
+        //             'updated_at' => Carbon::now(),
+        //         ];
+        //     }
+
+        //     OrderParticipant::insert($order_participant);
+
+        //     static::$order = $order->id;
+        // });
+
+        DB::transaction(function () use ($items, $userId, $request) {
+            $transaction = Transaction::create([
                 'user_id' => $userId,
-                'order_date' => now(),
-                'payment_method' => $request['payment_method']
+                'payment_method' => $request['payment_method'],
+                'transaction_date' => Carbon::now(),
+                'payment_amount' => $items['total_price'],
             ]);
 
-            $order_participant = [];
+            foreach ($items['items'] as $training) {
+                $order = Order::create([
+                    'transaction_id' => $transaction->id,
+                    'training_id' => $training['training']['id'],
+                ]);
 
-            foreach ($request['student_id'] as $participant) {
-                $order_participant[] = [
-                    'student_id' => $participant,
-                    'order_id' => $order->id,
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ];
+                foreach ($training['items'] as $participant) {
+                    OrderParticipant::create([
+                        'student_id' => $participant['student_id'],
+                        'order_id' => $order->id,
+                    ]);
+                }
             }
 
-            OrderParticipant::insert($order_participant);
-
-            static::$order = $order->id;
+            Cart::where('user_id', '=', $userId)->delete();
+            static::$order = $transaction->id;
         });
 
         return static::$order;
@@ -204,11 +232,12 @@ class OrderService
 
     public static function confirmOrderPayment($id)
     {
-        $order = Order::findOrFail($id);
+        $order = Transaction::findOrFail($id);
 
-        if ($order->status != "Lunas" && $order->status != "Expired") {
+        // dd($order->TransactionStatus);
+        if ($order->TransactionStatus != "Lunas" && $order->TransactionStatus != "Expired") {
             $order->update([
-                'status_order' => "Lunas",
+                'status' => "Lunas",
                 'payment_date' => now()
             ]);
         }
@@ -245,5 +274,10 @@ class OrderService
 
     public static function orderCertificate($id)
     {
+    }
+
+    public static function detailOrderByUserId($user_id)
+    {
+        return Order::where('user_id', $user_id)->get();
     }
 }

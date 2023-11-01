@@ -85,6 +85,30 @@
                     </div>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mb-3">Kategori</h4>
+                    <div class="form-group">
+                        <label for="categoryName">Cari berdasarkan nama kategori</label>
+                        <select class="form-control" name="category_id[]" id="select_category" multiple="multiple">
+                            @foreach($detailedTrainingCategories as $category)
+                                <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('category_id')
+                            <small class="text-danger">
+                                {{ $errors->first('category_id') }}
+                            </small>
+                        @enderror
+                    </div>
+                    <p>atau</p>
+                    <a href="{{ route('admin.create_new_category') }}" target="_blank"
+                        class="btn btn-primary">
+                        Tambah kategori baru
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="col-4">
             <div class="card mb-3">
@@ -98,6 +122,42 @@
                             id="trainingQuota" aria-describedby="quota" value="{{ $training->quotaPerOrg->quota }}">
                         <small class="invalid-feedback">
                             {{ $errors->first('quota') }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h4 class="mb-3">Jenis Kelamin Peserta</h4>
+                    <div class="form-group">
+                        <label for="trainingQuota">Jenis Kelamin Peserta</label>
+                        <select id=""
+                            class="form-control {{ $errors->has('gender_requirement') ? 'is-invalid' : '' }}"
+                            name="gender_requirement">
+                            <option value="">Pilih jenis kelamin</option>
+                            @foreach($genderRequirements as $gender)
+                                <option value="{{ $gender->value }}"
+                                    {{ $training->gender_requirement == $gender->value ? 'selected' : '' }}>
+                                    {{ $gender->value }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <small class="invalid-feedback">
+                            {{ $errors->first('gender_requirement') }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h4 class="mb-3">Lahir sebelum tanggal</h4>
+                    <div class="form-group">
+                        <label for="trainingQuota">Peserta harus yang lahir sebelum tanggal</label>
+                        <input type="date" name="date_of_birth_requirement"
+                            class="form-control {{ $errors->has('date_of_birth_requirement') ? 'is-invalid' : '' }}"
+                            value="{{ $training->date_of_birth_requirement }}">
+                        <small class="invalid-feedback">
+                            {{ $errors->first('date_of_birth_requirement') }}
                         </small>
                     </div>
                 </div>
@@ -177,6 +237,32 @@
 
         </script>
 
+        <script>
+            $(document).ready(function () {
+                $('#select_category').select2({
+                    theme: "bootstrap",
+                    ajax: {
+                        url: "{{ route('admin.get_category_by_name') }}",
+                        dataType: 'json',
+                        delay: 250,
+                        processResults: function (data) {
+                            console.log(data);
+                            return {
+                                results: $.map(data, function (item) {
+                                    return {
+                                        text: item.name,
+                                        id: item.id
+                                    }
+                                })
+                            };
+                        },
+                        cache: true
+                    }
+                });
+            });
+
+        </script>
+
         @if($training->cost=='paid')
             <script>
                 $(document).ready(function () {
@@ -196,5 +282,16 @@
 
             </script>
         @endif
+
+        {{-- @if(old('category_id')!=null) --}}
+        {{-- <script>
+            const category_id = "{{ $training->category_id }}";
+        const category_name =
+        "{{ App\Models\Category::find($training->category_id)->name }}";
+        $("#select_category").html('<option value="' + category_id + '" selected>' + category_name +
+            '</option>');
+
+        </script> --}}
+        {{-- @endif --}}
     @endpush
 </x-layout>

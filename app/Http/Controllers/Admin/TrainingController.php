@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\GenderEnumEvent;
+use App\Enums\GenderRequirementEnum;
 use App\Enums\TrainingTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreTrainingRequest;
 use App\Http\Requests\Admin\UpdateTrainingRequest;
+use App\Models\Category;
 use App\Models\Training;
 use App\Services\TrainingService;
 use Illuminate\Http\RedirectResponse;
@@ -26,8 +29,9 @@ class TrainingController extends Controller
     public function create(): View
     {
         $types = TrainingTypeEnum::cases();
+        $genderRequirements = GenderRequirementEnum::cases();
         return view('admin.pages.training.create')
-            ->with(compact('types'));
+            ->with(compact('types', 'genderRequirements'));
     }
 
     public function store(StoreTrainingRequest $request): RedirectResponse
@@ -40,10 +44,19 @@ class TrainingController extends Controller
     {
         $training = Training::find($id);
         $types = TrainingTypeEnum::cases();
+        $genderRequirements = GenderRequirementEnum::cases();
+        $trainingCategories = explode(', ', $training->category_id);
+        $detailedTrainingCategories = [];
+        foreach ($trainingCategories as $trainingCategory) {
+            $detailedTrainingCategories[] = Category::find($trainingCategory);
+        }
+        // dd($detailedTrainingCategories);
         return view('admin.pages.training.edit')
             ->with(compact([
                 'types',
-                'training'
+                'training',
+                'genderRequirements',
+                'detailedTrainingCategories'
             ]));
     }
 

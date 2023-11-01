@@ -23,11 +23,12 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::with('userProfile.villageDetail')->find($id);
         if ($user->verification_status == 0) {
             return redirect()->to(route('admin.verify_user', $user->id));
         }
 
+        // dd($user->userProfile->villageDetail);
         return view('admin.pages.users.detail')
             ->with(compact('user'));
     }

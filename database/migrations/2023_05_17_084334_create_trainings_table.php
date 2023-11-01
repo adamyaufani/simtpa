@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('trainings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id')->nullable();
+            $table->string('category_id')->nullable();
             $table->string('name')->nullable();
             $table->text('image')->nullable();
             $table->dateTime('start_date')->nullable();
@@ -28,13 +28,15 @@ return new class extends Migration
             $table->string('place')->nullable();
             $table->enum('type', ['online', 'onsite'])->nullable();
             $table->text('description')->nullable();
-            $table->bigInteger('quota')->nullable();
+            // $table->bigInteger('quota')->nullable();
+            $table->enum('gender_requirement', ['laki-laki', 'perempuan', 'laki-laki dan perempuan'])->nullable();
+            $table->date('date_of_birth_requirement')->nullable();
             $table->timestamps();
         });
 
-        Schema::table('trainings', function (Blueprint $table) {
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-        });
+        // Schema::table('trainings', function (Blueprint $table) {
+        //     $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+        // });
     }
 
     /**

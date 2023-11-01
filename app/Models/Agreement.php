@@ -12,5 +12,11 @@ class Agreement extends Model
     protected $fillable = [
         'year_start',
         'year_end',
+        'content',
     ];
+
+    public function userAgreement()
+    {
+        return $this->hasMany(UserAgreement::class);
+    }
 }

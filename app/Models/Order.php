@@ -14,6 +14,7 @@ class Order extends Model
     protected $fillable = [
         'training_id',
         'payment_method',
+        'payment_amount',
         'user_id',
         'order_date',
         'payment_date',
@@ -50,5 +51,15 @@ class Order extends Model
         }
 
         return "Pending";
+    }
+
+    public function getTotalParticipant()
+    {
+        return $this->hasMany(OrderParticipant::class);
+    }
+
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class);
     }
 }

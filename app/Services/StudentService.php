@@ -39,7 +39,7 @@ class StudentService
         DB::transaction(function () use ($request, $id, $userId) {
             $student = Student::find($id);
             $student->update(Arr::except($request, ['birth_certificate']));
-            if ($request['birth_certificate'] != null) {
+            if (isset($request['birth_certificate']) && $request['birth_certificate'] != null) {
 
                 if (Storage::exists($student->birth_certificate)) {
                     Storage::delete($student->birth_certificate);

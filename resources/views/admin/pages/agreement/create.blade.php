@@ -34,10 +34,38 @@
                                 {{ $errors->first('year_end') }}
                             </small>
                         </div>
+                        <div class="form-group">
+                            <label for="categoryName">Isi Persetujuan</label>
+                            {{-- <input name="content" type="date" --}}
+                            {{-- class="form-control {{ $errors->has('content') ? 'is-invalid' : '' }}"
+                            --}}
+                            {{-- id="categoryName" value="{{ old('content') }}">
+                            --}}
+                            <textarea name="content" id="content"
+                                class="form-control {{ $errors->has('content') ? 'is-invalid' : '' }}"
+                                cols="30" rows="10">{{ old('content') }}</textarea>
+                            <small class="invalid-feedback">
+                                {{ $errors->first('content') }}
+                            </small>
+                        </div>
                     </div>
                 </div>
                 <button class="btn btn-success btn-block">Save</button>
             </div>
         </div>
     </form>
+
+    @push('page_js')
+        <script src="{{ asset('vendor/tinymce_6.7.1/tinymce/js/tinymce/tinymce.min.js') }}">
+        </script>
+        <script>
+            tinymce.init({
+                selector: 'textarea#content',
+                plugins: 'lists',
+                toolbar: 'undo redo | styles | bold italic',
+                language: 'id'
+            })
+
+        </script>
+    @endpush
 </x-layout>

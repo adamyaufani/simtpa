@@ -29,32 +29,38 @@
                     </li> --}}
                     {{-- </ul> --}}
                 </div>
-                @foreach($orders as $order)
+                @foreach($transactions as $transaction)
                     <div class="card mb-3">
                         <div class="card-header d-flex justify-content-between">
                             <div>
                                 <span class="text-dark font-weight-bold">
-                                    {{ $order->order_date->isoFormat('D MMMM Y') }}
+                                    {{ $transaction->transaction_date->isoFormat('D MMMM Y') }}
                                 </span>
                                 <br>
-                                <span>ID Pendaftaran : {{ $order->id }}</span>
+                                <span>ID Pendaftaran : {{ $transaction->id }}</span>
                             </div>
                             <div>
-                                <x-user.order-status :id="$order->id" />
+                                <x-user.order-status :id="$transaction->id" />
                             </div>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ $order->training->name }}</h5>
-                            <p class="card-text">
-                                Tanggal Mulai :
-                                {{ $order->training->start_date->isoFormat('D MMMM Y, H:mm') }}
-                            </p>
-                            <span class="card-text">
-                                Tanggal Selesai :
-                                {{ $order->training->end_date->isoFormat('D MMMM Y, h:mm') }}
-                            </span>
+                            @foreach($transaction->orders as $order)
+                                <h5 class="card-title">
+                                    {{ $order->training->name }}
+                                </h5>
+                                <p class="card-text">
+                                    Tanggal Mulai :
+                                    {{ $order->training->start_date->isoFormat('D MMMM Y, H:mm') }}
+                                </p>
+                                <span class="card-text">
+                                    Tanggal Selesai :
+                                    {{ $order->training->end_date->isoFormat('D MMMM Y, h:mm') }}
+                                </span>
+                                <hr>
+                            @endforeach
+
                             <div class="d-flex justify-content-end">
-                                <a href="{{ route('user.detail_order',$order->id) }}"
+                                <a href="{{ route('user.detail_order',$transaction->id) }}"
                                     class="btn btn-primary btn-sm stretched-link">
                                     Detail
                                 </a>
@@ -62,7 +68,7 @@
                         </div>
                     </div>
                 @endforeach
-                {{ $orders->links() }}
+                {{ $transactions->links() }}
             </div>
         </section>
     </div>

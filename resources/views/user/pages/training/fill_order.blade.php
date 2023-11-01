@@ -13,6 +13,8 @@
                     <input type="hidden" name="training_id" value="{{ $training->id }}">
                     <div class="col-9 me-3">
                         <h4>Data Peserta</h4>
+                        <!-- peserta yang dimunculkan sesuai jenis kelamin yg dipilih saat create event -->
+
                         @for( $i = 1; $i <= $participants;$i++)
                             <div class="card mb-3 participants">
                                 <div class="card-body">
@@ -42,19 +44,15 @@
                                     </tr>
                                     <tr>
                                         <td><span class="text-secondary">Total</span></td>
-                                        <td><span class="ms-3">Rp. {{ $totalPrice }}</span></td>
+                                        <td>
+                                            <span class="ms-3">Rp. {{ $totalPrice }}</span>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
                         <div class="d-grid gap-2 mt-2">
-                            <select name="payment_method" id="" class="form-control">
-                                <option value="">Pilih metode pembayaran</option>
-                                @foreach($paymentMethod as $item)
-                                    <option value="{{ $item->value }}">{{ $item->value }}</option>
-                                @endforeach
-                            </select>
-                            <button class="btn btn-primary" type="submit">Lanjut ke pembayaran</button>
+                            <button class="btn btn-primary" type="submit">Tambahkan ke Keranjang</button>
                         </div>
                     </div>
                 </div>
@@ -66,6 +64,10 @@
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
         <script>
+            var additionalData = {
+                gender: "{{ $training->gender_requirement == 'laki-laki dan perempuan' ? '' : $training->gender_requirement }}",
+                birth_date: "{{ $training->date_of_birth_requirement }}",
+            };
             $(document).ready(function () {
                 $('.select-student').select2({
                     theme: 'bootstrap-5',
@@ -73,6 +75,14 @@
                         url: "{{ route('user.student_by_name') }}",
                         dataType: 'json',
                         delay: 250,
+                        data: function (params) {
+                            // params.term contains the user input
+                            // Add the additional data to the request
+                            return {
+                                q: params.term, // User input
+                                extraData: additionalData // Additional data
+                            };
+                        },
                         processResults: function (data) {
                             console.log(data);
                             return {

@@ -88,8 +88,8 @@
                 <div class="card-body">
                     <h4 class="mb-3">Kategori</h4>
                     <div class="form-group">
-                        <label for="categoryName">Cari berdasarkan nama kategori</label>
-                        <select class="form-control" name="category_id" id="select_category">
+                        <label for="select_category">Cari berdasarkan nama kategori</label>
+                        <select class="form-control" name="category_id[]" id="select_category" multiple="multiple">
                         </select>
                         @error('category_id')
                             <small class="text-danger">
@@ -117,6 +117,42 @@
                             id="trainingQuota" aria-describedby="quota" value="{{ old('quota') }}">
                         <small class="invalid-feedback">
                             {{ $errors->first('quota') }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h4 class="mb-3">Jenis Kelamin Peserta</h4>
+                    <div class="form-group">
+                        <label for="trainingQuota">Jenis Kelamin Peserta</label>
+                        <select id=""
+                            class="form-control {{ $errors->has('gender_requirement') ? 'is-invalid' : '' }}"
+                            name="gender_requirement">
+                            <option value="">Pilih jenis kelamin</option>
+                            @foreach($genderRequirements as $gender)
+                                <option value="{{ $gender->value }}"
+                                    {{ old('gender_requirement') == $gender->value ? 'selected' : '' }}>
+                                    {{ $gender->value }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <small class="invalid-feedback">
+                            {{ $errors->first('gender_requirement') }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h4 class="mb-3">Lahir sebelum tanggal</h4>
+                    <div class="form-group">
+                        <label for="trainingQuota">Peserta harus yang lahir sebelum tanggal</label>
+                        <input type="date" name="date_of_birth_requirement"
+                            class="form-control {{ $errors->has('date_of_birth_requirement') ? 'is-invalid' : '' }}"
+                            value="{{ old('date_of_birth_requirement') }}">
+                        <small class="invalid-feedback">
+                            {{ $errors->first('date_of_birth_requirement') }}
                         </small>
                     </div>
                 </div>
@@ -188,32 +224,6 @@
                 } else {
                     $("#price-card").show();
                 }
-            });
-
-        </script>
-
-        <script>
-            $(document).ready(function () {
-                $('#select_category').select2({
-                    theme: "bootstrap",
-                    ajax: {
-                        url: "{{ route('admin.get_trainer_by_name') }}",
-                        dataType: 'json',
-                        delay: 250,
-                        processResults: function (data) {
-                            console.log(data);
-                            return {
-                                results: $.map(data, function (item) {
-                                    return {
-                                        text: item.name,
-                                        id: item.id
-                                    }
-                                })
-                            };
-                        },
-                        cache: true
-                    }
-                });
             });
 
         </script>

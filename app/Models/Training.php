@@ -25,7 +25,9 @@ class Training extends Model
         'description',
         'quota',
         'image',
-        'cost'
+        'cost',
+        'gender_requirement',
+        'date_of_birth_requirement',
     ];
 
     protected $casts = [
@@ -49,5 +51,10 @@ class Training extends Model
         return Attribute::make(
             get: fn ($value) => Crypt::encryptString($value)
         );
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
     }
 }
