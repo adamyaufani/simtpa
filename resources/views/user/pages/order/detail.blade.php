@@ -67,6 +67,7 @@
                                     <h6 class="text-secondary">
                                         0856 256 3456 
                                     </h6>
+                                    <a href="https://wa.me/628562563456?text=Salam,%20Saya%20ingin%20konfirmasi%20pembayaran%20Pendaftaran%20FASI" class="btn btn-success"><i class="bi bi-whatsapp"></i> Chat Admin</a>
                                 </div>
                             </div>
                             
