@@ -11,41 +11,86 @@
             <div class="card-header">
                 <h5>Detail pengguna</h5>
             </div>
+
             <div class="card-body">
                 @if(session()->has('succeed'))
                     <div class="alert alert-success" role="alert">
                         {{ session()->get('succeed') }}
                     </div>
                 @endif
-                <div>
-                    <div class="mb-2">
-                        <i class="fa-solid fa-building"></i>
-                        <span> Nama Organisasi </span>
-                        <h6 class="font-weight-bold">
-                            {{ $user->userProfile->institution_name }}
-                        </h6>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="email">Alamat Email</label>
+                        <p>
+                            <strong>{{ $user->email }}</strong>
+                        </p>
                     </div>
-                    {{-- <div class="mb-2"> --}}
-                    {{-- <span> Username :</span> --}}
-                    {{-- <h6 class="font-weight-bold"> --}}
-                    {{-- {{ $user->username }} --}}
-                    {{-- </h6> --}}
-                    {{-- </div> --}}
-                </div>
-                <div class="row">
-                    <div class="col-6 mb-2">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span> Alamat Email :</span>
-                        <h6 class="font-weight-bold">
-                            {{ $user->email }}
-                        </h6>
+                    <div class="form-group">
+                        <label for="email">Nama Organisasi</label>
+                        <p>
+                            <strong>{{ $user->userProfile->institution_name }}</strong>
+                        </p>
                     </div>
-                    <div class="col-6 mb-2">
-                        <i class="fa-solid fa-phone"></i>
-                        <span> No. Telp :</span>
-                        <h6 class="font-weight-bold">
-                            {{ $user->userProfile->phone_number }}
-                        </h6>
+                    <div class="form-group">
+                        <label for="email">Alamat</label>
+                        <p>
+                            <strong>{{ $user->userProfile->address }}</strong>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Nama Desa</label>
+                        <p>
+                            <strong>{{ $user->userProfile->villageDetail->village_name }}</strong>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Nomor Telepon</label>
+                        <p>
+                            <strong>{{ $user->userProfile->phone_number }}</strong>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Facebook</label>
+                        <p>
+                            <strong>{{ $user->userProfile->facebook }}</strong>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Instagram</label>
+                        <p>
+                            <strong>{{ $user->userProfile->instagram }}</strong>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Twitter</label>
+                        <p>
+                            <strong>{{ $user->userProfile->twitter }}</strong>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Website</label>
+                        <p>
+                            <strong>{{ $user->userProfile->website }}</strong>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Youtube</label>
+                        <p>
+                            <strong>{{ $user->userProfile->youtube }}</strong>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Tiktok</label>
+                        <p>
+                            <strong>{{ $user->userProfile->tiktok }}</strong>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Alamat google map</label>
+                        <p>
+                            <strong>{{ $user->userProfile->gmap_address }}</strong>
+                        </p>
                     </div>
                 </div>
                 <div>

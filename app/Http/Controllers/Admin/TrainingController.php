@@ -36,8 +36,9 @@ class TrainingController extends Controller
 
     public function store(StoreTrainingRequest $request): RedirectResponse
     {
+        // dd($request->validated());
         TrainingService::storeTraining($request->validated());
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Event baru berhasil dibuat');
     }
 
     public function edit($id): View
@@ -64,5 +65,11 @@ class TrainingController extends Controller
     {
         TrainingService::getTrainingById($id)->updateTraining($request);
         return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        TrainingService::getTrainingById($id)->deleteTraining();
+        return redirect()->back()->with('success', 'Event berhasil dihapus');
     }
 }

@@ -18,7 +18,7 @@ use App\Http\Controllers\User\RegistrationController;
 use App\Http\Controllers\User\TrainingController as UserTrainingController;
 use App\Http\Controllers\Users\HomeController;
 use App\Http\Controllers\Users\OrderController;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\User\OrganizationController;
@@ -27,6 +27,10 @@ use App\Http\Controllers\User\StudentController;
 
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\UserAgreementController;
+// use App\Mail\Admin\NewUserRegistration;
+// use App\Mail\User\RegistrationApproved;
+// use Illuminate\Support\Env;
+// use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,6 +127,12 @@ Route::middleware('auth.user')->group(function () {
 
 Route::prefix('admin')->group(function () {
 
+    // Route::get('email_test', function () {
+    //     Mail::to(Env::get('MAIL_USERNAME'))->send(new NewUserRegistration(2));
+    //     return new NewUserRegistration(1);
+    //     return new RegistrationApproved(1);
+    // });
+
     Route::get('login', [AuthController::class, 'form'])->name('admin.login_form');
     Route::post('login', [AuthController::class, 'authenticate'])->name('admin.login_attempt');
 
@@ -131,9 +141,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
         Route::prefix('agreement')->group(function () {
+            Route::get('create', [AgreementController::class, 'create'])->name('admin.create_agreement');
             Route::get('/', [AgreementController::class, 'index'])->name('admin.agreement_index');
             Route::get('/{id}', [AgreementController::class, 'edit'])->name('admin.edit_agreement');
-            Route::get('create', [AgreementController::class, 'create'])->name('admin.create_agreement');
             Route::post('create', [AgreementController::class, 'store'])->name('admin.store_new_agreement');
             Route::put('update/{id}', [AgreementController::class, 'update'])->name('admin.update_agreement');
         });
@@ -155,6 +165,7 @@ Route::prefix('admin')->group(function () {
             Route::post('create', [TrainingController::class, 'store'])->name('admin.store_new_training');
             Route::get('{id}', [TrainingController::class, 'edit'])->name('admin.edit_training');
             Route::put('{id}', [TrainingController::class, 'update'])->name('admin.update_training');
+            Route::delete('{id}', [TrainingController::class, 'destroy'])->name('admin.delete_training');
         });
 
         Route::prefix('trainers')->group(function () {

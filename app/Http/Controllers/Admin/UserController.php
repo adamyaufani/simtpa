@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNewUserRequest;
+use App\Mail\User\RegistrationApproved;
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -37,6 +39,10 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
+        if ($user->verification_status == 1) {
+            return redirect()->to(route('admin.detail_user', $user->id));
+        }
+
         return view('admin.pages.users.verify')
             ->with(compact('user'));
     }
@@ -49,7 +55,6 @@ class UserController extends Controller
     public function store(StoreNewUserRequest $request)
     {
         UserService::storeNewUser($request->validated());
-
         return redirect()->to(route('admin.user_index'))->with('success', 'Pengguna baru berhasil ditambahkan');
     }
 
@@ -58,7 +63,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         if ($user->verification_status == 0) {
             UserService::detailUser($id)->verifyUser();
-
+            Mail::to($user->email)->send(new RegistrationApproved($user->id));
             return redirect()->back()->with('succeed', 'Pendaftaran Diterima');
         }
         return redirect()->back()->with('error', 'Terjadi Kesalahan');

@@ -13,6 +13,11 @@
             <h1 class="h3 mb-0 text-gray-800">Event Baru</h1>
         </div>
     </x-slot:title>
+    @if(session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session()->get('success') }}
+        </div>
+    @endif
 
     <form class="row mb-3" action="{{ route('admin.store_new_training') }}" method="POST"
         enctype="multipart/form-data">
@@ -90,6 +95,14 @@
                     <div class="form-group">
                         <label for="select_category">Cari berdasarkan nama kategori</label>
                         <select class="form-control" name="category_id[]" id="select_category" multiple="multiple">
+                            @if(old("category_id") != null)
+                                @foreach(
+                                    old("category_id") as $key => $value)
+                                    <option value="{{ $value }}" selected>
+                                        {{ App\Models\Category::find($value)->name }}
+                                    </option>
+                                @endforeach
+                            @endif
                         </select>
                         @error('category_id')
                             <small class="text-danger">
@@ -271,27 +284,9 @@
 
         </script>
 
-        @if(old('trainer_id')!=null)
-            <script>
-                const trainer_id = "{{ old('trainer_id') }}";
-                const trainer_name =
-                    "{{ App\Models\Trainer::find(old('trainer_id'))->name }}";
-                $("#select_trainer").html('<option value="' + trainer_id + '" selected>' + trainer_name +
-                    '</option>');
 
-            </script>
-        @endif
 
-        @if(old('category_id')!=null)
-            <script>
-                const category_id = "{{ old('category_id') }}";
-                const category_name =
-                    "{{ App\Models\Category::find(old('category_id'))->name }}";
-                $("#select_category").html('<option value="' + category_id + '" selected>' + category_name +
-                    '</option>');
 
-            </script>
-        @endif
 
         @if(old('cost')=='paid')
             <script>

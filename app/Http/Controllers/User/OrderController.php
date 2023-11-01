@@ -6,6 +6,7 @@ use App\Enums\PaymentMethodEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SelectPaymentMethodRequest;
 use App\Http\Requests\StoreParticipantRequest;
+use App\Mail\Admin\NewTransaction;
 use App\Models\Order;
 use App\Models\Transaction;
 use App\Services\CartService;
@@ -15,6 +16,8 @@ use App\Services\TransactionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Env;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -80,6 +83,8 @@ class OrderController extends Controller
         // dd($items);
 
         $order = OrderService::createOrder($items, $userId, $validated);
+
+        Mail::to(Env::get('MAIL_USERNAME'))->send(new NewTransaction($order));
 
         return redirect()->to(route('user.detail_order', $order));
     }
