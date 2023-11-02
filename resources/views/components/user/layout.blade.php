@@ -27,13 +27,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        @if(auth()->check())
-                            <a class="nav-link" href="{{ route('user.profile') }}">Profil TPA</a>
-                            <a class="nav-link" href="{{ route('user.cart_index') }}">
-                                <i class="bi bi bi-cart-check-fill"></i>
-                                Keranjang
-                            </a>
-                        @endif
+                       
+                       
+                           
+                           
+                       
                     </div>
                 </div>
 
@@ -43,32 +41,46 @@
                         class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link @if(url()->full() === route('user.homepage')) active @endif" href="{{ route('user.homepage') }}">Depan</a>
+                        </li>
+
+                        @if(auth()->check())
+                        <li class="nav-item">
+                            <a class="nav-link @if(url()->full() === route('user.profile')) active @endif" href="{{ route('user.profile') }}">Profil TPA</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(url()->full() === route('user.organization')) active @endif" href="{{ route('user.organization') }}">Organisasi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(url()->full() === route('user.staff')) active @endif" href="{{ route('user.staff') }}">
+                                Staf
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(url()->full() === route('user.students')) active @endif" href="{{ route('user.students') }}">
+                                Santri
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(url()->full() === route('user.order_index')) active @endif" href="{{ route('user.order_index') }}">
+                                Transaksi
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(url()->full() === route('user.cart_index')) active @endif" href="{{ route('user.cart_index') }}">
+                                <i class="bi bi bi-cart-check-fill"></i>
+                                Keranjang
+                            </a>
+                        </li>
+                        @endif
+
                         @if(auth()->check())
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
                                     data-bs-toggle="dropdown"
-                                    aria-expanded="false">{{ auth()->user()->userProfile->institution_name }}</a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                                    <li><a class="dropdown-item"
-                                            href="{{ route('user.profile') }}">Profil TPA</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="{{ route('user.organization') }}">Pengurus</a></li>
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('user.staff') }}">
-                                            Staf Pengurus
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('user.students') }}">
-                                            Santri
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item"
-                                            href="{{ route('user.order_index') }}">
-                                            Aktifitas
-                                        </a>
-                                    </li>
+                                    aria-expanded="false">Ahlan, TPA {{ auth()->user()->userProfile->institution_name }}</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">                                                                   
                                     <li>
                                         <a class="dropdown-item" href="{{ route('user.logout') }}">
                                             Logout
