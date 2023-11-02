@@ -8,102 +8,123 @@
     {{-- <form action="{{ route('admin.store_new_user') }}" method="POST"> --}}
     {{-- @csrf --}}
     <div class="row mb-3">
-        <div class="col-8 mx-auto">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h4 class="mb-3">Detail Pengguna</h4>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="email">Alamat Email</label>
-                            <p>
-                                <strong>{{ $user->email }}</strong>
-                            </p>
+        <div class="col-md-8 mx-auto">
+            <div class="card mb-3 p-3">
+                <div class="card-body">                    
+                    <div class="row">
+                        <div class="col-md-3 d-flex align-items-center"> 
+                            Nama TPA                          
                         </div>
-                        <div class="form-group">
-                            <label for="email">Nama Organisasi</label>
-                            <p>
-                                <strong>{{ $user->userProfile->institution_name }}</strong>
-                            </p>
+                        <div class="col-md-9">
+                            <div class="bg-light" style="width:100%">
+                                <p class="alert bg-light">{{ $user->userProfile->institution_name }}                                
+                                        <span class="badge badge-{{ $user->status['badge'] }}">
+                                            {{ $user->status['message'] }}
+                                        </span>                                
+                                </p>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Alamat</label>
-                            <p>
-                                <strong>{{ $user->userProfile->address }}</strong>
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Nama Desa</label>
-                            <p>
-                                <strong>{{ $user->userProfile->villageDetail->village_name }}</strong>
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Nomor Telepon</label>
-                            <p>
-                                <strong>{{ $user->userProfile->phone_number }}</strong>
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Facebook</label>
-                            <p>
-                                <strong>{{ $user->userProfile->facebook }}</strong>
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Instagram</label>
-                            <p>
-                                <strong>{{ $user->userProfile->instagram }}</strong>
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Twitter</label>
-                            <p>
-                                <strong>{{ $user->userProfile->twitter }}</strong>
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Website</label>
-                            <p>
-                                <strong>{{ $user->userProfile->website }}</strong>
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Youtube</label>
-                            <p>
-                                <strong>{{ $user->userProfile->youtube }}</strong>
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Tiktok</label>
-                            <p>
-                                <strong>{{ $user->userProfile->tiktok }}</strong>
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Alamat google map</label>
-                            <p>
-                                <strong>{{ $user->userProfile->gmap_address }}</strong>
-                            </p>
-                        </div>
-                        <div class="form-group d-flex">
-                            <label for="email">Status Akun</label>
-                            <h6 class="font-weight-bold ml-2">
-                                <span class="badge badge-{{ $user->status['badge'] }}">
-                                    {{ $user->status['message'] }}
-                                </span>
-                            </h6>
-                        </div>
-                        <div class="form-group d-flex flex-row">
-                            
-                            <x-verification-options :userId="$user->id" />
-                            @if($user->status['badge'] === 'success')
-                                <a href="https://wa.me/{{ $user->userProfile->phone_number }}?text=Assalamualaikum {{ $user->userProfile->institution_name }}, akun Anda telah diverifikasi. Silakan login kembali ke Pangkalan Data TPA Kapanewon Kasihan. Admin Badko TKA-TPA Kasihan" target="_blank" class="ml-3 btn btn-success"><i class="fab fa-whatsapp"></i> Chat Pengguna</a>
-                            @endif
-                        </div>
-                        
-
-                        {{ $user->userProfile['verification_status'] }}
                     </div>
+                    <div class="row">
+                        <div class="col-md-3 d-flex align-items-center"> 
+                              Email                           
+                        </div>
+                        <div class="col-md-9">
+                            <p class="alert bg-light">{{ $user->email }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 d-flex align-items-center"> 
+                            Alamat                         
+                        </div>
+                        <div class="col-md-9">
+                            <p class="alert bg-light">{{ $user->userProfile->address }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 d-flex align-items-center"> 
+                           Kalurahan                          
+                        </div>
+                        <div class="col-md-9">
+                            <p class="alert bg-light">{{ $user->userProfile->villageDetail->village_name }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 d-flex align-items-center"> 
+                            Nomor Telepon                          
+                        </div>
+                        <div class="col-md-9">
+                            <p class="alert bg-light">{{ $user->userProfile->phone_number }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 d-flex align-items-center"> 
+                            Facebook                         
+                        </div>
+                        <div class="col-md-9">
+                            <p class="alert bg-light">{{ $user->userProfile->facebook }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 d-flex align-items-center"> 
+                            Instagram                         
+                        </div>
+                        <div class="col-md-9">
+                            <p class="alert bg-light">{{ $user->userProfile->instagram }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 d-flex align-items-center"> 
+                            Twitter                         
+                        </div>
+                        <div class="col-md-9">
+                            <p class="alert bg-light">{{ $user->userProfile->twitter }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 d-flex align-items-center"> 
+                            Website                         
+                        </div>
+                        <div class="col-md-9">
+                            <p class="alert bg-light">{{ $user->userProfile->website }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 d-flex align-items-center"> 
+                            Youtube                         
+                        </div>
+                        <div class="col-md-9">
+                            <p class="alert bg-light">{{ $user->userProfile->youtube }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 d-flex align-items-center"> 
+                            Tiktok                         
+                        </div>
+                        <div class="col-md-9">
+                            <p class="alert bg-light">{{ $user->userProfile->tiktok }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 d-flex align-items-center"> 
+                            Alamat Google Map                         
+                        </div>
+                        <div class="col-md-9">
+                            <p class="alert bg-light">{{ $user->userProfile->gmap_address }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-md-flex align-items-center py-3"> 
+                            <x-verification-options :userId="$user->id" />
+                                @if ($user->status['badge'] === 'success')
+                                    <a href="https://wa.me/{{ $user->userProfile->phone_number }}?text=Assalamualaikum {{ $user->userProfile->institution_name }}, akun Anda telah diverifikasi. Silakan login kembali ke Pangkalan Data TPA Kapanewon Kasihan. Admin Badko TKA-TPA Kasihan"
+                                        target="_blank" class="ml-3 btn btn-success"><i class="fab fa-whatsapp"></i> Chat
+                                        Pengguna</a>
+                                @endif
+                        </div>
+                    </div>
+
+                    
                 </div>
             </div>
             {{-- <button class="btn btn-success btn-block">Save</button> --}}
