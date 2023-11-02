@@ -34,7 +34,7 @@
                             <div class="card-body">
                                 <table>
                                     <tr>
-                                        <td><span class="text-secondary">Harga Training</span></td>
+                                        <td><span class="text-secondary">Harga</span></td>
                                         <td><span class="ms-3">Rp. {{ $price }}</span></td>
                                     </tr>
                                     <tr>
