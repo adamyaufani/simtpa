@@ -14,7 +14,7 @@
 
         <div class="col-lg-12">
             <div class="d-flex flex-column">
-                <h4 class="mb-3">Data Santri Baru</h4>
+                <h4 class="mb-3">Edit Santri</h4>
                 <p class="mb-3">Yang diberi tanda * (bintang) wajib diisi.</p>
             </div>
 
@@ -103,7 +103,7 @@
 
                         {{-- Phone --}}
                         <div class="mb-3">
-                            <label for="phone" class="form-label">{{ __('Nomor Telepon /Whatsapp') }}</label>
+                            <label for="phone" class="form-label">{{ __('Nomor Telepon /Whatsapp') }} <small class="text-secondary">Contoh : 628561234567, tidak perlu gunakan +, dan tidak perlu gunakan pemisah (- atau spasi)</small></label>
                             <input type="tel" class="form-control @error('phone') is-invalid @enderror"
                                 id="phone" name="phone" value="{{ $student->phone }}">
                             @error('phone')
@@ -163,7 +163,7 @@
 
                         {{-- Birth Certificate --}}
                         <div class="mb-3">
-                            <label for="birth_certificate" class="form-label">{{ __('Akta Kelahiran *') }}</label>
+                            <label for="birth_certificate" class="form-label">{{ __('Akta Kelahiran *') }} <small class="text-secondary">File JPG, JPEG, ukuran maksimal 1 MB. Akta tidak perlu difoto penuh, cukup di bagian nama dan tanggal lahir saja.</small></label>
                             <input type="file"
                                 class="form-control @error('birth_certificate') is-invalid @enderror"
                                 id="birth_certificate" name="birth_certificate">

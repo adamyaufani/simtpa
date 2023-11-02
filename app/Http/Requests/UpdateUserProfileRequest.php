@@ -39,7 +39,7 @@ class UpdateUserProfileRequest extends FormRequest
             // 'regency' => ['required', 'string'],
             // 'province' => ['required', 'string'],
             'postal_code' => ['nullable', 'string'],
-            'phone_number' => ['required', 'string'],
+            'phone_number' => ['required', 'string','min:11','regex:/^628\d{8,}$/'],
             'social_media' => ['nullable', 'string'],
             'facebook' => ['nullable', 'string'],
             'instagram' => ['nullable', 'string'],
@@ -66,7 +66,9 @@ class UpdateUserProfileRequest extends FormRequest
     {
         return [
             'institution_name.required' => 'Nama TPA wajib diisi',
-           
+            'phone_number.required' => 'Telepon wajib diisi',
+            'phone_number.unique' => 'Nomor telepon sudah terdaftar',
+            'phone_number.min' => 'Nomor telepon terlalu pendek',           
         ];
     }
 }

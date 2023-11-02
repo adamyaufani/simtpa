@@ -101,7 +101,7 @@
 
                         {{-- Phone --}}
                         <div class="mb-3">
-                            <label for="phone" class="form-label">{{ __('Nomor Telepon/Whatsapp *') }}</label>
+                            <label for="phone" class="form-label">{{ __('Nomor Telepon/Whatsapp *') }} <small class="text-secondary">Contoh : 628561234567, tidak perlu gunakan +, dan tidak perlu gunakan pemisah (- atau spasi)</small></label>
                             <input type="tel" class="form-control @error('phone') is-invalid @enderror"
                                 id="phone" name="phone" value="{{ old('phone') }}">
                             @error('phone')

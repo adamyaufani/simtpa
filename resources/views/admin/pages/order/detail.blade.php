@@ -38,6 +38,9 @@
                                     </div>
                                 </div>
                             @endforeach
+
+                            <a href="https://wa.me/?text=Assalamualaikum, " target="_blank" class="mt-3 btn btn-success"><i class="fab fa-whatsapp"></i> Chat Pengguna</a>
+
                         </div>
                         <div class="col-6">
                             <h5 class="text-dark">
@@ -56,8 +59,12 @@
                             <div class="card bg-light">
                                 <div class="card-body">
                                     <h6 class="text-secondary">
-                                        Rp. {{ $data->payment_amount }}
+                                        Rp. {{ number_format($data->payment_amount) }}
                                     </h6>
+
+                                 
+                                  
+                              
                                 </div>
                             </div>
                             @if($data->status == "")

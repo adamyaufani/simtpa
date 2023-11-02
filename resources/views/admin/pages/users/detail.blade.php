@@ -97,10 +97,9 @@
                             
                             <x-verification-options :userId="$user->id" />
                             @if($user->status['badge'] === 'success')
-                                <a href="https://wa.me/62{{ substr($user->userProfile->phone_number, 1) }}?text=Assalamualaikum {{ $user->userProfile->institution_name }}, akun Anda telah diverifikasi. Silakan login kembali ke Pangkalan Data TPA Kapanewon Kasihan. Admin Badko TKA-TPA Kasihan" target="_blank" class="ml-3 btn btn-success"><i class="fab fa-whatsapp"></i> Beritahu Pengguna</a>
+                                <a href="https://wa.me/{{ $user->userProfile->phone_number }}?text=Assalamualaikum {{ $user->userProfile->institution_name }}, akun Anda telah diverifikasi. Silakan login kembali ke Pangkalan Data TPA Kapanewon Kasihan. Admin Badko TKA-TPA Kasihan" target="_blank" class="ml-3 btn btn-success"><i class="fab fa-whatsapp"></i> Chat Pengguna</a>
                             @endif
                         </div>
-
                         
 
                         {{ $user->userProfile['verification_status'] }}

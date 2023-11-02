@@ -34,8 +34,8 @@ class StoreNewStaffRequest extends FormRequest
             'last_formal_education' => ['required', new Enum(LastFormalEducationEnum::class)],
             // 'length_of_islamic_education' => ['required', 'string'],
             'core_competency' => ['required', 'string'],
-            'phone' => ['required', 'string'],
-            'email' => ['required', 'string'],
+            'phone' => ['required', 'string', 'min:11','regex:/^628\d{8,}$/'],
+            'email' => ['required', 'string','email'],
         ];
     }
 
@@ -52,8 +52,9 @@ class StoreNewStaffRequest extends FormRequest
             'last_formal_education.required' => 'Pendidikan Terakhir wajib diisi',
             'core_competency.required' => 'Kompetensi wajib diisi',
             'phone.required' => 'Telepon wajib diisi',
-            'email.required' => 'Email wajib diisi',
-           
+            'phone.min' => 'Nomor telepon terlalu pendek',
+            'phone.regex' => 'Format nomor telepon tidak sesuai contoh, yang benar: 6285625674567',
+            'email.required' => 'Email wajib diisi',           
         ];
     }
 }

@@ -68,8 +68,8 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="inputPhone" class="form-label">Nomor Telepon</label>
-                    <input type="text" name="phone" placeholder="Contoh : 08561234567"
+                    <label for="inputPhone" class="form-label">Nomor Telepon <small class="text-secondary">Contoh : 628561234567, tidak perlu gunakan +, dan tidak perlu gunakan pemisah (- atau spasi)</small></label>
+                    <input type="text" name="phone" placeholder="Contoh : 628561234567"
                         class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" id="inputPhone"
                         placeholder="Nomor Telepon" value="{{ old('phone') }}">
                     @error('phone')
@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="inputPassword" class="form-label">Password</label>
+                    <label for="inputPassword" class="form-label">Password <small class="text-secondary">Gunakan kombinasi huruf dan angka, dan mengandung setidaknya 1 huruf besar atau huruf kecil. Hindari kata 'password' atau 'pass'</small></label>
                     <input type="password" name="password"
                         class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="inputPassword"
                         placeholder="Password">

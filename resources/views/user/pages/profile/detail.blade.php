@@ -79,11 +79,12 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <label for="address" class="col-sm-2 col-form-label">
-                            Alamat * <small class="label">(Nama Masjid, jalan, pedukuhan, RT & Nomor)</small>
+                            Alamat * 
                         </label>
                         <div class="col-sm-10">
                             <textarea name="address" id="address" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}"
                                 cols="30" rows="3">{{ $userProfile->address }}</textarea>
+                                <small class="text-secondary">Nama Masjid, jalan, pedukuhan, RT & Nomor Bangunan</small>
                             <span class="invalid-feedback">
                                 {{ $errors->first('address') }}
                             </span>
@@ -119,11 +120,12 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="phone_number" class="col-sm-2 col-form-label">Nomor Telepon / Whatsapp *</label>
+                        <label for="phone_number" class="col-sm-2 col-form-label">Nomor Telepon Direkur/TPA * </label>
                         <div class="col-sm-10">
                             <input type="text" name="phone_number"
                                 class="form-control {{ $errors->has('phone_number') ? 'is-invalid' : '' }}"
                                 value="{{ $userProfile->phone_number }}" id="phone_number">
+                                <small class="text-secondary">Contoh : 628561234567, tidak perlu gunakan +, dan tidak perlu gunakan pemisah (- atau spasi)</small>
                             <span class="invalid-feedback">
                                 {{ $errors->first('phone_number') }}
                             </span>
@@ -170,7 +172,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="tiktok" class="col-sm-2 col-form-label">tiktok</label>
+                                <label for="tiktok" class="col-sm-2 col-form-label">Tiktok</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="tiktok" name="tiktok"
                                         value="{{ $userProfile->tiktok }}">

@@ -29,35 +29,23 @@
     </div>
     @foreach ($transactions as $transaction)
         <div class="card mb-3">
-            <div class="card-header d-flex justify-content-between">
-                <div>
-                    <span class="text-dark font-weight-bold">
+            <div class="card-header d-block d-md-flex justify-content-start">              
+                    <span class="text-dark font-weight-bold me-3"><i class="bi bi-calendar"></i>
                         {{ $transaction->transaction_date->isoFormat('D MMMM Y') }}
                     </span>
-                    <br>
-                    <span>ID Pendaftaran : {{ $transaction->id }}</span>
-                </div>
-                <div>
-                    <x-user.order-status :id="$transaction->id" />
-                </div>
+                    <span class=" me-3"><i class="bi bi-tag"></i> No. Invoice : {{ $transaction->id }}</span>
+                
+                    <span><x-user.order-status :id="$transaction->id" /> </span>              
             </div>
             <div class="card-body">
                 @foreach ($transaction->orders as $order)
                     <h5 class="card-title">
                         {{ $order->training->name }}
                     </h5>
-                    <p class="card-text">
-                        Tanggal Mulai :
-                        {{ $order->training->start_date->isoFormat('D MMMM Y, H:mm') }}
-                    </p>
-                    <span class="card-text">
-                        Tanggal Selesai :
-                        {{ $order->training->end_date->isoFormat('D MMMM Y, h:mm') }}
-                    </span>
-                    <hr>
+                    
                 @endforeach
 
-                <div class="d-flex justify-content-end">
+                <div class="">
                     <a href="{{ route('user.detail_order', $transaction->id) }}"
                         class="btn btn-primary btn-sm stretched-link">
                         Detail
