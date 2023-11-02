@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Unit TPA Badko Rayon Kasihan</title>
+    <title>Pangkalan Data TPA Badko Rayon Kasihan</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -15,6 +15,20 @@
     <link href="{{ asset('vendor/start-bootstrap/css/styles.css') }}" rel="stylesheet" />
 
     @stack('css')
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KMVG0EYDWV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-KMVG0EYDWV');
+    </script>
+
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -22,16 +36,16 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-3 px-md-5">
-                <a class="navbar-brand" href="{{ route('user.homepage') }}">                
-                <img src="{{ url('img/logo.png') }}" alt=""></a>
+                <a class="navbar-brand" href="{{ route('user.homepage') }}">
+                    <img src="{{ url('img/logo.png') }}" alt=""></a>
 
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                       
-                       
-                           
-                           
-                       
+
+
+
+
+
                     </div>
                 </div>
 
@@ -42,45 +56,52 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link @if(url()->full() === route('user.homepage')) active @endif" href="{{ route('user.homepage') }}">Depan</a>
+                            <a class="nav-link @if (url()->full() === route('user.homepage')) active @endif"
+                                href="{{ route('user.homepage') }}">Depan</a>
                         </li>
 
-                        @if(auth()->check())
-                        <li class="nav-item">
-                            <a class="nav-link @if(url()->full() === route('user.profile')) active @endif" href="{{ route('user.profile') }}">Profil TPA</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @if(url()->full() === route('user.organization')) active @endif" href="{{ route('user.organization') }}">Organisasi</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @if(url()->full() === route('user.staff')) active @endif" href="{{ route('user.staff') }}">
-                                Staf
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @if(url()->full() === route('user.students')) active @endif" href="{{ route('user.students') }}">
-                                Santri
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @if(url()->full() === route('user.order_index')) active @endif" href="{{ route('user.order_index') }}">
-                                Transaksi
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @if(url()->full() === route('user.cart_index')) active @endif" href="{{ route('user.cart_index') }}">
-                                <i class="bi bi bi-cart-check-fill"></i>
-                                Keranjang
-                            </a>
-                        </li>
+                        @if (auth()->check())
+                            <li class="nav-item">
+                                <a class="nav-link @if (url()->full() === route('user.profile')) active @endif"
+                                    href="{{ route('user.profile') }}">Profil TPA</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if (url()->full() === route('user.organization')) active @endif"
+                                    href="{{ route('user.organization') }}">Organisasi</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if (url()->full() === route('user.staff')) active @endif"
+                                    href="{{ route('user.staff') }}">
+                                    Staf
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if (url()->full() === route('user.students')) active @endif"
+                                    href="{{ route('user.students') }}">
+                                    Santri
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if (url()->full() === route('user.order_index')) active @endif"
+                                    href="{{ route('user.order_index') }}">
+                                    Transaksi
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if (url()->full() === route('user.cart_index')) active @endif"
+                                    href="{{ route('user.cart_index') }}">
+                                    <i class="bi bi bi-cart-check-fill"></i>
+                                    Keranjang
+                                </a>
+                            </li>
                         @endif
 
-                        @if(auth()->check())
+                        @if (auth()->check())
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false">Ahlan, TPA {{ auth()->user()->userProfile->institution_name }}</a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">                                                                   
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">Ahlan, TPA
+                                    {{ auth()->user()->userProfile->institution_name }}</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                                     <li>
                                         <a class="dropdown-item" href="{{ route('user.logout') }}">
                                             Logout
@@ -105,36 +126,39 @@
             </div>
         </nav>
 
-        @if(! auth()->check())
-        <!-- Header-->
-         <header class="bg-dark py-5 @if(url()->full() != route('user.homepage') ) d-none @endif ">
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center justify-content-center">
-                    <div class="col-lg-8 col-xl-7 col-xxl-6">
-                        <div class="my-5 text-center text-xl-start">
-                            <h1 class="display-5 fw-bolder text-white mb-2">Pangkalan Data TPA Kapanewon Kasihan
-                            </h1>
-                            <p class="lead fw-normal text-white-50 mb-4">Unit TPA yang belum bergabung silakan klik tombol Daftar.</p>
-                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                <a class="btn btn-danger btn-lg px-4 me-sm-3" href="{{ route('user.login_form') }}">Login TPA</a>
-                                <a class="btn btn-outline-light btn-lg px-4" href="{{ route('user.registration_form') }}">Daftar</a>
+        @if (!auth()->check())
+            <!-- Header-->
+            <header class="bg-dark py-5 @if (url()->full() != route('user.homepage')) d-none @endif ">
+                <div class="container px-5">
+                    <div class="row gx-5 align-items-center justify-content-center">
+                        <div class="col-lg-8 col-xl-7 col-xxl-6">
+                            <div class="my-5 text-center text-xl-start">
+                                <h1 class="display-5 fw-bolder text-white mb-2">Pangkalan Data TPA Kapanewon Kasihan
+                                </h1>
+                                <p class="lead fw-normal text-white-50 mb-4">Unit TPA yang belum bergabung silakan klik
+                                    tombol Daftar.</p>
+                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                                    <a class="btn btn-danger btn-lg px-4 me-sm-3"
+                                        href="{{ route('user.login_form') }}">Login TPA</a>
+                                    <a class="btn btn-outline-light btn-lg px-4"
+                                        href="{{ route('user.registration_form') }}">Daftar</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
-                        <img class="img-fluid rounded-3 my-5" src="https://badkokasihan.web.id/wp-content/uploads/2023/10/fasi-kasihan3.jpg"
-                            alt="..." />
+                        <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+                            <img class="img-fluid rounded-3 my-5"
+                                src="https://badkokasihan.web.id/wp-content/uploads/2023/10/fasi-kasihan3.jpg"
+                                alt="..." />
+                        </div>
                     </div>
                 </div>
-            </div>
-        </header> 
-    
+            </header>
         @endif
 
         <div class="container-fluid">
             <section class="py-3 py-md-5">
                 <div class="container px-2 px-md-5 my-2 my-md-5">
-                {{ $slot }}
+                    {{ $slot }}
                 </div>
             </section>
         </div>
@@ -158,8 +182,8 @@
             </div>
         </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
