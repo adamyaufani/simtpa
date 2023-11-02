@@ -27,7 +27,7 @@ class UserRegistrationRequest extends FormRequest
             'email' => ['required', 'email:filter', 'unique:users,email'],
             // 'fullname' => ['required', 'string'],
             // 'username' => ['required', 'string', 'unique:users,username', 'regex:/^[A-Za-z0-9_]+$/'],
-            'phone' => ['required', 'string', 'unique:user_profiles, phone_number', 'min:11','regex:/^628\d{8,}$/'],
+            'phone' => ['required', 'string', 'unique:user_profiles', 'min:11','regex:/^628\d{8,}$/'],
             'institution_name' => ['required', 'string'],
             'address' => ['required', 'string'],
             'village' => ['required'],
