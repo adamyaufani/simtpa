@@ -13,7 +13,7 @@
                     </div>
                 @endif
                 <div class="mb-4">
-                    <label for="institution_name" class="form-label">Nama TPA</label>
+                    <label for="institution_name" class="form-label">Nama TPA (Kata 'TPA' tidak perlu ditulis. Contoh: Istiqomah)</label>
                     <input type="text" name="institution_name"
                         class="form-control
                             {{ $errors->has('institution_name') ? 'is-invalid' : '' }}"
