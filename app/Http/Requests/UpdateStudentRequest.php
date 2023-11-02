@@ -19,7 +19,7 @@ class UpdateStudentRequest extends FormRequest
         return true;
     }
 
-    /**
+     /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, mixed>
@@ -34,12 +34,40 @@ class UpdateStudentRequest extends FormRequest
             'address' => ['required', 'string'],
             'father_name' => ['required', 'string'],
             'mother_name' => ['required', 'string'],
-            'phone' => ['required', 'string'],
+            'phone' => ['required', 'string','min:11','regex:/^628\d{8,}$/'],
             // 'school' => ['required', 'string'],
             // 'join_date' => ['required', 'date'],
             // 'status' => ['required', new Enum(StudentStatusEnum::class)],
             // 'ability_level_upon_entry' => ['required', 'string'],
-            'birth_certificate' => ['nullable', 'image', 'mimes:jpg,png'],
+            'birth_certificate' => ['required', 'image', 'mimes:jpg,jpeg,png, max:1028'],
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama wajib diisi',            
+            'gender.required' => 'Jenis Kelamin wajib diisi',            
+            'birth_place.required' => 'Tempat Lahir wajib diisi',            
+            'birth_date.required' => 'Tanggal Lahir wajib diisi',            
+            'father_name.required' => 'Nama Ayah wajib diisi',            
+            'mother_name.required' => 'Nama Ibu wajib diisi',            
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Format penulisan email salah',
+            'address.required' => 'Alamat wajib diisi',
+            'phone.required' => 'Telepon wajib diisi',
+            'phone.unique' => 'Nomor telepon sudah terdaftar',
+            'phone.min' => 'Nomor telepon terlalu pendek',
+            'phone.regex' => 'Format nomor telepon tidak sesuai contoh, yang benar: 6285625674567',
+            'birth_certificate.required' => 'Akta wajib diisi',           
+            'birth_certificate.image' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
+            'birth_certificate.mimes' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
+            'birth_certificate.max' => 'Ukuran foto tidak boleh lebih dari 1 MB',           
         ];
     }
 }

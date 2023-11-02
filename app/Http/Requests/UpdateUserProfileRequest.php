@@ -65,10 +65,16 @@ class UpdateUserProfileRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'email.required' => 'Email wajib diisi',
+            'email.unique' => 'Email sudah terdaftar',
+            'email.email' => 'Format penulisan email salah',
+            'address.required' => 'Alamat wajib diisi',
+            'phone.required' => 'Telepon wajib diisi',
+            'phone.unique' => 'Nomor telepon sudah terdaftar',
+            'phone.min' => 'Nomor telepon terlalu pendek',
+            'phone.regex' => 'Format nomor telepon tidak sesuai contoh, yang benar: 6285625674567',
             'institution_name.required' => 'Nama TPA wajib diisi',
-            'phone_number.required' => 'Telepon wajib diisi',
-            'phone_number.unique' => 'Nomor telepon sudah terdaftar',
-            'phone_number.min' => 'Nomor telepon terlalu pendek',           
+            'village.required' => 'Kalurahan wajib diisi',            
         ];
     }
 }
