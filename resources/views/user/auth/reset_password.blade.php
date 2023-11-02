@@ -1,7 +1,7 @@
 <x-user.layout>
     <section class="py-5" id="features">
         <div class="container px-5 my-5 d-flex justify-content-center">
-            <div class="col-5">
+            <div class="col-12 col-md-5">
                 <h4 class="card-title">
                     Reset Password
                 </h4>

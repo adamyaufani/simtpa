@@ -21,7 +21,7 @@
     <main class="flex-shrink-0">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-5">
+            <div class="container px-3 px-md-5">
                 <a class="navbar-brand" href="{{ route('user.homepage') }}">                
                 <img src="{{ url('img/logo.png') }}" alt=""></a>
 
@@ -92,7 +92,41 @@
                 </div>
             </div>
         </nav>
-        {{ $slot }}
+
+        @if(! auth()->check())
+        <!-- Header-->
+         <header class="bg-dark py-5 @if(url()->full() != route('user.homepage') ) d-none @endif ">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center justify-content-center">
+                    <div class="col-lg-8 col-xl-7 col-xxl-6">
+                        <div class="my-5 text-center text-xl-start">
+                            <h1 class="display-5 fw-bolder text-white mb-2">Pangkalan Data TPA Kapanewon Kasihan
+                            </h1>
+                            <p class="lead fw-normal text-white-50 mb-4">Unit TPA yang belum bergabung silakan klik tombol Daftar.</p>
+                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                                <a class="btn btn-danger btn-lg px-4 me-sm-3" href="{{ route('user.login_form') }}">Login TPA</a>
+                                <a class="btn btn-outline-light btn-lg px-4" href="{{ route('user.registration_form') }}">Daftar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+                        <img class="img-fluid rounded-3 my-5" src="https://badkokasihan.web.id/wp-content/uploads/2023/10/fasi-kasihan3.jpg"
+                            alt="..." />
+                    </div>
+                </div>
+            </div>
+        </header> 
+    
+        @endif
+
+        <div class="container-fluid">
+            <section class="py-3 py-md-5">
+                <div class="container px-2 px-md-5 my-2 my-md-5">
+                {{ $slot }}
+                </div>
+            </section>
+        </div>
+
     </main>
     <!-- Footer-->
     <footer class="bg-dark py-4 mt-auto">

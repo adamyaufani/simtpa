@@ -11,8 +11,8 @@
                 <div class="container px-5 my-5 d-flex">
                     @csrf
                     <input type="hidden" name="training_id" value="{{ $training->id }}">
-                    <div class="col-9 me-3">
-                        <h4>Data Peserta</h4>
+                    <div class="col-12 col-9 me-3">
+                        <h4>Data Pesertas</h4>
                         @for( $i = 1; $i <= $participants;$i++)
                             <div class="card mb-3 participants">
                                 <div class="card-body">
