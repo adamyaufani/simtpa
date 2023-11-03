@@ -32,7 +32,7 @@ class StoreNewStaffRequest extends FormRequest
             // 'employment_status' => ['required', new Enum(EmploymentStatusEnum::class)],
             // 'civil_registration_number' => ['required', 'string'],
             'last_formal_education' => ['required', new Enum(LastFormalEducationEnum::class)],
-            // 'length_of_islamic_education' => ['required', 'string'],
+            'length_of_islamic_education' => ['nullable', 'string'],
             'core_competency' => ['required', 'string'],
             'phone' => ['required', 'string', 'min:11','regex:/^628\d{8,}$/'],
             'email' => ['required', 'string','email'],
