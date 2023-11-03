@@ -1,4 +1,11 @@
 <x-layout>
+
+    @push('page_css')
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
+    @endpush
+
     <x-slot:title>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Orders</h1>
@@ -22,40 +29,69 @@
         </div>
     </div> --}}
 
-    @foreach($transactions as $transaction)
-        <div class="card mb-2">
-            <div class="card-header d-flex justify-content-between">
-                <div>
-                    <span class="text-dark font-weight-bold">
-                        {{ $transaction->transaction_date }}
-                    </span>
-                    <br>
-                    <span>ID Pendaftaran : {{ $transaction->id }}</span>
-                </div>
-                <div>
-                    <x-user.order-status :id="$transaction->id" />
-                </div>
-            </div>
+    <div class="col-12">
+        <div class="card">
             <div class="card-body">
-                <a href="{{ route('admin.detail_order',$transaction->id) }}"
-                    class="stretched-link" style="text-decoration: none;">
-                    @foreach($transaction->orders as $order)
-                        <span class="font-weight-bold text-dark">
-                            {{ $order->training->name }}
-                        </span><br>
-                        <span class="text-dark">
-                            {{ $order->orderparticipants->count() }} peserta
-                        </span><br>
-                    @endforeach
-                    {{-- {{ $transaction->training()->first()->name }} --}}
-                </a>
-            </div>
-            <div class="card-footer">
-                <span>Total Pembayaran : Rp. {{ $transaction->payment_amount }}</span>
+                <table id="dataTable" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%">No. Pendaftaran</th>
+                            <th style="width: 25%">Nama Pengguna</th>
+                            <th style="width: 25%">Event & Peserta</th>
+                            <th style="width: 20%">Total Pembayaran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($transactions as $transaction)
+                            <tr>
+                                <td>
+                                    {{ $transaction->id }}
+                                </td>
+                                <td>
+                                    <a
+                                        href="{{ route('admin.detail_order',$transaction->id) }}">
+                                        {{ $transaction->user->userProfile->institution_name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @foreach($transaction->orders as $order)
+                                                <span class="font-weight-bold text-dark">
+                                                    {{ $order->training->name }}
+                                                </span><br>
+                                                <span class="text-dark">
+                                                    {{ $order->orderparticipants->count() }} peserta
+                                                </span><br>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span>Rp. {{ $transaction->payment_amount }}</span>
+                                    <br>
+                                    <x-user.order-status :id="$transaction->id" />
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+
             </div>
         </div>
-    @endforeach
+    </div>
 
-    {{ $transactions->links() }}
+    @push('page_js')
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
+        <!-- Page level custom scripts -->
+        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+
+        <script>
+            const table = new DataTable('#dataTable');
+
+        </script>
+    @endpush
 </x-layout>

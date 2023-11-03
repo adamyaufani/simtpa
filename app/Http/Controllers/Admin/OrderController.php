@@ -19,6 +19,7 @@ class OrderController extends Controller
         //     }
         // }
         // die();
+        // dd(TransactionService::transactionIndex());
 
         return view('admin.pages.order.index')
             ->with(['transactions' => TransactionService::transactionIndex()]);
