@@ -44,7 +44,7 @@ use App\Http\Controllers\UserAgreementController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('user.homepage');
-Route::get('daftar-tpa', [HomeController::class, 'organizationList'])->name('user.org_list');
+Route::get('data-tpa', [HomeController::class, 'organizationList'])->name('user.org_list');
 Route::get('login', [UserAuthController::class, 'form'])->name('user.login_form');
 Route::post('login', [UserAuthController::class, 'authenticate'])->name('user.login_attempt');
 Route::get('signup', [RegistrationController::class, 'form'])->name('user.registration_form');
