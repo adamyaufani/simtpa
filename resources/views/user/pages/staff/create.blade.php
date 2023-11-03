@@ -103,7 +103,7 @@
                         {{-- Length of Islamic Education --}}
                         <div class="mb-3">
                             <label for="length_of_islamic_education"
-                                class="form-label">{{ __('Lama Pendidikan Pesantren (jika ada)') }}</label>
+                                class="form-label">{{ __('Lama Pendidikan Pesantren (tahun)') }}</label>
                             <input type="text"
                                 class="form-control @error('length_of_islamic_education') is-invalid @enderror"
                                 id="length_of_islamic_education" name="length_of_islamic_education"
