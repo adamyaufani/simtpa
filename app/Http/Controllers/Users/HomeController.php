@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Training;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,5 +23,12 @@ class HomeController extends Controller
 
         return view('user.pages.home')
             ->with(compact('trainings', 'categories'));
+    }
+
+    public function organizationList()
+    {
+        $organizations = User::all();
+        return view('user.pages.org-list')
+            ->with(compact('organizations'));
     }
 }
