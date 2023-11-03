@@ -59,6 +59,10 @@
                             <a class="nav-link @if (url()->full() === route('user.homepage')) active @endif"
                                 href="{{ route('user.homepage') }}">Depan</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if (url()->full() === route('user.org_list')) active @endif"
+                                href="{{ route('user.org_list') }}">Data TPA</a>
+                        </li>
 
                         @if (auth()->check())
                             <li class="nav-item">

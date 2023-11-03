@@ -5,38 +5,38 @@
         --}}
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     @endpush
-    <section class="py-5" id="features">
-        <div class="container px-5 my-5">
-            <div class="row gx-5">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <table id="example" class="table table-striped" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 5%"></th>
-                                        <th style="width: 25%">Nama</th>
-                                        <th style="width: 25%">Kelurahan</th>
-                                        <th style="width: 45%">Alamat</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($organizations as $org)
-                                        <tr>
-                                            <td></td>
-                                            <td>{{ $org->userProfile->institution_name }}</td>
-                                            <td>{{ $org->userProfile->villageDetail->village_name }}</td>
-                                            <td>{{ $org->userProfile->address }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+    <h4 class="card-title mb-3">
+        Data TPA se Kapanewon Kasihan
+    </h4>
+    <div class="row gx-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="example" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%"></th>
+                                <th style="width: 25%">Nama</th>
+                                <th style="width: 25%">Kelurahan</th>
+                                <th style="width: 45%">Alamat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($organizations as $org)
+                                <tr>
+                                    <td></td>
+                                    <td>{{ $org->userProfile->institution_name }}</td>
+                                    <td>{{ $org->userProfile->villageDetail->village_name }}</td>
+                                    <td>{{ $org->userProfile->address }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
 
     @push('js')
         <script src="{{ asset('js/jquery-datatable-1.13.6.min.js') }}"></script>
@@ -54,7 +54,7 @@
             });
 
             table
-                .on('order.dt search.dt', function () {
+                .on('order.dt search.dt', function() {
                     let i = 1;
 
                     table
@@ -62,12 +62,11 @@
                             search: 'applied',
                             order: 'applied'
                         })
-                        .every(function (cell) {
+                        .every(function(cell) {
                             this.data(i++);
                         });
                 })
                 .draw();
-
         </script>
     @endpush
 
