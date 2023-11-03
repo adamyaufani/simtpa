@@ -27,7 +27,7 @@ class HomeController extends Controller
 
     public function organizationList()
     {
-        $organizations = User::all();
+        $organizations = User::where('verification_status', '=', 1)->get();
         return view('user.pages.org-list')
             ->with(compact('organizations'));
     }
