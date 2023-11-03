@@ -21,6 +21,7 @@ class UserService
             ->when($request->status == 'verified', function ($query) {
                 $query->verified();
             })
+            ->orderBy('verification_status', 'asc')
             ->paginate(10)->withQueryString();
 
         return $users;

@@ -16,11 +16,11 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = UserService::userIndex($request);
-        $profile = UserProfile::all();
+        // $profile = UserProfile::all();
 
 
         return view('admin.pages.users.index')
-            ->with(compact('users', 'profile'));
+            ->with(compact('users'));
     }
 
     public function show($id)
