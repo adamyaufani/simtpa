@@ -16,8 +16,8 @@
                         <thead>
                             <tr>
                                 <th style="width: 5%"></th>
-                                <th style="width: 25%">Nama</th>
-                                <th style="width: 25%">Kelurahan</th>
+                                <th style="width: 25%">Nama TPA</th>
+                                <th style="width: 25%">Kalurahan</th>
                                 <th style="width: 45%">Alamat</th>
                             </tr>
                         </thead>
@@ -25,7 +25,7 @@
                             @foreach ($organizations as $org)
                                 <tr>
                                     <td></td>
-                                    <td>{{ $org->userProfile->institution_name }}</td>
+                                    <td>TPA {{ $org->userProfile->institution_name }}</td>
                                     <td>{{ $org->userProfile->villageDetail->village_name }}</td>
                                     <td>{{ $org->userProfile->address }}</td>
                                 </tr>
