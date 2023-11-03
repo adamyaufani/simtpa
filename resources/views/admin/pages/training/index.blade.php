@@ -1,4 +1,10 @@
 <x-layout>
+    @push('page_css')
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
+    @endpush
+
     <x-slot:title>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Daftar Event</h1>
@@ -15,42 +21,58 @@
         </div>
     @endif
 
-    @foreach($trainings as $training)
-        <div class="card mb-2">
+    <div class="col-12">
+        <div class="card">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-2 mr-3">
-                        <img src="{{ route('training.image').'?q='.$training->image }}"
-                            width="200" alt="">
-                    </div>
-                    <div class="col-8">
-                        <div class="mb-2">
-                            <h5 class="font-weight-bold">
-                                <a href="{{ route('admin.edit_training',$training->id) }}">
-                                    {{ $training->name }}
-                                </a>
-                            </h5>
-                        </div>
-                        <p>
-                            {{ $training->description }}
-                        </p>
-                    </div>
-                    <div class="col-1 d-flex justify-content-end">
-                        <form action="{{ route('admin.delete_training',$training->id) }}"
-                            method="POST" onsubmit="return confirmSubmit()">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
+                <table id="dataTable" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%"></th>
+                            <th style="width: 25%">Nama Event</th>
+                            <th style="width: 25%">Keterangan</th>
+                            <th style="width: 20%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($trainings as $training)
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <a href="{{ route('admin.edit_training',$training->id) }}">
+                                        {{ $training->name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <p>
+                                        {{ $training->description }}
+                                    </p>
+                                </td>
+                                <td>
+                                    <form
+                                        action="{{ route('admin.delete_training',$training->id) }}"
+                                        method="POST" onsubmit="return confirmSubmit()">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
             </div>
         </div>
-    @endforeach
+    </div>
 
     @push('page_js')
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
         <script>
             function confirmSubmit() {
                 var confirmSubmission = confirm(
@@ -58,6 +80,23 @@
                 );
                 return confirmSubmission;
             }
+
+            const table = new DataTable('#dataTable');
+
+            table
+                .on('order.dt search.dt', function () {
+                    let i = 1;
+
+                    table
+                        .cells(null, 0, {
+                            search: 'applied',
+                            order: 'applied'
+                        })
+                        .every(function (cell) {
+                            this.data(i++);
+                        });
+                })
+                .draw();
 
         </script>
     @endpush

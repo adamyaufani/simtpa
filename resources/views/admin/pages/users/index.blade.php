@@ -1,16 +1,9 @@
 <x-layout>
-<<<<<<< HEAD
-
-    @push('css')
-        <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-    @endpush
-
-=======
     @push('page_css')
-        <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}"
-            rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
     @endpush
->>>>>>> upstream/master
     <x-slot:title>
         <div class="d-sm-flex align-items-center mb-4">
             <h1 class="h3 mb-0 mr-2 text-gray-800">Daftar Pengguna</h1>
@@ -26,13 +19,45 @@
         </div>
     @endif
 
-    <div class="card shadow mb-4">
-        <div class="card-body">
-            <div class="d-flex justify-content-end">
-                <div class="form-group d-flex align-items-center">
-                    <span class="col-4 mr-0">Search</span>
-                    <input type="text" name="term" id="term" class="form-control form-control-sm col-8">
-                </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table id="dataTable" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%"></th>
+                            <th style="width: 25%">Nama TPA/TKA/TPQ</th>
+                            <th style="width: 25%">Alamat Email</th>
+                            <th style="width: 20%">Nomor Telepon</th>
+                            <th style="width: 25%">Status Pendaftaran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($users as $user)
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <a href="{{ route('admin.detail_user',$user->id) }}"
+                                        class="stretched-link">
+                                        {{ $user->userProfile->institution_name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    {{ $user->email }}
+                                </td>
+                                <td>
+                                    {{ $user->userProfile->phone_number }}
+                                </td>
+                                <td>
+                                    <span class="badge badge-{{ $user->status['badge'] }}">
+                                        {{ $user->status['message'] }}
+                                    </span>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -65,24 +90,31 @@
         </div>
     </div>
 
+    @push('page_js')
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-
-
-
-    @push('js')
-        <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-        <script src="{{ asset('js/demo/datatables-demo.js') }}">
-    </script>
+        <!-- Page level custom scripts -->
+        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
 
         <script>
-            $(document).ready(function() {
-                $('#dataTable').DataTable({
-                    "order": [
-                        [1, "desc"]
-                    ]
-                });
-            });
+            const table = new DataTable('#dataTable');
+
+            table
+                .on('order.dt search.dt', function () {
+                    let i = 1;
+
+                    table
+                        .cells(null, 0, {
+                            search: 'applied',
+                            order: 'applied'
+                        })
+                        .every(function (cell) {
+                            this.data(i++);
+                        });
+                })
+                .draw();
+
         </script>
     @endpush
 
