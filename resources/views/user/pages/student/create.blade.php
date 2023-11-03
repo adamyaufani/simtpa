@@ -161,7 +161,7 @@
 
                         {{-- Birth Certificate --}}
                         <div class="mb-3">
-                            <label for="birth_certificate" class="form-label">{{ __('Akta Kelahiran') }} <small class="text-secondary">File JPG, JPEG, ukuran maksimal 1 MB. Akta tidak perlu difoto penuh, cukup di bagian nama dan tanggal lahir saja.</small></label>
+                            <label for="birth_certificate" class="form-label">{{ __('Akta Kelahiran') }} * <small class="text-secondary">File JPG, JPEG, ukuran maksimal 1 MB. Akta tidak perlu difoto penuh, cukup di bagian nama dan tanggal lahir saja.</small></label>
                             <input type="file"
                                 class="form-control @error('birth_certificate') is-invalid @enderror"
                                 id="birth_certificate" name="birth_certificate">
