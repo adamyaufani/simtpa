@@ -59,34 +59,7 @@
                 </table>
 
             </div>
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Nama TPA</th>
-                            <th>Email</th>
-                            <th>Telepon</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($users as $user)
-                            <tr class="border-bottom-{{ $user->status['badge'] }}">
-                                <td>
-                                    <a href="{{ route('admin.detail_user', $user->id) }}">
-                                        {{ $user->userProfile->institution_name }}</a>
-                                </td>
-                                <td> {{ $user->email }}</td>
-                                <td>{{ $user->userProfile->phone_number }}</td>
-                                <td> <span class="badge badge-{{ $user->status['badge'] }}">
-                                        {{ $user->status['message'] }}
-                                    </span>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+           
         </div>
     </div>
 
