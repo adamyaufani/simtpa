@@ -39,7 +39,7 @@
                                 </div>
                             @endforeach
 
-                            <a href="https://wa.me/?text=Assalamualaikum, " target="_blank" class="mt-3 btn btn-success"><i class="fab fa-whatsapp"></i> Chat Pengguna</a>
+                            <a href="https://wa.me/6285625623456?text=Assalamualaikum, " target="_blank" class="mt-3 btn btn-success"><i class="fab fa-whatsapp"></i> Chat Admin</a>
 
                         </div>
                         <div class="col-6">
