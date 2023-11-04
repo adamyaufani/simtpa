@@ -117,7 +117,7 @@
                         <div class="col-12 d-md-flex align-items-center py-3"> 
                             <x-verification-options :userId="$user->id" />
                                 @if ($user->status['badge'] === 'success')
-                                    <a href="https://wa.me/{{ $user->userProfile->phone_number }}?text=Assalamualaikum TPA {{ $user->userProfile->institution_name }},%0A akun Anda telah diverifikasi. %0ASilakan login kembali ke Pangkalan Data TPA Kapanewon Kasihan https://tpa.badkokasihan.web.id/login.%0D%0A Admin Badko TKA-TPA Kasihan"
+                                    <a href="https://wa.me/{{ $user->userProfile->phone_number }}?text=Assalamualaikum TPA {{ $user->userProfile->institution_name }}, akun Anda telah kami verifikasi.%0ASilakan login kembali ke Pangkalan Data TPA Kapanewon Kasihan https://tpa.badkokasihan.web.id/login.%0A%0AHormat kami,%0AAdmin Badko TKA-TPA Kasihan"
                                         target="_blank" class="ml-3 btn btn-success"><i class="fab fa-whatsapp"></i> Chat
                                         Pengguna</a>
                                 @endif
