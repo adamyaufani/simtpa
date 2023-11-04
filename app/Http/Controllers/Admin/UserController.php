@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNewUserRequest;
+use App\Http\Requests\UpdateUserProfileRequest;
 use App\Mail\User\RegistrationApproved;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\Village;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -29,10 +31,11 @@ class UserController extends Controller
         if ($user->verification_status == 0) {
             return redirect()->to(route('admin.verify_user', $user->id));
         }
+        $villages = Village::all();
 
         // dd($user->userProfile->villageDetail);
         return view('admin.pages.users.detail')
-            ->with(compact('user'));
+            ->with(compact('user', 'villages'));
     }
 
     public function userRegistrationDetail($id)
@@ -89,5 +92,14 @@ class UserController extends Controller
             return redirect()->back()->with('success', 'Pendaftaran Diterima');
         }
         return redirect()->back()->with('error', 'Terjadi Kesalahan');
+    }
+
+    public function update($id, UpdateUserProfileRequest $request)
+    {
+        UserService::detailUser($id)->updateUserProfile($request);
+
+        // dd($request->validated());
+
+        return redirect()->back()->with('success', 'Berhasil mengubah data profil');
     }
 }

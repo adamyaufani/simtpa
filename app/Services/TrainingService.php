@@ -163,7 +163,15 @@ class TrainingService
         $training->delete();
     }
 
-    public static function trainingIndex()
+    public static function trainingParticipants()
     {
+        $trainings = Training::with('participants')->get();
+        // foreach ($trainings as $training) {
+        //     foreach ($training->participants as $participant) {
+        //         dump($participant->student->user->userProfile->institution_name);
+        //     }
+        // }
+        // die();
+        return $trainings;
     }
 }

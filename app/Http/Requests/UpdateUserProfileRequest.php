@@ -34,7 +34,7 @@ class UpdateUserProfileRequest extends FormRequest
             'address' => ['required', 'string'],
             // 'rt' => ['required', 'string'],
             // 'rw' => ['required', 'string'],
-            'village' => ['required', 'string'],
+            'village' => ['required', 'numeric', 'exists:villages,id'],
             // 'subdistrict' => ['required', 'string'],
             // 'regency' => ['required', 'string'],
             // 'province' => ['required', 'string'],

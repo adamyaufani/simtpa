@@ -72,4 +72,11 @@ class TrainingController extends Controller
         TrainingService::getTrainingById($id)->deleteTraining();
         return redirect()->back()->with('success', 'Event berhasil dihapus');
     }
+
+    public function participants()
+    {
+        $trainings = TrainingService::trainingParticipants();
+        return view('admin.pages.training.participants')
+            ->with(compact('trainings'));
+    }
 }

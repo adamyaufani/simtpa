@@ -156,12 +156,16 @@ Route::prefix('admin')->group(function () {
             Route::get('{id}', [UserController::class, 'show'])->name('admin.detail_user');
             Route::get('{id}/banned', [UserController::class, 'banned'])->name('admin.banned_user');
             Route::get('{id}/unbannd', [UserController::class, 'unbanned'])->name('admin.unbanned_user');
+            Route::put('{id}/update', [UserController::class, 'update'])->name('admin.update_user');
             Route::get('verify/{id}', [UserController::class, 'userRegistrationDetail'])->name('admin.verify_user');
             Route::get('verify/{id}/accept', [UserController::class, 'verifyUser'])->name('admin.accept_user_registration');
         });
 
+        Route::get('file-sk', [FileController::class, 'trainingBanner'])->name('admin.user_file_sk');
+
         Route::prefix('events')->group(function () {
             Route::get('/', [TrainingController::class, 'index'])->name('admin.training_index');
+            Route::get('participants', [TrainingController::class, 'participants'])->name('admin.training_participants');
             Route::get('create', [TrainingController::class, 'create'])->name('admin.create_new_training');
             Route::post('create', [TrainingController::class, 'store'])->name('admin.store_new_training');
             Route::get('{id}', [TrainingController::class, 'edit'])->name('admin.edit_training');

@@ -24,19 +24,24 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Pelatihan
+        Event
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.training_index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Event</span></a>
+            <span>Daftar Event</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.order_index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Pembayaran Event</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.training_participants') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Peserta Event</span></a>
     </li>
 
     <!-- Divider -->

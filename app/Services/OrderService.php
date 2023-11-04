@@ -241,6 +241,8 @@ class OrderService
                 'payment_date' => now()
             ]);
         }
+
+        return $order;
     }
 
     public static function fetch()
