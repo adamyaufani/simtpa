@@ -37,8 +37,7 @@
                             <tr>
                                 <td></td>
                                 <td>
-                                    <a href="{{ route('admin.detail_user',$user->id) }}"
-                                        class="stretched-link">
+                                    <a href="{{ route('admin.detail_user',$user->id) }}">
                                         {{ $user->userProfile->institution_name }}
                                     </a>
                                 </td>
