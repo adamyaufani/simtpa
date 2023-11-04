@@ -22,7 +22,8 @@ class UserService
                 $query->verified();
             })
             ->orderBy('verification_status', 'asc')
-            ->paginate(10)->withQueryString();
+            ->get();
+        // ->paginate(10)->withQueryString();
 
         return $users;
     }
