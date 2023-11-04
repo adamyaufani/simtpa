@@ -26,7 +26,7 @@
                     <thead>
                         <tr>
                             <th style="width: 5%"></th>
-                            <th style="width: 25%">Nama TPA/TKA/TPQ</th>
+                            <th style="width: 25%">Nama TPA</th>
                             <th style="width: 25%">Alamat Email</th>
                             <th style="width: 20%">Nomor Telepon</th>
                             <th style="width: 25%">Status Pendaftaran</th>
@@ -34,11 +34,10 @@
                     </thead>
                     <tbody>
                         @foreach($users as $user)
-                            <tr>
+                            <tr class="table-{{ ($user->status['badge'] === 'warning') ? $user->status['badge'] : '' }}">
                                 <td></td>
                                 <td>
-                                    <a href="{{ route('admin.detail_user',$user->id) }}"
-                                        class="stretched-link">
+                                    <a href="{{ route('admin.detail_user',$user->id) }}">
                                         {{ $user->userProfile->institution_name }}
                                     </a>
                                 </td>
@@ -48,10 +47,10 @@
                                 <td>
                                     {{ $user->userProfile->phone_number }}
                                 </td>
-                                <td>
-                                    <span class="badge badge-{{ $user->status['badge'] }}">
+                                <td class="">
+                                  
                                         {{ $user->status['message'] }}
-                                    </span>
+                                    
                                 </td>
                             </tr>
                         @endforeach
