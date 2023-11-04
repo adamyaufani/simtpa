@@ -5,150 +5,22 @@
         </div>
     </x-slot:title>
 
-    {{-- <form action="{{ route('admin.store_new_user') }}" method="POST"> --}}
-    {{-- @csrf --}}
     <div class="row mb-3">
-        <div class="col-md-8 mx-auto">
-            <div class="card mb-3 p-3">
-                <div class="card-body">                    
-                    <div class="row">
-                        <div class="col-md-3 d-flex align-items-center"> 
-                            Nama TPA                          
-                        </div>
-                        <div class="col-md-9">
-                            <div class="bg-light" style="width:100%">
-                                <p class="alert bg-light">{{ $user->userProfile->institution_name }}                                
-                                        <span class="badge badge-{{ $user->status['badge'] }}">
-                                            {{ $user->status['message'] }}
-                                        </span>                                
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 d-flex align-items-center"> 
-                              Email                           
-                        </div>
-                        <div class="col-md-9">
-                            <p class="alert bg-light">{{ $user->email }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 d-flex align-items-center"> 
-                            Alamat                         
-                        </div>
-                        <div class="col-md-9">
-                            <p class="alert bg-light">{{ $user->userProfile->address }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 d-flex align-items-center"> 
-                           Kalurahan                          
-                        </div>
-                        <div class="col-md-9">
-                            <p class="alert bg-light">{{ $user->userProfile->villageDetail->village_name }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 d-flex align-items-center"> 
-                            Nomor Telepon                          
-                        </div>
-                        <div class="col-md-9">
-                            <p class="alert bg-light">{{ $user->userProfile->phone_number }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 d-flex align-items-center"> 
-                            Facebook                         
-                        </div>
-                        <div class="col-md-9">
-                            <p class="alert bg-light">{{ $user->userProfile->facebook }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 d-flex align-items-center"> 
-                            Instagram                         
-                        </div>
-                        <div class="col-md-9">
-                            <p class="alert bg-light">{{ $user->userProfile->instagram }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 d-flex align-items-center"> 
-                            Twitter                         
-                        </div>
-                        <div class="col-md-9">
-                            <p class="alert bg-light">{{ $user->userProfile->twitter }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 d-flex align-items-center"> 
-                            Website                         
-                        </div>
-                        <div class="col-md-9">
-                            <p class="alert bg-light">{{ $user->userProfile->website }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 d-flex align-items-center"> 
-                            Youtube                         
-                        </div>
-                        <div class="col-md-9">
-                            <p class="alert bg-light">{{ $user->userProfile->youtube }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 d-flex align-items-center"> 
-                            Tiktok                         
-                        </div>
-                        <div class="col-md-9">
-                            <p class="alert bg-light">{{ $user->userProfile->tiktok }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 d-flex align-items-center"> 
-                            Alamat Google Map                         
-                        </div>
-                        <div class="col-md-9">
-                            <p class="alert bg-light">{{ $user->userProfile->gmap_address }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 d-md-flex align-items-center py-3"> 
-                            <x-verification-options :userId="$user->id" />
-                                @if ($user->status['badge'] === 'success')
-                                    <a href="https://wa.me/{{ $user->userProfile->phone_number }}?text=_Assalamualaikum_ *TPA {{ $user->userProfile->institution_name }}* 
-                                        %0ASaat ini akun Anda telah kami verifikasi.%0ASilakan login kembali ke Pangkalan Data TPA Kapanewon Kasihan https://tpa.badkokasihan.web.id/login.%0A%0AHormat kami,%0AAdmin Badko TKA-TPA Kasihan"
-                                        target="_blank" class="ml-3 btn btn-success"><i class="fab fa-whatsapp"></i> Chat
-                                        Pengguna</a>
-                                @endif
-                        </div>
-                    </div>
 
-                    
-        <div class="col-8 mx-auto">
+        <div class="col-lg-8 mx-auto">
             <div class="card mb-3">
                 <div class="card-body">
-                    <h4 class="mb-3">Detail Pengguna</h4>
-                    <form action="{{ route('admin.update_user',$user->id) }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('admin.update_user', $user->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="col-12">
-                            <div class="form-group">
-                                <label for="email">Alamat Email</label>
-                                <p>
-                                    <strong>{{ $user->email }}</strong>
-                                </p>
+                            <div class="form-group row mb-0">
+                                <label for="email" class="col-sm-4 col-form-label">Alamat Email</label>                              
+                                <div class="col-sm-8">
+                                    <div class="alert bg-light p-2"><strong>{{ $user->email }}</strong></div>                                    
+                                </div>
                             </div>
-                            <div class="form-group d-flex">
-                                <label for="email">Status Akun</label>
-                                <h6 class="font-weight-bold ml-2">
-                                    <span class="badge badge-{{ $user->status['badge'] }}">
-                                        {{ $user->status['message'] }}
-                                    </span>
-                                </h6>
-                            </div>
+                           
                             <div class="form-group row">
                                 <label for="institution-name" class="col-sm-4 col-form-label">Nama Organisasi</label>
                                 <div class="col-sm-8">
@@ -218,7 +90,7 @@
                                     <select name="village" id="village"
                                         class="form-control {{ $errors->has('district') ? 'is-invalid' : '' }}">
                                         <option value="" disabled selected>Pilih Desa/Kelurahan</option>
-                                        @foreach($villages as $village)
+                                        @foreach ($villages as $village)
                                             <option value="{{ $village->id }}"
                                                 {{ $village->id == $user->userProfile->village ? 'selected' : '' }}>
                                                 {{ $village->village_name }}
@@ -382,31 +254,38 @@
                                         {{ $errors->first('sk_file') }}
                                     </span>
 
-                                    @if($user->userProfile->sk_file)
+                                    @if ($user->userProfile->sk_file)
                                         {{-- <img class="mt-3"
                                             src="{{ route('admin.user_file_sk').'?q='.$user->userProfile->sk_file }}"
                                         alt=""> --}}
 
                                         <div class="col-12 my-3"
-                                            style="background-image: url({{ route('admin.user_file_sk').'?q='.$user->userProfile->sk_file }});
+                                            style="background-image: url({{ route('admin.user_file_sk') . '?q=' . $user->userProfile->sk_file }});
                                             background-size: contain;background-repeat: no-repeat; background-position: center;height: 300px">
                                         </div>
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group d-flex justify-content-between">
-                                <button class="btn-success btn" type="submit">
+                            <div class="form-group d-md-flex d-block justify-content-between">
+                                <button class="btn-success btn mb-2 mb-md-0" type="submit">
                                     Simpan Perubahan
                                 </button>
                                 <x-verification-options :userId="$user->id" />
+                                @if ($user->status['badge'] === 'success')
+                                    <a href="https://wa.me/{{ $user->userProfile->phone_number }}?text=_Assalamualaikum_ *TPA {{ $user->userProfile->institution_name }}* 
+                                        %0ASaat ini akun Anda telah kami verifikasi.%0ASilakan login kembali ke Pangkalan Data TPA Kapanewon Kasihan https://tpa.badkokasihan.web.id/login.%0A%0AHormat kami,%0AAdmin Badko TKA-TPA Kasihan"
+                                        target="_blank" class="btn btn-success mt-2 mt-md-0"><i class="fab fa-whatsapp"></i>
+                                        Chat
+                                        Pengguna</a>
+                                @endif
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-            {{-- <button class="btn btn-success btn-block">Save</button> --}}
+
         </div>
     </div>
-    {{-- </form> --}}
+
 
 </x-layout>
