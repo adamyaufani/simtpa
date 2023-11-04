@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Services\OrderService;
 use App\Services\TransactionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -36,7 +38,9 @@ class OrderController extends Controller
 
     public function confirmPayment($id)
     {
-        OrderService::confirmOrderPayment($id);
+        $order = OrderService::confirmOrderPayment($id);
+        $user = User::find($order->user_id);
+        Mail::to($user->email)->send(new \App\Mail\User\PaymentConfirmed($user->id, $order->id));
         return redirect()->back();
     }
 }

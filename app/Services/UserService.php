@@ -4,7 +4,9 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserService
 {
@@ -75,6 +77,35 @@ class UserService
         DB::transaction(function () use ($request) {
             $user_data = Arr::add($request, 'verification_status', 1);
             User::create($user_data);
+        });
+    }
+
+    public static function updateUserProfile($request)
+    {
+        DB::transaction(function () use ($request) {
+            $user = static::$user;
+
+            $userProfile = $user->userProfile;
+
+            $userProfile->update(Arr::except($request->validated(), ['sk_file']));
+
+            if ($request->hasFile('sk_file')) {
+                if ($userProfile->sk_file != null) {
+                    if (Storage::exists(Crypt::decryptString($userProfile->sk_file))) {
+                        Storage::delete(Crypt::decryptString($userProfile->sk_file));
+                    }
+                }
+
+                $file = $request->file('sk_file');
+                $originalFileName = $file->getClientOriginalName();
+                $userId = $user->id;
+
+                $filePath = $file->storeAs("users/file_sk/{$userId}", $originalFileName);
+
+                $userProfile->update([
+                    'sk_file' => $filePath
+                ]);
+            }
         });
     }
 }

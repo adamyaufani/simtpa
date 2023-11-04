@@ -2,6 +2,7 @@
 
 namespace App\Mail\User;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,14 +14,19 @@ class PaymentConfirmed extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $user;
+    public $url;
+    public $transactionId;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($userId, $transactionId)
     {
-        //
+        $this->user = User::find($userId);
+        $this->url = route('user.detail_order', $transactionId);
+        $this->transactionId = $transactionId;
     }
 
     /**
@@ -43,7 +49,7 @@ class PaymentConfirmed extends Mailable
     public function content()
     {
         return new Content(
-            markdown: 'emails.users',
+            markdown: 'emails.user.payment-confirmed',
         );
     }
 
