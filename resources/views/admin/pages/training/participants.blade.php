@@ -37,24 +37,15 @@
                         <tr>
                             <th style="width: 30%">Nama Event</th>
                             <th style="width: 70%">Peserta</th>
+                            <th style="width: 70%">TPA</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($participants as $participant)
                             <tr>
                                 <td>{{ $participant->order->training->name }}</td>
-                                <td>
-                                    <span>
-                                        <strong>Nama : </strong>
-                                        {{ $participant->student->name }}
-                                    </span><br>
-                                    <span>
-                                        <strong>
-                                            Aasal Organisasi :
-                                        </strong>
-                                        {{ $participant->student->user->userProfile->institution_name }}
-                                    </span>
-                                </td>
+                                <td>{{ $participant->student->name }}</td>
+                                <td>{{ $participant->student->user->userProfile->institution_name }}</td>
                             </tr>
                         @endforeach
                     </tbody>
