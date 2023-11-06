@@ -11,10 +11,10 @@
                 <div class="card-body p-3 pb-2">                   
 
                     <form id="ageCalculatorForm" class="mb-3">
-                        <label for="tanggalLahir">Tanggal Lahir: </label>
-                        <div class="d-flex flex-rows">
-                        <input type="date" id="tanggalLahir"  class="form-control me-2"  style="width:80%" required>
-                        <button type="submit" class="btn btn-danger" style="width:20%">Hitung Usia</button>
+                        <label for="tanggalLahir" class="mb-2">Tanggal Lahir: </label>
+                        <div class="d-flex">
+                        <input type="date" id="tanggalLahir" class="form-control me-2"  required>
+                        <button type="submit" class="btn btn-danger" style="width:230px;">Hitung Usia</button>
                         </div>
                       </form>
 
@@ -74,6 +74,8 @@
                 const tanggalReferensiTKA = new Date('2017-07-01');
                 const tanggalReferensiTPA = new Date('2012-07-01');
                 const tanggalReferensiTQA = new Date('2009-07-01');
+                const tanggalReferensiRemaja = new Date('2004-07-01');
+                const tanggalReferensiDewasa = new Date('1995-07-01');
 
                 const usia = new Date().getFullYear() - tanggalLahirObj.getFullYear();
                 let kategori = '';
@@ -81,16 +83,22 @@
 
                 if (tanggalLahirObj >= tanggalReferensiTKA) {
                     kategori = 'TKA';
-                    alertClass = 'alert-success';
+                    alertClass = 'alert-primary';
                 } else if (tanggalLahirObj >= tanggalReferensiTPA) {
                     kategori = 'TPA';
-                    alertClass = 'alert-warning';
+                    alertClass = 'alert-success';
                 } else if (tanggalLahirObj >= tanggalReferensiTQA) {
                     kategori = 'TQA';
+                    alertClass = 'alert-info';               
+                } else if (tanggalLahirObj >= tanggalReferensiRemaja) {
+                    kategori = 'Remaja';
+                    alertClass = 'alert-warning';
+                } else if (tanggalLahirObj >= tanggalReferensiDewasa) {
+                    kategori = 'Dewasa';
                     alertClass = 'alert-danger';
                 } else {
-                    kategori = 'Kategori lainnya';
-                    alertClass = 'alert-info';
+                    kategori = 'Tua';
+                    alertClass = 'alert-dark';
                 }
 
                 const hasilUsia = document.getElementById('hasilUsia');
