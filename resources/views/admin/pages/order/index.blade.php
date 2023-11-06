@@ -30,15 +30,22 @@
     </div> --}}
 
     <div class="col-12">
+        @if(session()->has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session()->get('success') }}
+            </div>
+        @endif
+
         <div class="card">
             <div class="card-body">
                 <table id="dataTable" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th style="width: 10%">No. Pendaftaran</th>
+                            <th style="width: 5%">No. Pendaftaran</th>
                             <th style="width: 25%">Nama Pengguna</th>
                             <th style="width: 25%">Event & Peserta</th>
                             <th style="width: 20%">Total Pembayaran</th>
+                            <th style="width: 5%">Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,6 +79,17 @@
                                     <br>
                                     <x-user.order-status :id="$transaction->id" />
                                 </td>
+                                <td>
+                                    <form
+                                        action="{{ route('admin.delete_order',$transaction->id) }}"
+                                        method="POST" onsubmit="return confirmSubmit()">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
 
@@ -91,6 +109,13 @@
 
         <script>
             const table = new DataTable('#dataTable');
+
+            function confirmSubmit() {
+                var confirmSubmission = confirm(
+                    "Anda yakin ingin menghapus event ini? Event yang sudah dihapus tidak dapat dikembalikan dengan cara apapun."
+                );
+                return confirmSubmission;
+            }
 
         </script>
     @endpush

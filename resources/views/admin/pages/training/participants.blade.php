@@ -35,9 +35,8 @@
                 <table id="dataTable" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th style="width: 25%">Nama Event</th>
-                            <th style="width: 50%">Peserta</th>
-                            <th style="width: 25%">Tanggal Berlangsung</th>
+                            <th style="width: 30%">Nama Event</th>
+                            <th style="width: 70%">Peserta</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,10 +60,6 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                </td>
-                                <td>{{ $training->start_date->isoFormat('dddd, D MMMM YYYY') }}
-                                    s.d
-                                    {{ $training->end_date->isoFormat('dddd, D MMMM YYYY') }}
                                 </td>
                             </tr>
                         @endforeach
