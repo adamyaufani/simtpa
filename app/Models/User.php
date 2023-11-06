@@ -113,6 +113,12 @@ class User extends Authenticatable
                 'message' => 'dibekukan'
             ];
         }
+        if ($this->verification_status == 3) {
+            return [
+                'badge' => 'secondary',
+                'message' => 'pendaftaran ditolak'
+            ];
+        }
     }
 
     public function carts()

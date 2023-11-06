@@ -159,6 +159,7 @@ Route::prefix('admin')->group(function () {
             Route::put('{id}/update', [UserController::class, 'update'])->name('admin.update_user');
             Route::get('verify/{id}', [UserController::class, 'userRegistrationDetail'])->name('admin.verify_user');
             Route::get('verify/{id}/accept', [UserController::class, 'verifyUser'])->name('admin.accept_user_registration');
+            Route::get('verify/{id}/deny', [UserController::class, 'denyRegistration'])->name('admin.deny_user_registration');
         });
 
         Route::get('file-sk', [FileController::class, 'trainingBanner'])->name('admin.user_file_sk');

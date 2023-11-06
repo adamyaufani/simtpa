@@ -98,6 +98,10 @@
                         class="btn btn-success">
                         Terima Pendaftaran
                     </a>
+                    <a href="{{ route('admin.deny_user_registration',$user->id) }}"
+                        class="btn btn-danger">
+                        Tolak Pendaftaran
+                    </a>
                 </div>
             </div>
         </div>

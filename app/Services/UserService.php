@@ -48,6 +48,18 @@ class UserService
         });
     }
 
+    public static function denyUserRegistration()
+    {
+        $user = static::$user;
+
+        DB::transaction(function () use ($user) {
+            $user->update([
+                'verification_status' => 3,
+                'verification_date' => now()
+            ]);
+        });
+    }
+
     public static function bannedUser()
     {
         $user = static::$user;

@@ -9,6 +9,11 @@
     {{-- @csrf --}}
     <div class="row mb-3">
         <div class="col-8 mx-auto">
+            @if(session()->has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
             <div class="card mb-3">
                 <div class="card-body">
                     <h4 class="mb-3">Detail Pengguna</h4>

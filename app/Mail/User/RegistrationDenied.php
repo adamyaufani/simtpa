@@ -2,6 +2,7 @@
 
 namespace App\Mail\User;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -18,9 +19,10 @@ class RegistrationDenied extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $user;
+    public function __construct($userId)
     {
-        //
+        $this->user = User::find($userId);
     }
 
     /**
@@ -31,7 +33,7 @@ class RegistrationDenied extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Registration Denied',
+            subject: 'Registrasi ditolak',
         );
     }
 
@@ -43,7 +45,7 @@ class RegistrationDenied extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.name',
+            markdown: 'emails.user.registration-denied',
         );
     }
 
