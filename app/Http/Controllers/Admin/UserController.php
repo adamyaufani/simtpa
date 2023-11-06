@@ -68,9 +68,9 @@ class UserController extends Controller
         if ($user->verification_status == 0) {
             UserService::detailUser($id)->verifyUser();
             Mail::to($user->email)->send(new RegistrationApproved($user->id));
-            return redirect()->back()->with('succeed', 'Pendaftaran Diterima');
+            return redirect()->to(route('admin.detail_user', $user->id))->with('error', 'Terjadi Kesalahan');
         }
-        return redirect()->to(route('admin.detail_user', $user->id))->with('error', 'Terjadi Kesalahan');
+        return redirect()->back()->with('error', 'Terjadi Kesalahan');
     }
 
     public function denyRegistration($id)

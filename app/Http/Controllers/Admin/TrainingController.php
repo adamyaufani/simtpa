@@ -75,8 +75,8 @@ class TrainingController extends Controller
 
     public function participants()
     {
-        $trainings = TrainingService::trainingParticipants();
+        $participants = TrainingService::trainingParticipants();
         return view('admin.pages.training.participants')
-            ->with(compact('trainings'));
+            ->with(compact('participants'));
     }
 }

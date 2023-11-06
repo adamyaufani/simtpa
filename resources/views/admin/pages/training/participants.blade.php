@@ -40,26 +40,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($trainings as $training)
+                        @foreach($participants as $participant)
                             <tr>
-                                <td>{{ $training->name }}</td>
+                                <td>{{ $participant->order->training->name }}</td>
                                 <td>
-                                    @foreach($training->participants as $participant)
-                                        <div class="card mb-2">
-                                            <div class="card-body">
-                                                <span>
-                                                    <strong>Nama : </strong>
-                                                    {{ $participant->student->name }}
-                                                </span><br>
-                                                <span>
-                                                    <strong>
-                                                        Aasal Organisasi :
-                                                    </strong>
-                                                    {{ $participant->student->user->userProfile->institution_name }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    @endforeach
+                                    <span>
+                                        <strong>Nama : </strong>
+                                        {{ $participant->student->name }}
+                                    </span><br>
+                                    <span>
+                                        <strong>
+                                            Aasal Organisasi :
+                                        </strong>
+                                        {{ $participant->student->user->userProfile->institution_name }}
+                                    </span>
                                 </td>
                             </tr>
                         @endforeach
