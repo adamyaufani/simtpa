@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Cart;
 use App\Models\CartItem;
-use Illuminate\Support\Arr;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class CartService
@@ -48,5 +48,18 @@ class CartService
                 ]);
             }
         });
+    }
+
+    public static function cartIndexForAdmin()
+    {
+        $users = User::with('carts')->where('verification_status', '=', 1)->get();
+
+        // foreach ($users as $user) {
+        //     dump($user->carts);
+        // }
+
+        // die();
+
+        return $users;
     }
 }

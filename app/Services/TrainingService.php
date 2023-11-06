@@ -165,13 +165,21 @@ class TrainingService
 
     public static function trainingParticipants()
     {
-        $trainings = Training::with('participants')->get();
+        // $trainings = Training::with('participants')->get();
         // foreach ($trainings as $training) {
         //     foreach ($training->participants as $participant) {
         //         dump($participant->student->user->userProfile->institution_name);
         //     }
         // }
         // die();
-        return $trainings;
+        // return $trainings;
+
+        $participants = OrderParticipant::with('order')->get();
+
+        // foreach ($participants as $participant) {
+        //     dump($participant->order->training->name);
+        // }
+        // die();
+        return $participants;
     }
 }

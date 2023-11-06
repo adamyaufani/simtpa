@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
 use App\Models\User;
 use App\Services\OrderService;
 use App\Services\TransactionService;
@@ -42,5 +43,13 @@ class OrderController extends Controller
         $user = User::find($order->user_id);
         Mail::to($user->email)->send(new \App\Mail\User\PaymentConfirmed($user->id, $order->id));
         return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        $transaction->delete();
+
+        return redirect()->back()->with('success', 'Transaksi berhasil dihapus');
     }
 }

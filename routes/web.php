@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CartController as AdminCartController;
 use App\Http\Controllers\Admin\CertificateController as AdminCertificateController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
@@ -159,6 +160,7 @@ Route::prefix('admin')->group(function () {
             Route::put('{id}/update', [UserController::class, 'update'])->name('admin.update_user');
             Route::get('verify/{id}', [UserController::class, 'userRegistrationDetail'])->name('admin.verify_user');
             Route::get('verify/{id}/accept', [UserController::class, 'verifyUser'])->name('admin.accept_user_registration');
+            Route::get('verify/{id}/deny', [UserController::class, 'denyRegistration'])->name('admin.deny_user_registration');
         });
 
         Route::get('file-sk', [FileController::class, 'trainingBanner'])->name('admin.user_file_sk');
@@ -190,6 +192,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/', [AdminOrderController::class, 'index'])->name('admin.order_index');
             Route::get('{id}', [AdminOrderController::class, 'show'])->name('admin.detail_order');
             Route::get('{id}/confirm', [AdminOrderController::class, 'confirmPayment'])->name('admin.finish_order');
+            Route::delete('{id}/delete', [AdminOrderController::class, 'destroy'])->name('admin.delete_order');
         });
 
         Route::prefix('cerificates')->group(function () {
@@ -197,6 +200,10 @@ Route::prefix('admin')->group(function () {
             Route::get('settings', [AdminCertificateController::class, 'settingIndex'])->name('admin.certificate_setting_index');
             Route::get('settings/{id}', [AdminCertificateController::class, 'settingDetail'])->name('admin.certificate_setting_detail');
             Route::post('settings/{id}/preview', [AdminCertificateController::class, 'preview'])->name('admin.certificate_setting_preview');
+        });
+
+        Route::prefix('cart')->group(function () {
+            Route::get('/', [AdminCartController::class, 'index'])->name('admin.cart_index');
         });
     });
 });

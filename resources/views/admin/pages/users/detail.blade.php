@@ -6,8 +6,12 @@
     </x-slot:title>
 
     <div class="row mb-3">
-
-        <div class="col-lg-8 mx-auto">
+        <div class="col-8 mx-auto">
+            @if(session()->has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
             <div class="card mb-3">
                 <div class="card-body">
                     <form action="{{ route('admin.update_user', $user->id) }}" method="POST" enctype="multipart/form-data">

@@ -35,36 +35,25 @@
                 <table id="dataTable" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th style="width: 25%">Nama Event</th>
-                            <th style="width: 50%">Peserta</th>
-                            <th style="width: 25%">Tanggal Berlangsung</th>
+                            <th style="width: 30%">Nama Event</th>
+                            <th style="width: 70%">Peserta</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($trainings as $training)
+                        @foreach($participants as $participant)
                             <tr>
-                                <td>{{ $training->name }}</td>
+                                <td>{{ $participant->order->training->name }}</td>
                                 <td>
-                                    @foreach($training->participants as $participant)
-                                        <div class="card mb-2">
-                                            <div class="card-body">
-                                                <span>
-                                                    <strong>Nama : </strong>
-                                                    {{ $participant->student->name }}
-                                                </span><br>
-                                                <span>
-                                                    <strong>
-                                                        Aasal Organisasi :
-                                                    </strong>
-                                                    {{ $participant->student->user->userProfile->institution_name }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </td>
-                                <td>{{ $training->start_date->isoFormat('dddd, D MMMM YYYY') }}
-                                    s.d
-                                    {{ $training->end_date->isoFormat('dddd, D MMMM YYYY') }}
+                                    <span>
+                                        <strong>Nama : </strong>
+                                        {{ $participant->student->name }}
+                                    </span><br>
+                                    <span>
+                                        <strong>
+                                            Aasal Organisasi :
+                                        </strong>
+                                        {{ $participant->student->user->userProfile->institution_name }}
+                                    </span>
                                 </td>
                             </tr>
                         @endforeach

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNewUserRequest;
 use App\Http\Requests\UpdateUserProfileRequest;
 use App\Mail\User\RegistrationApproved;
+use App\Mail\User\RegistrationDenied;
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\Village;
@@ -67,9 +68,17 @@ class UserController extends Controller
         if ($user->verification_status == 0) {
             UserService::detailUser($id)->verifyUser();
             Mail::to($user->email)->send(new RegistrationApproved($user->id));
-            return redirect()->back()->with('succeed', 'Pendaftaran Diterima');
+            return redirect()->to(route('admin.detail_user', $user->id))->with('error', 'Terjadi Kesalahan');
         }
         return redirect()->back()->with('error', 'Terjadi Kesalahan');
+    }
+
+    public function denyRegistration($id)
+    {
+        $user = User::where([['id', '=', $id], ['verification_status', '=', 0]])->firstOrFail();
+        UserService::detailUser($user->id)->denyUserRegistration();
+        Mail::to($user->email)->send(new RegistrationDenied($user->id));
+        return redirect()->to(route('admin.detail_user', $user->id))->with('success', 'Pendaftaran akun ditolak.');
     }
 
     public function banned($id)
@@ -78,7 +87,7 @@ class UserController extends Controller
         if ($user->verification_status == 1) {
             UserService::detailUser($id)->bannedUser();
 
-            return redirect()->back()->with('success', 'Pendaftaran Diterima');
+            return redirect()->back()->with('success', 'Akun berhasil dibekukan');
         }
         return redirect()->back()->with('error', 'Terjadi Kesalahan');
     }

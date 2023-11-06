@@ -8,7 +8,7 @@
 
     <x-slot:title>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Orders</h1>
+            <h1 class="h3 mb-0 text-gray-800">Keranjang</h1>
             {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
             </a> --}}
@@ -41,55 +41,43 @@
                 <table id="dataTable" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th style="width: 5%">No. Pendaftaran</th>
                             <th style="width: 25%">Nama Pengguna</th>
                             <th style="width: 25%">Event & Peserta</th>
-                            <th style="width: 20%">Total Pembayaran</th>
-                            <th style="width: 5%">Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($transactions as $transaction)
+                        @foreach($users as $user)
                             <tr>
                                 <td>
-                                    {{ $transaction->id }}
-                                </td>
-                                <td>
-                                    <a
-                                        href="{{ route('admin.detail_order',$transaction->id) }}">
-                                        {{ $transaction->user->userProfile->institution_name }}
-                                    </a>
+                                    <span>
+                                        {{ $user->userProfile->institution_name }}
+                                    </span>
                                 </td>
                                 <td>
                                     <div class="card">
                                         <div class="card-body">
-                                            @foreach($transaction->orders as $order)
+                                            @foreach($user->carts as $cart)
                                                 <span class="font-weight-bold text-dark">
-                                                    {{ $order->training->name }}
+                                                    {{ $cart->training->name }}
                                                 </span><br>
                                                 <span class="text-dark">
-                                                    {{ $order->orderparticipants->count() }} peserta
+                                                    {{ $cart->items->count() }} peserta
                                                 </span><br>
                                             @endforeach
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <span>Rp. {{ $transaction->payment_amount }}</span>
-                                    <br>
-                                    <x-user.order-status :id="$transaction->id" />
-                                </td>
-                                <td>
+                                {{-- <td>
                                     <form
                                         action="{{ route('admin.delete_order',$transaction->id) }}"
-                                        method="POST" onsubmit="return confirmSubmit()">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
+                                method="POST" onsubmit="return confirmSubmit()">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                </form>
+                                </td> --}}
                             </tr>
                         @endforeach
 
@@ -110,12 +98,12 @@
         <script>
             const table = new DataTable('#dataTable');
 
-            function confirmSubmit() {
-                var confirmSubmission = confirm(
-                    "Anda yakin ingin menghapus event ini? Event yang sudah dihapus tidak dapat dikembalikan dengan cara apapun."
-                );
-                return confirmSubmission;
-            }
+            // function confirmSubmit() {
+            //     var confirmSubmission = confirm(
+            //         "Anda yakin ingin menghapus event ini? Event yang sudah dihapus tidak dapat dikembalikan dengan cara apapun."
+            //     );
+            //     return confirmSubmission;
+            // }
 
         </script>
     @endpush

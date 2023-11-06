@@ -43,6 +43,11 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Peserta Event</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.cart_index') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Keranjang User</span></a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

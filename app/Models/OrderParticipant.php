@@ -15,6 +15,11 @@ class OrderParticipant extends Model
         'order_id'
     ];
 
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
     public function student()
     {
         return $this->belongsTo(Student::class);
