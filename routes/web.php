@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CartController as AdminCartController;
 use App\Http\Controllers\Admin\CertificateController as AdminCertificateController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
@@ -199,6 +200,10 @@ Route::prefix('admin')->group(function () {
             Route::get('settings', [AdminCertificateController::class, 'settingIndex'])->name('admin.certificate_setting_index');
             Route::get('settings/{id}', [AdminCertificateController::class, 'settingDetail'])->name('admin.certificate_setting_detail');
             Route::post('settings/{id}/preview', [AdminCertificateController::class, 'preview'])->name('admin.certificate_setting_preview');
+        });
+
+        Route::prefix('cart')->group(function () {
+            Route::get('/', [AdminCartController::class, 'index'])->name('admin.cart_index');
         });
     });
 });
