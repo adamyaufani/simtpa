@@ -35,9 +35,9 @@
                 <table id="dataTable" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th style="width: 30%">Nama Event</th>
-                            <th style="width: 70%">Peserta</th>
-                            <th style="width: 70%">TPA</th>
+                            <th style="width: 40%">Nama Event</th>
+                            <th style="width: 30%">Peserta</th>
+                            <th style="width: 30%">TPA</th>
                         </tr>
                     </thead>
                     <tbody>
