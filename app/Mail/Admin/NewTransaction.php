@@ -26,6 +26,8 @@ class NewTransaction extends Mailable
     {
         $this->transaction = TransactionService::transactionDetail($transationId);
         $this->url = route('admin.detail_order', $transationId);
+
+        // dd($this->transaction->user->userProfile->institution_name);
     }
 
     /**

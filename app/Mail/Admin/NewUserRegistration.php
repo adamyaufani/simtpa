@@ -2,6 +2,7 @@
 
 namespace App\Mail\Admin;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -21,10 +22,12 @@ class NewUserRegistration extends Mailable
 
     public $userId;
     public $url;
+    public $user;
 
     public function __construct($userId)
     {
         $this->userId = $userId;
+        $this->user = User::find($userId);
         $this->url = route('admin.detail_user', $userId);
     }
 
