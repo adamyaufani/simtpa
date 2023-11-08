@@ -131,10 +131,10 @@ Route::middleware('auth.user')->group(function () {
 
 Route::prefix('admin')->group(function () {
 
-    // Route::get('email_test', function () {
-    //     return new App\Mail\Admin\NewTransaction(1);
-    //     return new App\Mail\Admin\NewUserRegistration(1);
-    // });
+    Route::get('email_test', function () {
+        // return new App\Mail\Admin\NewTransaction(1);
+        return new App\Mail\Admin\NewUserRegistration(1);
+    });
 
     Route::get('login', [AuthController::class, 'form'])->name('admin.login_form');
     Route::post('login', [AuthController::class, 'authenticate'])->name('admin.login_attempt');
