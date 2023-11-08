@@ -28,6 +28,8 @@ use App\Http\Controllers\User\StudentController;
 
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\UserAgreementController;
+// use App\Mail\Admin\NewTransaction;
+
 // use App\Mail\Admin\NewUserRegistration;
 // use App\Mail\User\RegistrationApproved;
 // use Illuminate\Support\Env;
@@ -130,9 +132,8 @@ Route::middleware('auth.user')->group(function () {
 Route::prefix('admin')->group(function () {
 
     // Route::get('email_test', function () {
-    //     Mail::to(Env::get('MAIL_USERNAME'))->send(new NewUserRegistration(2));
-    //     return new NewUserRegistration(1);
-    //     return new RegistrationApproved(1);
+    //     return new App\Mail\Admin\NewTransaction(1);
+    //     return new App\Mail\Admin\NewUserRegistration(1);
     // });
 
     Route::get('login', [AuthController::class, 'form'])->name('admin.login_form');
