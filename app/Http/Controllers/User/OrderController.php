@@ -38,6 +38,12 @@ class OrderController extends Controller
             ['q' => 'numeric']
         );
 
+        if ($request['q'] < 1) {
+            return redirect()->to(route('user.training_detail', $id))->with('error', 'Jumlah peserta yang anda masukkan tidak valid.');
+        }
+
+        // dd($request);
+
         $participants = $request['q'];
         $training = TrainingService::getTrainingById($id)->fetch();
         $price = TrainingService::getTrainingById($id)->trainingPrice();
