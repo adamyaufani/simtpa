@@ -107,6 +107,12 @@
                                     {{ auth()->user()->userProfile->institution_name }}</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                                     <li>
+                                        <a class="dropdown-item"
+                                            href="{{ route('user.letter_index') }}">
+                                            Surat
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item" href="{{ route('user.logout') }}">
                                             Logout
                                         </a>

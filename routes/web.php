@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\TrainingController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\LetterController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Users\CertificateController;
 use App\Http\Controllers\FileController;
@@ -27,6 +28,7 @@ use App\Http\Controllers\User\StaffController;
 use App\Http\Controllers\User\StudentController;
 
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\LetterController as UserLetterController;
 use App\Http\Controllers\UserAgreementController;
 // use App\Mail\Admin\NewTransaction;
 
@@ -125,6 +127,11 @@ Route::middleware('auth.user')->group(function () {
         Route::put('{id}', [StudentController::class, 'update'])->name('user.update_student');
         Route::delete('{id}', [StudentController::class, 'destroy'])->name('user.delete_student');
     });
+
+    Route::prefix('surat-pemberitahuan')->group(function () {
+        Route::get('/', [UserLetterController::class, 'index'])->name('user.letter_index');
+        Route::get('/{id}', [UserLetterController::class, 'show'])->name('user.letter_detail');
+    });
 });
 
 // Admin Routes
@@ -134,6 +141,10 @@ Route::prefix('admin')->group(function () {
     Route::get('email_test', function () {
         // return new App\Mail\Admin\NewTransaction(1);
         return new App\Mail\Admin\NewUserRegistration(1);
+    });
+
+    Route::post('/home/profile/about/img', function () {
+        return json_encode(['location' => '/storage/app/public/pictures/bestAvatar.png']);
     });
 
     Route::get('login', [AuthController::class, 'form'])->name('admin.login_form');
@@ -205,6 +216,15 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('cart')->group(function () {
             Route::get('/', [AdminCartController::class, 'index'])->name('admin.cart_index');
+        });
+
+        Route::prefix('surat')->group(function () {
+            Route::get('/', [LetterController::class, 'index'])->name('admin.letter_index');
+            Route::get('/create', [LetterController::class, 'create'])->name('admin.create_letter');
+            Route::post('/create', [LetterController::class, 'store'])->name('admin.store_letter');
+            Route::get('/{id}', [LetterController::class, 'show'])->name('admin.detail_letter');
+            Route::put('/{id}/update', [LetterController::class, 'update'])->name('admin.update_letter');
+            Route::delete('/{id}', [LetterController::class, 'destroy'])->name('admin.delete_letter');
         });
     });
 });
