@@ -1,25 +1,19 @@
 <x-user.layout>
-    @push('css')
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-    @endpush
+
+
 
     <div class="row gx-5">
         <div class="col-lg-8 offset-lg-2 mb-5 mb-lg-0">
 
             <div class="card mb-5">
                 <div class="card-header">
-                    <h5>Jumlah Anggota Badko Tiap Desa</h5>
+                    <h5>Jumlah Anggota Badko TKA-TPA Tiap Kalurahan</h5>
                 </div>
-                <div class="card-body p-3 pb-2">
-
-
-
-                    <canvas id="myPieChart" width="307" height="208"
-                        style="display: block; width: 307px; height: 208px;" class="chartjs-render-monitor"></canvas>
-
-
+                <div class="card-body px-5">
+                    <canvas id="myPieChart" width="407" height="358" class="chartjs-render-monitor"></canvas>
                 </div>
             </div>
+
             <div class="card mb-5">
                 <div class="card-header">
                     <h5>Kalkulator Usia Santri</h5>
@@ -81,22 +75,26 @@
     </div>
 
     @push('js')
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
         <script>
-            // Set new default font family and font color to mimic Bootstrap's default styling
-            Chart.defaults.global.defaultFontFamily = 'Nunito',
-                '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-            Chart.defaults.global.defaultFontColor = '#858796';
-
             // Pie Chart Example
             var ctx = document.getElementById("myPieChart");
             var myPieChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ["Direct", "Referral", "Social"],
+                    labels: [
+                        @foreach ($numberOfUsersPerVillages as $numberOfUsersPerVillage)
+                            "{{ $numberOfUsersPerVillage['village'] }} ({{ $numberOfUsersPerVillage['users'] }})",
+                        @endforeach
+                    ],
                     datasets: [{
-                        data: [55, 30, 15],
-                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-                        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                        data: [
+                            @foreach ($numberOfUsersPerVillages as $numberOfUsersPerVillage)
+                                "{{ $numberOfUsersPerVillage['users'] }}",
+                            @endforeach
+                        ],
+                        backgroundColor: ['#007bff', '#6f42c1', '#dc3545', '#28a745'],
+                        hoverBackgroundColor: ['#4a729d', '#7f59c3', '#dd4f5d', '#48c364'],
                         hoverBorderColor: "rgba(234, 236, 244, 1)",
                     }],
                 },
@@ -113,9 +111,16 @@
                         caretPadding: 10,
                     },
                     legend: {
-                        display: true
+                        display: true,
+                        position: 'right',
+                        padding: 20,
+                        labels: {
+                            font: {
+                                size: 50
+                            },
+                        },
                     },
-                    cutoutPercentage: 80,
+                    cutoutPercentage: 60,
                 },
             });
         </script>
@@ -164,55 +169,5 @@
     @endpush
 
 
-    </header> --}}
-    <!-- Features section-->
-    @foreach($numberOfUsersPerVillages as $numberOfUsersPerVillage)
-        <div class="card my-1">
-            <div class="card-body">
-                <span>{{ $numberOfUsersPerVillage['village'] }}</span><br>
-                <span>{{ $numberOfUsersPerVillage['users'] }}</span>
-            </div>
-        </div>
-    @endforeach
-    <section class="py-5" id="features">
-        <div class="container px-5 my-5">
-            <div class="row gx-5">
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h2 class="fw-bolder mb-0">Daftar Event</h2>
-                    <a href="{{ route('user.homepage') }}"
-                        class="badge rounded-pill text-bg-secondary" style="text-decoration: none">
-                        semua kategori
-                    </a>
-                    @foreach($categories as $category)
-                        <a href="{{ route('user.homepage').'?category='.$category->id }}"
-                            class="badge rounded-pill text-bg-secondary"
-                            style="text-decoration: none">{{ $category->name }}</a>
-                    @endforeach
-                </div>
-                <div class="col-lg-8">
-                    @foreach($trainings as $training)
-                        <div class="card mb-3">
-                            <div class="row g-0">
-                                <div class="col-md-12">
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            <a href="{{ route('user.training_detail',$training->id) }}"
-                                                class="stretched-link">
-                                                {{ $training->name }}
-                                            </a>
-                                        </h5>
-                                        {{-- <p class="card-text">
-                                            {{ str()->limit($training->description,300) }}
-                                        </p> --}}
-                                        {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small> --}}
-                                        {{-- </p> --}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
+
 </x-user.layout>
