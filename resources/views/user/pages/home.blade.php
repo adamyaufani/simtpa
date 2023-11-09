@@ -24,6 +24,14 @@
         </div>
     </header> --}}
     <!-- Features section-->
+    @foreach($numberOfUsersPerVillages as $numberOfUsersPerVillage)
+        <div class="card my-1">
+            <div class="card-body">
+                <span>{{ $numberOfUsersPerVillage['village'] }}</span><br>
+                <span>{{ $numberOfUsersPerVillage['users'] }}</span>
+            </div>
+        </div>
+    @endforeach
     <section class="py-5" id="features">
         <div class="container px-5 my-5">
             <div class="row gx-5">
