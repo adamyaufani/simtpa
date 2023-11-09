@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\TrainingController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\LetterController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Users\CertificateController;
 use App\Http\Controllers\FileController;
@@ -136,6 +137,10 @@ Route::prefix('admin')->group(function () {
     //     return new App\Mail\Admin\NewUserRegistration(1);
     // });
 
+    Route::post('/home/profile/about/img', function () {
+        return json_encode(['location' => '/storage/app/public/pictures/bestAvatar.png']);
+    });
+
     Route::get('login', [AuthController::class, 'form'])->name('admin.login_form');
     Route::post('login', [AuthController::class, 'authenticate'])->name('admin.login_attempt');
 
@@ -205,6 +210,15 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('cart')->group(function () {
             Route::get('/', [AdminCartController::class, 'index'])->name('admin.cart_index');
+        });
+
+        Route::prefix('surat')->group(function () {
+            Route::get('/', [LetterController::class, 'index'])->name('admin.letter_index');
+            Route::get('/create', [LetterController::class, 'create'])->name('admin.create_letter');
+            Route::post('/create', [LetterController::class, 'store'])->name('admin.store_letter');
+            Route::get('/{id}', [LetterController::class, 'show'])->name('admin.detail_letter');
+            Route::put('/{id}/update', [LetterController::class, 'update'])->name('admin.update_letter');
+            Route::delete('/{id}', [LetterController::class, 'destroy'])->name('admin.delete_letter');
         });
     });
 });

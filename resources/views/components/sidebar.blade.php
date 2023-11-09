@@ -82,6 +82,27 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Surat
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.letter_index') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Daftar Surat</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.create_letter') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Buat Surat Baru</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+
     {{-- <div class="sidebar-heading">
         Pengaturan
     </div>

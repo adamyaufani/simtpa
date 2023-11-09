@@ -60,9 +60,11 @@
                                                 <span class="font-weight-bold text-dark">
                                                     {{ $cart->training->name }}
                                                 </span><br>
-                                                <span class="text-dark">
-                                                    {{ $cart->items->count() }} peserta
-                                                </span><br>
+                                                @foreach($cart->items as $item)
+                                                    <span class="text-dark">
+                                                        {{ $item->student->name }}
+                                                    </span><br>
+                                                @endforeach
                                             @endforeach
                                         </div>
                                     </div>
