@@ -28,6 +28,7 @@ use App\Http\Controllers\User\StaffController;
 use App\Http\Controllers\User\StudentController;
 
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\LetterController as UserLetterController;
 use App\Http\Controllers\UserAgreementController;
 // use App\Mail\Admin\NewTransaction;
 
@@ -125,6 +126,11 @@ Route::middleware('auth.user')->group(function () {
         Route::get('{id}', [StudentController::class, 'edit'])->name('user.edit_student');
         Route::put('{id}', [StudentController::class, 'update'])->name('user.update_student');
         Route::delete('{id}', [StudentController::class, 'destroy'])->name('user.delete_student');
+    });
+
+    Route::prefix('surat-pemberitahuan')->group(function () {
+        Route::get('/', [UserLetterController::class, 'index'])->name('user.letter_index');
+        Route::get('/{id}', [UserLetterController::class, 'show'])->name('user.letter_detail');
     });
 });
 

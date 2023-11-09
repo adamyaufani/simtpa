@@ -69,6 +69,12 @@
                                         </a>
                                     </li>
                                     <li>
+                                        <a class="dropdown-item"
+                                            href="{{ route('user.letter_index') }}">
+                                            Surat
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item" href="{{ route('user.logout') }}">
                                             Logout
                                         </a>
