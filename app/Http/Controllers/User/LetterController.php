@@ -33,8 +33,8 @@ class LetterController extends Controller
         $user = User::find(Auth::user()->id);
         $pdf = Pdf::loadView('user.pages.letter.detail', compact('letter', 'user'));
 
-        // return view('user.pages.letter.detail')
-        //     ->with(compact('letter', 'user'));
-        return $pdf->download('invoice.pdf');
+        return view('user.pages.letter.detail')
+            ->with(compact('letter', 'user'));
+        // return $pdf->download('invoice.pdf');
     }
 }
