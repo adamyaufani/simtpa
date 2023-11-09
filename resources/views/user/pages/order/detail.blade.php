@@ -11,7 +11,7 @@
                
                 @foreach ($data->orders as $order)
                                
-                    <div class="card">
+                    <div class="card mb-3">
                         <div class="card-header"><h5>{{ $order->training->name }}</h5></div>
                         <div class="card-body p-1">
                             <ul class="list-group list-group-flush">

@@ -38,17 +38,19 @@
                     <span><x-user.order-status :id="$transaction->id" /> </span>              
             </div>
             <div class="card-body">
+                <ol>
                 @foreach ($transaction->orders as $order)
-                    <h5 class="card-title">
+                    <li>
                         {{ $order->training->name }}
-                    </h5>
+                    </li>
                     
                 @endforeach
+                </ol>
 
                 <div class="">
                     <a href="{{ route('user.detail_order', $transaction->id) }}"
                         class="btn btn-primary btn-sm stretched-link">
-                        Detail
+                        Lihat Detail
                     </a>
                 </div>
             </div>

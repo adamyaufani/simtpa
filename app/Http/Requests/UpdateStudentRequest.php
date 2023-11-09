@@ -39,7 +39,7 @@ class UpdateStudentRequest extends FormRequest
             // 'join_date' => ['required', 'date'],
             // 'status' => ['required', new Enum(StudentStatusEnum::class)],
             // 'ability_level_upon_entry' => ['required', 'string'],
-            'birth_certificate' => ['required', 'image', 'mimes:jpg,jpeg,png, max:1028'],
+            'birth_certificate' => ['image', 'mimes:jpg,jpeg,png', 'max:1028'],
         ];
     }
 
