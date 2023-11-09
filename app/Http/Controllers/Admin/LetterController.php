@@ -32,7 +32,7 @@ class LetterController extends Controller
     public function store(StoreLetterRequest $request)
     {
         LetterService::storeLetter($request);
-        return redirect()->to('admin.letter_index')->with('success', 'Surat berhasil dibuat.');
+        return redirect()->to(route('admin.letter_index'))->with('success', 'Surat berhasil dibuat.');
     }
 
     public function update($id, StoreLetterRequest $request)

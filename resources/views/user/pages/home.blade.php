@@ -164,4 +164,55 @@
     @endpush
 
 
+    </header> --}}
+    <!-- Features section-->
+    @foreach($numberOfUsersPerVillages as $numberOfUsersPerVillage)
+        <div class="card my-1">
+            <div class="card-body">
+                <span>{{ $numberOfUsersPerVillage['village'] }}</span><br>
+                <span>{{ $numberOfUsersPerVillage['users'] }}</span>
+            </div>
+        </div>
+    @endforeach
+    <section class="py-5" id="features">
+        <div class="container px-5 my-5">
+            <div class="row gx-5">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h2 class="fw-bolder mb-0">Daftar Event</h2>
+                    <a href="{{ route('user.homepage') }}"
+                        class="badge rounded-pill text-bg-secondary" style="text-decoration: none">
+                        semua kategori
+                    </a>
+                    @foreach($categories as $category)
+                        <a href="{{ route('user.homepage').'?category='.$category->id }}"
+                            class="badge rounded-pill text-bg-secondary"
+                            style="text-decoration: none">{{ $category->name }}</a>
+                    @endforeach
+                </div>
+                <div class="col-lg-8">
+                    @foreach($trainings as $training)
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-12">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <a href="{{ route('user.training_detail',$training->id) }}"
+                                                class="stretched-link">
+                                                {{ $training->name }}
+                                            </a>
+                                        </h5>
+                                        {{-- <p class="card-text">
+                                            {{ str()->limit($training->description,300) }}
+                                        </p> --}}
+                                        {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small> --}}
+                                        {{-- </p> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
 </x-user.layout>

@@ -12,4 +12,9 @@ class Village extends Model
     protected $fillable = [
         'village_name',
     ];
+
+    public function userProfile()
+    {
+        return $this->hasMany(UserProfile::class, 'village');
+    }
 }
