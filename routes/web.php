@@ -132,6 +132,8 @@ Route::middleware('auth.user')->group(function () {
         Route::get('/', [UserLetterController::class, 'index'])->name('user.letter_index');
         Route::get('/{id}', [UserLetterController::class, 'show'])->name('user.letter_detail');
     });
+
+    Route::get('piagam', [HomeController::class, 'charter'])->name('user.charter');
 });
 
 // Admin Routes

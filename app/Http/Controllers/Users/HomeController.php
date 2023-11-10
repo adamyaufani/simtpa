@@ -17,7 +17,7 @@ class HomeController extends Controller
         $trainings = Training::when($request->has('category'), function ($query) use ($request) {
             $query->whereRaw("FIND_IN_SET(?, category_id)", $request->category);
         })->get();
-        // dd($trainings);
+
         $categories = Category::all();
 
         $numberOfUsersPerVillages = [];
@@ -31,10 +31,6 @@ class HomeController extends Controller
             ];
         }
 
-        // dd($numberOfUsersPerVillages);
-
-        // dd(Auth::user()->verification_status);
-
         return view('user.pages.home')
             ->with(compact('trainings', 'categories', 'numberOfUsersPerVillages'));
     }
@@ -44,5 +40,12 @@ class HomeController extends Controller
         $organizations = User::where('verification_status', '=', 1)->get();
         return view('user.pages.org-list')
             ->with(compact('organizations'));
+    }
+
+    public function charter()
+    {
+        $user = User::find(Auth::user()->id);
+        return view('user.pages.charter')
+            ->with(compact('user'));
     }
 }
