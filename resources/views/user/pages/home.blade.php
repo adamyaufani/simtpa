@@ -1,16 +1,12 @@
 <x-user.layout>
-
-
-
     <div class="row gx-5">
         <div class="col-lg-8 offset-lg-2 mb-5 mb-lg-0">
-
             <div class="card mb-5">
                 <div class="card-header">
                     <h5>Jumlah Anggota Badko TKA-TPA Tiap Kalurahan</h5>
                 </div>
                 <div class="card-body px-5">
-                    <canvas id="myPieChart" width="407" height="358" class="chartjs-render-monitor"></canvas>
+                    <canvas id="myPieChart" width="400" height="300" class="chartjs-render-monitor"></canvas>
                 </div>
             </div>
 
@@ -99,6 +95,7 @@
                     }],
                 },
                 options: {
+                    responsive: true,
                     maintainAspectRatio: false,
                     tooltips: {
                         backgroundColor: "rgb(255,255,255)",
@@ -111,8 +108,10 @@
                         caretPadding: 10,
                     },
                     legend: {
+                        align: 'left',
                         display: true,
-                        position: 'right',
+                        fullSize: true,
+                        position: 'top',
                         padding: 20,
                         labels: {
                             font: {
