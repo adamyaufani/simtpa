@@ -65,6 +65,8 @@ Route::get('t_image', [FileController::class, 'trainingBanner'])->name('training
 
 Route::get('events/{id}', [UserTrainingController::class, 'show'])->name('user.training_detail');
 
+Route::get('verifikasi/{id}', [HomeController::class, 'verification'])->name('user.verification');
+
 Route::middleware('auth.user')->group(function () {
     Route::get('logout', [UserAuthController::class, 'logout'])->name('user.logout');
     Route::get('agreement', [UserAgreementController::class, 'index'])->name('user.agreement');

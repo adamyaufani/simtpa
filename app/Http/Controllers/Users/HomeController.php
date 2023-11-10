@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class HomeController extends Controller
 {
@@ -45,7 +46,15 @@ class HomeController extends Controller
     public function charter()
     {
         $user = User::find(Auth::user()->id);
+        $qrCode = QrCode::size(120)->generate(route('user.verification', $user->id));
         return view('user.pages.charter')
+            ->with(compact('user', 'qrCode'));
+    }
+
+    public function verification($userId)
+    {
+        $user = User::find($userId);
+        return view('user.pages.verification')
             ->with(compact('user'));
     }
 }

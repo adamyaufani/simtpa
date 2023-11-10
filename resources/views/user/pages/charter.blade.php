@@ -10,6 +10,7 @@
 <body>
     <span>Nama : </span>{{ $user->userProfile->institution_name }} <br>
     <span>Alamat : </span>{{ $user->userProfile->address }} <br>
+    {{ $qrCode }}
 </body>
 
 </html>
