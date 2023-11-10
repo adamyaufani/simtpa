@@ -113,6 +113,11 @@
                                         </a>
                                     </li>
                                     <li>
+                                        <a class="dropdown-item" href="{{ route('user.charter') }}">
+                                            Piagam
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item" href="{{ route('user.logout') }}">
                                             Logout
                                         </a>
