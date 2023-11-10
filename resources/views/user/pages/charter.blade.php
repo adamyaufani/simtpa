@@ -14,6 +14,8 @@
         }
         .isi {
             background-color: rgba(255,255,255, 0.2);
+            position:relative;
+            height:700px;
         }
         .nomor {
             margin-top:200px;
@@ -25,6 +27,11 @@
         .alamat {
 
         }
+        .qr-code {
+            position:absolute;
+            bottom :70px;
+            left:130px;
+        }
     </style>
     @endpush
 
@@ -35,6 +42,12 @@
                     <p class='nomor'>Nomor : {{  $user->username }}/23.26/Badko-Ksh/2023</p>
                     <h2 class='nama'>TPA {{ $user->userProfile->institution_name }} </h2>
                     <h3 class='alamat h6'>({{ $user->userProfile->address }})</h3>
+
+                    <div class="qr-code">
+                        {{ $qrCode }}
+                    </div>
+                        
+
                 </div>
             </div>
 
