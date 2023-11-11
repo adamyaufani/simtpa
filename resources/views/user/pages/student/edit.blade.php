@@ -32,7 +32,8 @@
                                         <label for="name"
                                             class="form-label">{{ __('Nama Lengkap') }}</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                            id="name" name="name" value="{{ $student->name }}">
+                                            id="name" name="name"
+                                            value="{{ old('name') ?? $student->name }}">
                                         @error('name')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -62,7 +63,8 @@
                                             class="form-label">{{ __('Tempat Lahir') }}</label>
                                         <input type="text"
                                             class="form-control @error('birth_place') is-invalid @enderror"
-                                            id="birth_place" name="birth_place" value="{{ $student->birth_place }}">
+                                            id="birth_place" name="birth_place"
+                                            value="{{ old('birth_place') ?? $student->birth_place }}">
                                         @error('birth_place')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -74,7 +76,8 @@
                                             class="form-label">{{ __('Tanggal Lahir') }}</label>
                                         <input type="date"
                                             class="form-control @error('birth_date') is-invalid @enderror"
-                                            id="birth_date" name="birth_date" value="{{ $student->birth_date }}">
+                                            id="birth_date" name="birth_date"
+                                            value="{{ old('birth_date') ?? $student->birth_date }}">
                                         @error('birth_date')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -85,7 +88,8 @@
                                         <label for="address"
                                             class="form-label">{{ __('Alamat') }}</label>
                                         <textarea class="form-control @error('address') is-invalid @enderror"
-                                            id="address" name="address" rows="3">{{ $student->address }}</textarea>
+                                            id="address" name="address"
+                                            rows="3">{{ old('address') ?? $student->address }}</textarea>
                                         @error('address')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -97,7 +101,8 @@
                                             class="form-label">{{ __('Nama Ayah') }}</label>
                                         <input type="text"
                                             class="form-control @error('father_name') is-invalid @enderror"
-                                            id="father_name" name="father_name" value="{{ $student->father_name }}">
+                                            id="father_name" name="father_name"
+                                            value="{{ old('father_name') ?? $student->father_name }}">
                                         @error('father_name')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -109,7 +114,8 @@
                                             class="form-label">{{ __('Nama Ibu') }}</label>
                                         <input type="text"
                                             class="form-control @error('mother_name') is-invalid @enderror"
-                                            id="mother_name" name="mother_name" value="{{ $student->mother_name }}">
+                                            id="mother_name" name="mother_name"
+                                            value="{{ old('mother_name') ?? $student->mother_name }}">
                                         @error('mother_name')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -120,7 +126,8 @@
                                         <label for="phone"
                                             class="form-label">{{ __('Nomor Telephone (jika ada)') }}</label>
                                         <input type="tel" class="form-control @error('phone') is-invalid @enderror"
-                                            id="phone" name="phone" value="{{ $student->phone }}">
+                                            id="phone" name="phone"
+                                            value="{{ old('phone') ?? $student->phone }}">
                                         @error('phone')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -131,7 +138,8 @@
                                         <label for="school"
                                             class="form-label">{{ __('Asal Sekolah') }}</label>
                                         <input type="text" class="form-control @error('school') is-invalid @enderror"
-                                            id="school" name="school" value="{{ $student->school }}">
+                                            id="school" name="school"
+                                            value="{{ old('school') ?? $student->school }}">
                                         @error('school')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -142,7 +150,8 @@
                                         <label for="join_date"
                                             class="form-label">{{ __('Tanggal Bergabung') }}</label>
                                         <input type="date" class="form-control @error('join_date') is-invalid @enderror"
-                                            id="join_date" name="join_date" value="{{ $student->join_date }}">
+                                            id="join_date" name="join_date"
+                                            value="{{ old('join_date') ?? $student->join_date }}">
                                         @error('join_date')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -175,7 +184,7 @@
                                         <input type="text"
                                             class="form-control @error('ability_level_upon_entry') is-invalid @enderror"
                                             id="ability_level_upon_entry" name="ability_level_upon_entry"
-                                            value="{{ $student->ability_level_upon_entry }}">
+                                            value="{{ old('ability_level_upon_entry') ?? $student->ability_level_upon_entry }}">
                                         @error('ability_level_upon_entry')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
