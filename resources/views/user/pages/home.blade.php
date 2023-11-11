@@ -34,6 +34,11 @@
     @endforeach
     <section class="py-5" id="features">
         <div class="container px-5 my-5">
+            @if($completeProfileNotification == true)
+                <div class="alert alert-warning" role="alert">
+                    Mohon lengkapi data profil anda.
+                </div>
+            @endif
             <div class="row gx-5">
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h2 class="fw-bolder mb-0">Daftar Event</h2>
