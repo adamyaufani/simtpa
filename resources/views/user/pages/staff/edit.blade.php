@@ -16,7 +16,7 @@
 
                     <div class="col-lg-12">
                         <div class="d-flex justify-content-between">
-                            <h4 class="mb-3">Data Santri Baru</h4>
+                            <h4 class="mb-3">Edit Data Staff</h4>
                         </div>
 
                         <div class="card">
@@ -30,7 +30,8 @@
                                         <label for="name"
                                             class="form-label">{{ __('Nama Lengkap') }}</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                            id="name" name="name" value="{{ $staff->name }}">
+                                            id="name" name="name"
+                                            value="{{ old('name') ?? $staff->name }}">
                                         @error('name')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -81,7 +82,7 @@
                                         <input type="text"
                                             class="form-control @error('civil_registration_number') is-invalid @enderror"
                                             id="civil_registration_number" name="civil_registration_number"
-                                            value="{{ $staff->civil_registration_number }}">
+                                            value="{{ old('civil_registration_number') ?? $staff->civil_registration_number }}">
                                         @error('civil_registration_number')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -113,7 +114,7 @@
                                         <input type="text"
                                             class="form-control @error('length_of_islamic_education') is-invalid @enderror"
                                             id="length_of_islamic_education" name="length_of_islamic_education"
-                                            value="{{ $staff->length_of_islamic_education }}">
+                                            value="{{ old('length_of_islamic_education') ?? $staff->length_of_islamic_education }}">
                                         @error('length_of_islamic_education')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -126,7 +127,7 @@
                                         <input type="text"
                                             class="form-control @error('core_competency') is-invalid @enderror"
                                             id="core_competency" name="core_competency"
-                                            value="{{ $staff->core_competency }}">
+                                            value="{{ old('core_competency') ?? $staff->core_competency }}">
                                         @error('core_competency')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -137,7 +138,8 @@
                                         <label for="phone"
                                             class="form-label">{{ __('No. Telepon') }}</label>
                                         <input type="tel" class="form-control @error('phone') is-invalid @enderror"
-                                            id="phone" name="phone" value="{{ $staff->phone }}">
+                                            id="phone" name="phone"
+                                            value="{{ old('phone') ?? $staff->phone }}">
                                         @error('phone')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -148,7 +150,8 @@
                                         <label for="email"
                                             class="form-label">{{ __('Email') }}</label>
                                         <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                            id="email" name="email" value="{{ $staff->email }}">
+                                            id="email" name="email"
+                                            value="{{ old('email') ?? $staff->email }}">
                                         @error('email')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
