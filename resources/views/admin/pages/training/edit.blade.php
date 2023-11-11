@@ -32,7 +32,8 @@
                         <label for="trainingName">Nama Event</label>
                         <input name="name" type="text"
                             class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                            id="trainingName" aria-describedby="name" value="{{ $training->name }}">
+                            id="trainingName" aria-describedby="name"
+                            value="{{ old('name')??$training->name }}">
                         <small class="invalid-feedback">
                             {{ $errors->first('name') }}
                         </small>
@@ -41,7 +42,7 @@
                         <label for="trainingName">Banner Event</label>
                         <input name="image" type="file"
                             class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}"
-                            id="trainingImage" value="{{ old('image') }}">
+                            id="trainingImage">
                         <small class="invalid-feedback">
                             {{ $errors->first('image') }}
                         </small>
@@ -50,7 +51,8 @@
                         <label for="trainingDescription">Deskripsi</label>
                         <textarea name="description"
                             class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
-                            id="trainingDescription" rows="3">{{ $training->description }}</textarea>
+                            id="trainingDescription"
+                            rows="3">{{ old('description')??$training->description }}</textarea>
                         <small class="invalid-feedback">
                             {{ $errors->first('description') }}
                         </small>
@@ -59,7 +61,8 @@
                         <label for="trainingPlace">Tempat</label>
                         <input name="place" type="text"
                             class="form-control {{ $errors->has('place') ? 'is-invalid' : '' }}"
-                            id="trainingPlace" aria-describedby="place" value="{{ $training->place }}">
+                            id="trainingPlace" aria-describedby="place"
+                            value="{{ old('place')??$training->place }}">
                         <small class="invalid-feedback">
                             {{ $errors->first('place') }}
                         </small>
@@ -125,7 +128,8 @@
                         <small>(Kosongkan untuk kuota tak terbatas)</small>
                         <input name="quota" type="number"
                             class="form-control {{ $errors->has('quota') ? 'is-invalid' : '' }}"
-                            id="trainingQuota" aria-describedby="quota" value="{{ $training->quotaPerOrg->quota }}">
+                            id="trainingQuota" aria-describedby="quota"
+                            value="{{ old('quota')??$training->quotaPerOrg->quota }}">
                         <small class="invalid-feedback">
                             {{ $errors->first('quota') }}
                         </small>
@@ -161,7 +165,7 @@
                         <label for="trainingQuota">Peserta harus yang lahir sebelum tanggal</label>
                         <input type="date" name="date_of_birth_requirement"
                             class="form-control {{ $errors->has('date_of_birth_requirement') ? 'is-invalid' : '' }}"
-                            value="{{ $training->date_of_birth_requirement }}">
+                            value="{{ old('date_of_birth_requirement')??$training->date_of_birth_requirement }}">
                         <small class="invalid-feedback">
                             {{ $errors->first('date_of_birth_requirement') }}
                         </small>
