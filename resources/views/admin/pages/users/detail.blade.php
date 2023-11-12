@@ -31,7 +31,7 @@
                                     <input type="text"
                                         class="form-control {{ $errors->has('institution_name') ? 'is-invalid' : '' }}"
                                         id="institution-name" name="institution_name"
-                                        value="{{ $user->userProfile->institution_name }}">
+                                        value="{{ old('institution_name')??$user->userProfile->institution_name }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('institution_name') }}
                                     </small>
@@ -43,7 +43,7 @@
                                     <input type="text"
                                         class="form-control {{ $errors->has('nspq_number') ? 'is-invalid' : '' }}"
                                         id="nspq_number" name="nspq_number"
-                                        value="{{ $user->userProfile->nspq_number }}">
+                                        value="{{ old('nspq_number')??$user->userProfile->nspq_number }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('nspq_number') }}
                                     </small>
@@ -58,7 +58,7 @@
                                         class="form-control
                                         {{ $errors->has('supervisory_institution_name') ? 'is-invalid' : '' }}"
                                         id="supervisory_institution_name" name="supervisory_institution_name"
-                                        value="{{ $user->userProfile->supervisory_institution_name }}">
+                                        value="{{ old('supervisory_institution_name')??$user->userProfile->supervisory_institution_name }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('supervisory_institution_name') }}
                                     </small>
@@ -72,7 +72,7 @@
                                     <input type="text"
                                         class="form-control {{ $errors->has('years_of_establishment') ? 'is-invalid' : '' }}"
                                         id="years_of_establishment" name="years_of_establishment"
-                                        value="{{ $user->userProfile->years_of_establishment }}">
+                                        value="{{ old('years_of_establishment')??$user->userProfile->years_of_establishment }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('years_of_establishment') }}
                                     </small>
@@ -82,7 +82,7 @@
                                 <label for="address" class="col-sm-4 col-form-label">Alamat</label>
                                 <div class="col-sm-8">
                                     <textarea name="address" id="address" cols="5" rows="5"
-                                        class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}">{{ $user->userProfile->address }}</textarea>
+                                        class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}">{{ old('address')??$user->userProfile->address }}</textarea>
                                     <small class="invalid-feedback">
                                         {{ $errors->first('address') }}
                                     </small>
@@ -112,7 +112,7 @@
                                     <input type="text"
                                         class="form-control {{ $errors->has('postal_code') ? 'is-invalid' : '' }}"
                                         id="postal_code" name="postal_code"
-                                        value="{{ $user->userProfile->postal_code }}">
+                                        value="{{ old('postal_code')??$user->userProfile->postal_code }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('postal_code') }}
                                     </small>
@@ -124,7 +124,7 @@
                                     <input type="text"
                                         class="form-control {{ $errors->has('phone_number') ? 'is-invalid' : '' }}"
                                         id="phone_number" name="phone_number"
-                                        value="{{ $user->userProfile->phone_number }}">
+                                        value="{{ old('phone_number')??$user->userProfile->phone_number }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('phone_number') }}
                                     </small>
@@ -135,7 +135,8 @@
                                 <div class="col-sm-8">
                                     <input type="text"
                                         class="form-control {{ $errors->has('facebook') ? 'is-invalid' : '' }}"
-                                        id="facebook" name="facebook" value="{{ $user->userProfile->facebook }}">
+                                        id="facebook" name="facebook"
+                                        value="{{ old('facebook')??$user->userProfile->facebook }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('facebook') }}
                                     </small>
@@ -146,7 +147,8 @@
                                 <div class="col-sm-8">
                                     <input type="text"
                                         class="form-control {{ $errors->has('instagram') ? 'is-invalid' : '' }}"
-                                        id="instagram" name="instagram" value="{{ $user->userProfile->instagram }}">
+                                        id="instagram" name="instagram"
+                                        value="{{ old('instagram')??$user->userProfile->instagram }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('instagram') }}
                                     </small>
@@ -157,7 +159,8 @@
                                 <div class="col-sm-8">
                                     <input type="text"
                                         class="form-control {{ $errors->has('twitter') ? 'is-invalid' : '' }}"
-                                        id="twitter" name="twitter" value="{{ $user->userProfile->twitter }}">
+                                        id="twitter" name="twitter"
+                                        value="{{ old('twitter')??$user->userProfile->twitter }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('twitter') }}
                                     </small>
@@ -168,7 +171,8 @@
                                 <div class="col-sm-8">
                                     <input type="text"
                                         class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}"
-                                        id="website" name="website" value="{{ $user->userProfile->website }}">
+                                        id="website" name="website"
+                                        value="{{ old('website')??$user->userProfile->website }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('website') }}
                                     </small>
@@ -179,7 +183,8 @@
                                 <div class="col-sm-8">
                                     <input type="text"
                                         class="form-control {{ $errors->has('youtube') ? 'is-invalid' : '' }}"
-                                        id="youtube" name="youtube" value="{{ $user->userProfile->youtube }}">
+                                        id="youtube" name="youtube"
+                                        value="{{ old('youtube')??$user->userProfile->youtube }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('youtube') }}
                                     </small>
@@ -190,7 +195,8 @@
                                 <div class="col-sm-8">
                                     <input type="text"
                                         class="form-control {{ $errors->has('tiktok') ? 'is-invalid' : '' }}"
-                                        id="tiktok" name="tiktok" value="{{ $user->userProfile->tiktok }}">
+                                        id="tiktok" name="tiktok"
+                                        value="{{ old('tiktok')??$user->userProfile->tiktok }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('tiktok') }}
                                     </small>
@@ -202,7 +208,7 @@
                                     <input type="text"
                                         class="form-control {{ $errors->has('gmap_address') ? 'is-invalid' : '' }}"
                                         id="gmap_address" name="gmap_address"
-                                        value="{{ $user->userProfile->gmap_address }}">
+                                        value="{{ old('gmap_address')??$user->userProfile->gmap_address }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('gmap_address') }}
                                     </small>
@@ -213,7 +219,8 @@
                                 <div class="col-sm-8">
                                     <input type="text"
                                         class="form-control {{ $errors->has('sk_number') ? 'is-invalid' : '' }}"
-                                        id="sk_number" name="sk_number" value="{{ $user->userProfile->sk_number }}">
+                                        id="sk_number" name="sk_number"
+                                        value="{{ old('sk_number')??$user->userProfile->sk_number }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('sk_number') }}
                                     </small>
@@ -226,7 +233,7 @@
                                     <input type="date"
                                         class="form-control {{ $errors->has('sk_number_starting_date') ? 'is-invalid' : '' }}"
                                         id="sk_number_starting_date" name="sk_number_starting_date"
-                                        value="{{ $user->userProfile->sk_number_starting_date }}">
+                                        value="{{ old('sk_number_starting_date')??$user->userProfile->sk_number_starting_date }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('sk_number_starting_date') }}
                                     </small>
@@ -240,7 +247,7 @@
                                     <input type="date"
                                         class="form-control {{ $errors->has('sk_number_ending_date') ? 'is-invalid' : '' }}"
                                         id="sk_number_ending_date" name="sk_number_ending_date"
-                                        value="{{ $user->userProfile->sk_number_ending_date }}">
+                                        value="{{ old('sk_number_ending_date')??$user->userProfile->sk_number_ending_date }}">
                                     <small class="invalid-feedback">
                                         {{ $errors->first('sk_number_ending_date') }}
                                     </small>

@@ -25,15 +25,52 @@ class HomeController extends Controller
 
         $villages = Village::all();
 
+        $user = User::find(Auth::user()->id);
+
+        $columnsToCheck = [
+            'institution_name',
+            'nspq_number',
+            'supervisory_institution_name',
+            'years_of_establishment',
+
+            #Lokasi Lembaga
+            'address',
+            'village',
+            'postal_code',
+            'phone_number',
+            'facebook',
+            'instagram',
+            'twitter',
+            'website',
+            'youtube',
+            'tiktok',
+            'gmap_address',
+
+            #Perijinan
+            'sk_number',
+            'sk_number_starting_date',
+            'sk_number_ending_date',
+            'sk_file',
+        ];
+
+        $completeProfileNotification = false;
+
+        foreach ($columnsToCheck as $column) {
+            if (empty($user->userProfile->{$column})) {
+                $completeProfileNotification = true;
+                break;
+            }
+        }
+
         foreach ($villages as $village) {
             $numberOfUsersPerVillages[] = [
                 'village' => $village->village_name,
-                'users' => $village->userProfile->where('user.verification_status', '=', 1)->count()
+                'users' => $village->userProfile->where('user.verification_status', '=', 1)->count(),
             ];
         }
 
         return view('user.pages.home')
-            ->with(compact('trainings', 'categories', 'numberOfUsersPerVillages'));
+            ->with(compact('trainings', 'categories', 'numberOfUsersPerVillages', 'completeProfileNotification'));
     }
 
     public function organizationList()
