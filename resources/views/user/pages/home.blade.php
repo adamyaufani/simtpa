@@ -1,11 +1,11 @@
 <x-user.layout>
     <div class="row gx-5">
 
-        @if($completeProfileNotification == true)
+        {{-- @if($completeProfileNotification == true)
             <div class="alert alert-warning" role="alert">
                 Mohon lengkapi data profil anda.
             </div>
-        @endif
+        @endif --}}
 
         <div class="col-lg-8 offset-lg-2 mb-5 mb-lg-0">
             <div class="card mb-5">
