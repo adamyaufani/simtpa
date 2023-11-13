@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\TrainingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LetterController;
+use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Users\CertificateController;
 use App\Http\Controllers\FileController;
@@ -229,6 +230,11 @@ Route::prefix('admin')->group(function () {
             Route::get('/{id}', [LetterController::class, 'show'])->name('admin.detail_letter');
             Route::put('/{id}/update', [LetterController::class, 'update'])->name('admin.update_letter');
             Route::delete('/{id}', [LetterController::class, 'destroy'])->name('admin.delete_letter');
+        });
+
+        Route::prefix('santri')->group(function () {
+            Route::get('/', [AdminStudentController::class, 'index'])->name('admin.student_index');
+            Route::get('/{id}', [AdminStudentController::class, 'show'])->name('admin.detail_student');
         });
     });
 });

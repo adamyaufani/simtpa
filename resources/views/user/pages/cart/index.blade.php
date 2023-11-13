@@ -21,6 +21,15 @@
 
                                     <div class="item-name">
                                         <strong>{{ $order['training']['name'] }}</strong>
+                                        <br>
+                                        <ul>
+                                            @foreach(
+                                                $order['items'] as $item)
+                                                <li class="list-group-item">
+                                                    {{ $item['student']['name'] }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                         <div class="d-flex justify-content-between">
                                             <p class="fs-5 mb-0"><span class="">Rp</span>
                                                 <span>

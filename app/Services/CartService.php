@@ -14,7 +14,8 @@ class CartService
         $items = Cart::where('user_id', $userId)
             ->with([
                 'training',
-                'items'
+                'items',
+                'items.student'
             ])
             ->get();
 
@@ -25,9 +26,11 @@ class CartService
 
         $totalPrice = collect($data)->pluck('price')->flatten()->sum();
 
+        // dd($data);
+
         $finalData = [
             'items' => $data,
-            'total_price' => $totalPrice
+            'total_price' => $totalPrice,
         ];
 
         return $finalData;
