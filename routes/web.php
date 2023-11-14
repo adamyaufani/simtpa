@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\TrainingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LetterController;
+use App\Http\Controllers\Admin\StaffController as AdminStaffController;
 use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Users\CertificateController;
@@ -232,9 +233,16 @@ Route::prefix('admin')->group(function () {
             Route::delete('/{id}', [LetterController::class, 'destroy'])->name('admin.delete_letter');
         });
 
-        Route::prefix('santri')->group(function () {
-            Route::get('/', [AdminStudentController::class, 'index'])->name('admin.student_index');
-            Route::get('/{id}', [AdminStudentController::class, 'show'])->name('admin.detail_student');
+        Route::prefix('tpa')->group(function () {
+            Route::prefix('santri')->group(function () {
+                Route::get('/', [AdminStudentController::class, 'index'])->name('admin.student_index');
+                Route::get('/{id}', [AdminStudentController::class, 'show'])->name('admin.detail_student');
+            });
+
+            Route::prefix('pengurus')->group(function () {
+                Route::get('/', [AdminStaffController::class, 'index'])->name('admin.staff_index');
+                Route::get('/{id}', [AdminStaffController::class, 'show'])->name('admin.detail_staff');
+            });
         });
     });
 });
