@@ -104,13 +104,20 @@
     <hr class="sidebar-divider">
 
     <div class="sidebar-heading">
-        Santri
+        TPA
     </div>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.student_index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Santri</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.staff_index') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Staff</span>
         </a>
     </li>
 
