@@ -103,6 +103,19 @@
 
     <hr class="sidebar-divider">
 
+    <div class="sidebar-heading">
+        Santri
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.student_index') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Santri</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+
     {{-- <div class="sidebar-heading">
         Pengaturan
     </div>
