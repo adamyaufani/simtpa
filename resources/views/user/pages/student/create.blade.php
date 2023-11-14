@@ -72,7 +72,7 @@
 
                         {{-- Address --}}
                         <div class="mb-3">
-                            <label for="address" class="form-label">{{ __('Alamat *') }}</label>
+                            <label for="address" class="form-label">{{ __('Alamat ') }}</label>
                             <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" rows="3">{{ old('address') }}</textarea>
                             @error('address')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -81,7 +81,7 @@
 
                         {{-- Father's Name --}}
                         <div class="mb-3">
-                            <label for="father_name" class="form-label">{{ __('Nama Ayah *') }}</label>
+                            <label for="father_name" class="form-label">{{ __('Nama Ayah ') }}</label>
                             <input type="text" class="form-control @error('father_name') is-invalid @enderror"
                                 id="father_name" name="father_name" value="{{ old('father_name') }}">
                             @error('father_name')
@@ -91,7 +91,7 @@
 
                         {{-- Mother's Name --}}
                         <div class="mb-3">
-                            <label for="mother_name" class="form-label">{{ __('Nama Ibu *') }}</label>
+                            <label for="mother_name" class="form-label">{{ __('Nama Ibu ') }}</label>
                             <input type="text" class="form-control @error('mother_name') is-invalid @enderror"
                                 id="mother_name" name="mother_name" value="{{ old('mother_name') }}">
                             @error('mother_name')
@@ -101,7 +101,7 @@
 
                         {{-- Phone --}}
                         <div class="mb-3">
-                            <label for="phone" class="form-label">{{ __('Nomor Telepon/Whatsapp *') }} <small class="text-secondary">Contoh : 628561234567, tidak perlu gunakan +, dan tidak perlu gunakan pemisah (- atau spasi)</small></label>
+                            <label for="phone" class="form-label">{{ __('Nomor Telepon/Whatsapp ') }} <small class="text-secondary">Contoh : 628561234567, tidak perlu gunakan +, dan tidak perlu gunakan pemisah (- atau spasi)</small></label>
                             <input type="tel" class="form-control @error('phone') is-invalid @enderror"
                                 id="phone" name="phone" value="{{ old('phone') }}">
                             @error('phone')
@@ -131,7 +131,7 @@
 
                         {{-- Status --}}
                         <div class="mb-3">
-                            <label for="status" class="form-label">{{ __('Status') }}</label>
+                            <label for="status" class="form-label">{{ __('Status Lulus') }}</label>
                             <select class="form-select @error('status') is-invalid @enderror" id="status"
                                 name="status">
                                 <option value="belum lulus" {{ old('status') == 'belum lulus' ? 'selected' : '' }}>

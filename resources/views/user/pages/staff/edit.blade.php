@@ -5,6 +5,11 @@
             <h4 class="mb-3">Edit Data Staff</h4>
             <p class="mb-3">Yang diberi tanda * (bintang) wajib diisi.</p>
         </div>
+        @if (session()->has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session()->get('success') }}
+            </div>
+        @endif
 
         <div class="card">
             <div class="card-body">
@@ -35,7 +40,7 @@
                         @error('gender')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                    </div>                  
+                    </div>
 
                     {{-- Last Formal Education --}}
                     <div class="mb-3">
@@ -82,7 +87,9 @@
 
                     {{-- Phone --}}
                     <div class="mb-3">
-                        <label for="phone" class="form-label">{{ __('No. Telepon *') }} <small class="text-secondary">Contoh : 628561234567, tidak perlu gunakan +, dan tidak perlu gunakan pemisah (- atau spasi)</small></label>
+                        <label for="phone" class="form-label">{{ __('No. Telepon *') }} <small
+                                class="text-secondary">Contoh : 628561234567, tidak perlu gunakan +, dan tidak perlu
+                                gunakan pemisah (- atau spasi)</small></label>
                         <input type="tel" class="form-control @error('phone') is-invalid @enderror" id="phone"
                             name="phone" value="{{ old('phone') ?? $staff->phone }}">
                         @error('phone')

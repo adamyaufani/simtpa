@@ -28,7 +28,7 @@ class UpdateUserProfileRequest extends FormRequest
             'institution_name' => ['required', 'string'],
             'nspq_number' => ['nullable', 'string'],
             // 'supervisory_institution_name' => ['required', 'string'],
-            'years_of_establishment' => ['required', 'string'],
+            'years_of_establishment' => ['nullable', 'string'],
 
             #Lokasi Lembaga
             'address' => ['required', 'string'],
@@ -43,9 +43,9 @@ class UpdateUserProfileRequest extends FormRequest
             'social_media' => ['nullable', 'string'],
             'facebook' => ['nullable', 'string'],
             'instagram' => ['nullable', 'string'],
-            'twitter' => ['nullable', 'string'],
+            // 'twitter' => ['nullable', 'string'],
             'youtube' => ['nullable', 'string'],
-            'tiktok' => ['nullable', 'string'],
+            // 'tiktok' => ['nullable', 'string'],
             'website' => ['nullable', 'string'],
             'gmap_address' => ['nullable', 'string'],
 
@@ -69,10 +69,10 @@ class UpdateUserProfileRequest extends FormRequest
             'email.unique' => 'Email sudah terdaftar',
             'email.email' => 'Format penulisan email salah',
             'address.required' => 'Alamat wajib diisi',
-            'phone.required' => 'Telepon wajib diisi',
-            'phone.unique' => 'Nomor telepon sudah terdaftar',
-            'phone.min' => 'Nomor telepon terlalu pendek',
-            'phone.regex' => 'Format nomor telepon tidak sesuai contoh, yang benar: 6285625674567',
+            'phone_number.required' => 'Telepon wajib diisi',
+            'phone_number.unique' => 'Nomor telepon sudah terdaftar',
+            'phone_number.min' => 'Nomor telepon terlalu pendek',
+            'phone_number.regex' => 'Format nomor telepon tidak sesuai contoh, yang benar: 6285625674567',
             'institution_name.required' => 'Nama TPA wajib diisi',
             'village.required' => 'Kalurahan wajib diisi',            
         ];
