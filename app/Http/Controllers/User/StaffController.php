@@ -76,6 +76,10 @@ class StaffController extends Controller
 
     public function update($id, StoreNewStaffRequest $request)
     {
+        $staff = Staff::find($id);
+        if ($staff->user_id != Auth::user()->id) {
+            abort(403);
+        }
         StaffService::updateStaff($request->validated(), $id, Auth::user()->id);
 
         return redirect()->back()->with('success', 'Berhasil mengubah data staff');
