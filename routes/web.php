@@ -237,11 +237,15 @@ Route::prefix('admin')->group(function () {
             Route::prefix('santri')->group(function () {
                 Route::get('/', [AdminStudentController::class, 'index'])->name('admin.student_index');
                 Route::get('/{id}', [AdminStudentController::class, 'show'])->name('admin.detail_student');
+                Route::put('{id}/update', [AdminStudentController::class, 'update'])->name('admin.update_student');
+                Route::delete('{id}/delete', [AdminStudentController::class, 'destroy'])->name('admin.delete_student');
             });
 
             Route::prefix('pengurus')->group(function () {
                 Route::get('/', [AdminStaffController::class, 'index'])->name('admin.staff_index');
                 Route::get('/{id}', [AdminStaffController::class, 'show'])->name('admin.detail_staff');
+                Route::put('{id}/update', [AdminStaffController::class, 'update'])->name('admin.update_staff');
+                Route::delete('{id}/delete', [AdminStaffController::class, 'destroy'])->name('admin.delete_staff');
             });
         });
     });

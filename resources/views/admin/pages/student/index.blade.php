@@ -23,8 +23,9 @@
                 <thead>
                     <tr>
                         <th style="width: 5%"></th>
-                        <th style="width: 50%">Nama Lengkap</th>
+                        <th style="width: 45%">Nama Lengkap</th>
                         <th style="width: 45%">Asal TPA</th>
+                        <th style="width: 5%"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +38,16 @@
                                 </a>
                             </td>
                             <td>{{ $student->user->userProfile->institution_name }}</td>
+                            <td>
+                                <form action="{{ route('admin.delete_student',$student->id) }}"
+                                    method="POST" onsubmit="return confirmDelete()">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        hapus
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -52,11 +63,9 @@
         <!-- Page level custom scripts -->
         <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
         <script>
-            function confirmSubmit() {
-                var confirmSubmission = confirm(
-                    "Anda yakin ingin menghapus surat ini? Surat yang sudah dihapus tidak dapat dikembalikan dengan cara apapun."
-                );
-                return confirmSubmission;
+            function confirmDelete() {
+                // Display the alert message
+                return confirm("Hapus data ini? Data yang sudah dihapus tidak bisa dikembalikan dengan cara apapun.");
             }
 
             const table = new DataTable('#dataTable');

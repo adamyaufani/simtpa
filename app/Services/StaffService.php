@@ -21,10 +21,10 @@ class StaffService
         });
     }
 
-    public static function updateStaff($request, $id, $userId)
+    public static function updateStaff($request, $id)
     {
-        DB::transaction(function () use ($request, $id, $userId) {
-            Staff::where(['id' => $id, 'user_id' => $userId])->update($request);
+        DB::transaction(function () use ($request, $id) {
+            Staff::where(['id' => $id])->update($request);
         });
     }
 }
