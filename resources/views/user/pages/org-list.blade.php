@@ -24,7 +24,12 @@
                                     @foreach($organizations as $org)
                                         <tr>
                                             <td></td>
-                                            <td>{{ $org->userProfile->institution_name }}</td>
+                                            <td>
+                                                <a
+                                                    href="{{ route('public.detail_org', $org->id) }}">
+                                                    {{ $org->userProfile->institution_name }}
+                                                </a>
+                                            </td>
                                             <td>{{ $org->userProfile->villageDetail->village_name }}</td>
                                             <td>{{ $org->userProfile->address }}</td>
                                         </tr>

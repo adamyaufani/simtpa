@@ -84,6 +84,13 @@ class HomeController extends Controller
             ->with(compact('organizations'));
     }
 
+    public function organizationDetail($id)
+    {
+        $org = User::where(['id' => $id, 'verification_status' => 1])->firstOrFail();
+        return view('user.pages.org-detail')
+            ->with(compact('org'));
+    }
+
     public function charter()
     {
         $user = User::find(Auth::user()->id);
