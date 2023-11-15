@@ -12,7 +12,7 @@
                                 class="align-self-start border border-3 border-white rounded" />
                         </div>
                         <div class="flex-grow-1 ms-3">
-                            <h1 class="h3 text-white">{{ $org->userProfile->institution_name }}</h1>
+                            <h1 class="h3 text-white">TPA {{ $org->userProfile->institution_name }}</h1>
                             <p class="text-white fs-6 mb-1"><i class="bi bi-geo"></i> {{ $org->userProfile->address }},
                                 {{ $org->userProfile->villageDetail->village_name }}, Kasihan, Bantul, DI. Yogyakarta.
                                 {{ $org->userProfile->postal_code }}</p>

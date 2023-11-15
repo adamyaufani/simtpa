@@ -30,23 +30,23 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.training_index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-calendar-check"></i>
             <span>Daftar Event</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.order_index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Pembayaran Event</span></a>
+            <i class="fas fa-fw fa-cash-register"></i>
+            <span>Order</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.training_participants') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-address-card"></i>
             <span>Peserta Event</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.cart_index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Keranjang User</span></a>
+            <i class="fas fa-fw fa-cart-shopping"></i>
+            <span>Keranjang</span></a>
     </li>
 
     <!-- Divider -->
@@ -59,8 +59,8 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.user_index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Daftar Pengguna</span>
+            <i class="fas fa-fw fa-mosque"></i>
+            <span>Daftar TPA</span>
         </a>
     </li>
 
@@ -74,7 +74,7 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.agreement_index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-signature"></i>
             <span>Persetujuan</span>
         </a>
     </li>
@@ -90,13 +90,13 @@
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.letter_index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-envelope"></i>
             <span>Daftar Surat</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.create_letter') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-plus"></i>
             <span>Buat Surat Baru</span>
         </a>
     </li>
@@ -109,14 +109,14 @@
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.student_index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-user-graduate"></i>
             <span>Santri</span>
         </a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.staff_index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-user-tie"></i>
             <span>Staff</span>
         </a>
     </li>

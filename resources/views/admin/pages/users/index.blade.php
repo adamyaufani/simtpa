@@ -14,7 +14,7 @@
     @endpush
     <x-slot:title>
         <div class="d-flex align-items-center mb-4">
-            <h1 class="h3 mb-0 mr-2 text-gray-800">Daftar Pengguna</h1>
+            <h1 class="h3 mb-0 mr-2 text-gray-800">Daftar TPA</h1>
             <a href="{{ route('admin.create_new_user') }}" class="btn btn-sm btn-primary">
                 Tambah
             </a>

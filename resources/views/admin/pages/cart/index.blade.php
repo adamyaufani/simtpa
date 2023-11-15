@@ -41,7 +41,7 @@
                 <table id="dataTable" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th style="width: 25%">Nama Pengguna</th>
+                            <th style="width: 25%">TPA</th>
                             <th style="width: 25%">Event & Peserta</th>
                         </tr>
                     </thead>

@@ -8,7 +8,7 @@
 
     <x-slot:title>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Orders</h1>
+            <h1 class="h3 mb-0 text-gray-800">Order</h1>
             {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
             </a> --}}
@@ -42,7 +42,7 @@
                     <thead>
                         <tr>
                             <th style="width: 5%">No. Pendaftaran</th>
-                            <th style="width: 25%">Nama Pengguna</th>
+                            <th style="width: 25%">Nama TPA</th>
                             <th style="width: 25%">Event & Peserta</th>
                             <th style="width: 20%">Total Pembayaran</th>
                             <th style="width: 5%">Opsi</th>
