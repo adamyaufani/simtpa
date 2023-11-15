@@ -1,57 +1,68 @@
 <x-user.layout>
 
-    @push('css')
-        {{-- <link rel="stylesheet" href="{{ asset('css/datatable-bootstrap-5.min.css') }}">
-        --}}
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-    @endpush
-    <section class="py-5" id="features">
-        <div class="container px-5 my-5">
-            <div class="row gx-5">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            Nama TPA
-                            <p>{{ $org->userProfile->institution_name }}</p>
-                            Nomor NSPQ
-                            <p>{{ $org->userProfile->nspq_number }}</p>
-                            Nama Organisasi Pembimbing
-                            <p>{{ $org->userProfile->supervisory_institution_name }}</p>
-                            Tahun Berdiri
-                            <p>{{ $org->userProfile->years_of_establishment }}</p>
-                            Alamat
-                            <p>{{ $org->userProfile->address }}</p>
-                            Kelurahan
-                            <p>{{ $org->userProfile->villageDetail->village_name }}</p>
-                            Kode Pos
-                            <p>{{ $org->userProfile->postal_code }}</p>
-                            Nomor Telepon TPA
-                            <p>{{ $org->userProfile->phone_number }}</p>
-                            Facebook
-                            <p>{{ $org->userProfile->facebook }}</p>
-                            Instagram
-                            <p>{{ $org->userProfile->instagram }}</p>
-                            Twitter
-                            <p>{{ $org->userProfile->twitter }}</p>
-                            Website
-                            <p>{{ $org->userProfile->website }}</p>
-                            Youtube
-                            <p>{{ $org->userProfile->youtube }}</p>
-                            TIktok
-                            <p>{{ $org->userProfile->tiktok }}</p>
-                            Alamat google map
-                            <p>{{ $org->userProfile->gmap_address }}</p>
-                            Nomor SK
-                            <p>{{ $org->userProfile->sk_number }}</p>
-                            Tanggal Mulai Nomor SK
-                            <p>{{ $org->userProfile->sk_number_starting_date }}</p>
-                            Tanggal Berakhir Nomor SK
-                            <p>{{ $org->userProfile->sk_number_ending_date }}</p>
+
+    <div class="row gx-5">
+        <div class="col-12">
+            <div class="card mb-4  bg-secondary bg-gradient-200">
+                <div class="card-body p-5">
+
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <img src="{{ url('img/logo-badko.png') }}" width="60"
+                                class="align-self-start border border-3 border-white rounded" />
                         </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h1 class="h3 text-white">{{ $org->userProfile->institution_name }}</h1>
+                            <p class="text-white fs-6 mb-1"><i class="bi bi-geo"></i> {{ $org->userProfile->address }},
+                                {{ $org->userProfile->villageDetail->village_name }}, Kasihan, Bantul, DI. Yogyakarta.
+                                {{ $org->userProfile->postal_code }}</p>
+                            <p class="text-white fs-6 mb-1"><i class="bi bi-whatsapp"></i>
+                                +{{ $org->userProfile->phone_number }}</p>
+                            <p class="text-white fs-6"><i class="bi bi-geo-alt"></i> <a
+                                    href="{{ $org->userProfile->gmap_address }}" class="text-white">Google Map</a></p>
+                            <div class="d-flex gap-1 justify-content-end">
+                                <a href="{{ $org->userProfile->facebook }}" class="btn btn-sm btn-outline-info"><i
+                                        class="bi bi-facebook"></i></a>
+                                <a href="{{ $org->userProfile->instagram }}" class="btn btn-sm btn-outline-light"><i
+                                        class="bi bi-instagram"></i></a>
+                                <a href="{{ $org->userProfile->youtube }}" class="btn btn-sm btn-outline-danger"><i
+                                        class="bi bi-youtube"></i></a>
+                                <a href="{{ $org->userProfile->tiktok }}" class="btn btn-sm btn-outline-dark"><i
+                                        class="bi bi-tiktok"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body p-5">
+                    <div class="d-flex justify-content-center gap-5">
+                        <div class="card w-25 bg-info">
+                            <div class="card-body d-flex flex-row align-items-center">
+                                <p class="flex-fill">Staf Pengajar</p>
+                                <p class="fs-1">5</p>
+                            </div>
+                        </div>
+                        <div class="card w-25  bg-success">
+                            <div class="card-body d-flex flex-row align-items-center">
+                                <p class="flex-fill">Santri Putra</p>
+                                <p class="fs-1">15</p>
+                            </div>
+                        </div>
+                        <div class="card w-25  bg-warning">
+                            <div class="card-body d-flex flex-row align-items-center">
+                                <p class="flex-fill">Santri Putri</p>
+                                <p class="fs-1">15</p>
+                            </div>
+                        </div>
+                       
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
 
 </x-user.layout>
