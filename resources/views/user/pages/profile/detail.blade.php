@@ -276,6 +276,56 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="card mb-3">
+                        <div class="col-12">
+                            <div class="card-header">
+                                <h6>
+                                    Informasi Tambahan
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <label for="organization_building_photo" class="col-sm-2 col-form-label">
+                                        Foto Gedung Organisasi
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="file" name="organization_building_photo"
+                                            class="form-control {{ $errors->has('organization_building_photo') ? 'is-invalid' : '' }}"
+                                            id="organization_building_photo">
+                                        <span class="invalid-feedback">
+                                            {{ $errors->first('organization_building_photo') }}
+                                        </span>
+
+                                        @if($userProfile->organization_building_photo)
+                                            <img class="mt-3"
+                                                src="{{ route('user.images').'?q='.$userProfile->organization_building_photo }}"
+                                                alt="">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <label for="organization_logo" class="col-sm-2 col-form-label">
+                                        Logo Organisasi
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="file" name="organization_logo"
+                                            class="form-control {{ $errors->has('organization_logo') ? 'is-invalid' : '' }}"
+                                            id="organization_logo">
+                                        <span class="invalid-feedback">
+                                            {{ $errors->first('organization_logo') }}
+                                        </span>
+
+                                        @if($userProfile->organization_logo)
+                                            <img class="mt-3"
+                                                src="{{ route('user.images').'?q='.$userProfile->organization_logo }}"
+                                                alt="">
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="d-grid gap-2">
                         <button class="btn btn-success" type="submit">Simpan</button>
                     </div>
