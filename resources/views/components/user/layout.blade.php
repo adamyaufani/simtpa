@@ -29,6 +29,22 @@
         gtag('config', 'G-KMVG0EYDWV');
     </script>
 
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6555aa25958be55aeab01514/1hfba1943';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -103,8 +119,7 @@
                                     {{ auth()->user()->userProfile->institution_name }}</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                                     <li>
-                                        <a class="dropdown-item"
-                                            href="{{ route('user.letter_index') }}">
+                                        <a class="dropdown-item" href="{{ route('user.letter_index') }}">
                                             Surat
                                         </a>
                                     </li>
