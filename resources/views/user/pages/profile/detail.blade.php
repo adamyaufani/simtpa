@@ -203,13 +203,13 @@
             <div class="col-12">
                 <div class="card-header">
                     <h6>
-                        Informasi Tambahan
+                        Gambar
                     </h6>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <label for="organization_building_photo" class="col-sm-2 col-form-label">
-                            Foto Gedung Organisasi
+                            Foto TPA
                         </label>
                         <div class="col-sm-10">
                             <input type="file" name="organization_building_photo"
@@ -228,7 +228,7 @@
                     </div>
                     <div class="row mt-3">
                         <label for="organization_logo" class="col-sm-2 col-form-label">
-                            Logo Organisasi
+                            Logo TPA
                         </label>
                         <div class="col-sm-10">
                             <input type="file" name="organization_logo"
