@@ -44,7 +44,14 @@
                         @foreach($participants as $participant)
                             <tr>
                                 <td>{{ $participant->order->training->name }}</td>
-                                <td>{{ $participant->student->name }}</td>
+                                <td><span>
+                                    <strong>Nama : </strong>
+                                    <a
+                                        href="{{ route('admin.detail_student',$participant->student->id) }}">
+                                        {{ $participant->student->name }}
+                                    </a>
+                                </span>
+                                </td>
                                 <td>{{ $participant->student->user->userProfile->institution_name }}</td>
                             </tr>
                         @endforeach

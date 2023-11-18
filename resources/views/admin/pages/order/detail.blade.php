@@ -11,6 +11,11 @@
     <div class="col-12">
         <section id="features">
             <div class="container my-5">
+                @if(session()->has('success'))
+                    <div class="alert alert-primary" role="alert">
+                        {{ session()->get('success') }}
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-body row">
                         <div class="col-6">

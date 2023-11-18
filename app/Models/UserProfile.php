@@ -31,7 +31,9 @@ class UserProfile extends Model
         'sk_number',
         'sk_number_starting_date',
         'sk_number_ending_date',
-        'sk_file'
+        'sk_file',
+        'organization_building_photo',
+        'organization_logo',
     ];
 
     public function user()
@@ -45,6 +47,24 @@ class UserProfile extends Model
     }
 
     protected function skFile(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                return $value !== null ? Crypt::encryptString($value) : $value;
+            }
+        );
+    }
+
+    protected function organizationBuildingPhoto(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                return $value !== null ? Crypt::encryptString($value) : $value;
+            }
+        );
+    }
+
+    protected function organizationLogo(): Attribute
     {
         return Attribute::make(
             get: function ($value) {

@@ -52,6 +52,42 @@ class ProfileController extends Controller
             ]);
         }
 
+        if ($request->hasFile('organization_building_photo')) {
+            if ($userProfile->organization_building_photo != null) {
+                if (Storage::exists(Crypt::decryptString($userProfile->organization_building_photo))) {
+                    Storage::delete(Crypt::decryptString($userProfile->organization_building_photo));
+                }
+            }
+
+            $file = $request->file('organization_building_photo');
+            $originalFileName = $file->getClientOriginalName();
+            $userId = Auth::user()->id;
+
+            $filePath = $file->storeAs("users/file_sk/{$userId}", $originalFileName);
+
+            $userProfile->update([
+                'organization_building_photo' => $filePath
+            ]);
+        }
+
+        if ($request->hasFile('organization_logo')) {
+            if ($userProfile->organization_logo != null) {
+                if (Storage::exists(Crypt::decryptString($userProfile->organization_logo))) {
+                    Storage::delete(Crypt::decryptString($userProfile->organization_logo));
+                }
+            }
+
+            $file = $request->file('organization_logo');
+            $originalFileName = $file->getClientOriginalName();
+            $userId = Auth::user()->id;
+
+            $filePath = $file->storeAs("users/file_sk/{$userId}", $originalFileName);
+
+            $userProfile->update([
+                'organization_logo' => $filePath
+            ]);
+        }
+
         return redirect()->route('user.profile')->with('success', 'Berhasil mengubah data profil');
     }
 }

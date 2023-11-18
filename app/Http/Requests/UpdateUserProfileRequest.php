@@ -54,6 +54,10 @@ class UpdateUserProfileRequest extends FormRequest
             // 'sk_number_starting_date' => ['required', 'string'],
             // 'sk_number_ending_date' => ['required', 'string'],
             // 'sk_file' => ['image', 'mimes:jpeg,png,jpg,gif,svg'],
+
+             #Informasi Tambahan
+             'organization_building_photo' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'nullable'],
+             'organization_logo' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'nullable'],
         ];
     }
 

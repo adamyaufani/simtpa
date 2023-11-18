@@ -42,6 +42,10 @@ return new class extends Migration
             $table->date('sk_number_ending_date')->nullable();
             $table->text('sk_file')->nullable();
 
+            #Tambahan
+            $table->text('organization_building_photo')->nullable();
+            $table->text('organization_logo')->nullable();
+
             $table->timestamps();
         });
 

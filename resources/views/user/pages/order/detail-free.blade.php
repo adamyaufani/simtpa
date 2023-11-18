@@ -33,6 +33,10 @@
                         </div>
                         <div class="col-6">
                             <span>Total yang harus dibayarkan : <strong>gratis</strong> </span>
+                            <a href="{{ route('user.download_invoice',$data->id) }}"
+                                class="btn btn-sm btn-primary">
+                                Download Invoice
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -89,7 +89,8 @@ Route::middleware('auth.user')->group(function () {
             // Route::put('{id}/complete-order', [OrderController::class, 'storeCompletedOrder'])->name('user.store_completed_order');
             // Route::get('{id}/select-payment', [OrderController::class, 'selectPayment'])->name('user.select_order_payment');
             // Route::put('{id}/checkout', [OrderController::class, 'checkout'])->name('user.checkout_order');
-            Route::put('{id}/checkout', [OrderController::class, 'midtransCheckoutProcess'])->name('user.pay_order');
+            // Route::put('{id}/checkout', [OrderController::class, 'midtransCheckoutProcess'])->name('user.pay_order');
+            Route::get('{id}/download-invoice', [UserOrderController::class, 'downloadInvoice'])->name('user.download_invoice');
         });
         Route::prefix('certificates')->group(function () {
             Route::get('/', [CertificateController::class, 'index'])->name('user.certificate_index');
@@ -158,6 +159,7 @@ Route::prefix('admin')->group(function () {
     Route::post('login', [AuthController::class, 'authenticate'])->name('admin.login_attempt');
 
     Route::middleware('role.admin')->group(function () {
+        Route::get('admin-images', [FileController::class, 'trainingBanner'])->name('admin.images');
         Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 

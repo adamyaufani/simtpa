@@ -24,7 +24,7 @@ class StudentService
             if ($newRequest['birth_certificate'] != null) {
                 $file = $newRequest['birth_certificate'];
                 $originalName = $file->getClientOriginalName();
-                $path = $file->storeAs("users/birth_certificate/{$userId}", $originalName);
+                $path = $file->storeAs("users/birth_certificate/{$userId}/{$newStudent->id}", $originalName);
                 $newStudent->update(
                     [
                         'birth_certificate' => $path
@@ -47,7 +47,7 @@ class StudentService
 
                 $file = $request['birth_certificate'];
                 $originalName = $file->getClientOriginalName();
-                $path = $file->storeAs("users/birth_certificate/{$userId}", $originalName);
+                $path = $file->storeAs("users/birth_certificate/{$userId}/{$student->id}", $originalName);
                 $student->update(
                     [
                         'birth_certificate' => $path

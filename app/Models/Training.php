@@ -23,7 +23,7 @@ class Training extends Model
         'place',
         'type',
         'description',
-        'quota',
+        // 'quota',
         'image',
         'cost',
         'gender_requirement',

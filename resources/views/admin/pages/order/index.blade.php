@@ -68,8 +68,13 @@
                                                     {{ $order->training->name }}
                                                 </span><br>
                                                 <span class="text-dark">
-                                                    {{ $order->orderparticipants->count() }} peserta
-                                                </span><br>
+                                                    <ul>
+                                                        @foreach(
+                                                            $order->orderParticipants as $participant)
+                                                            <li>{{ $participant->student->name }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </span>
                                             @endforeach
                                         </div>
                                     </div>
