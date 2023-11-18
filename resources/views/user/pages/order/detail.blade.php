@@ -39,6 +39,12 @@
                                         Status Pembayaran
                                         :
                                         <x-user.order-status :id="$data->id" />
+                                        @if($data->status == 'Lunas')
+                                            <a href="{{ route('user.download_invoice',$data->id) }}"
+                                                class="badge bg-success">
+                                                Download Invoice
+                                            </a>
+                                        @endif
                                     </h6>
                                 </div>
                             </div>

@@ -15,7 +15,7 @@ use App\Services\TrainingService;
 use App\Services\TransactionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Arr;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Mail;
 
@@ -144,5 +144,26 @@ class OrderController extends Controller
                 'data' => $transaction,
                 // 'midtransClientKey' => "SB-Mid-client-NUHDTW6uipcvE7sz"
             ]);
+    }
+
+    public function downloadInvoice($id)
+    {
+        $transaction = TransactionService::transactionDetail($id);
+
+
+        if ($transaction->payment_amount > 0 && $transaction->payment_date == null) {
+            abort(403);
+        }
+
+        // dd($transaction);
+        // return view('user.pages.order.invoice')
+        //     ->with([
+        //         'data' => $transaction
+        //     ]);
+
+        $data = $transaction;
+        $pdf = PDF::loadView('user.pages.order.invoice', compact('data'));
+
+        return $pdf->download("invoice-{$transaction->id}.pdf");
     }
 }

@@ -83,9 +83,9 @@ class TrainingService
                     'image' => $fileLocation . $fileName
                 ]);
 
-                $training->update([
-                    'image' => $fileLocation . $fileName
-                ]);
+                // $training->update([
+                //     'image' => $fileLocation . $fileName
+                // ]);
             }
         });
     }

@@ -46,7 +46,10 @@
                                 <td>
                                     <span>
                                         <strong>Nama : </strong>
-                                        {{ $participant->student->name }}
+                                        <a
+                                            href="{{ route('admin.detail_student',$participant->student->id) }}">
+                                            {{ $participant->student->name }}
+                                        </a>
                                     </span><br>
                                     <span>
                                         <strong>

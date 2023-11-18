@@ -177,7 +177,7 @@
                     @enderror
                     @if($student->birth_certificate)
                         <img class="mt-3"
-                            src="{{ route('user.images').'?q='.$student->birth_certificate }}"
+                            src="{{ route('admin.images').'?q='.$student->birth_certificate }}"
                             alt="">
                     @endif
                 </div>
