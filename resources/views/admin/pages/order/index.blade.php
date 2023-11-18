@@ -73,7 +73,7 @@
                                                             $order->orderParticipants as $participant)
                                                             <li>
                                                                 <a
-                                                                    href="{{ route('admin.detail_student', $participant->student->id)') }}">
+                                                                    href="{{ route('admin.detail_student',$participant->student->id) }}">
                                                                     {{ $participant->student->name }}
                                                                 </a>
                                                             </li>
