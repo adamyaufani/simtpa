@@ -71,7 +71,12 @@
                                                     <ul>
                                                         @foreach(
                                                             $order->orderParticipants as $participant)
-                                                            <li>{{ $participant->student->name }}</li>
+                                                            <li>
+                                                                <a
+                                                                    href="{{ route('admin.detail_student', $participant->student->id)') }}">
+                                                                    {{ $participant->student->name }}
+                                                                </a>
+                                                            </li>
                                                         @endforeach
                                                     </ul>
                                                 </span>
