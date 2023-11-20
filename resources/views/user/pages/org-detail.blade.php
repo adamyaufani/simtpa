@@ -1,5 +1,22 @@
 <x-user.layout>
 
+    <p>{{ $org->staffs->count() }}</p>
+    Jumlah Santri Putra
+    <p>
+        {{ $org->students->where('gender','laki-laki')->count() }}
+    </p>
+    Jumlah Santri Putri
+    <p>
+        {{ $org->students->where('gender','perempuan')->count() }}
+    </p>
+    Link Foto Gedung
+    <p>
+        {{ route('user.images').'?q='.$org->userProfile->organization_building_photo }}
+    </p>
+    Link Logo
+    <p>
+        {{ route('user.images').'?q='.$org->userProfile->organization_logo }}
+    </p>
 
     <div class="row gx-5">
         <div class="col-12">
