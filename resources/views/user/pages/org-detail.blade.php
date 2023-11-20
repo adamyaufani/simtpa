@@ -44,13 +44,13 @@
                             <p class="text-white fs-6"><i class="bi bi-geo-alt"></i> <a
                                     href="{{ $org->userProfile->gmap_address }}" class="text-white">Google Map</a></p>
                             <div class="d-flex gap-1 justify-content-start justify-content-md-end">
-                                <a href="{{ $org->userProfile->facebook }}" class="btn btn-sm btn-outline-info"><i
+                                <a href="{{ $org->userProfile->facebook }}" class="btn btn-sm btn-info"><i
                                         class="bi bi-facebook"></i></a>
-                                <a href="{{ $org->userProfile->instagram }}" class="btn btn-sm btn-outline-light"><i
+                                <a href="{{ $org->userProfile->instagram }}" class="btn btn-sm btn-warning"><i
                                         class="bi bi-instagram"></i></a>
-                                <a href="{{ $org->userProfile->youtube }}" class="btn btn-sm btn-outline-danger"><i
+                                <a href="{{ $org->userProfile->youtube }}" class="btn btn-sm btn-danger"><i
                                         class="bi bi-youtube"></i></a>
-                                <a href="{{ $org->userProfile->tiktok }}" class="btn btn-sm btn-outline-dark"><i
+                                <a href="{{ $org->userProfile->tiktok }}" class="btn btn-sm btn-dark"><i
                                         class="bi bi-tiktok"></i></a>
                             </div>
                         </div>
