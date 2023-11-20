@@ -16,8 +16,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 5%"></th>
-                                <th style="width: 25%">Nama TPA</th>
-                                <th style="width: 25%">Kalurahan</th>
+                                <th style="width: 25%">Nama TPA</th>                               
                                 <th style="width: 45%">Alamat</th>
                             </tr>
                         </thead>
@@ -29,8 +28,8 @@
                                         href="{{ route('public.detail_org', $org->id) }}">
                                         TPA {{ $org->userProfile->institution_name }}
                                     </a></td>
-                                    <td>{{ $org->userProfile->villageDetail->village_name }}</td>
-                                    <td>{{ $org->userProfile->address }}</td>
+                                 
+                                    <td>{{ $org->userProfile->address }} {{ $org->userProfile->villageDetail->village_name }}</span></td>
                                 </tr>
                             @endforeach
                         </tbody>
