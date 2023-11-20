@@ -14,11 +14,11 @@
         <div class="col-12">        
 
             <div class="card mb-4   
-            @if($org->userProfile->organization_building_photo) 
-                bg-profile
-            @else 
+            {{-- @if($org->userProfile->organization_building_photo)  --}}
+                {{-- bg-profile
+            @else  --}}
                 bg-secondary bg-gradient 
-            @endif 
+            {{-- @endif  --}}
             
             ">
                 <div class="card-body p-3 p-md-5">
