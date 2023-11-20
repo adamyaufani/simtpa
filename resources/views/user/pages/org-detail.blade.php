@@ -26,13 +26,13 @@
                     <div class="d-flex flex-column flex-md-row">
                         <div class="flex-shrink-0">
 
-                            @if($org->userProfile->organization_logo)
+                            {{-- @if($org->userProfile->organization_logo)
                                 <img src="{{ route('user.images') . '?q=' . $org->userProfile->organization_logo }}"
                             width="60" class="align-self-start border border-3 border-white rounded" />
-                            @else
+                            @else --}}
                             <img src="{{  url('img/logo-badko.png') }}"
                                 width="60" class="align-self-start border border-3 border-white rounded" />
-                            @endif
+                            {{-- @endif --}}
                         </div>
                         <div class="flex-grow-1 ms-md-3 mt-3 mt-md-0">
                             <h1 class="h3 text-white">TPA {{ $org->userProfile->institution_name }}</h1>
