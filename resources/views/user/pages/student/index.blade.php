@@ -4,123 +4,71 @@
         --}}
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     @endpush
-    <div class="col-12">
-        <section class="py-5" id="features">
-            <div class="container px-5 my-5">
-                @if(session()->has('error'))
-                    <div class="alert alert-danger" role="alert">
-                        {{ session()->get('error') }}
-                    </div>
-                @endif
-                <div class="row mb-5">
-
     @if (session()->has('error'))
         <div class="alert alert-danger" role="alert">
             {{ session()->get('error') }}
         </div>
     @endif
+
+    @if (session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
     <div class="row mb-5">
 
         <div class="col-lg-12">
             <div class="d-flex justify-content-between">
                 <h4 class="mb-3">Santri TPA</h4>
                 <div>
-                    <a href="{{ route('user.create_student') }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('user.create_student') }}" class="btn btn-primary btn-sm"><i
+                            class="bi bi-plus"></i>
                         Tambah Santri Baru
                     </a>
                 </div>
             </div>
 
-            <div class="col-12">
-                @foreach ($students as $student)
-                    <div class="card border-success mb-3">
-                        <div class="card-body">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-6 col-md-4">
-                                        <span class="card-text">
-                                            <strong>Nama Lengkap :</strong>
-                                            <br>
-                                            {{ $student->name }}
-                                        </span>
-                                        <br>
-                                        <span class="card-text">
-                                            <strong>Jenis Kelamin :</strong>
-                                            <br>
-                                            {{ $student->gender }}
-                                        </span>
-                                    </div>
-                                    <div class="col-6 col-md-4">
-                                        <span class="card-text">
-                                            <strong>Nama Ayah :</strong>
-                                            <br>
-                                            {{ $student->father_name }}
-                                        </span>
-                                        <br>
-                                        <span class="card-text">
-                                            <strong> Nama Ibu :</strong>
-                                            <br>
-                                            {{ $student->mother_name }}
-                                        </span>
-                                    </div>
-                                    <div class="col-6 col-md-4">
-                                        <span class="card-text">
-                                            <strong>Tanggal Lahir :</strong>
-                                            <br>
-                                            {{ $student->birth_date }}
-                                        </span>
-                                        <br>
-                                        <span class="card-text">
-                                            <strong> Asal Sekolah :</strong>
-                                            <br>
-                                            {{ $student->school }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-body">
-                                <table id="example" class="table table-striped" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 5%"></th>
-                                            <th style="width: 75%">Nama Lengkap</th>
-                                            <th style="width: 20%">Kelurahan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($students as $student)
-                                            <tr>
-                                                <td></td>
-                                                <td>{{ $student->name }}</td>
-                                                <td>
-                                                    <div class="col-12 d-flex mt-3">
-                                                        <a href="{{ route('user.edit_student',$student->id) }}"
-                                                            class="btn btn-outline-warning btn-sm mr-3">
-                                                            edit
-                                                        </a>
-                                                        <form
-                                                            action="{{ route('user.delete_student',$student->id) }}"
-                                                            method="POST" onsubmit="return confirmDelete()">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="btn btn-outline-danger btn-sm">
-                                                                hapus
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+            <div class="card">
+                <div class="card-body">
+                    <table id="example" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%"></th>
+                                <th style="width: 70%">Nama Lengkap</th>
+                                <th style="width: 25%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($students as $student)
+                                <tr>
+                                    <td></td>
+                                    <td>{{ $student->name }}</td>
+                                    <td class="text-md-end text-sm-center">
+                                        {{-- <div class="col-12 d-flex mt-3"> --}}
+                                        <a href="{{ route('user.edit_student', $student->id) }}"
+                                            class="btn btn-outline-warning btn-sm mr-3"><i class="bi bi-pencil"></i>
+                                            Edit
+                                        </a>
+                                        {{-- <form
+                                                                    action="{{ route('user.delete_student', $student->id) }}"
+                                                                    method="POST" onsubmit="return confirmDelete()">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button class="btn btn-outline-danger btn-sm">
+                                                                        hapus
+                                                                    </button>
+                                                                </form> --}}
+                                        {{-- </div> --}}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
+
         </div>
     </div>
 
@@ -145,7 +93,7 @@
             });
 
             table
-                .on('order.dt search.dt', function () {
+                .on('order.dt search.dt', function() {
                     let i = 1;
 
                     table
@@ -153,12 +101,11 @@
                             search: 'applied',
                             order: 'applied'
                         })
-                        .every(function (cell) {
+                        .every(function(cell) {
                             this.data(i++);
                         });
                 })
                 .draw();
-
         </script>
     @endpush
 </x-user.layout>

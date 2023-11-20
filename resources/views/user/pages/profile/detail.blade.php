@@ -220,7 +220,7 @@
                             </span>
 
                             @if($userProfile->organization_building_photo)
-                                <img class="mt-3"
+                                <img class="mt-3 w-50"
                                     src="{{ route('user.images').'?q='.$userProfile->organization_building_photo }}"
                                     alt="">
                             @endif
@@ -239,7 +239,7 @@
                             </span>
 
                             @if($userProfile->organization_logo)
-                                <img class="mt-3"
+                                <img class="mt-3 w-25"
                                     src="{{ route('user.images').'?q='.$userProfile->organization_logo }}"
                                     alt="">
                             @endif

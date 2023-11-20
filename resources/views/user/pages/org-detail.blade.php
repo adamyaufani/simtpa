@@ -1,32 +1,32 @@
 <x-user.layout>
 
-    <p>{{ $org->staffs->count() }}</p>
-    Jumlah Santri Putra
-    <p>
-        {{ $org->students->where('gender','laki-laki')->count() }}
-    </p>
-    Jumlah Santri Putri
-    <p>
-        {{ $org->students->where('gender','perempuan')->count() }}
-    </p>
-    Link Foto Gedung
-    <p>
-        {{ route('user.images').'?q='.$org->userProfile->organization_building_photo }}
-    </p>
-    Link Logo
-    <p>
-        {{ route('user.images').'?q='.$org->userProfile->organization_logo }}
-    </p>
+    @push('css')
+        <style>
+            .bg-profile {
+                background: url('{{ route('user.images') . '?q=' . $org->userProfile->organization_building_photo }}') left top no-repeat;
+                background-size: cover;
+            }
+        </style>
+    @endpush
+
 
     <div class="row gx-5">
-        <div class="col-12">
-            <div class="card mb-4  bg-secondary bg-gradient-200">
+        <div class="col-12">         
+
+
+            <div class="card mb-4   @if($org->userProfile->organization_building_photo) bg-profile @else bg-secondary bg-gradient @endif ">
                 <div class="card-body p-5">
 
                     <div class="d-flex">
                         <div class="flex-shrink-0">
-                            <img src="{{ url('img/logo-badko.png') }}" width="60"
-                                class="align-self-start border border-3 border-white rounded" />
+
+                            @if($org->userProfile->organization_logo)
+                                <img src="{{ route('user.images') . '?q=' . $org->userProfile->organization_logo }}"
+                            width="60" class="align-self-start border border-3 border-white rounded" />
+                            @else
+                            <img src="{{  url('img/logo-badko.png') }}"
+                                width="60" class="align-self-start border border-3 border-white rounded" />
+                            @endif
                         </div>
                         <div class="flex-grow-1 ms-3">
                             <h1 class="h3 text-white">TPA {{ $org->userProfile->institution_name }}</h1>
@@ -56,25 +56,25 @@
             <div class="card">
                 <div class="card-body p-5">
                     <div class="d-flex justify-content-center gap-5">
-                        <div class="card w-25 bg-info">
+                        <div class="card w-25 bg-info bg-gradient">
                             <div class="card-body d-flex flex-row align-items-center">
                                 <p class="flex-fill">Staf Pengajar</p>
-                                <p class="fs-1">5</p>
+                                <p class="fs-1">{{ $org->staffs->count() }}</p>
                             </div>
                         </div>
-                        <div class="card w-25  bg-success">
+                        <div class="card w-25  bg-success bg-gradient">
                             <div class="card-body d-flex flex-row align-items-center">
                                 <p class="flex-fill">Santri Putra</p>
-                                <p class="fs-1">15</p>
+                                <p class="fs-1">{{ $org->students->where('gender', 'laki-laki')->count() }}</p>
                             </div>
                         </div>
-                        <div class="card w-25  bg-warning">
+                        <div class="card w-25  bg-warning bg-gradient">
                             <div class="card-body d-flex flex-row align-items-center">
                                 <p class="flex-fill">Santri Putri</p>
-                                <p class="fs-1">15</p>
+                                <p class="fs-1"> {{ $org->students->where('gender', 'perempuan')->count() }}</p>
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>

@@ -1,15 +1,6 @@
 <x-user.layout>
 
-    @if (session()->has('error'))
-        <div class="alert alert-danger" role="alert">
-            {{ session()->get('error') }}
-        </div>
-    @endif
-    @if (session()->has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ session()->get('success') }}
-        </div>
-    @endif
+
     <div class="row mb-5">
 
         <div class="col-lg-12">
@@ -17,6 +8,17 @@
                 <h4 class="mb-3">Edit Santri</h4>
                 <p class="mb-3">Yang diberi tanda * (bintang) wajib diisi.</p>
             </div>
+
+            @if (session()->has('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
+            @if (session()->has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
 
             <div class="card">
                 <div class="card-body">
