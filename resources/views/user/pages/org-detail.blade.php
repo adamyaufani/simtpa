@@ -47,6 +47,24 @@
                             <p>{{ $org->userProfile->sk_number_starting_date }}</p>
                             Tanggal Berakhir Nomor SK
                             <p>{{ $org->userProfile->sk_number_ending_date }}</p>
+                            Jumlah Pengurus
+                            <p>{{ $org->staffs->count() }}</p>
+                            Jumlah Santri Putra
+                            <p>
+                                {{ $org->students->where('gender','laki-laki')->count() }}
+                            </p>
+                            Jumlah Santri Putri
+                            <p>
+                                {{ $org->students->where('gender','perempuan')->count() }}
+                            </p>
+                            Link Foto Gedung
+                            <p>
+                                {{ route('user.images').'?q='.$org->userProfile->organization_building_photo }}
+                            </p>
+                            Link Logo
+                            <p>
+                                {{ route('user.images').'?q='.$org->userProfile->organization_logo }}
+                            </p>
                         </div>
                     </div>
                 </div>

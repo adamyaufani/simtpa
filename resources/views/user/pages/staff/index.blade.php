@@ -1,4 +1,9 @@
 <x-user.layout>
+    @push('css')
+        {{-- <link rel="stylesheet" href="{{ asset('css/datatable-bootstrap-5.min.css') }}">
+        --}}
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    @endpush
     <div class="col-12">
         <section class="py-5" id="features">
             <div class="container px-5 my-5">
@@ -20,73 +25,46 @@
                             </div>
                         </div>
 
-                        <div class="col-12">
-                            @foreach($staffs as $staff)
-                                <div class="card border-success mb-3">
-                                    <div class="card-body text-success">
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <span class="card-text">
-                                                        <strong>Nama Lengkap :</strong>
-                                                        <br>
-                                                        {{ $staff->name }}
-                                                    </span>
-                                                    <br>
-                                                    <span class="card-text">
-                                                        <strong>Jenis Kelamin :</strong>
-                                                        <br>
-                                                        {{ $staff->gender }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-4">
-                                                    <span class="card-text">
-                                                        <strong>NIK :</strong>
-                                                        <br>
-                                                        {{ $staff->civil_registration_number }}
-                                                    </span>
-                                                    <br>
-                                                    <span class="card-text">
-                                                        <strong> Pendidikan Terakhir :</strong>
-                                                        <br>
-                                                        {{ $staff->last_formal_education }}
-                                                    </span>
-                                                </div>
-                                                <div class="col-4">
-                                                    <span class="card-text">
-                                                        <strong> Kompetensi Utama Bidang Ilmu Yang Dikuasai :</strong>
-                                                        <br>
-                                                        {{ $staff->core_competency }}
-                                                    </span>
-                                                    <br>
-                                                    <span class="card-text">
-                                                        <strong> No. Telepon :</strong>
-                                                        <br>
-                                                        {{ $staff->phone }}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 d-flex mt-3">
-                                                <a href="{{ route('user.staff_edit',$staff->id) }}"
-                                                    class="btn btn-outline-warning btn-sm mr-3">
-                                                    edit
-                                                </a>
-                                                <form
-                                                    action="{{ route('user.delete_staff',$staff->id) }}"
-                                                    method="POST" onsubmit="return confirmDelete()">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-outline-danger btn-sm">
-                                                        hapus
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="example" class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%"></th>
+                                            <th style="width: 75%">Nama</th>
+                                            <th style="width: 20%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($staffs as $staff)
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    {{ $staff->name }}
+                                                </td>
+                                                <td>
+                                                    <div class="col-12 d-flex mt-3">
+                                                        <a href="{{ route('user.staff_edit',$staff->id) }}"
+                                                            class="btn btn-outline-warning btn-sm mr-3">
+                                                            edit
+                                                        </a>
+                                                        <form
+                                                            action="{{ route('user.delete_staff',$staff->id) }}"
+                                                            method="POST" onsubmit="return confirmDelete()">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn btn-outline-danger btn-sm">
+                                                                hapus
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-
 
                     </div>
 
@@ -96,11 +74,39 @@
         </section>
     </div>
     @push('js')
+        <script src="{{ asset('js/jquery-datatable-1.13.6.min.js') }}"></script>
+        <script src="{{ asset('js/datatable-1.13.6-bootstrap-5.min.js') }}"></script>
         <script>
             function confirmDelete() {
                 // Display the alert message
                 return confirm("Hapus data ini? Data yang sudah dihapus tidak bisa dikembalikan dengan cara apapun.");
             }
+
+            const table = new DataTable('#example', {
+                columnDefs: [{
+                    searchable: false,
+                    orderable: false,
+                    targets: 0
+                }],
+                order: [
+                    [1, 'asc']
+                ]
+            });
+
+            table
+                .on('order.dt search.dt', function () {
+                    let i = 1;
+
+                    table
+                        .cells(null, 0, {
+                            search: 'applied',
+                            order: 'applied'
+                        })
+                        .every(function (cell) {
+                            this.data(i++);
+                        });
+                })
+                .draw();
 
         </script>
     @endpush
