@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\Administrator;
 use App\Models\Category;
 use App\Models\Training;
 use App\Models\User;
@@ -87,8 +88,32 @@ class HomeController extends Controller
     public function organizationDetail($id)
     {
         $org = User::where(['id' => $id, 'verification_status' => 1])->firstOrFail();
+
+        // dd($org->director($org->id)->first());
+
+        $director = Administrator::rightJoin('staffs', 'staffs.id', '=', 'administrators.director')
+            ->where('administrators.user_id', '=', $org->id)
+            ->first();
+        $viceDirector = Administrator::rightJoin('staffs', 'staffs.id', '=', 'administrators.vice_director')
+            ->where('administrators.user_id', '=', $org->id)
+            ->first();
+        $secretary = Administrator::rightJoin('staffs', 'staffs.id', '=', 'administrators.secretary')
+            ->where('administrators.user_id', '=', $org->id)
+            ->first();
+        $treasurer = Administrator::rightJoin('staffs', 'staffs.id', '=', 'administrators.treasurer')
+            ->where('administrators.user_id', '=', $org->id)
+            ->first();
+
+        $administrator = [
+            'director' => $director,
+            'vice_director' => $viceDirector,
+            'secretary' => $secretary,
+            'treasurer' => $treasurer
+        ];
+
+        // dd($administrator);
         return view('user.pages.org-detail')
-            ->with(compact('org'));
+            ->with(compact('org', 'administrator'));
     }
 
     public function charter()
