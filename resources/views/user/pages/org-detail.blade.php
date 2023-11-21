@@ -3,7 +3,7 @@
     @push('css')
         <style>
             .bg-profile {
-                background: url('{{ route('user.images') . '?q=' . $org->userProfile->organization_building_photo }}') left top no-repeat;
+                background: url('{{ route('training.image') . '?q=' . $org->userProfile->organization_building_photo }}') left top no-repeat;
                 background-size: cover;
             }
         </style>
@@ -11,14 +11,13 @@
 
 
     <div class="row gx-5">
-        <div class="col-12">        
+        <div class="col-12">
 
-            <div class="card mb-4   
-            @if($org->userProfile->organization_building_photo) 
-                bg-profile
+            <div
+                class="card mb-4   
+            @if ($org->userProfile->organization_building_photo) bg-profile
             @else 
-                bg-secondary bg-gradient 
-            @endif 
+                bg-secondary bg-gradient @endif 
             
             ">
                 <div class="card-body p-3 p-md-5">
@@ -26,14 +25,14 @@
                     <div class="d-flex flex-column flex-md-row">
                         <div class="flex-shrink-0">
 
-                            @if($org->userProfile->organization_logo)
-                                <img src="{{ route('user.images') . '?q=' . $org->userProfile->organization_logo }}"
-                            width="60" class="align-self-start border border-3 border-white rounded" />
+                            @if ($org->userProfile->organization_logo)
+                                <img src="{{ route('training.image') . '?q=' . $org->userProfile->organization_logo }}"
+                                    width="60" class="align-self-start border border-3 border-white rounded" />
                             @else
-                            <img src="{{  url('img/logo-badko.png') }}"
-                                width="60" class="align-self-start border border-3 border-white rounded" />
+                                <img src="{{ url('img/logo-badko.png') }}" width="60"
+                                    class="align-self-start border border-3 border-white rounded" />
                             @endif
-                            
+
                         </div>
                         <div class="flex-grow-1 ms-md-3 mt-3 mt-md-0">
                             <h1 class="h3 text-white">TPA {{ $org->userProfile->institution_name }}</h1>
@@ -69,7 +68,7 @@
                                     <p class="flex-fill">Staf Pengajar</p>
                                     <p class="fs-1">{{ $org->staffs->count() }}</p>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card bg-success bg-gradient mb-4">
@@ -86,37 +85,38 @@
                                     <p class="fs-1"> {{ $org->students->where('gender', 'perempuan')->count() }}</p>
                                 </div>
                             </div>
-                        </div>               
-                        
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            Tim Pengelola
+                        </div>
+                        <table class="table table-striped">                            
+                            <tr>
+                                <td class="fw-bold" width="40%">Direktur</td>
+                                <td>{{ $administrator['director']->name ?? '' }}</td>                                
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Wakil Direktur</td>
+                                <td>{{ $administrator['vice_director']->name ?? '' }}</td>                                
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Sekretaris</td>
+                                <td>{{ $administrator['secretary']->name ?? '' }}</td>                                
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Bendahara</td>
+                                <td>{{ $administrator['treasurer']->name ?? '' }}</td>                                
+                            </tr>
+                            
+                        </table>
                     </div>
                 </div>
             </div>
 
-            <div class="card">
-                <p>
-                    {{ route('training.image').'?q='.$org->userProfile->organization_building_photo }}
-                </p>
-                Link Logo
-                <p>
-                    {{ route('training.image').'?q='.$org->userProfile->organization_logo }}
-                </p>
-                Direktur
-                <p>
-                    {{ $administrator['director']->name ?? '' }}
-                </p>
-                Wakil Direktur
-                <p>
-                    {{ $administrator['vice_director']->name ?? '' }}
-                </p>
-                Sekretaris
-                <p>
-                    {{ $administrator['secretary']->name ?? '' }}
-                </p>
-                Bendahara
-                <p>
-                    {{ $administrator['treasurer']->name ?? '' }}
-                </p>
-            </div>
         </div>
     </div>
 

@@ -135,6 +135,8 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="nav-item"><a title="Lihat Profil TPA" class="nav-link" href="{{ route('public.detail_org', auth()->id()) }}"><i class="bi bi-house"></i></a>
+                            </li>
                         @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.login_form') }}">
