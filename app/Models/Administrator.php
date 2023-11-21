@@ -23,25 +23,25 @@ class Administrator extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function director()
+    public function director($userId = null)
     {
         return $this->join('staffs', 'administrators.director', '=', 'staffs.id')
             ->where('staffs.user_id', '=', Auth::user()->id);
     }
 
-    public function viceDirector()
+    public function viceDirector($userId = null)
     {
         return $this->join('staffs', 'administrators.vice_director', '=', 'staffs.id')
             ->where('staffs.user_id', '=', Auth::user()->id);
     }
 
-    public function secretary()
+    public function secretary($userId = null)
     {
         return $this->join('staffs', 'administrators.secretary', '=', 'staffs.id')
             ->where('staffs.user_id', '=', Auth::user()->id);
     }
 
-    public function treasurer()
+    public function treasurer($userId = null)
     {
         return $this->join('staffs', 'administrators.treasurer', '=', 'staffs.id')
             ->where('staffs.user_id', '=', Auth::user()->id);

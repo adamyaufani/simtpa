@@ -65,6 +65,22 @@
                             <p>
                                 {{ route('training.image').'?q='.$org->userProfile->organization_logo }}
                             </p>
+                            Direktur
+                            <p>
+                                {{ $administrator['director']->name ?? '' }}
+                            </p>
+                            Wakil Direktur
+                            <p>
+                                {{ $administrator['vice_director']->name ?? '' }}
+                            </p>
+                            Sekretaris
+                            <p>
+                                {{ $administrator['secretary']->name ?? '' }}
+                            </p>
+                            Bendahara
+                            <p>
+                                {{ $administrator['treasurer']->name ?? '' }}
+                            </p>
                         </div>
                     </div>
                 </div>
