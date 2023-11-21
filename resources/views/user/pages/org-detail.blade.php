@@ -41,17 +41,35 @@
                                 {{ $org->userProfile->postal_code }}</p>
                             <p class="text-white fs-6 mb-1"><i class="bi bi-whatsapp"></i>
                                 +{{ $org->userProfile->phone_number }}</p>
-                            <p class="text-white fs-6"><i class="bi bi-geo-alt"></i> <a
-                                    href="{{ $org->userProfile->gmap_address }}" class="text-white">Google Map</a></p>
+                            @if ($org->userProfile->website)
+                                <p class="text-white fs-6"><i class="bi bi-browser-chrome"></i> <a
+                                        href="{{ $org->userProfile->website }}"
+                                        class="text-white">{{ $org->userProfile->website }}</a>
+                                </p>
+                            @endif
+                            @if ($org->userProfile->gmap_address)
+                                <p class="text-white fs-6"><i class="bi bi-geo-alt"></i> <a
+                                        href="{{ $org->userProfile->gmap_address }}" class="text-white">Google Map</a>
+                                </p>
+                            @endif
+
                             <div class="d-flex gap-1 justify-content-start justify-content-md-end">
-                                <a href="{{ $org->userProfile->facebook }}" class="btn btn-sm btn-info"><i
-                                        class="bi bi-facebook"></i></a>
-                                <a href="{{ $org->userProfile->instagram }}" class="btn btn-sm btn-warning"><i
-                                        class="bi bi-instagram"></i></a>
-                                <a href="{{ $org->userProfile->youtube }}" class="btn btn-sm btn-danger"><i
-                                        class="bi bi-youtube"></i></a>
-                                <a href="{{ $org->userProfile->tiktok }}" class="btn btn-sm btn-dark"><i
-                                        class="bi bi-tiktok"></i></a>
+                                @if ($org->userProfile->facebook)
+                                    <a href="{{ $org->userProfile->facebook }}" class="btn btn-sm btn-info"><i
+                                            class="bi bi-facebook"></i></a>
+                                @endif
+                                @if ($org->userProfile->instagram)
+                                    <a href="{{ $org->userProfile->instagram }}" class="btn btn-sm btn-warning"><i
+                                            class="bi bi-instagram"></i></a>
+                                @endif
+                                @if ($org->userProfile->youtube)
+                                    <a href="{{ $org->userProfile->youtube }}" class="btn btn-sm btn-danger"><i
+                                            class="bi bi-youtube"></i></a>
+                                @endif
+                                @if ($org->userProfile->tiktok)
+                                    <a href="{{ $org->userProfile->tiktok }}" class="btn btn-sm btn-dark"><i
+                                            class="bi bi-tiktok"></i></a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -94,24 +112,24 @@
                         <div class="card-header">
                             Tim Pengelola
                         </div>
-                        <table class="table table-striped">                            
+                        <table class="table table-striped">
                             <tr>
                                 <td class="fw-bold" width="40%">Direktur</td>
-                                <td>{{ $administrator['director']->name ?? '' }}</td>                                
+                                <td>{{ $administrator['director']->name ?? '' }}</td>
                             </tr>
                             <tr>
                                 <td class="fw-bold">Wakil Direktur</td>
-                                <td>{{ $administrator['vice_director']->name ?? '' }}</td>                                
+                                <td>{{ $administrator['vice_director']->name ?? '' }}</td>
                             </tr>
                             <tr>
                                 <td class="fw-bold">Sekretaris</td>
-                                <td>{{ $administrator['secretary']->name ?? '' }}</td>                                
+                                <td>{{ $administrator['secretary']->name ?? '' }}</td>
                             </tr>
                             <tr>
                                 <td class="fw-bold">Bendahara</td>
-                                <td>{{ $administrator['treasurer']->name ?? '' }}</td>                                
+                                <td>{{ $administrator['treasurer']->name ?? '' }}</td>
                             </tr>
-                            
+
                         </table>
                     </div>
                 </div>
