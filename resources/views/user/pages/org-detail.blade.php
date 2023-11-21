@@ -59,11 +59,11 @@
                             </p>
                             Link Foto Gedung
                             <p>
-                                {{ route('user.images').'?q='.$org->userProfile->organization_building_photo }}
+                                {{ route('training.image').'?q='.$org->userProfile->organization_building_photo }}
                             </p>
                             Link Logo
                             <p>
-                                {{ route('user.images').'?q='.$org->userProfile->organization_logo }}
+                                {{ route('training.image').'?q='.$org->userProfile->organization_logo }}
                             </p>
                         </div>
                     </div>

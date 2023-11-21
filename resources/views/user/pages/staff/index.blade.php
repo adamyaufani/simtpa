@@ -48,15 +48,15 @@
                                                             class="btn btn-outline-warning btn-sm mr-3">
                                                             edit
                                                         </a>
-                                                        <form
+                                                        {{-- <form
                                                             action="{{ route('user.delete_staff',$staff->id) }}"
-                                                            method="POST" onsubmit="return confirmDelete()">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="btn btn-outline-danger btn-sm">
+                                                        method="POST" onsubmit="return confirmDelete()"> --}}
+                                                        {{-- @csrf --}}
+                                                        {{-- @method('DELETE') --}}
+                                                        {{-- <button class="btn btn-outline-danger btn-sm">
                                                                 hapus
-                                                            </button>
-                                                        </form>
+                                                            </button> --}}
+                                                        {{-- </form> --}}
                                                     </div>
                                                 </td>
                                             </tr>
