@@ -52,7 +52,7 @@ class StudentService
             $student->update(Arr::except($request, ['birth_certificate', 'photo']));
             if (isset($request['birth_certificate']) && $request['birth_certificate'] != null) {
 
-                if (Storage::exists($student->birth_certificate)) {
+                if ($student->birth_certificate != null && Storage::exists($student->birth_certificate)) {
                     Storage::delete($student->birth_certificate);
                 }
 
@@ -68,7 +68,7 @@ class StudentService
 
             if (isset($request['photo']) && $request['photo'] != null) {
 
-                if (Storage::exists($student->photo)) {
+                if ($student->photo != null && Storage::exists($student->photo)) {
                     Storage::delete($student->photo);
                 }
 

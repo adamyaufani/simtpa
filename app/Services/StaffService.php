@@ -41,7 +41,7 @@ class StaffService
             $userId = $staff->user->id;
             if (isset($request['photo']) && $request['photo'] != null) {
 
-                if (Storage::exists($staff->photo)) {
+                if ($staff->photo != null && Storage::exists($staff->photo)) {
                     Storage::delete($staff->photo);
                 }
 
