@@ -19,7 +19,8 @@
 
     <div class="card">
         <div class="card-body">
-            <form method="POST" action="{{ route('admin.update_staff',$staff->id) }}">
+            <form method="POST" action="{{ route('admin.update_staff',$staff->id) }}"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 {{-- Name --}}
@@ -140,6 +141,21 @@
                     @error('email')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
+                </div>
+
+                {{-- Photo --}}
+                <div class="mb-3">
+                    <label for="photo" class="form-label">{{ __('Foto') }}</label>
+                    <input type="file" class="form-control @error('photo') is-invalid @enderror" id="photo"
+                        name="photo">
+                    @error('photo')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                    @if($staff->photo)
+                        <img class="mt-3"
+                            src="{{ route('admin.images').'?q='.$staff->photo }}"
+                            alt="">
+                    @endif
                 </div>
 
                 <div class="d-grid gap-2">

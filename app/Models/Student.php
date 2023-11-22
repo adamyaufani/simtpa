@@ -26,6 +26,7 @@ class Student extends Model
         'status',
         'ability_level_upon_entry',
         'birth_certificate',
+        'photo'
     ];
 
     protected $casts = [
@@ -38,6 +39,15 @@ class Student extends Model
     }
 
     protected function birthCertificate(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                return $value !== null ? Crypt::encryptString($value) : $value;
+            }
+        );
+    }
+
+    protected function photo(): Attribute
     {
         return Attribute::make(
             get: function ($value) {

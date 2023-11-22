@@ -30,6 +30,7 @@ return new class extends Migration
             $table->enum('status', ['lulus', 'belum lulus'])->default('belum lulus')->nullable();
             $table->string('ability_level_upon_entry')->nullable();
             $table->text('birth_certificate')->nullable();
+            $table->text('pfoto')->nullable();
         });
 
         Schema::table('students', function (Blueprint $table) {
