@@ -1,15 +1,61 @@
 <x-user.layout>
-    <div class="row gx-5">       
+    @push('css')
+        <style>
+            #countdownCard {
+                margin: 0 auto;
+            }
+
+            .countdownBox {
+                text-align: center;
+                margin: 0 10px;
+            }
+
+            .countdownBox h2 {
+                font-size: 48px;
+                margin: 0;
+            }
+
+            .countdownBox p {
+                margin: 0;
+            }
+        </style>
+    @endpush
+
+    <div class="row gx-5">
 
         <div class="col-lg-8 offset-lg-2 mb-5 mb-lg-0">
 
-            @if(auth()->check())
-                @if($completeProfileNotification == true)
+            @if (auth()->check())
+                @if ($completeProfileNotification == true)
                     <div class="alert alert-warning" role="alert">
                         Mohon lengkapi data Profil TPA Anda.
                     </div>
                 @endif
             @endif
+
+            <div class="card mb-4" id="countdownCard">
+                <h5 class="card-header text-center">Pendaftaran FASI ditutup dalam</h5>
+                <div class="card-body">                    
+                    <div id="countdown" class="d-flex flex-row justify-content-center">
+                        <div class="countdownBox bg-success p-3 w-25 rounded" id="daysBox">
+                            <h2 id="days">0</h2>
+                            <p>Hari</p>
+                        </div>
+                        <div class="countdownBox bg-info p-3 w-25 rounded" id="hoursBox">
+                            <h2 id="hours">0</h2>
+                            <p>Jam</p>
+                        </div>
+                        <div class="countdownBox bg-warning p-3 w-25 rounded" id="minutesBox">
+                            <h2 id="minutes">0</h2>
+                            <p>Menit</p>
+                        </div>
+                        <div class="countdownBox bg-danger p-3 w-25 rounded" id="secondsBox">
+                            <h2 id="seconds">0</h2>
+                            <p>Detik</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="card mb-5">
                 <div class="card-header">
@@ -17,7 +63,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row g-4">
-                        <div class="col-md-6">                            
+                        <div class="col-md-6">
                             <div class="card bg-light bg-gradient">
                                 <div class="card-header fw-bold">TPA Mendaftar</div>
                                 <div class="card-body">
@@ -28,7 +74,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">                            
+                        <div class="col-md-6">
                             <div class="card bg-light bg-gradient">
                                 <div class="card-header fw-bold">Jumlah Peserta</div>
                                 <div class="card-body">
@@ -207,9 +253,45 @@
                 hasilUsia.className = `alert ${alertClass}`;
             });
         </script>
+
+        <!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+
+        <script>
+            function updateCountdown() {
+                // Tanggal target
+                const targetDate = new Date('December 3, 2023 24:00:00').getTime();
+
+                // Tanggal dan waktu saat ini
+                const currentDate = new Date().getTime();
+
+                // Hitung selisih waktu antara target dan saat ini
+                const timeDifference = targetDate - currentDate;
+
+                // Hitung hari, jam, menit, dan detik
+                const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+                // Tampilkan hasil countdown
+                document.getElementById('days').innerText = days;
+                document.getElementById('hours').innerText = hours;
+                document.getElementById('minutes').innerText = minutes;
+                document.getElementById('seconds').innerText = seconds;
+
+                // Jika waktu telah habis, tampilkan pesan
+                if (timeDifference < 0) {
+                    document.getElementById('countdown').innerHTML = 'Waktu telah habis!';
+                }
+            }
+
+            // Perbarui countdown setiap detik
+            setInterval(updateCountdown, 1000);
+
+            // Panggil fungsi untuk pertama kali
+            updateCountdown();
+        </script>
     @endpush
 
-
-
-    
 </x-user.layout>
