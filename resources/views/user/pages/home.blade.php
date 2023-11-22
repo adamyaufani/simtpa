@@ -7,11 +7,11 @@
 
             .countdownBox {
                 text-align: center;
-                margin: 0 10px;
+                padding: 5px;
             }
 
             .countdownBox h2 {
-                font-size: 48px;
+                font-size: 28px;
                 margin: 0;
             }
 
@@ -35,23 +35,31 @@
 
             <div class="card mb-4" id="countdownCard">
                 <h5 class="card-header text-center">Pendaftaran FASI ditutup dalam</h5>
-                <div class="card-body">                    
-                    <div id="countdown" class="d-flex flex-row justify-content-center">
-                        <div class="countdownBox bg-success p-3 w-25 rounded" id="daysBox">
-                            <h2 id="days">0</h2>
-                            <p>Hari</p>
+                <div class="card-body">
+                    <div id="countdown" class="row">
+                        <div class="col-3 col-md-3">
+                            <div class="countdownBox bg-success mb-3 rounded" id="daysBox">
+                                <h2 id="days">00</h2>
+                                <p>Hari</p>
+                            </div>
                         </div>
-                        <div class="countdownBox bg-info p-3 w-25 rounded" id="hoursBox">
-                            <h2 id="hours">0</h2>
-                            <p>Jam</p>
+                        <div class="col-3 col-md-3">
+                            <div class="countdownBox bg-info mb-3 rounded" id="hoursBox">
+                                <h2 id="hours">00</h2>
+                                <p>Jam</p>
+                            </div>
                         </div>
-                        <div class="countdownBox bg-warning p-3 w-25 rounded" id="minutesBox">
-                            <h2 id="minutes">0</h2>
-                            <p>Menit</p>
+                        <div class="col-3 col-md-3">
+                            <div class="countdownBox bg-warning mb-3 rounded" id="minutesBox">
+                                <h2 id="minutes">00</h2>
+                                <p>Menit</p>
+                            </div>
                         </div>
-                        <div class="countdownBox bg-danger p-3 w-25 rounded" id="secondsBox">
-                            <h2 id="seconds">0</h2>
-                            <p>Detik</p>
+                        <div class="col-3 col-md-3">
+                            <div class="countdownBox bg-danger mb-3 rounded" id="secondsBox">
+                                <h2 id="seconds">00</h2>
+                                <p>Detik</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -87,7 +95,23 @@
                     </div>
 
                 </div>
+
+
+                <div class="card-body">
+                    <h5>Laporan Perolehan dana FASI 2023</h5>
+                    <p class="">Masih kurang <span class="text-danger fw-bold" id="kebutuhanDanaText"></span> dari total kebutuhan <span class="text-success fw-bold">Rp. 24,000,000</span>. Yuk bantu kami dengan menjadi donatur atau relawan donatur. <a href="https://wa.me/6285157683779?text=Salam Admin, saya ingin berdonasi untuk FASI" target="_blank">Klik di sini.</p>
+                    <div class="progress" role="progressbar" id="progressBar"
+                        aria-label="Laporan Perolehan dana FASi 2023" aria-valuenow="0" aria-valuemin="0"
+                        aria-valuemax="100">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%"
+                            id="progressBarValue">
+                            <span id="progressText"></span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
 
             <div class="card mb-5">
                 <div class="card-header">
@@ -275,10 +299,10 @@
                 const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
                 // Tampilkan hasil countdown
-                document.getElementById('days').innerText = days;
-                document.getElementById('hours').innerText = hours;
-                document.getElementById('minutes').innerText = minutes;
-                document.getElementById('seconds').innerText = seconds;
+                document.getElementById('days').innerText = days.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
 
                 // Jika waktu telah habis, tampilkan pesan
                 if (timeDifference < 0) {
@@ -291,6 +315,27 @@
 
             // Panggil fungsi untuk pertama kali
             updateCountdown();
+        </script>
+
+        <script>
+            // Kebutuhan dan jumlah terkumpul
+            const kebutuhanDana = 24000000;
+            let terkumpul = 3000000;
+
+            // Menghitung persentase terkumpul
+            const persentaseTerkumpul = (terkumpul / kebutuhanDana) * 100;
+
+            // Mengatur nilai awal progress bar
+            $('#progressBar').attr('aria-valuenow', persentaseTerkumpul);
+            $('#progressBarValue').css('width', persentaseTerkumpul + '%');
+
+            // Menampilkan persentase terkumpul dan jumlah dana di dalam progress bar
+            $('#progressText').text('Rp' + terkumpul.toLocaleString());
+
+            // Menghitung dan menampilkan kekurangan dana
+            const kekuranganDana = kebutuhanDana - terkumpul;
+            $('#kebutuhanDanaText').append(' Rp. ' + kekuranganDana.toLocaleString());
+
         </script>
     @endpush
 
