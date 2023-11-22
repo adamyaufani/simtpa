@@ -6,6 +6,7 @@ use App\Enums\EmploymentStatusEnum;
 use App\Enums\LastFormalEducationEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNewStaffRequest;
+use App\Http\Requests\UpdateStaffRequest;
 use App\Models\Staff;
 use App\Services\StaffService;
 use Illuminate\Http\Request;
@@ -74,7 +75,7 @@ class StaffController extends Controller
         return response()->json($trainer, 200);
     }
 
-    public function update($id, StoreNewStaffRequest $request)
+    public function update($id, UpdateStaffRequest $request)
     {
         $staff = Staff::find($id);
         if ($staff->user_id != Auth::user()->id) {

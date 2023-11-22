@@ -21,7 +21,8 @@
 
                         <div class="card">
                             <div class="card-body">
-                                <form method="POST" action="{{ route('user.store_staff') }}">
+                                <form method="POST" action="{{ route('user.store_staff') }}"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     {{-- Name --}}
                                     <div class="mb-3">
@@ -148,6 +149,16 @@
                                         <input type="email" class="form-control @error('email') is-invalid @enderror"
                                             id="email" name="email" value="{{ old('email') }}">
                                         @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    {{-- Photo --}}
+                                    <div class="mb-3">
+                                        <label for="photo" class="form-label">{{ __('Foto') }}</label>
+                                        <input type="file" class="form-control @error('photo') is-invalid @enderror"
+                                            id="photo" name="photo">
+                                        @error('photo')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>

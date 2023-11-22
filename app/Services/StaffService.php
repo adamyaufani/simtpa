@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Staff;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class StaffService
 {
@@ -17,14 +18,42 @@ class StaffService
     {
         DB::transaction(function () use ($request, $userId) {
             $staffData = Arr::add($request, 'user_id', $userId);
-            Staff::create($staffData);
+            $newStaff = Staff::create($staffData);
+
+            if ($staffData['photo'] != null) {
+                $file = $staffData['photo'];
+                $originalName = $file->getClientOriginalName();
+                $path = $file->storeAs("users/staff_photo/{$userId}/{$newStaff->id}", $originalName);
+                $newStaff->update(
+                    [
+                        'photo' => $path
+                    ]
+                );
+            }
         });
     }
 
     public static function updateStaff($request, $id)
     {
         DB::transaction(function () use ($request, $id) {
-            Staff::where(['id' => $id])->update($request);
+            $staff =  Staff::find($id);
+            $staff->update($request);
+            $userId = $staff->user->id;
+            if (isset($request['photo']) && $request['photo'] != null) {
+
+                if (Storage::exists($staff->photo)) {
+                    Storage::delete($staff->photo);
+                }
+
+                $file = $request['photo'];
+                $originalName = $file->getClientOriginalName();
+                $path = $file->storeAs("users/staff_photo/{$userId}/{$staff->id}", $originalName);
+                $staff->update(
+                    [
+                        'photo' => $path
+                    ]
+                );
+            }
         });
     }
 }

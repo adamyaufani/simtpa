@@ -7,7 +7,7 @@ use App\Enums\LastFormalEducationEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
-class StoreNewStaffRequest extends FormRequest
+class UpdateStaffRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -36,7 +36,7 @@ class StoreNewStaffRequest extends FormRequest
             'core_competency' => ['required', 'string'],
             'phone' => ['required', 'string'],
             'email' => ['required', 'string'],
-            'photo' => ['required', 'image', 'mimes:jpg,png'],
+            'photo' => ['nullable', 'image', 'mimes:jpg,png'],
         ];
     }
 }
