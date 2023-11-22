@@ -20,8 +20,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.store_staff') }}"
-                                    enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('user.store_staff') }}" enctype="multipart/form-data">
                         @csrf
                         {{-- Name --}}
                         <div class="mb-3">

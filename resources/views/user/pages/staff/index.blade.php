@@ -35,6 +35,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 5%"></th>
+                                <th style="width: 5%"></th>
                                 <th style="width: 70%">Nama</th>
                                 <th style="width: 25%;"></th>
                             </tr>
@@ -43,6 +44,13 @@
                             @foreach ($staffs as $staff)
                                 <tr>
                                     <td></td>
+                                    <td>
+                                        @if($staff->photo)
+                                            <img class="img-thumbnail" src="{{ route('user.images').'?q='.$staff->photo }}" />
+                                        @else
+                                            <img class="img-thumbnail" src="{{ url('img/ustadz.png') }}" />
+                                        @endif
+                                    </td>
                                     <td>
                                         {{ $staff->name }}
                                     </td>

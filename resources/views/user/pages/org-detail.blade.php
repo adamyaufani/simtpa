@@ -112,25 +112,89 @@
                         <div class="card-header">
                             Tim Pengelola
                         </div>
-                        <table class="table table-striped">
-                            <tr>
-                                <td class="fw-bold" width="40%">Direktur</td>
-                                <td>{{ $administrator['director']->name ?? '' }}</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold">Wakil Direktur</td>
-                                <td>{{ $administrator['vice_director']->name ?? '' }}</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold">Sekretaris</td>
-                                <td>{{ $administrator['secretary']->name ?? '' }}</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold">Bendahara</td>
-                                <td>{{ $administrator['treasurer']->name ?? '' }}</td>
-                            </tr>
 
-                        </table>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            @if ($administrator['director']->photo ) 
+                                                <img class="img-thumbnail" width="70" src="{{ route('training.image').'?q='.$staff->photo }}" />
+                                            @else
+                                                @if ($administrator['director']->gender === 'perempuan')
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
+                                                @else
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    
+                                                @endif
+                                            @endif                                            
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <p class="fs-6 mb-0 fw-bold text-capitalize">{{ $administrator['director']->name ?? '' }}</p>
+                                            <p>Direktur</p>                                            
+                                        </div>
+                                      </div>                                  
+                                </div>                                                               
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            @if ($administrator['vice_director']->photo ) 
+                                                <img class="img-thumbnail" width="70" src="{{ route('training.image').'?q='.$staff->photo }}" />
+                                            @else
+                                                @if ($administrator['vice_director']->gender === 'perempuan')
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
+                                                @else
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    
+                                                @endif
+                                            @endif                                            
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <p class="fs-6 mb-0 fw-bold text-capitalize">{{ $administrator['vice_director']->name ?? '' }}</p>
+                                            <p>Wakil Direktur</p>                                            
+                                        </div>
+                                      </div>                                  
+                                </div>                                                               
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            @if ($administrator['secretary']->photo ) 
+                                                <img class="img-thumbnail" width="70" src="{{ route('training.image').'?q='.$staff->photo }}" />
+                                            @else
+                                                @if ($administrator['secretary']->gender === 'perempuan')
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
+                                                @else
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    
+                                                @endif
+                                            @endif                                            
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <p class="fs-6 mb-0 fw-bold text-capitalize">{{ $administrator['secretary']->name ?? '' }}</p>
+                                            <p>Sekretaris</p>                                            
+                                        </div>
+                                      </div>                                  
+                                </div>                                                               
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            @if ($administrator['treasurer']->photo ) 
+                                                <img class="img-thumbnail" width="70" src="{{ route('training.image').'?q='.$staff->photo }}" />
+                                            @else
+                                                @if ($administrator['treasurer']->gender === 'perempuan')
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
+                                                @else
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    
+                                                @endif
+                                            @endif                                            
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <p class="fs-6 mb-0 fw-bold text-capitalize">{{ $administrator['treasurer']->name ?? '' }}</p>
+                                            <p>Bendahara</p>                                            
+                                        </div>
+                                      </div>                                  
+                                </div>                                                               
+                             </div>
+
+                        </div>
+                     
                     </div>
                 </div>
             </div>

@@ -14,8 +14,7 @@
         <div class="card">
             <div class="card-body">
                 <form method="POST"
-                action="{{ route('user.update_staff',$staff->id) }}"
-                enctype="multipart/form-data">
+                action="{{ route('user.update_staff',$staff->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     {{-- Name --}}
@@ -110,8 +109,8 @@
                     </div>
 
                     {{-- Photo --}}
-                    <div class="mb-3">
-                        <label for="photo" class="form-label">{{ __('Foto') }}<small class="text-secondary">File JPG, JPEG, ukuran maksimal 1 MB.</small></label>
+                    <div class="mb-3"> {{ $staff->photo }}
+                        <label for="photo" class="form-label">{{ __('Foto') }} <small class="text-secondary">File JPG, JPEG, ukuran maksimal 1 MB.</small></label>
                         <input type="file" class="form-control @error('photo') is-invalid @enderror"
                             id="photo" name="photo">
                         @error('photo')

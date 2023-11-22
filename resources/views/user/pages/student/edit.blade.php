@@ -213,7 +213,7 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 @if ($student->birth_certificate)
-                                    <img class="mt-3"
+                                    <img class="mt-3  w-25"
                                         src="{{ route('user.images') . '?q=' . $student->birth_certificate }}"
                                         alt="">
                                 @endif
@@ -221,18 +221,20 @@
                         </div>
 
                         {{-- Photo --}}
-                        <div class="mb-3">
-                            <label for="photo" class="form-label">{{ __('Foto') }}</label>
+                        <div class="row mb-3">
+                            <label for="photo" class="col-sm-2 col-form-label">{{ __('Foto') }}</label>
+                            <div class="col-sm-10">
                             <input type="file" class="form-control @error('photo') is-invalid @enderror"
                                 id="photo" name="photo">
                             @error('photo')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             @if($student->photo)
-                                <img class="mt-3"
+                                <img class="mt-3 w-25"
                                     src="{{ route('user.images').'?q='.$student->photo }}"
                                     alt="">
                             @endif
+                            </div>
                         </div>
 
                         <div class="d-grid gap-2">

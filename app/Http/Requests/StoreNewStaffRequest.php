@@ -36,7 +36,7 @@ class StoreNewStaffRequest extends FormRequest
             'core_competency' => ['required', 'string'],
             'phone' => ['required', 'string', 'min:11','regex:/^628\d{8,}$/'],
             'email' => ['required', 'string','email'],
-            'photo' => ['required', 'image', 'mimes:jpg,jpeg,png, max:1028'], 
+            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:1028'],     
         ];
     }
 
