@@ -40,6 +40,7 @@ return new class extends Migration
             $table->string('core_competency')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
+            $table->text('pfoto')->nullable();
         });
 
         Schema::table('staffs', function (Blueprint $table) {

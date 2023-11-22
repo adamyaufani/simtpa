@@ -40,6 +40,7 @@ class UpdateStudentRequest extends FormRequest
             'status' => ['required', new Enum(StudentStatusEnum::class)],
             'ability_level_upon_entry' => ['required', 'string'],
             'birth_certificate' => ['nullable', 'image', 'mimes:jpg,png'],
+            'photo' => ['nullable', 'image', 'mimes:jpg,png'],
         ];
     }
 }

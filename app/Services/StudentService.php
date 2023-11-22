@@ -20,7 +20,7 @@ class StudentService
 
         DB::transaction(function () use ($newRequest, $userId) {
 
-            $newStudent = Student::create(Arr::except($newRequest, ['birth_certificate']));
+            $newStudent = Student::create(Arr::except($newRequest, ['birth_certificate', 'photo']));
             if ($newRequest['birth_certificate'] != null) {
                 $file = $newRequest['birth_certificate'];
                 $originalName = $file->getClientOriginalName();
@@ -31,6 +31,17 @@ class StudentService
                     ]
                 );
             }
+
+            if ($newRequest['photo'] != null) {
+                $file = $newRequest['photo'];
+                $originalName = $file->getClientOriginalName();
+                $path = $file->storeAs("users/student_photo/{$userId}/{$newStudent->id}", $originalName);
+                $newStudent->update(
+                    [
+                        'photo' => $path
+                    ]
+                );
+            }
         });
     }
 
@@ -38,7 +49,7 @@ class StudentService
     {
         DB::transaction(function () use ($request, $id, $userId) {
             $student = Student::find($id);
-            $student->update(Arr::except($request, ['birth_certificate']));
+            $student->update(Arr::except($request, ['birth_certificate', 'photo']));
             if (isset($request['birth_certificate']) && $request['birth_certificate'] != null) {
 
                 if (Storage::exists($student->birth_certificate)) {
@@ -51,6 +62,22 @@ class StudentService
                 $student->update(
                     [
                         'birth_certificate' => $path
+                    ]
+                );
+            }
+
+            if (isset($request['photo']) && $request['photo'] != null) {
+
+                if (Storage::exists($student->photo)) {
+                    Storage::delete($student->photo);
+                }
+
+                $file = $request['photo'];
+                $originalName = $file->getClientOriginalName();
+                $path = $file->storeAs("users/student_photo/{$userId}/{$student->id}", $originalName);
+                $student->update(
+                    [
+                        'photo' => $path
                     ]
                 );
             }
