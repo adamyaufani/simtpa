@@ -109,7 +109,7 @@
                     </div>
 
                     {{-- Photo --}}
-                    <div class="mb-3"> {{ $staff->photo }}
+                    <div class="mb-3">
                         <label for="photo" class="form-label">{{ __('Foto') }} <small class="text-secondary">File JPG, JPEG, ukuran maksimal 1 MB.</small></label>
                         <input type="file" class="form-control @error('photo') is-invalid @enderror"
                             id="photo" name="photo">
@@ -117,7 +117,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                         @if($staff->photo)
-                            <img class="mt-3"
+                            <img class="mt-3 w-25"
                                 src="{{ route('user.images').'?q='.$staff->photo }}"
                                 alt="">
                         @endif

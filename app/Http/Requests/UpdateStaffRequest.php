@@ -29,14 +29,14 @@ class UpdateStaffRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'gender' => ['required', 'string'],
-            'employment_status' => ['required', new Enum(EmploymentStatusEnum::class)],
-            'civil_registration_number' => ['required', 'string'],
+            // 'employment_status' => ['required', new Enum(EmploymentStatusEnum::class)],
+            // 'civil_registration_number' => ['required', 'string'],
             'last_formal_education' => ['required', new Enum(LastFormalEducationEnum::class)],
-            // 'length_of_islamic_education' => ['required', 'string'],
+            // // 'length_of_islamic_education' => ['required', 'string'],
             'core_competency' => ['required', 'string'],
             'phone' => ['required', 'string'],
             'email' => ['required', 'string'],
-            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:1028'],       
+            'photo' => ['image', 'mimes:jpg,jpeg,png', 'max:1028'],       
         ];
     }
 
@@ -56,9 +56,9 @@ class UpdateStaffRequest extends FormRequest
             'phone.min' => 'Nomor telepon terlalu pendek',
             'phone.regex' => 'Format nomor telepon tidak sesuai contoh, yang benar: 6285625674567',
             'email.required' => 'Email wajib diisi',  
-            'photo.image' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
-            'photo.mimes' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
-            'photo.max' => 'Ukuran foto tidak boleh lebih dari 1 MB',            
+            // 'photo.image' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
+            // 'photo.mimes' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
+            // 'photo.max' => 'Ukuran foto tidak boleh lebih dari 1 MB',            
         ];
     }
 }
