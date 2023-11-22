@@ -107,12 +107,12 @@
 
                     </div>
 
-                    @php
+                    {{-- @php
                         $photo_dir = $administrator['director']->photo ?? '';
                         $photo_vice = $administrator['vice_director']->photo ?? '';
                         $photo_sec = $administrator['secretary']->photo ?? '';
                         $photo_tre = $administrator['treasury']->photo ?? '';
-                    @endphp
+                    @endphp --}}
 
 
                     <div class="card">
@@ -120,7 +120,7 @@
                             Tim Pengelola
                         </div>
 
-                        <div class="card-body">
+                        {{-- <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="d-flex align-items-center">
@@ -130,7 +130,7 @@
 
                                                 {{-- {{ $photo_dir }} --}}
 
-                                                <img class="img-thumbnail" width="70" src="{{ url($photo_dir) }}" />
+                                                {{-- <img class="img-thumbnail" width="70" src="{{ url($photo_dir) }}" />
                                             @else
                                                 @if ($administrator['director']->gender === 'perempuan')
                                                     <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
@@ -146,7 +146,7 @@
                                       </div>                                  
                                 </div>                                                               
                             </div>                         
-                        </div>
+                        </div> --}} 
                         <table class="table table-striped">
                             <tr>
                                 <td class="fw-bold" width="40%">Direktur</td>
@@ -154,15 +154,15 @@
                                     
                                     {{ $administrator['director']->name ?? '' }}
 
-                                    @if ($photo_dir)
+                                    {{-- @if ($photo_dir)
                                         {{ $photo_dir }}
-                                    @endif 
+                                    @endif  --}}
                                 </td>
                             </tr>
                             <tr>
                                 <td class="fw-bold">Wakil Direktur</td>
                                 <td>{{ $administrator['vice_director']->name ?? '' }}
-                                    {{ $administrator['vice_director']->photo ?? '' }}
+                                    {{-- {{ $administrator['vice_director']->photo ?? '' }} --}}
                                 </td>
                             </tr>
                             <tr>
@@ -171,7 +171,7 @@
                             </tr>
                             <tr>
                                 <td class="fw-bold">Bendahara</td>
-                                <td>{{ $administrator['treasurer']->name ?? '' }}</td>
+                                <td>{{ $administrator['treasury']->name ?? '' }}</td>
                             </tr>
 
                         </table>
