@@ -320,7 +320,7 @@
         <script>
             // Kebutuhan dan jumlah terkumpul
             const kebutuhanDana = 24000000;
-            let terkumpul = 3000000;
+            let terkumpul = 2000000;
 
             // Menghitung persentase terkumpul
             const persentaseTerkumpul = (terkumpul / kebutuhanDana) * 100;
