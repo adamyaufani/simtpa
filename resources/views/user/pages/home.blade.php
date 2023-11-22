@@ -98,16 +98,17 @@
 
 
                 <div class="card-body">
-                    <h5>Laporan Perolehan dana FASI 2023</h5>
-                    <p class="">Masih kurang <span class="text-danger fw-bold" id="kebutuhanDanaText"></span> dari total kebutuhan <span class="text-success fw-bold">Rp. 24,000,000</span>. Yuk bantu kami dengan menjadi donatur atau relawan donatur. <a href="https://wa.me/6285157683779?text=Salam Admin, saya ingin berdonasi untuk FASI" target="_blank">Klik di sini.</p>
-                    <div class="progress" role="progressbar" id="progressBar"
+                    <h5 class="mb-3">Laporan Perolehan dana FASI 2023</h5>
+                   
+                    <div class="progress mb-2" role="progressbar" id="progressBar"
                         aria-label="Laporan Perolehan dana FASi 2023" aria-valuenow="0" aria-valuemin="0"
-                        aria-valuemax="100">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%"
+                        aria-valuemax="100" style="height:25px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%;"
                             id="progressBarValue">
                             <span id="progressText"></span>
                         </div>
                     </div>
+                    <p class="">Masih kurang <span class="text-danger fw-bold" id="kebutuhanDanaText"></span> dari total kebutuhan <span class="text-success fw-bold">Rp. 24,000,000</span>. Yuk bantu kami dengan menjadi donatur atau relawan donatur. <a href="https://wa.me/6285157683779?text=Salam Admin, saya ingin berdonasi untuk FASI" target="_blank">Klik di sini.</p>
                 </div>
 
             </div>
