@@ -107,8 +107,9 @@
                             id="progressBarValue">
                             <span id="progressText"></span>
                         </div>
+                        <span id="terkumpul" style="margin-top:3px;"></span>
                     </div>
-                    <p class="">Masih kurang <span class="text-danger fw-bold" id="kebutuhanDanaText"></span> dari total kebutuhan <span class="text-success fw-bold">Rp. 24,000,000</span>. <br>Yuk bantu kami dengan menjadi donatur atau relawan donatur. <a href="https://wa.me/6285157683779?text=Salam Admin, saya ingin berdonasi untuk FASI" target="_blank">Klik di sini.</p>
+                    <p class="">Masih kurang <span class="text-danger fw-bold" id="kebutuhanDanaText"></span> dari total kebutuhan <span class="text-success fw-bold">Rp. 24,000,000</span>. <br>Yuk bantu kami dengan menjadi donatur atau relawan donatur. <a href="https://wa.me/6285157683779?text=Salam Admin, saya ingin berdonasi untuk FASI" target="_blank">Klik di sini.</a></p>
                 </div>
 
             </div>
@@ -331,11 +332,12 @@
             $('#progressBarValue').css('width', persentaseTerkumpul + '%');
 
             // Menampilkan persentase terkumpul dan jumlah dana di dalam progress bar
-            $('#progressText').text('Rp' + terkumpul.toLocaleString());
+            $('#progressText').text(persentaseTerkumpul.toFixed(2)   + '% ');
 
             // Menghitung dan menampilkan kekurangan dana
             const kekuranganDana = kebutuhanDana - terkumpul;
             $('#kebutuhanDanaText').append(' Rp. ' + kekuranganDana.toLocaleString());
+            $('#terkumpul').append(' Rp. ' + terkumpul.toLocaleString());
 
         </script>
     @endpush
