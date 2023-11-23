@@ -32,9 +32,15 @@
             </div>
         </div>
     @endforeach
+    event lunas
+    <br>
     {{ $event_paid }}
     <br>
+    belum lunas
+    <br>
     {{ $event_with_pending_payment }}
+    <br>
+    keranjang user
     <br>
     {{ $users_cart }}
     <br>
