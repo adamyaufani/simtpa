@@ -70,7 +70,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row g-4">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="card bg-light bg-gradient">
                                 <div class="card-header fw-bold">TPA Mendaftar</div>
                                 <div class="card-body">
@@ -81,7 +81,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <div class="card bg-light bg-gradient">
                                 <div class="card-header fw-bold">TPA Terdaftar</div>
                                 <div class="card-body">
