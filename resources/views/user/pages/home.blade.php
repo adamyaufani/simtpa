@@ -37,7 +37,7 @@
     {{ $event_with_pending_payment }}
     <br>
     {{ $users_cart }}
-    br
+    <br>
     <section class="py-5" id="features">
         <div class="container px-5 my-5">
             @if(auth()->check())
