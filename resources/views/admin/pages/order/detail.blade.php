@@ -21,7 +21,7 @@
                         <div class="col-6">
                             <h5>Keterangan</h5>
                             <h6 class="text-secondary">
-                                ID Pendaftaran :
+                                No :
                                 {{ $data->id }}
                             </h6>
                             @foreach($data->orders as $order)
@@ -44,7 +44,7 @@
                                 </div>
                             @endforeach
 
-                            <a href="https://wa.me/6285625623456?text=Assalamualaikum, " target="_blank" class="mt-3 btn btn-success"><i class="fab fa-whatsapp"></i> Chat Admin</a>
+                            <a href="https://wa.me/{{ $data->user->userProfile->phone_number }}?text=Assalamualaikum TPA {{ $data->user->userProfile->institution_name }}, Pembayaran Anda untuk tagihan nomor {{ $data->id }} telah kami terima. Klik di sini untuk mendownlaod invoice {{ route('user.download_invoice', $data->id) }}. Terima kasih." target="_blank" class="mt-3 btn btn-success"><i class="fab fa-whatsapp"></i> Chat Peserta</a>
 
                         </div>
                         <div class="col-6">
