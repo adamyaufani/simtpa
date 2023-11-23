@@ -44,7 +44,14 @@
                                 </div>
                             @endforeach
 
-                            <a href="https://wa.me/{{ $data->user->userProfile->phone_number }}?text=Assalamualaikum TPA {{ $data->user->userProfile->institution_name }}, Pembayaran Anda untuk tagihan nomor {{ $data->id }} telah kami terima. Klik di sini untuk mendownlaod invoice {{ route('user.download_invoice', $data->id) }}. Terima kasih." target="_blank" class="mt-3 btn btn-success"><i class="fab fa-whatsapp"></i> Chat Peserta</a>
+                            @if($data->status === 'Lunas' )
+
+                            <a href="https://api.whatsapp.com/send?phone={{ $data->user->userProfile->phone_number }}&text=Assalamualaikum *TPA {{ $data->user->userProfile->institution_name }}*, %0APembayaran Anda untuk tagihan nomor {{ $data->id }} telah kami terima. %0A%0AKlik di sini untuk mendownlod invoice {{ route('user.download_invoice', $data->id) }} %0A%0A*Catatan:*%0A - Mohon membalas dengan *OK* untuk memastikan Anda sudah menerima pesan ini.%0A%0ATerima kasih %F0%9F%98%8A %0ACS Badko TPA Kasihan" target="_blank" class="mt-3 btn btn-success"><i class="fab fa-whatsapp"></i> Chat Peserta</a>
+                            @else
+
+                            <a href="https://api.whatsapp.com/send?phone={{ $data->user->userProfile->phone_number }}&text=Assalamualaikum *TPA {{ $data->user->userProfile->institution_name }}*, %0AKami informasikan bahwa Anda masih memiliki tagihan nomor {{ $data->id }} yang belum dibayar.%0A%0AKlik di sini untuk melihat tagihannya {{ route('user.detail_order', $data->id) }} %0A%0A*Catatan:*%0A - Mohon membalas dengan *OK* untuk memastikan Anda sudah menerima pesan ini.%0A - Silakan abaikan pesan ini jika telah membayar.%0A%0ATerima kasih %F0%9F%98%8A %0ACS Badko TPA Kasihan" target="_blank" class="mt-3 btn btn-warning"><i class="fab fa-whatsapp"></i> Chat Peserta</a>
+
+                            @endif
 
                         </div>
                         <div class="col-6">
