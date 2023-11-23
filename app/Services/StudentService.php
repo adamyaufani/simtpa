@@ -21,6 +21,7 @@ class StudentService
         DB::transaction(function () use ($newRequest, $userId) {
 
             $newStudent = Student::create(Arr::except($newRequest, ['birth_certificate', 'photo']));
+            dd($newRequest);
             if ($newRequest['birth_certificate'] != null) {
                 $file = $newRequest['birth_certificate'];
                 $originalName = $file->getClientOriginalName();
@@ -32,7 +33,7 @@ class StudentService
                 );
             }
 
-            if ($newRequest['photo'] != null) {
+            if (isset($newRequest['photo']) != null) {
                 $file = $newRequest['photo'];
                 $originalName = $file->getClientOriginalName();
                 $path = $file->storeAs("users/student_photo/{$userId}/{$newStudent->id}", $originalName);
@@ -40,6 +41,7 @@ class StudentService
                     [
                         'photo' => $path
                     ]
+
                 );
             }
         });

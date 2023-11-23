@@ -67,19 +67,35 @@
                             </p>
                             Direktur
                             <p>
+                                <strong>Nama : </strong>
                                 {{ $administrator['director']->name ?? '' }}
+                                <br>
+                                <strong> Foto : </strong>
+                                {{ isset($administrator['director']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['director']->photo) : '' }}
                             </p>
                             Wakil Direktur
                             <p>
+                                <strong>Nama : </strong>
                                 {{ $administrator['vice_director']->name ?? '' }}
+                                <br>
+                                <strong> Foto : </strong>
+                                {{ isset($administrator['vice_director']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['vice_director']->photo) : '' }}
                             </p>
                             Sekretaris
                             <p>
+                                <strong>Nama : </strong>
                                 {{ $administrator['secretary']->name ?? '' }}
+                                <br>
+                                <strong> Foto : </strong>
+                                {{ isset($administrator['secretary']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['secretary']->photo) : '' }}
                             </p>
                             Bendahara
                             <p>
+                                <strong>Nama : </strong>
                                 {{ $administrator['treasurer']->name ?? '' }}
+                                <br>
+                                <strong> Foto : </strong>
+                                {{ isset($administrator['treasurer']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['treasurer']->photo) : '' }}
                             </p>
                         </div>
                     </div>
