@@ -106,14 +106,20 @@
                         </div>
 
                     </div>
-                    {{ $administrator['director']->photo ?? '' }}
 
-                    {{-- @php
-                        $photo_dir = $administrator['director']->photo ?? '';
-                        $photo_vice = $administrator['vice_director']->photo ?? '';
-                        $photo_sec = $administrator['secretary']->photo ?? '';
-                        $photo_tre = $administrator['treasury']->photo ?? '';
-                    @endphp --}}
+                    {{ $administrator['director']->gender }}
+                   
+                    @php
+                        $photo_dir = isset($administrator['director']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['director']->photo) : '';
+
+                        $gender_dir = $administrator['director']->gender ?? '';
+
+                        // $photo_vice = $administrator['vice_director']->photo ?? '';
+                        // $photo_sec = $administrator['secretary']->photo ?? '';
+                        // $photo_tre = $administrator['treasury']->photo ?? '';
+                    @endphp
+
+                    {{ $gender_dir }}
 
 
                     <div class="card">
@@ -121,19 +127,16 @@
                             Tim Pengelola
                         </div>
 
-                        {{-- <div class="card-body">
+                        <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-shrink-0">
 
-                                            @if ( $photo_dir )                                          
-
-                                                {{ $photo_dir }}
-
-                                                {{-- <img class="img-thumbnail" width="70" src="{{ url($photo_dir) }}" />
+                                            @if ( $photo_dir ) 
+                                                <img class="img-thumbnail" width="70" src="{{ url($photo_dir) }}" />
                                             @else
-                                                @if ($administrator['director']->gender === 'perempuan')
+                                                @if ($gender_dir === 'perempuan')
                                                     <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
                                                 @else
                                                     <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    
@@ -147,7 +150,7 @@
                                       </div>                                  
                                 </div>                                                               
                             </div>                         
-                        </div> --}} 
+                        </div> 
 
                         Direktur
                         <p>
