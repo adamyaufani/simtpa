@@ -92,7 +92,7 @@
                                         @endforeach 
                                     </strong> 
                                         @foreach($user_with_pending_payment as $user)
-                                            {{ $user->user->userProfile->institution_name }}
+                                            {{ $user->user->userProfile->institution_name }},
                                         @endforeach 
                                     </p>
                                     <p class="m-0">Di Keranjang : @foreach($user_with_cart as $user)
