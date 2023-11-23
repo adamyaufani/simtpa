@@ -13,6 +13,11 @@
                     <input type="hidden" name="training_id" value="{{ $training->id }}">
                     <div class="col-9 me-3">
                         <h4>Data Peserta</h4>
+                        <a class="mb-3" target="_blank" href="{{ route('user.create_student') }}">
+                            Jika santri kosong, klik disini
+                            untuk menambahkan santri
+                            baru
+                        </a>
                         <!-- peserta yang dimunculkan sesuai jenis kelamin yg dipilih saat create event -->
 
                         @for( $i = 1; $i <= $participants;$i++)
