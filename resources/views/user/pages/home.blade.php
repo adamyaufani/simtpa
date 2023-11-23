@@ -44,6 +44,32 @@
     <br>
     {{ $users_cart }}
     <br>
+
+    <div class="card">
+        <div class="card-body">
+            <div>
+                user dengan keranjang
+                <br>
+                @foreach($user_with_cart as $user)
+                    {{ $user->userProfile->institution_name }}
+                @endforeach
+            </div>
+            <div>
+                user dengan pembayaran lunas
+                <br>
+                @foreach($user_with_paid_event as $user)
+                    {{ $user->user->userProfile->institution_name }}
+                @endforeach
+            </div>
+            <div>
+                user dengan pembayaran belum lunas
+                <br>
+                @foreach($user_with_pending_payment as $user)
+                    {{ $user->user->userProfile->institution_name }}
+                @endforeach
+            </div>
+        </div>
+    </div>
     <section class="py-5" id="features">
         <div class="container px-5 my-5">
             @if(auth()->check())
