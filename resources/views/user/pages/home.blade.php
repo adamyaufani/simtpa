@@ -74,7 +74,7 @@
 
                         <div class="col-md-4">
                             <div class="card bg-light bg-gradient">
-                                <div class="card-header fw-bold"><i class="bi bi-cart-fill"> </i> Keranjang ({{ count($user_with_cart) }})</div>
+                                <div class="card-header fw-bold"><i class="bi bi-cart-fill"> </i> Keranjang ({{ $users_cart }})</div>
                                 <div class="card-body">
                                     <p class="m-0">
                                          @foreach($user_with_cart as $user)
@@ -86,7 +86,7 @@
                        
                         <div class="col-md-4">
                             <div class="card bg-info bg-warning">
-                                <div class="card-header fw-bold"><i class="bi bi-hourglass-split"></i> Proses ({{ $event_with_pending_payment }})</div>
+                                <div class="card-header fw-bold"><i class="bi bi-hourglass-split"></i> Proses ({{ count($user_with_pending_payment) }})</div>
                                 <div class="card-body">  
                                     <p class="m-0">                                       
                                         @foreach($user_with_pending_payment as $user)
