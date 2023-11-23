@@ -386,7 +386,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td
-                                                                    style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000; line-height: 20px; vertical-align: top; ">
+                                                                    style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #089919; line-height: 20px; vertical-align: top; ">
                                                                     LUNAS
                                                                 </td>
                                                             </tr>

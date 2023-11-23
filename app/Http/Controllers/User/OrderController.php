@@ -156,14 +156,14 @@ class OrderController extends Controller
         }
 
         // dd($transaction);
-        return view('user.pages.order.invoice')
-            ->with([
-                'data' => $transaction
-            ]);
+        // return view('user.pages.order.invoice')
+        //     ->with([
+        //         'data' => $transaction
+        //     ]);
 
-        // $data = $transaction;
-        // $pdf = PDF::loadView('user.pages.order.invoice', compact('data'));
+        $data = $transaction;
+        $pdf = PDF::loadView('user.pages.order.invoice', compact('data'));
 
-        // return $pdf->download("invoice-{$transaction->id}.pdf");
+        return $pdf->download("invoice-{$transaction->id}.pdf");
     }
 }
