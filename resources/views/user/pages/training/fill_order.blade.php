@@ -5,55 +5,72 @@
             href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     @endpush
     <form action="{{ route('user.fill_order', $training->id) }}" method="POST">
+        <div class="col-12">
+            <section class="py-5" id="features">
+                <div class="container px-5 my-5 d-flex">
+                    @csrf
+                    <input type="hidden" name="training_id" value="{{ $training->id }}">
+                    <div class="col-9 me-3">
+                        <h4>Data Peserta</h4>
+                        <div class="alert alert-warning"> <i class="bi bi-exclamation-triangle-fill text-danger"></i> Jika nama peserta tidak muncul maka ada beberapa kemungkinan :
+                            <ol>
+                                <li>Usia tidak sesuai</li>
+                                <li>Jenis kelamin tidak sesuai</li>
+                                <li>Sudah didaftarkan pada event lain.</li>
+                                <li>Data peserta belum ada pada database.</li>
+                            </p>
+                            </ol>
+                            <a class="btn btn-warning btn-sm" target="_blank" href="{{ route('user.create_student') }}">
+                                <i class="bi bi-plus"></i>
+                                Klik disini untuk menambahkan santri.
+                            </a>
+                        </div>
+                        <!-- peserta yang dimunculkan sesuai jenis kelamin yg dipilih saat create event -->
 
-        @csrf
-        <input type="hidden" name="training_id" value="{{ $training->id }}">
-        <div class="row">
-            <div class="col-12 col-md-9">
-                <h4>Data Peserta</h4>
-                <!-- peserta yang dimunculkan sesuai jenis kelamin yg dipilih saat create event -->
 
-                @for ($i = 1; $i <= $participants; $i++)
-                    <div class="card mb-3 participantss">
-                        <div class="card-body">
-                            <h5>Peserta {{ $i }}</h5>
-                            <div class="mb-3">
-                                <small class="form-label text-secondary"><b>Nama lengkap</b></small>
-                                <select type="text" name="student_id[]" class="form-control select-student">
-                                    <option>Pilih peserta</option>
-                                </select>
+                        <!-- peserta yang dimunculkan sesuai jenis kelamin yg dipilih saat create event -->
+
+                        @for ($i = 1; $i <= $participants; $i++)
+                            <div class="card mb-3 participantss">
+                                <div class="card-body">
+                                    <h5>Peserta {{ $i }}</h5>
+                                    <div class="mb-3">
+                                        <small class="form-label text-secondary"><b>Nama lengkap</b></small>
+                                        <select type="text" name="student_id[]" class="form-control select-student">
+                                            <option>Pilih peserta</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        @endfor
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <h4>Detail Pembayaran</h4>
+                        <div class="card">
+                            <div class="card-body">
+                                <table>
+                                    <tr>
+                                        <td><span class="text-secondary">Harga</span></td>
+                                        <td><span class="ms-3">Rp. {{ $price }}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="text-secondary">Jumlah Peserta</span></td>
+                                        <td><span class="ms-3">{{ $participants }} orang</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="text-secondary">Total</span></td>
+                                        <td>
+                                            <span class="ms-3">Rp. {{ $totalPrice }}</span>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
-                    </div>
-                @endfor
-            </div>
-            <div class="col-12 col-md-3">
-                <h4>Detail Pembayaran</h4>
-                <div class="card">
-                    <div class="card-body">
-                        <table>
-                            <tr>
-                                <td><span class="text-secondary">Harga</span></td>
-                                <td><span class="ms-3">Rp. {{ $price }}</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="text-secondary">Jumlah Peserta</span></td>
-                                <td><span class="ms-3">{{ $participants }} orang</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="text-secondary">Total</span></td>
-                                <td>
-                                    <span class="ms-3">Rp. {{ $totalPrice }}</span>
-                                </td>
-                            </tr>
-                        </table>
+                        <div class="d-grid gap-2 mt-2">
+                            <button class="btn btn-primary" type="submit">Tambahkan ke Keranjang</button>
+                        </div>
                     </div>
                 </div>
-                <div class="d-grid gap-2 mt-2">
-                    <button class="btn btn-primary" type="submit">Tambahkan ke Keranjang</button>
-                </div>
-            </div>
-        </div>
 
     </form>
 

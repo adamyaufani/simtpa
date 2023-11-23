@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Administrator;
 use App\Models\Category;
 use App\Models\Training;
+use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Village;
 use Illuminate\Http\Request;
@@ -66,7 +67,6 @@ class HomeController extends Controller
             }
         }
 
-
         foreach ($villages as $village) {
             $numberOfUsersPerVillages[] = [
                 'village' => $village->village_name,
@@ -74,8 +74,28 @@ class HomeController extends Controller
             ];
         }
 
+        $event_paid = Transaction::where('status', 'Lunas')->count();
+        $event_with_pending_payment = Transaction::where('status', null)->count();
+        $users_cart = User::has('carts')->count();
+
+        $user_with_cart = User::has('carts')->get();
+        $user_with_paid_event = Transaction::select('user_id')->with('user')->where('status', '=', 'Lunas')->distinct()->get();
+        $user_with_pending_payment = Transaction::select('user_id')->with('user')->where('status', '=', null)->distinct()->get();
+
+        // dd($user_with_pending_payment);
         return view('user.pages.home')
-            ->with(compact('trainings', 'categories', 'numberOfUsersPerVillages', 'completeProfileNotification'));
+            ->with(compact(
+                'trainings',
+                'categories',
+                'numberOfUsersPerVillages',
+                'completeProfileNotification',
+                'event_paid',
+                'event_with_pending_payment',
+                'users_cart',
+                'user_with_cart',
+                'user_with_paid_event',
+                'user_with_pending_payment'
+            ));
     }
 
     public function organizationList()

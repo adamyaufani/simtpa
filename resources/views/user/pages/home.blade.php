@@ -23,6 +23,43 @@
 
     <div class="row gx-5">
 
+        event lunas
+        <br>
+        {{ $event_paid }}
+        <br>
+        belum lunas
+        <br>
+        {{ $event_with_pending_payment }}
+        <br>
+        keranjang user
+        <br>
+        {{ $users_cart }}
+        <br>
+    
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    user dengan keranjang
+                    <br>
+                    @foreach($user_with_cart as $user)
+                        {{ $user->userProfile->institution_name }}
+                    @endforeach
+                </div>
+                <div>
+                    user dengan pembayaran lunas
+                    <br>
+                    @foreach($user_with_paid_event as $user)
+                        {{ $user->user->userProfile->institution_name }}
+                    @endforeach
+                </div>
+                <div>
+                    user dengan pembayaran belum lunas
+                    <br>
+                    @foreach($user_with_pending_payment as $user)
+                        {{ $user->user->userProfile->institution_name }}
+                    @endforeach
+                </div>
+
         <div class="col-lg-8 offset-lg-2 mb-5 mb-lg-0">
 
             @if (auth()->check())
