@@ -37,25 +37,25 @@
                 <div class="card-body">
                     <div id="countdown" class="row">
                         <div class="col-3 col-md-3">
-                            <div class="countdownBox bg-success mb-3 rounded" id="daysBox">
+                            <div class="countdownBox bg-light mb-3 rounded" id="daysBox">
                                 <h2 id="days">00</h2>
                                 <p>Hari</p>
                             </div>
                         </div>
                         <div class="col-3 col-md-3">
-                            <div class="countdownBox bg-info mb-3 rounded" id="hoursBox">
+                            <div class="countdownBox bg-light mb-3 rounded" id="hoursBox">
                                 <h2 id="hours">00</h2>
                                 <p>Jam</p>
                             </div>
                         </div>
                         <div class="col-3 col-md-3">
-                            <div class="countdownBox bg-warning mb-3 rounded" id="minutesBox">
+                            <div class="countdownBox bg-light mb-3 rounded" id="minutesBox">
                                 <h2 id="minutes">00</h2>
                                 <p>Menit</p>
                             </div>
                         </div>
                         <div class="col-3 col-md-3">
-                            <div class="countdownBox bg-danger mb-3 rounded" id="secondsBox">
+                            <div class="countdownBox bg-light mb-3 rounded" id="secondsBox">
                                 <h2 id="seconds">00</h2>
                                 <p>Detik</p>
                             </div>
@@ -70,35 +70,43 @@
                 </div>
                 <div class="card-body">
                     <div class="row g-4">
-                        <div class="col-md-3">
+                        
+
+                        <div class="col-md-4">
                             <div class="card bg-light bg-gradient">
-                                <div class="card-header fw-bold">TPA Mendaftar</div>
+                                <div class="card-header fw-bold"><i class="bi bi-cart-fill"> </i> Keranjang ({{ $users_cart }})</div>
                                 <div class="card-body">
-                                    <p class="m-0">Fix : {{ $event_paid }} TPA</p>
-                                    <p class="m-0">Proses : {{ $event_with_pending_payment }} TPA</p>
-                                    <p class="m-0">Di Keranjang : {{ $users_cart }} TPA</p>
+                                    <p class="m-0">
+                                         @foreach($user_with_cart as $user)
+                                        {{ $user->userProfile->institution_name }}, 
+                                    @endforeach</p>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-9">
-                            <div class="card bg-light bg-gradient">
-                                <div class="card-header fw-bold">TPA Terdaftar</div>
-                                <div class="card-body">
-                                    <p class="m-0"><strong>Terdaftar :</strong> <br>
-                                        <em>
-                                        @foreach($user_with_paid_event as $user)
-                                            {{ $user->user->userProfile->institution_name }}, 
-                                        @endforeach 
-                                        </em> 
+                       
+                        <div class="col-md-4">
+                            <div class="card bg-info bg-warning">
+                                <div class="card-header fw-bold"><i class="bi bi-hourglass-split"></i> Proses ({{ $event_with_pending_payment }})</div>
+                                <div class="card-body">  
+                                    <p class="m-0">                                       
                                         @foreach($user_with_pending_payment as $user)
                                             {{ $user->user->userProfile->institution_name }},
                                         @endforeach 
                                     </p>
-                                    <p class="m-0"><strong>Di Keranjang :</strong> <br>
-                                         @foreach($user_with_cart as $user)
-                                        {{ $user->userProfile->institution_name }}, 
-                                    @endforeach</p>
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card bg-success bg-gradient text-white">
+                                <div class="card-header fw-bold"><i class="bi bi-check-square-fill "></i>  </i> Fix ({{ $event_paid }})</div>
+                                <div class="card-body">                                   
+                                    <p class="m-0">                                        
+                                        @foreach($user_with_paid_event as $user)
+                                            {{ $user->user->userProfile->institution_name }}, 
+                                        @endforeach                                         
+                                    </p>
                                 </div>
                             </div>
                         </div>
