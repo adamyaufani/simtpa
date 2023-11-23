@@ -74,6 +74,10 @@ class TrainingService
             $data = Arr::set($validatedRequest, 'category_id', $idCategories);            
             $training->update($data);            
 
+            QuotaPerOrg::where('training_id', $training->id)->update([
+                'quota' => $request['quota']
+            ]);
+
             if ($request->has('image')) {
                 $file = $request['image'];
                 $fileName = $file->getClientOriginalName();

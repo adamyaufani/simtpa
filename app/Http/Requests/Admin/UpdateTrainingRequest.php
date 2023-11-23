@@ -36,7 +36,7 @@ class UpdateTrainingRequest extends FormRequest
             // 'type' => ['required', new Enum(TrainingTypeEnum::class)],
             'category_id' => ['required', 'array'],
             'category_id.*' => ['sometimes', 'numeric', 'exists:categories,id'],
-            'quota' => ['required', 'numeric'],
+            'quota' => ['nullable', 'numeric'],
             // 'trainer_id' => ['required', 'numeric', 'exists:trainers,id'],
             // 'price_earlybird' => ['required', 'numeric'],
             // 'earlybird_end' => ['required', 'date'],
