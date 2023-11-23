@@ -107,19 +107,12 @@
 
                     </div>
 
-                    {{ $administrator['director']->gender }}
-                   
                     @php
                         $photo_dir = isset($administrator['director']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['director']->photo) : '';
-
-                        $gender_dir = $administrator['director']->gender ?? '';
-
-                        // $photo_vice = $administrator['vice_director']->photo ?? '';
-                        // $photo_sec = $administrator['secretary']->photo ?? '';
-                        // $photo_tre = $administrator['treasury']->photo ?? '';
+                        $photo_vice = isset($administrator['vice_director']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['vice_director']->photo) : '';
+                        $photo_sec = isset($administrator['secretary']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['secretary']->photo) : '';
+                        $photo_tre = isset($administrator['treasurer']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['treasurer']->photo) : '';
                     @endphp
-
-                    {{ $gender_dir }}
 
 
                     <div class="card">
@@ -136,7 +129,7 @@
                                             @if ( $photo_dir ) 
                                                 <img class="img-thumbnail" width="70" src="{{ url($photo_dir) }}" />
                                             @else
-                                                @if ($gender_dir === 'perempuan')
+                                                @if ($administrator['director']->gender === 'perempuan')
                                                     <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
                                                 @else
                                                     <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    
@@ -149,69 +142,69 @@
                                         </div>
                                       </div>                                  
                                 </div>                                                               
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+
+                                            @if ( $photo_vice ) 
+                                                <img class="img-thumbnail" width="70" src="{{ url($photo_vice) }}" />
+                                            @else
+                                                @if ($administrator['vice_director']->gender === 'perempuan')
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
+                                                @else
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    
+                                                @endif
+                                            @endif                                            
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <p class="fs-6 mb-0 fw-bold text-capitalize">{{ $administrator['vice_director']->name ?? '' }}</p>
+                                            <p>Wakil Direktur</p>                                            
+                                        </div>
+                                      </div>                                  
+                                </div>                                                               
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+
+                                            @if ( $photo_tre ) 
+                                                <img class="img-thumbnail" width="70" src="{{ url($photo_tre) }}" />
+                                            @else
+                                                @if ($administrator['secretary']->gender === 'perempuan')
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
+                                                @else
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    
+                                                @endif
+                                            @endif                                            
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <p class="fs-6 mb-0 fw-bold text-capitalize">{{ $administrator['secretary']->name ?? '' }}</p>
+                                            <p>Sekretaris</p>                                            
+                                        </div>
+                                      </div>                                  
+                                </div>                                                               
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+
+                                            @if ( $photo_sec ) 
+                                                <img class="img-thumbnail" width="70" src="{{ url($photo_sec) }}" />
+                                            @else
+                                                @if ($administrator['treasurer']->gender === 'perempuan')
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
+                                                @else
+                                                    <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    
+                                                @endif
+                                            @endif                                            
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <p class="fs-6 mb-0 fw-bold text-capitalize">{{ $administrator['treasurer']->name ?? '' }}</p>
+                                            <p>Bendahara</p>                                            
+                                        </div>
+                                      </div>                                  
+                                </div>                                                               
                             </div>                         
                         </div> 
-
-                        Direktur
-                        <p>
-                            <strong>Nama : </strong>
-                            {{ $administrator['director']->name ?? '' }}
-                            <br>
-                            <strong> Foto : </strong>
-                            {{ isset($administrator['director']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['director']->photo) : '' }}
-                        </p>
-                        Wakil Direktur
-                        <p>
-                            <strong>Nama : </strong>
-                            {{ $administrator['vice_director']->name ?? '' }}
-                            <br>
-                            <strong> Foto : </strong>
-                            {{ isset($administrator['vice_director']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['vice_director']->photo) : '' }}
-                        </p>
-                        Sekretaris
-                        <p>
-                            <strong>Nama : </strong>
-                            {{ $administrator['secretary']->name ?? '' }}
-                            <br>
-                            <strong> Foto : </strong>
-                            {{ isset($administrator['secretary']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['secretary']->photo) : '' }}
-                        </p>
-                        Bendahara
-                        <p>
-                            <strong>Nama : </strong>
-                            {{ $administrator['treasurer']->name ?? '' }}
-                            <br>
-                            <strong> Foto : </strong>
-                            {{ isset($administrator['treasurer']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['treasurer']->photo) : '' }}
-                        </p>
-                        <table class="table table-striped">
-                            <tr>
-                                <td class="fw-bold" width="40%">Direktur</td>
-                                <td>
-                                    
-                                    {{ $administrator['director']->name ?? '' }}
-
-                                    {{-- @if ($photo_dir)
-                                        {{ $photo_dir }}
-                                    @endif  --}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold">Wakil Direktur</td>
-                                <td>{{ $administrator['vice_director']->name ?? '' }}
-                                    {{-- {{ $administrator['vice_director']->photo ?? '' }} --}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold">Sekretaris</td>
-                                <td>{{ $administrator['secretary']->name ?? '' }}</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold">Bendahara</td>
-                                <td>{{ $administrator['treasury']->name ?? '' }}</td>
-                            </tr>
-
-                        </table>
+                       
                     </div>
                 </div>
             </div>

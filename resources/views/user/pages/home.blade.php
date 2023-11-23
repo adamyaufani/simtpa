@@ -21,45 +21,7 @@
         </style>
     @endpush
 
-    <div class="row gx-5">
-
-        event lunas
-        <br>
-        {{ $event_paid }}
-        <br>
-        belum lunas
-        <br>
-        {{ $event_with_pending_payment }}
-        <br>
-        keranjang user
-        <br>
-        {{ $users_cart }}
-        <br>
-    
-        <div class="card">
-            <div class="card-body">
-                <div>
-                    user dengan keranjang
-                    <br>
-                    @foreach($user_with_cart as $user)
-                        {{ $user->userProfile->institution_name }}
-                    @endforeach
-                </div>
-                <div>
-                    user dengan pembayaran lunas
-                    <br>
-                    @foreach($user_with_paid_event as $user)
-                        {{ $user->user->userProfile->institution_name }}
-                    @endforeach
-                </div>
-                <div>
-                    user dengan pembayaran belum lunas
-                    <br>
-                    @foreach($user_with_pending_payment as $user)
-                        {{ $user->user->userProfile->institution_name }}
-                    @endforeach
-                </div>
-
+    <div class="row gx-5"> 
         <div class="col-lg-8 offset-lg-2 mb-5 mb-lg-0">
 
             @if (auth()->check())
@@ -112,20 +74,30 @@
                             <div class="card bg-light bg-gradient">
                                 <div class="card-header fw-bold">TPA Mendaftar</div>
                                 <div class="card-body">
-                                    <p class="m-0">Lunas : 1 TPA</p>
-                                    <p class="m-0">Belum Bayar : 3 TPA</p>
-                                    <p class="m-0">Di Keranjang : 5 TPA</p>
+                                    <p class="m-0">Lunas : {{ $event_paid }} TPA</p>
+                                    <p class="m-0">Belum Bayar : {{ $event_with_pending_payment }} TPA</p>
+                                    <p class="m-0">Di Keranjang : {{ $users_cart }} TPA</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="card bg-light bg-gradient">
-                                <div class="card-header fw-bold">Jumlah Peserta</div>
+                                <div class="card-header fw-bold">TPA Terdaftar</div>
                                 <div class="card-body">
-                                    <p class="m-0">Total : 39 Peserta</p>
-                                    <p class="m-0">Lunas : 13 Peserta</p>
-                                    <p class="m-0">Belum Bayar : 26 Peserta</p>
+                                    <p class="m-0">Terdaftar : 
+                                        <strong>
+                                        @foreach($user_with_paid_event as $user)
+                                            {{ $user->user->userProfile->institution_name }}, 
+                                        @endforeach 
+                                    </strong> 
+                                        @foreach($user_with_pending_payment as $user)
+                                            {{ $user->user->userProfile->institution_name }}
+                                        @endforeach 
+                                    </p>
+                                    <p class="m-0">Di Keranjang : @foreach($user_with_cart as $user)
+                                        {{ $user->userProfile->institution_name }}, 
+                                    @endforeach</p>
                                 </div>
                             </div>
                         </div>

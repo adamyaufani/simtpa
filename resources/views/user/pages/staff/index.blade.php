@@ -48,7 +48,11 @@
                                         @if($staff->photo)
                                             <img class="img-thumbnail" src="{{ route('user.images').'?q='.$staff->photo }}" />
                                         @else
-                                            <img class="img-thumbnail" src="{{ url('img/ustadz.png') }}" />
+                                            @if ($staff->gender === 'perempuan')
+                                                <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
+                                            @else
+                                                <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    
+                                            @endif
                                         @endif
                                     </td>
                                     <td>

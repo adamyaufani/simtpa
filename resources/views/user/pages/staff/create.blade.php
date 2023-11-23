@@ -126,7 +126,7 @@
 
                         {{-- Phone --}}
                         <div class="mb-3">
-                            <label for="phone" class="form-label">{{ __('No. Telepon') }} <small class="text-secondary">Contoh : 628561234567, tidak perlu gunakan +, dan tidak perlu gunakan pemisah (- atau spasi)</small></label>
+                            <label for="phone" class="form-label">{{ __('No. Telepon *') }} <small class="text-secondary">Contoh : 628561234567, tidak perlu gunakan +, dan tidak perlu gunakan pemisah (- atau spasi)</small></label>
                             <input type="tel" class="form-control @error('phone') is-invalid @enderror"
                                 id="phone" name="phone" value="{{ old('phone') }}">
                             @error('phone')
@@ -136,7 +136,7 @@
 
                         {{-- Email --}}
                         <div class="mb-3">
-                            <label for="email" class="form-label">{{ __('Email') }}</label>
+                            <label for="email" class="form-label">{{ __('Email * ') }}</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror"
                                 id="email" name="email" value="{{ old('email') }}">
                             @error('email')
