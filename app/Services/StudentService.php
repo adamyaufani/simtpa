@@ -32,7 +32,7 @@ class StudentService
                 );
             }
 
-            if ($newRequest['photo'] != null) {
+            if (isset($newRequest['photo']) != null) {
                 $file = $newRequest['photo'];
                 $originalName = $file->getClientOriginalName();
                 $path = $file->storeAs("users/student_photo/{$userId}/{$newStudent->id}", $originalName);

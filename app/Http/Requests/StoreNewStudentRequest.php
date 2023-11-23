@@ -39,7 +39,7 @@ class StoreNewStudentRequest extends FormRequest
             // 'join_date' => ['required', 'date'],
             // 'status' => ['required', new Enum(StudentStatusEnum::class)],
             // 'ability_level_upon_entry' => ['required', 'string'],
-            'birth_certificate' => ['required', 'image', 'mimes:jpg,jpeg,png, max:1028'],
+            'birth_certificate' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:1028'],
             'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:1028'],       
             
         ];
@@ -70,9 +70,9 @@ class StoreNewStudentRequest extends FormRequest
             'birth_certificate.image' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
             'birth_certificate.mimes' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
             'birth_certificate.max' => 'Ukuran foto tidak boleh lebih dari 1 MB',           
-            'photo.image' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
-            'photo.mimes' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
-            'photo.max' => 'Ukuran foto tidak boleh lebih dari 1 MB',           
+            // 'photo.image' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
+            // 'photo.mimes' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
+            // 'photo.max' => 'Ukuran foto tidak boleh lebih dari 1 MB',           
         ];
     }
 }

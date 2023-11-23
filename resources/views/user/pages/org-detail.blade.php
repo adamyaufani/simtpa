@@ -106,6 +106,7 @@
                         </div>
 
                     </div>
+                    {{ $administrator['director']->photo ?? '' }}
 
                     {{-- @php
                         $photo_dir = $administrator['director']->photo ?? '';
@@ -128,7 +129,7 @@
 
                                             @if ( $photo_dir )                                          
 
-                                                {{-- {{ $photo_dir }} --}}
+                                                {{ $photo_dir }}
 
                                                 {{-- <img class="img-thumbnail" width="70" src="{{ url($photo_dir) }}" />
                                             @else
