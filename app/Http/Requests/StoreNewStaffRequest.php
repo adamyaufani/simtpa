@@ -36,7 +36,7 @@ class StoreNewStaffRequest extends FormRequest
             'core_competency' => ['required', 'string'],
             'phone' => ['required', 'string'],
             'email' => ['required', 'string'],
-            'photo' => ['required', 'image', 'mimes:jpg,png'],
+            'photo' => ['nullable', 'image', 'mimes:jpg,png'],
         ];
     }
 }

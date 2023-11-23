@@ -20,7 +20,7 @@ class StaffService
             $staffData = Arr::add($request, 'user_id', $userId);
             $newStaff = Staff::create($staffData);
 
-            if ($staffData['photo'] != null) {
+            if (isset($staffData['photo']) != null) {
                 $file = $staffData['photo'];
                 $originalName = $file->getClientOriginalName();
                 $path = $file->storeAs("users/staff_photo/{$userId}/{$newStaff->id}", $originalName);
