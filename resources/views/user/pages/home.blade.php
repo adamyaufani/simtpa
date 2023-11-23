@@ -74,8 +74,8 @@
                             <div class="card bg-light bg-gradient">
                                 <div class="card-header fw-bold">TPA Mendaftar</div>
                                 <div class="card-body">
-                                    <p class="m-0">Lunas : {{ $event_paid }} TPA</p>
-                                    <p class="m-0">Belum Bayar : {{ $event_with_pending_payment }} TPA</p>
+                                    <p class="m-0">Fix : {{ $event_paid }} TPA</p>
+                                    <p class="m-0">Proses : {{ $event_with_pending_payment }} TPA</p>
                                     <p class="m-0">Di Keranjang : {{ $users_cart }} TPA</p>
                                 </div>
                             </div>
