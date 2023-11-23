@@ -85,17 +85,18 @@
                             <div class="card bg-light bg-gradient">
                                 <div class="card-header fw-bold">TPA Terdaftar</div>
                                 <div class="card-body">
-                                    <p class="m-0">Terdaftar : 
-                                        <strong>
+                                    <p class="m-0"><strong>Terdaftar :</strong> <br>
+                                        <em>
                                         @foreach($user_with_paid_event as $user)
                                             {{ $user->user->userProfile->institution_name }}, 
                                         @endforeach 
-                                    </strong> 
+                                        </em> 
                                         @foreach($user_with_pending_payment as $user)
                                             {{ $user->user->userProfile->institution_name }},
                                         @endforeach 
                                     </p>
-                                    <p class="m-0">Di Keranjang : @foreach($user_with_cart as $user)
+                                    <p class="m-0"><strong>Di Keranjang :</strong> <br>
+                                         @foreach($user_with_cart as $user)
                                         {{ $user->userProfile->institution_name }}, 
                                     @endforeach</p>
                                 </div>
