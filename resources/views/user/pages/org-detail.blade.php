@@ -72,6 +72,9 @@
                                 <br>
                                 <strong> Foto : </strong>
                                 {{ isset($administrator['director']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['director']->photo) : '' }}
+                                <br>
+                                {{ $administrator['director']->gender ?? '' }}
+
                             </p>
                             Wakil Direktur
                             <p>
@@ -80,6 +83,9 @@
                                 <br>
                                 <strong> Foto : </strong>
                                 {{ isset($administrator['vice_director']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['vice_director']->photo) : '' }}
+                                <br>
+                                {{ $administrator['vice_director']->gender ?? '' }}
+
                             </p>
                             Sekretaris
                             <p>
@@ -88,6 +94,8 @@
                                 <br>
                                 <strong> Foto : </strong>
                                 {{ isset($administrator['secretary']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['secretary']->photo) : '' }}
+                                <br>
+                                {{ $administrator['secretary']->gender ?? '' }}
                             </p>
                             Bendahara
                             <p>
@@ -96,6 +104,9 @@
                                 <br>
                                 <strong> Foto : </strong>
                                 {{ isset($administrator['treasurer']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['treasurer']->photo) : '' }}
+                                <br>
+                                {{ $administrator['treasurer']->gender ?? '' }}
+
                             </p>
                         </div>
                     </div>
