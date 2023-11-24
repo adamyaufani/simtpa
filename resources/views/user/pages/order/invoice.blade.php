@@ -436,9 +436,9 @@
                <tr class="spacer">
                    <td height="50"></td>
                </tr>
-               {{-- <tr>
+               <tr>
                    <td>
-                       @foreach ($data->orders as $order)
+                       {{-- @foreach ($data->orders as $order)
                            <div>
                                @foreach ($order->orderparticipants as $participant)
                                    <div
@@ -448,9 +448,10 @@
                                    </div>
                                @endforeach
                            </div>
-                       @endforeach
+                       @endforeach --}}
+                       
                    </td>
-               </tr> --}}
+               </tr>
            </table>
        </td>
    </tr>

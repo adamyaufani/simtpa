@@ -112,6 +112,11 @@
                         $photo_vice = isset($administrator['vice_director']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['vice_director']->photo) : '';
                         $photo_sec = isset($administrator['secretary']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['secretary']->photo) : '';
                         $photo_tre = isset($administrator['treasurer']->photo) ? route('training.image').'?q='.Crypt::encryptString($administrator['treasurer']->photo) : '';
+                    
+                        $gender_dir = $administrator['director']->gender ?? '';
+                        $gender_vice = $administrator['vice_director']->gender ?? '';
+                        $gender_sec = $administrator['secretary']->gender ?? '';
+                        $gender_tre = $administrator['treasurer']->gender ?? '';
                     @endphp
 
 
@@ -129,7 +134,7 @@
                                             @if ( $photo_dir ) 
                                                 <img class="img-thumbnail" width="70" src="{{ url($photo_dir) }}" />
                                             @else
-                                                @if ($administrator['director']->gender === 'perempuan')
+                                                @if ($gender_dir === 'perempuan')
                                                     <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
                                                 @else
                                                     <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    
@@ -149,7 +154,7 @@
                                             @if ( $photo_vice ) 
                                                 <img class="img-thumbnail" width="70" src="{{ url($photo_vice) }}" />
                                             @else
-                                                @if ($administrator['vice_director']->gender === 'perempuan')
+                                                @if ($gender_vice === 'perempuan')
                                                     <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
                                                 @else
                                                     <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    
@@ -169,7 +174,7 @@
                                             @if ( $photo_tre ) 
                                                 <img class="img-thumbnail" width="70" src="{{ url($photo_tre) }}" />
                                             @else
-                                                @if ($administrator['secretary']->gender === 'perempuan')
+                                                @if ($gender_sec === 'perempuan')
                                                     <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
                                                 @else
                                                     <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    
@@ -189,7 +194,7 @@
                                             @if ( $photo_sec ) 
                                                 <img class="img-thumbnail" width="70" src="{{ url($photo_sec) }}" />
                                             @else
-                                                @if ($administrator['treasurer']->gender === 'perempuan')
+                                                @if ($gender_tre === 'perempuan')
                                                     <img class="img-thumbnail" width="70" src="{{ url('img/ustadzah.png') }}" />
                                                 @else
                                                     <img class="img-thumbnail" width="70" src="{{ url('img/ustadz.png') }}" />    

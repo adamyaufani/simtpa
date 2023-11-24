@@ -100,7 +100,7 @@
 
                         <div class="col-md-4">
                             <div class="card bg-success bg-gradient text-white">
-                                <div class="card-header fw-bold"><i class="bi bi-check-square-fill "></i>  </i> Fix ({{ $event_paid }})</div>
+                                <div class="card-header fw-bold"><i class="bi bi-check-square-fill "></i>  </i> Fix ({{ count($user_with_paid_event) }})</div>
                                 <div class="card-body">                                   
                                     <p class="m-0">                                        
                                         @foreach($user_with_paid_event as $user)
