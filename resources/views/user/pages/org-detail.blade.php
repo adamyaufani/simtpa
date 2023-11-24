@@ -3,7 +3,7 @@
     @push('css')
         <style>
             .bg-profile {
-                background: url('{{ route('training.image') . '?q=' . $org->userProfile->organization_building_photo }}') left top no-repeat;
+                background: url('{{ route('training.image') . '?q=' . $org->userProfile->organization_building_photo }}') center center no-repeat;
                 background-size: cover;
             }
         </style>
