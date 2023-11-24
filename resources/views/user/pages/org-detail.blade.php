@@ -20,7 +20,7 @@
                 bg-secondary bg-gradient @endif 
             
             ">
-                <div class="card-body p-3 p-md-5">
+                <div class="card-body p-3 p-md-5" style="background:rgba(0, 0, 0, 0.7)">
 
                     <div class="d-flex flex-column flex-md-row">
                         <div class="flex-shrink-0">
