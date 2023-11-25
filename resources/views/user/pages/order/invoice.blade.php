@@ -445,7 +445,7 @@
                                        style="width:5,5cm; height:1,5cm; border:1px solid #ddd; float: left; margin-right:20px; padding:20px;">
                                        <strong>{{ $order->training->name }}</strong><br>
                                        <span>{{ $participant->student->name }}</span>
-                                       {{ QrCode::size(120)-format('png')->generate(route('admin.scan_training_attendance',$participant->id)) }}
+                                       {{ QrCode::size(120)->format('png')->generate(route('admin.scan_training_attendance',$participant->id)) }}
                                    </div>
                                @endforeach
                            </div>
