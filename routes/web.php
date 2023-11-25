@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CartController as AdminCartController;
 use App\Http\Controllers\Admin\CertificateController as AdminCertificateController;
@@ -194,6 +195,8 @@ Route::prefix('admin')->group(function () {
             Route::get('{id}', [TrainingController::class, 'edit'])->name('admin.edit_training');
             Route::put('{id}', [TrainingController::class, 'update'])->name('admin.update_training');
             Route::delete('{id}', [TrainingController::class, 'destroy'])->name('admin.delete_training');
+            Route::get('{id}/attendance', [AttendanceController::class, 'attendance'])->name('admin.training_attendance');
+            Route::get('scan-attendance/{id}', [AttendanceController::class, 'scan'])->name('admin.scan_training_attendance');
         });
 
         Route::prefix('trainers')->group(function () {

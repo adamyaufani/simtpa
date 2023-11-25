@@ -438,18 +438,21 @@
                </tr>
                <tr>
                    <td>
-                       {{-- @foreach ($data->orders as $order)
+                       @foreach ($data->orders as $order)
                            <div>
                                @foreach ($order->orderparticipants as $participant)
                                    <div
                                        style="width:5,5cm; height:1,5cm; border:1px solid #ddd; float: left; margin-right:20px; padding:20px;">
                                        <strong>{{ $order->training->name }}</strong><br>
                                        <span>{{ $participant->student->name }}</span>
+                                       {{ QrCode::size(120)->generate(route('admin.scan_training_attendance',$participant->id)) }}
                                    </div>
                                @endforeach
                            </div>
-                       @endforeach --}}
-                       
+                       @endforeach
+
+
+                      
                    </td>
                </tr>
            </table>
@@ -460,6 +463,7 @@
    </tr>
 
 </table>
+
 
 
 
