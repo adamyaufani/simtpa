@@ -59,7 +59,7 @@
                 <li>
                     {{ $participant->student->name }}
                     <br>
-                    {{ QrCode::size(120)->generate($participant->student->id) }}
+                    {{ QrCode::size(120)->generate(route('admin.scan_training_attendance',$participant->id)) }}
                 </li>
             @endforeach
         </ul>

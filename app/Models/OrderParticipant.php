@@ -24,4 +24,9 @@ class OrderParticipant extends Model
     {
         return $this->belongsTo(Student::class);
     }
+
+    public function eventAttendance()
+    {
+        return $this->hasOne(EventAttendance::class);
+    }
 }

@@ -196,6 +196,7 @@ Route::prefix('admin')->group(function () {
             Route::put('{id}', [TrainingController::class, 'update'])->name('admin.update_training');
             Route::delete('{id}', [TrainingController::class, 'destroy'])->name('admin.delete_training');
             Route::get('{id}/attendance', [AttendanceController::class, 'attendance'])->name('admin.training_attendance');
+            Route::get('scan-attendance/{id}', [AttendanceController::class, 'scan'])->name('admin.scan_training_attendance');
         });
 
         Route::prefix('trainers')->group(function () {
