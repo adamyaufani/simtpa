@@ -62,4 +62,9 @@ class Training extends Model
     {
         return $this->hasManyThrough(OrderParticipant::class, Order::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

@@ -50,6 +50,20 @@
             </tr>
         </tbody>
     </table>
+    <br>
+    @foreach($data->orders as $training)
+        <h4><strong>{{ $order->training->name }}</strong></h4>
+        Peserta
+        <ul>
+            @foreach($training->orderParticipants as $participant)
+                <li>
+                    {{ $participant->student->name }}
+                    <br>
+                    {{ QrCode::size(120)->generate($participant->student->id) }}
+                </li>
+            @endforeach
+        </ul>
+    @endforeach
 </body>
 
 </html>

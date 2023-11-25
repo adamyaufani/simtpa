@@ -7,61 +7,68 @@
 
     <x-slot:title>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Daftar Event</h1>
-            <a href="{{ route('admin.create_new_training') }}"
-                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                <i class="fas fa-plus fa-sm text-white-50"></i> Event Baru
-            </a>
+            <h1 class="h3 mb-0 text-gray-800">Kehadiran Peserta</h1>
         </div>
     </x-slot:title>
 
-    @if(session()->has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ session()->get('success') }}
-        </div>
-    @endif
+
 
     <div class="col-12">
+        @if(session()->has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session()->get('success') }}
+            </div>
+        @endif
+        <div class="card mb-3">
+            <div class="card-header">
+                data event
+            </div>
+            <div class="card-body">
+
+            </div>
+        </div>
         <div class="card">
             <div class="card-body">
                 <table id="dataTable" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th style="width: 5%"></th>
-                            <th style="width: 25%">Nama Event</th>
+                            <th style="width: 25%">Nama</th>
                             <th style="width: 25%">Keterangan</th>
                             <th style="width: 20%"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($trainings as $training)
+                        @foreach($participants as $participant)
                             <tr>
                                 <td></td>
                                 <td>
-                                    <a href="{{ route('admin.edit_training',$training->id) }}">
-                                        {{ $training->name }}
+                                    <a
+                                        href="{{ route('admin.edit_training',$participant->id) }}">
+                                        {{ $participant->student->name }}
                                     </a>
                                 </td>
                                 <td>
                                     <p>
-                                        {{ $training->description }}
+                                        {{ $participant->eventAttendance->status ?? '' }}
                                     </p>
                                 </td>
                                 <td>
                                     <div class="d-flex">
-                                        <form
+
+                                        {{-- <form
                                             action="{{ route('admin.delete_training',$training->id) }}"
-                                            method="POST" onsubmit="return confirmSubmit()">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
-                                        <a href="{{ route('admin.training_attendance',$training->id) }}"
-                                            class="btn btn-primary btn-sm ml-2">
-                                            peserta
-                                        </a>
+                                        method="POST" onsubmit="return confirmSubmit()">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                        </form> --}}
+                                        {{-- <a href="{{ route('admin.training_attendance',$training->id) }}"
+                                        class="btn btn-primary btn-sm ml-2">
+                                        peserta
+                                        </a> --}}
                                     </div>
                                 </td>
                             </tr>

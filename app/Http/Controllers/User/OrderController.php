@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Mail;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class OrderController extends Controller
 {
@@ -156,6 +157,15 @@ class OrderController extends Controller
         }
 
         // dd($transaction);
+        // foreach ($transaction->orders as $order) {
+        //     foreach ($order->orderparticipants as $participant) {
+        //         dump($participant->student->name);
+        //     }
+        // }
+
+        // die();
+        // $qrCode = QrCode::size(120)->generate(route('user.verification', $user->id));
+
         // return view('user.pages.order.invoice')
         //     ->with([
         //         'data' => $transaction
