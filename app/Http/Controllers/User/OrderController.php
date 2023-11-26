@@ -172,7 +172,7 @@ class OrderController extends Controller
             ]);
 
         // $data = $transaction;
-        // $pdf = PDF::loadView('user.pages.order.invoice', compact('data'));
+        // $pdf = PDF::loadView('user.pages.order.invoice', compact('data'))->setPaper('A4');
 
         // return $pdf->download("invoice-{$transaction->id}.pdf");
     }

@@ -1,469 +1,315 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="robots" content="noindex,nofollow" />
-    <meta name="viewport" content="width=device-width; initial-scale=1.0;" />
-    <title>Invoice Badko TKA-TPA Rayon Kasihan</title>
-    <style type="text/css">
+    <title>Invoice No # @php (printf('%03s', $data->id)) @endphp Badko TKA-TPA Rayon Kasihan  </title>
+
+    <style>
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
+        html,
         body {
-            margin: 0;
-            padding: 0;
-            font-family: "Open Sans";
+            line-height: 1.5;
+            font-size: 10pt !important;
+            font-family: 'Open Sans', sans-serif;
         }
 
-        div,
-        p,
-        a,
-        li,
-        td {
-            -webkit-text-size-adjust: none;
-        }
-
-        .ReadMsgBody {
-            width: 100%;
-            background-color: #ffffff;
-        }
-
-        .ExternalClass {
-            width: 100%;
-            background-color: #ffffff;
-        }
-
-        body {
+        div.kertas {
             width: 100%;
             height: 100%;
-            background-color: #e1e1e1;
-            margin: 0;
-            padding: 0;
-            -webkit-font-smoothing: antialiased;
         }
 
-        html {
-            width: 100%;
+        .items {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 24px;
         }
 
-        p {
-            padding: 0 !important;
-            margin-top: 0 !important;
-            margin-right: 0 !important;
-            margin-bottom: 0 !important;
-            margin-left: 0 !important;
+        .items th {
+            font-weight: 700;
+            height: 25px;
+            border-top: 1px solid #dddddd;
+            border-bottom: 1px solid #717171;
         }
 
-        
-
-        @media only screen and (max-width: 600px) {
-            body {
-                width: auto !important;
-            }
-
-            table[class=fullTable] {
-                width: 96% !important;
-                clear: both;
-            }
-
-            table[class=fullPadding] {
-                width: 85% !important;
-                clear: both;
-            }
-
-            table[class=col] {
-                width: 45% !important;
-            }
-
-            .erase {
-                display: none;
-            }
+        .items td {
+            height: 30px;
+            vertical-align: middle;
+            border-bottom: 1px solid #dddddd;
+            color: #5b5b5b;
         }
 
-        @media only screen and (max-width: 420px) {
-            table[class=fullTable] {
-                width: 100% !important;
-                clear: both;
-            }
-
-            table[class=fullPadding] {
-                width: 85% !important;
-                clear: both;
-            }
-
-            table[class=col] {
-                width: 100% !important;
-                clear: both;
-            }
-
-            table[class=col] td {
-                text-align: left !important;
-            }
-
-            .erase {
-                display: none;
-                font-size: 0;
-                max-height: 0;
-                line-height: 0;
-                padding: 0;
-            }
-
-           
+        tr .total {
+            font-weight: 700;
         }
     </style>
 </head>
 
 <body>
+    <div>
+        <div class="kertas">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 
-   <!-- Header -->
-   <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable"
-   bgcolor="#e1e1e1">
-   <tr>
-       <td height="20"></td>
-   </tr>
-   <tr>
-       <td>
-           <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable"
-               bgcolor="#ffffff" style="border-radius: 10px 10px 0 0;">
-               <tr class="hiddenMobile">
-                   <td height="40"></td>
-               </tr>              
+                <tr>
+                    <td>
+                        <table width="800" border="0" cellpadding="0" cellspacing="0" align="center"
+                            style="border-radius: 10px 10px 0 0; border-bottom: 1px solid #dddddd;">
 
-               <tr>
-                   <td>
-                       <table width="480" border="0" cellpadding="0" cellspacing="0" align="center"
-                           class="fullPadding">
-                           <tbody>
-                               <tr>
-                                   <td>
-                                       <table width="220" border="0" cellpadding="0" cellspacing="0"
-                                           align="left" class="col">
-                                           <tbody>
-                                               <tr>
-                                                   <td align="left"> <img
-                                                           src="https://badkokasihan.web.id/wp-content/uploads/2023/08/logobadko-01.png"
-                                                           width="32" alt="logo" border="0" /></td>
-                                               </tr>
-                                               <tr class="hiddenMobile">
-                                                   <td height="40"></td>
-                                               </tr>
-                                              
-                                               <tr>
-                                                   <td
-                                                       style="font-size: 12px; color: #5b5b5b; font-family:'Open Sans'; line-height: 18px; vertical-align: top; text-align: left;">
-                                                       Salam, {{ $data->user->userProfile->institution_name }}.
-
-                                                   </td>
-                                               </tr>
-                                           </tbody>
-                                       </table>
-                                       <table width="220" border="0" cellpadding="0" cellspacing="0"
-                                           align="right" class="col">
-                                           <tbody>
-                                               <tr class="visibleMobile">
-                                                   <td height="10"></td>
-                                               </tr>
-                                             
-                                               <tr>
-                                                   <td
-                                                       style="font-size: 21px; color: #ff0000; letter-spacing: -1px; font-family: 'Open Sans', sans-serif; line-height: 1; vertical-align: top; text-align: right;">
-                                                       Invoice
-                                                   </td>
-                                               </tr>
-                                               <tr>
-                                               <tr class="hiddenMobile">
-                                                   <td height="50"></td>
-                                               </tr>
-                                              
-                                               <tr>
-                                                   <td
-                                                       style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                                                       <small>ORDER</small> #{{ $data->id }}<br />
-                                                       <small>{{ $data->created_at->isoFormat('D MMMM Y') }}</small>
-                                                   </td>
-                                               </tr>
-                                           </tbody>
-                                       </table>
-                                   </td>
-                               </tr>
-                           </tbody>
-                       </table>
-                   </td>
-               </tr>
-           </table>
-       </td>
-   </tr>
-</table>
-<!-- /Header -->
-<!-- Order Details -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable"
-   bgcolor="#e1e1e1">
-   <tbody>
-       <tr>
-           <td>
-               <table width="600" border="0" cellpadding="0" cellspacing="0" align="center"
-                   class="fullTable" bgcolor="#ffffff">
-                   <tbody>
-
-                       <tr class="hiddenMobile">
-                           <td height="30"></td>
-                       </tr>
-                      
-                       <tr>
-                           <td>
-                               <table width="480" border="0" cellpadding="0" cellspacing="0" align="center"
-                                   class="fullPadding">
-                                   <tbody>
-                                       <tr>
-                                           <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: bold; line-height: 1; vertical-align: top; padding: 0 10px 7px 0;"
-                                               width="62%" align="left">
-                                               Nama Event
-                                           </th>
-                                           <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: bold; line-height: 1; vertical-align: top; padding: 0 0 7px;"
-                                               align="left">
-                                               <small>Qty</small>
-                                           </th>
-                                           <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: bold; line-height: 1; vertical-align: top; padding: 0 0 7px;"
-                                               align="center">
-                                               Harga (Rp)
-                                           </th>
-                                           <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; font-weight: bold; line-height: 1; vertical-align: top; padding: 0 0 7px;"
-                                               align="right">
-                                               Subtotal (Rp)
-                                           </th>
-                                       </tr>
-                                       <tr>
-                                           <td height="1" style="background: #bebebe;" colspan="4"></td>
-                                       </tr>
-                                       <tr>
-                                           <td height="10" colspan="4"></td>
-                                       </tr>
-
-                                       @php
-                                           $total = 0;
-                                       @endphp
-
-                                       @foreach ($data->orders as $order)
-                                           <tr>
-                                               <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;"
-                                                   class="article">{{ $order->training->name }}</td>
-                                               <td
-                                                   style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;">
-                                                   <small>{{ $order->orderParticipants->count() }}</small>
-                                               </td>
-                                               <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"
-                                                   align="center">
-                                                   {{ number_format($order->training->price_normal) }}</td>
-                                               <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;"
-                                                   align="right">
-                                                   {{ number_format($order->orderParticipants->count() * $order->training->price_normal) }}
-                                               </td>
-                                           </tr>
-                                           <tr>
-                                               <td height="1" colspan="4"
-                                                   style="border-bottom:1px solid #e4e4e4"></td>
-                                           </tr>
-
-                                           @php
-                                               $total += $order->orderParticipants->count() * $order->training->price_normal;
-                                           @endphp
-                                       @endforeach
-                                   </tbody>
-                               </table>
-                           </td>
-                       </tr>
-                       <tr>
-                           <td height="20"></td>
-                       </tr>
-                   </tbody>
-               </table>
-           </td>
-       </tr>
-   </tbody>
-</table>
-<!-- /Order Details -->
-<!-- Total -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable"
-   bgcolor="#e1e1e1">
-   <tbody>
-       <tr>
-           <td>
-               <table width="600" border="0" cellpadding="0" cellspacing="0" align="center"
-                   class="fullTable" bgcolor="#ffffff">
-                   <tbody>
-                       <tr>
-                           <td>
-
-                               <!-- Table Total -->
-                               <table width="480" border="0" cellpadding="0" cellspacing="0"
-                                   align="center" class="fullPadding">
-                                   <tbody>
-                                       <tr>
-                                           <td
-                                               style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; font-weight:bold ">
-                                               Total
-                                           </td>
-                                           <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; white-space:nowrap; font-weight:bold"
-                                               width="80">
-                                               Rp{{ number_format($total) }}
-                                           </td>
-                                       </tr>
+                            <tr>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td><img src="{{ url('img/logo-badko.png') }}"
+                                                    width="48" alt="logo" border="0" /></td>
+                                            <td>
+                                                <h4
+                                                    style="padding:0;margin:0; margin-left:5px; font-size: 15px; color: #000000; font-family: 'Open Sans', sans-serif; line-height: 24px;">
+                                                    Badan Koordinasi TKA-TPA Rayon Kasihan</h4>
+                                                <p
+                                                    style="padding:0;margin:0; margin-left:5px; font-size: 11px; color: #5b5b5b; font-family: 'Open Sans', sans-serif;">
+                                                    Masjid Amar Ma’ruf Nahi Munkar
+                                                    Menayu Lor Tirtonirmolo, <br>Kasihan,Bantul, Yogyakarta |
+                                                    www.badkokasihan.web.id</p>
+                                            </td>
+                                        </tr>
+                                    </table>
 
 
-                                   </tbody>
-                               </table>
-                               <!-- /Table Total -->
+                                </td>
 
-                           </td>
-                       </tr>
-                   </tbody>
-               </table>
-           </td>
-       </tr>
-   </tbody>
-</table>
-<!-- /Total -->
-<!-- Information -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable"
-   bgcolor="#e1e1e1">
-   <tbody>
-       <tr>
-           <td>
-               <table width="600" border="0" cellpadding="0" cellspacing="0" align="center"
-                   class="fullTable" bgcolor="#ffffff">
-                   <tbody>
-                       <tr>
-                       <tr class="hiddenMobile">
-                           <td height="60"></td>
-                       </tr>
-                       
-                       <tr>
-                           <td>
-                               <table width="480" border="0" cellpadding="0" cellspacing="0"
-                                   align="center" class="fullPadding">
-                                   <tbody>
-                                       <tr>
-                                           <td>
-                                               <table width="220" border="0" cellpadding="0"
-                                                   cellspacing="0" align="left" class="col">
+                                <td style="vertical-align:top; ">
+                                    <h1
+                                        style="font-size: 20px; color: #ff0000; letter-spacing: -1px; font-family: 'Open Sans', sans-serif; line-height:14px; text-align: right; padding:0;">
+                                        Invoice</h1>
+                                    <div
+                                        style="font-size: 11px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px;  text-align: right;margin-bottom:10px;">
+                                        <small>ORDER</small> # @php (printf('%03s', $data->id)) @endphp <br />
+                                        <small>{{ $data->created_at->isoFormat('D MMMM Y') }}</small>
 
-                                                   <tbody>
-                                                       <tr>
-                                                           <td
-                                                               style="font-size: 11px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 1; vertical-align: top; ">
-                                                               <strong>STATUS PEMBAYARAN</strong>
-                                                           </td>
-                                                       </tr>
-                                                       <tr>
-                                                           <td width="100%" height="10"></td>
-                                                       </tr>
-                                                       <tr>
-                                                           <td
-                                                               style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #089919; line-height: 20px; vertical-align: top; ">
-                                                               LUNAS
-                                                           </td>
-                                                       </tr>
-                                                   </tbody>
-                                               </table>
+                                    </div>
+                                </td>
 
+                            </tr>
+                        </table>
 
-                                               <table width="220" border="0" cellpadding="0"
-                                                   cellspacing="0" align="right" class="col">
-                                                   <tbody>                                                      
-                                                       <tr>
-                                                           <td
-                                                               style="font-size: 11px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 1; vertical-align: top; ">
-                                                               <strong>METODE PEMBAYARAN</strong>
-                                                           </td>
-                                                       </tr>
-                                                       <tr>
-                                                           <td width="100%" height="10"></td>
-                                                       </tr>
-                                                       <tr>
-                                                           <td
-                                                               style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                                               Transfer ke Rekening BSI <br>No. 714-775-842-6 an.
-                                                               Yaufani Adam
-                                                           </td>
-                                                       </tr>
-                                                   </tbody>
-                                               </table>
-                                           </td>
-                                       </tr>
-                                   </tbody>
-                               </table>
-                           </td>
-                       </tr>
+                        <table width="800" border="0" cellpadding="0" cellspacing="0" align="center"
+                            style="border-radius: 10px 10px 0 0; ">
 
-                       <tr class="visibleMobile">
-                           <td height="30"></td>
-                       </tr>
-                   </tbody>
-               </table>
-           </td>
-       </tr>
-   </tbody>
-</table>
-<!-- /Information -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable"
-   bgcolor="#e1e1e1">
+                            <tr>
+                                <td>
+                                    <span
+                                        style="margin-top:10px;display:block;font-size: 12px; color: #5b5b5b; font-family:'Open Sans'; line-height: 18px; vertical-align: top; text-align: left;">Assalamualaikum,
+                                        TPA {{ $data->user->userProfile->institution_name }}.</span>
+                                </td>
+                            </tr>
+                        </table>
 
-   <tr>
-       <td>
-           <table width="600" border="0" cellpadding="0" cellspacing="0" align="center"
-               class="fullTable" bgcolor="#ffffff" style="border-radius: 0 0 10px 10px;">
-               <tr>
-                   <td>
-                       <table width="480" border="0" cellpadding="0" cellspacing="0" align="center"
-                           class="fullPadding">
-                           <tbody>
-                               <tr>
-                                   <td
-                                       style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: left;">
-                                       Terima kasih atas kepercayaan Anda.
-                                   </td>
-                               </tr>
-                               <tr>
-                                   <td>
+                    </td>
+                </tr>
+            </table>
 
-                                   </td>
-                               </tr>
-                           </tbody>
-                       </table>
-                   </td>
-               </tr>
-               <tr class="spacer">
-                   <td height="50"></td>
-               </tr>
-               <tr>
-                   <td>
-                       @foreach ($data->orders as $order)
-                           <div>
-                               @foreach ($order->orderparticipants as $participant)
-                                   <div
-                                       style="width:5,5cm; height:1,5cm; border:1px solid #ddd; float: left; margin-right:20px; padding:20px;">
-                                       <strong>{{ $order->training->name }}</strong><br>
-                                       <span>{{ $participant->student->name }}</span>
-                                       {{ QrCode::size(120)->generate(route('admin.scan_training_attendance',$participant->id)) }}
-                                   </div>
-                               @endforeach
-                           </div>
-                       @endforeach
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable">
+                <tbody>
+
+                    <tr>
+                        <td height="10"></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <table width="800" border="0" cellpadding="0" cellspacing="0" align="center"
+                                class="items" bgcolor="#ffffff">
+                                <tbody>
+                                    <tr>
+                                        <th width="62%" align="left">
+                                            Nama Event
+                                        </th>
+                                        <th align="center">
+                                            Qty
+                                        </th>
+                                        <th align="right">
+                                            Harga (Rp)
+                                        </th>
+                                        <th align="right">
+                                            Subtotal (Rp)
+                                        </th>
+                                    </tr>
 
 
-                      
-                   </td>
-               </tr>
-           </table>
-       </td>
-   </tr>
-   <tr>
-       <td height="20"></td>
-   </tr>
 
-</table>
+                                    @php
+                                        $total = 0;
+                                    @endphp
 
+                                    @foreach ($data->orders as $order)
+                                        <tr>
+                                            <td>{{ $order->training->name }}</td>
+                                            <td align="center">
+                                                {{ $order->orderParticipants->count() }}
+                                            </td>
+                                            <td align="right">
+                                                {{ number_format($order->training->price_normal) }}</td>
+                                            <td align="right">
+                                                {{ number_format($order->orderParticipants->count() * $order->training->price_normal) }}
+                                            </td>
+                                        </tr>
+
+
+                                        @php
+                                            $total += $order->orderParticipants->count() * $order->training->price_normal;
+                                        @endphp
+                                    @endforeach
+
+                                    <tr class="total">
+                                        <td colspan="2"></td>
+                                        <td align="right">
+                                            Total
+                                        </td>
+                                        <td align="right">
+                                            Rp{{ number_format($total) }}
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="20"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable">
+                <tbody>
+
+                    <tr>
+                        <td height="10"></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <table width="800" border="0" cellpadding="0" cellspacing="0" align="center"
+                                bgcolor="#ffffff">
+                                <tbody>
+                                    <tr>
+                                        <td>
+
+                                            <table width="600" border="0" cellpadding="0" cellspacing="0"
+                                                align="center" bgcolor="#ffffff">
+                                                <tbody>
+                                                    <tr>                                                      
+                                                        <td width="80%"><h3>Label Nama</h3>
+                                                            <p>Silakan cetak label nama berikut ini, lalu potong dan tempelkan pada ID card yang diberikan oleh panitia FASI sebagaimana gambar di samping.</p>
+                                                            <p> Tekan Ctrl+P, lalu ubah ukuran kertas ke A4.</p>
+                                                        </td>
+                                                        <td>  <img src="{{ url('img/cocard.jpg') }}"
+                                                            width="200" alt="logo" border="0" /></td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                            
+                                          
+                                            <table width="800" border="0" cellpadding="0" cellspacing="0"
+                                                align="center" bgcolor="#ffffff" style="border-bottom:1px dashed #bababa;">
+                                                <tbody>
+                                                   
+                                                    @php $i=1; 
+                                                    $ni = count($data->orders);
+                                                    @endphp
+
+                                                    
+                                                    @foreach ($data->orders as $order)
+
+                                                    @if ($i % 2 == 1) 
+                                                        <tr><td width="50%"> 
+                                                            @foreach ($order->orderparticipants as $participant)
+                                                            
+                                                            <div
+                                                            style="width:90%; height:1,5cm; border:1px dashed #bababa; border-bottom:none; float: left;  padding:10px;">
+                                                            <table>
+                                                                <tr>
+                                                                    <td>
+                                                                        {{ QrCode::size(90)->generate(route('admin.scan_training_attendance', $participant->id)) }}
+                                                                    </td>
+                                                                    <td
+                                                                        style="vertical-align: middle;padding-left:6px;">
+                                                                        <h4
+                                                                            style="line-height:13pt;font-size:10pt;margin:0;padding:0;">
+                                                                            {{ $order->training->name }}</h4>
+                                                                        <p
+                                                                            style="line-height:16pt;font-size:13pt;margin:0;padding:0;font-weight:bold; text-transform:uppercase">
+                                                                            {{ $participant->student->name }} 
+                                                                        </p>
+                                                                        <p
+                                                                            style="line-height:20pt;font-size:12pt;margin:0;padding:0; text-transform:uppercase">
+                                                                            TPA {{ $data->user->userProfile->institution_name }}
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+
+
+                                                        </div>
+
+                                                            @endforeach
+
+                                                        </td>
+                                                    @else 
+                                                    
+                                                        <td  width="50%">
+                                                            @foreach ($order->orderparticipants as $participant)
+                                                            
+                                                            <div
+                                                            style="width:90%;height:1,5cm; border:1px dashed #bababa; float: left;  padding:10px;border-bottom:none;">
+                                                            <table>
+                                                                <tr>
+                                                                    <td>
+                                                                        {{ QrCode::size(90)->generate(route('admin.scan_training_attendance', $participant->id)) }}
+                                                                    </td>
+                                                                    <td
+                                                                        style="vertical-align: middle;padding-left:6px;">
+                                                                        <h4
+                                                                            style="line-height:13pt;font-size:10pt;margin:0;padding:0;">
+                                                                            {{ $order->training->name }}</h4>
+                                                                        <p
+                                                                            style="line-height:16pt;font-size:13pt;margin:0;padding:0;font-weight:bold; text-transform:uppercase">
+                                                                            {{ $participant->student->name }} 
+                                                                        </p>
+                                                                        <p
+                                                                            style="line-height:20pt;font-size:12pt;margin:0;padding:0; text-transform:uppercase">
+                                                                            TPA {{ $data->user->userProfile->institution_name }}
+                                                                        </p>
+                                                                    </td>
+                                                            </table>
+
+
+                                                        </div>
+
+                                                            @endforeach
+                                                        </td></tr>
+                                                    @endif
+
+                                                    @php $i++; @endphp
+                                                    @endforeach
+
+                                                    @if ($ni % 2 == 1) 
+                                                    <td width="50%">
+                                                                                                       
+                                                    </td></tr>
+                                                    @endif                                                  
+
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
 
 
 
