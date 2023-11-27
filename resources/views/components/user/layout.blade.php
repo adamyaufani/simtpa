@@ -174,9 +174,7 @@
                             </div>
                         </div>
                         <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
-                            <img class="img-fluid rounded-3 my-5"
-                                src="https://badkokasihan.web.id/wp-content/uploads/2023/10/fasi-kasihan3.jpg"
-                                alt="..." />
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/F_KZazS0RNY?si=H1C0XF-_8_tqUJ_a" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>

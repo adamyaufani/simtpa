@@ -36,15 +36,8 @@
                         @foreach($trainings as $training)
                             <tr>
                                 <td></td>
-                                <td>
-                                    <a href="{{ route('admin.edit_training',$training->id) }}">
-                                        {{ $training->name }}
-                                    </a>
-                                </td>
-                                <td>
-                                    {{ $training->participants_count }}
-                                </td>                               
-                                
+                                <td>{{ $training->name }}</td>
+                                <td>{{ $training->participants_count }}</td>   
                             </tr>
                         @endforeach
                     </tbody>
