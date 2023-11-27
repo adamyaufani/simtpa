@@ -17,12 +17,12 @@ class DashboardController extends Controller
 
         // $trainings = Training::all();
         $trainings = Training::withCount('participants')->get();
-        $cart = Cart::withCount('items')->get();
+
 
         // dd($cart);
         
 
         return view('admin.pages.training.participant-training')
-            ->with(compact('trainings', 'cart'));     
+            ->with(compact('trainings'));     
     }
 }
