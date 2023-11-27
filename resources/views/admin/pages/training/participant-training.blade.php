@@ -30,7 +30,6 @@
                             <th style="width: 5%"></th>
                             <th style="width: 25%">Nama Event</th>
                             <th style="width: 20%">Peserta</th>
-                            <th style="width: 20%">Keranjang</th>
                         </tr>
                     </thead>
                     <tbody>
