@@ -24,6 +24,15 @@ class TransactionService
         // ->paginate(10)
         // ->withQueryString();
     }
+    public static function transactionPaid($userId = null)
+    {
+       
+        return Transaction::with(['orders.orderparticipants', 'orders.training', 'orders.orderparticipants.student', 'user.userProfile'])
+            ->when($userId, fn ($query) => $query->where('user_id', $userId))
+            ->when('status', fn ($query) => $query->where('status', 'Lunas'))
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
 
     public static function transactionDetail($id)
     {

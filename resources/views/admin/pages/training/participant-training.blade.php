@@ -33,7 +33,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php $peserta = 0 @endphp
                         @foreach($trainings as $training)
+                        @php $peserta += $training->participants_count @endphp
                             <tr>
                                 <td></td>
                                 <td>{{ $training->name }}</td>
@@ -42,6 +44,10 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                <hr>
+
+                <h2 class="btn btn-lg btn-success mt-3">Jumlah Peserta {{ number_format($peserta) }} </h2>
 
             </div>
         </div>

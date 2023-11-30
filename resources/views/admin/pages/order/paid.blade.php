@@ -43,9 +43,7 @@
                         <tr>
                             <th style="width: 5%">No. Pendaftaran</th>
                             <th style="width: 25%">Nama TPA</th>
-                            <th style="width: 25%">Event & Peserta</th>
-                            <th style="width: 20%">Total Pembayaran</th>
-                            <th style="width: 5%">Opsi</th>
+                            <th style="width: 20%">Total Pembayaran (Rp)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,45 +60,9 @@
                                         {{ $transaction->user->userProfile->institution_name }}
                                     </a>
                                 </td>
-                                <td>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            @foreach($transaction->orders as $order)
-                                                <span class="font-weight-bold text-dark">
-                                                    {{ $order->training->name }}
-                                                </span><br>
-                                                <span class="text-dark">
-                                                    <ul>
-                                                        @foreach(
-                                                            $order->orderParticipants as $participant)
-                                                            <li>
-                                                                <a
-                                                                    href="{{ route('admin.detail_student',$participant->student->id) }}">
-                                                                    {{ $participant->student->name }}
-                                                                </a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </span>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span>Rp.  {{ number_format($transaction->payment_amount) }}</span>
-                                    <br>
-                                    <x-user.order-status :id="$transaction->id" />
-                                </td>
-                                <td>
-                                    <form
-                                        action="{{ route('admin.delete_order',$transaction->id) }}"
-                                        method="POST" onsubmit="return confirmSubmit()">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
+                                
+                                <td class="text-right">
+                                   {{ number_format($transaction->payment_amount) }}
                                 </td>
                             </tr>
                         @endforeach
@@ -111,7 +73,6 @@
                 <hr>
 
                 <h2 class="btn btn-lg btn-success mt-3">Total : Rp {{ number_format($harga) }} </h2>
-
 
             </div>
         </div>
@@ -134,5 +95,7 @@
             }
 
         </script>
+
+        
     @endpush
 </x-layout>
