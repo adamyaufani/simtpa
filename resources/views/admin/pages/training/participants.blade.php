@@ -8,7 +8,7 @@
 
     <x-slot:title>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Peserta Event</h1>
+            <h1 class="h3 mb-0 text-gray-800">Peserta Events</h1>
             {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
             </a> --}}
@@ -41,14 +41,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($participants as $participant)
+                        @foreach ($participants as $participant)
                             <tr>
                                 <td>{{ $participant->order->training->name }}</td>
-                                <td>                                   
-                                    <a
-                                        href="{{ route('admin.detail_student',$participant->student->id) }}">
+                                <td>
+                                    <a href="{{ route('admin.detail_student', $participant->student->id) }}">
                                         {{ $participant->student->name }}
-                                    </a>                                
+                                    </a>
                                 </td>
                                 <td>{{ $participant->student->user->userProfile->institution_name }}</td>
                             </tr>
@@ -66,10 +65,17 @@
 
         <!-- Page level custom scripts -->
         <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
 
         <script>
-            const table = new DataTable('#dataTable');
-
+            const table = new DataTable('#dataTable', {
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel'
+                ]
+            });
         </script>
     @endpush
 </x-layout>
