@@ -215,6 +215,7 @@ Route::prefix('admin')->group(function () {
         Route::prefix('transactions')->group(function () {
             Route::get('/', [AdminOrderController::class, 'index'])->name('admin.order_index');
             Route::get('/paid', [AdminOrderController::class, 'paid'])->name('admin.order_paid');
+            Route::get('/rekap', [AdminOrderController::class, 'rekap'])->name('admin.order_rekap');
             Route::get('{id}', [AdminOrderController::class, 'show'])->name('admin.detail_order');
             Route::get('{id}/confirm', [AdminOrderController::class, 'confirmPayment'])->name('admin.finish_order');
             Route::delete('{id}/delete', [AdminOrderController::class, 'destroy'])->name('admin.delete_order');

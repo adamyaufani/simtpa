@@ -32,6 +32,11 @@ class OrderController extends Controller
         return view('admin.pages.order.paid')
             ->with(['transactions' => TransactionService::transactionPaid()]);
     }
+    public function rekap()
+    {
+        return view('admin.pages.order.rekap')
+            ->with(['transactions' => TransactionService::transactionIndex()]);
+    }
 
     public function show($id)
     {
