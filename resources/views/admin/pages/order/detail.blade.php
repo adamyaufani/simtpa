@@ -47,6 +47,10 @@
                             @if($data->status === 'Lunas' )
 
                             <a href="https://api.whatsapp.com/send?phone={{ $data->user->userProfile->phone_number }}&text=Assalamualaikum *TPA {{ $data->user->userProfile->institution_name }}*, %0APembayaran Anda untuk tagihan nomor {{ $data->id }} telah kami terima. %0A%0AKlik di sini untuk melihat nota lunasnya {{ route('user.download_invoice', $data->id) }} %0A%0A*Catatan:*%0A - Mohon membalas dengan *OK* untuk memastikan Anda sudah menerima pesan ini.%0A%0ATerima kasih %F0%9F%98%8A %0ACS Badko TPA Kasihan" target="_blank" class="mt-3 btn btn-success"><i class="fab fa-whatsapp"></i> Chat Peserta</a>
+                           
+
+                            <a href="https://api.whatsapp.com/send?phone={{ $data->user->userProfile->phone_number }}&text=Assalamualaikum *TPA {{ $data->user->userProfile->institution_name }}*, %0A%0AMengharap kehadiran Unit TPA Peserta FASI 2023 dalam acara *Technical Meeting FASI 2023*.%0A%0A🗓 Ahad, 10 Desember 2023%0A🕢 13.00 - selesai%0A📍 SMP Mataram Kasihan (Masjid)
+  %0A%0A*Catatan:*%0A - Mohon membalas dengan *OK* untuk memastikan Anda sudah menerima pesan ini.%0A - Satu TPA setidaknya mengirimkan 1 orang perwakilan.%0A - Mohon tunjukkan undangan ini saat presensi.%0A%0ATerima kasih %F0%9F%98%8A %0ACS Badko TPA Kasihan" target="_blank" class="mt-3 btn btn-danger"><i class="fab fa-whatsapp"></i> Chat Undangan TM</a>
                             @else
 
                             <a href="https://api.whatsapp.com/send?phone={{ $data->user->userProfile->phone_number }}&text=Assalamualaikum *TPA {{ $data->user->userProfile->institution_name }}*, %0AKami informasikan bahwa Anda masih memiliki tagihan nomor {{ $data->id }} yang belum dibayar.%0A%0AKlik di sini untuk melihat tagihannya {{ route('user.detail_order', $data->id) }} %0A%0A*Catatan:*%0A - Mohon membalas dengan *OK* untuk memastikan Anda sudah menerima pesan ini.%0A - Silakan abaikan pesan ini jika telah membayar.%0A%0ATerima kasih %F0%9F%98%8A %0ACS Badko TPA Kasihan" target="_blank" class="mt-3 btn btn-warning"><i class="fab fa-whatsapp"></i> Chat Peserta</a>
