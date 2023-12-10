@@ -208,7 +208,7 @@
                                             </table>
                                             
                                           
-                                            <table width="800" border="0" cellpadding="0" cellspacing="0"
+                                            {{-- <table width="800" border="0" cellpadding="0" cellspacing="0"
                                                 align="center" bgcolor="#ffffff" style="border-bottom:1px dashed #bababa;">
                                                 <tbody>
                                                    
@@ -298,7 +298,7 @@
                                                     @endif                                                  
 
                                                 </tbody>
-                                            </table>
+                                            </table> --}}
                                         </td>
                                     </tr>
                                 </tbody>
