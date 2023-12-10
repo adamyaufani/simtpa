@@ -92,7 +92,7 @@
                                     <x-user.order-status :id="$transaction->id" />
                                 </td>
                                 <td>
-                                    <form
+                                    {{-- <form
                                         action="{{ route('admin.delete_order',$transaction->id) }}"
                                         method="POST" onsubmit="return confirmSubmit()">
                                         @csrf
@@ -100,7 +100,7 @@
                                         <button type="submit" class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash"></i>
                                         </button>
-                                    </form>
+                                    </form> --}}
 
                                     <a class="btn btn-success" href="{{ route('admin.order_qr', $transaction->user->id)  }}"><i class="fas fa-print"></i></a>
                                 </td>
