@@ -27,9 +27,21 @@ class OrderController extends Controller
         // foreach (TransactionService::transactionIndex() as $transaction) {
         //     dump($transaction->orders);
         // }
+
+        // $transaction_detail = TransactionService::transactionDetail($id);
+
         return view('user.pages.order.index')
             ->with([
                 'transactions' => TransactionService::transactionIndex(Auth::id())
+            ]);
+    }
+
+    public function qr()
+    {       
+
+        return view('user.pages.order.index-qr')
+            ->with([
+                'data' => TransactionService::transactionIndex(Auth::id())
             ]);
     }
 

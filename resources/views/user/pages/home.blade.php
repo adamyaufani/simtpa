@@ -24,15 +24,21 @@
     <div class="row gx-5"> 
         <div class="col-lg-8 offset-lg-2 mb-5 mb-lg-0">
 
-            @if (auth()->check())
+
+            <div class="alert alert-danger d-flex flex-row align-items-center justify-content-between" role="alert">
+                <p>Cetak Label Nama Peserta FASI 2023.</p>
+                <a class="btn btn-danger" href="{{ route('user.order_qr')  }}">Klik di sini</a>
+            </div>
+
+            {{-- @if (auth()->check())
                 @if ($completeProfileNotification == true)
                     <div class="alert alert-warning" role="alert">
                         Mohon lengkapi data Profil TPA Anda.
                     </div>
                 @endif
-            @endif
+            @endif --}}
 
-            <div class="card mb-4" id="countdownCard">
+            {{-- <div class="card mb-4" id="countdownCard">
                 <h5 class="card-header text-center">Pendaftaran FASI ditutup dalam</h5>
                 <div class="card-body">
                     <div id="countdown" class="row">
@@ -62,13 +68,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="card mb-5">
                 <div class="card-header">
                     <h5>Laporan FASI 2023</h5>
                 </div>
-                <div class="card-body">
+                {{-- <div class="card-body">
                     <div class="row g-4">
                         
 
@@ -112,7 +118,7 @@
                         </div>
                     </div>
 
-                </div>
+                </div> --}}
 
 
                 <div class="card-body">
@@ -133,16 +139,16 @@
             </div>
 
 
-            <div class="card mb-5">
+            {{-- <div class="card mb-5">
                 <div class="card-header">
                     <h5>Jumlah Anggota Badko TKA-TPA Tiap Kalurahan</h5>
                 </div>
                 <div class="card-body px-5">
                     <canvas id="myPieChart" width="400" height="300" class="chartjs-render-monitor"></canvas>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="card mb-5">
+            {{-- <div class="card mb-5">
                 <div class="card-header">
                     <h5>Kalkulator Usia Santri</h5>
                 </div>
@@ -159,8 +165,8 @@
                     <div class="alert" id="hasilUsia" role="alert"></div>
 
                 </div>
-            </div>
-            <h3 class="fw-bolder mb-4">Agenda Mendatang</h3>
+            </div> --}}
+            {{-- <h3 class="fw-bolder mb-4">Agenda Mendatang</h3>
 
 
             <ul class="nav nav-tabs mb-3">
@@ -176,10 +182,10 @@
                     </li>
                 @endforeach
 
-            </ul>
+            </ul> --}}
 
 
-            @foreach ($trainings as $training)
+            {{-- @foreach ($trainings as $training)
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-12">
@@ -189,16 +195,12 @@
                                         {{ $training->name }}
                                     </a>
                                 </h5>
-                                {{-- <p class="card-text">
-                                            {{ str()->limit($training->description,300) }}
-                                        </p> --}}
-                                {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small> --}}
-                                {{-- </p> --}}
+                               
                             </div>
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @endforeach --}}
         </div>
     </div>
 
