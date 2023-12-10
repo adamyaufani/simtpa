@@ -165,6 +165,8 @@ Route::prefix('admin')->group(function () {
         Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
+        
+
         Route::prefix('agreement')->group(function () {
             Route::get('create', [AgreementController::class, 'create'])->name('admin.create_agreement');
             Route::get('/', [AgreementController::class, 'index'])->name('admin.agreement_index');
@@ -220,6 +222,8 @@ Route::prefix('admin')->group(function () {
             Route::get('{id}', [AdminOrderController::class, 'show'])->name('admin.detail_order');
             Route::get('{id}/confirm', [AdminOrderController::class, 'confirmPayment'])->name('admin.finish_order');
             Route::delete('{id}/delete', [AdminOrderController::class, 'destroy'])->name('admin.delete_order');
+
+            Route::get('{id}/qr', [AdminOrderController::class, 'qr'])->name('admin.order_qr');
         });
 
         Route::prefix('cerificates')->group(function () {
