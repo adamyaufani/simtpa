@@ -101,6 +101,8 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
+
+                                    <a class="btn btn-success" href="{{ route('admin.order_qr', $transaction->user->id)  }}"><i class="fas fa-print"></i></a>
                                 </td>
                             </tr>
                         @endforeach
