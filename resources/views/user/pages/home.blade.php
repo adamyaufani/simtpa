@@ -166,7 +166,7 @@
 
                 </div>
             </div> --}}
-            {{-- <h3 class="fw-bolder mb-4">Agenda Mendatang</h3>
+            <h3 class="fw-bolder mb-4">Agenda Mendatang</h3>
 
 
             <ul class="nav nav-tabs mb-3">
@@ -182,10 +182,10 @@
                     </li>
                 @endforeach
 
-            </ul> --}}
+            </ul>
 
 
-            {{-- @foreach ($trainings as $training)
+            @foreach ($trainings as $training)
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-12">
@@ -200,7 +200,7 @@
                         </div>
                     </div>
                 </div>
-            @endforeach --}}
+            @endforeach
         </div>
     </div>
 
