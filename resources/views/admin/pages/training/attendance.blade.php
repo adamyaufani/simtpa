@@ -21,10 +21,18 @@
         @endif
         <div class="card mb-3">
             <div class="card-header">
-                data event
+                Detail Event
             </div>
             <div class="card-body">
-
+                <p>Nama Event : <strong>{{ $training->name }}</strong></p>
+                <p>
+                    Tanggal Mulai :
+                    <strong>{{ $training->start_date->format('d F Y') }}</strong>
+                </p>
+                <p>
+                    Tanggal Selesai :
+                    <strong>{{ $training->end_date->format('d F Y') }}</strong>
+                </p>
             </div>
         </div>
         <div class="card">
