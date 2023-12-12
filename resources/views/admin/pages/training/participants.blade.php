@@ -53,7 +53,7 @@
                                     </span><br>
                                     <span>
                                         <strong>
-                                            Aasal Organisasi :
+                                            Asal Organisasi :
                                         </strong>
                                         {{ $participant->student->user->userProfile->institution_name }}
                                     </span>

@@ -44,7 +44,7 @@
                                 <td></td>
                                 <td>
                                     <a
-                                        href="{{ route('admin.edit_training',$participant->id) }}">
+                                        href="{{ route('admin.detail_student',$participant->id) }}">
                                         {{ $participant->student->name }}
                                     </a>
                                 </td>
