@@ -30,13 +30,13 @@
                 <a class="btn btn-danger" href="{{ route('user.order_qr')  }}">Klik di sini</a>
             </div>
 
-            {{-- @if (auth()->check())
+            @if (auth()->check())
                 @if ($completeProfileNotification == true)
                     <div class="alert alert-warning" role="alert">
                         Mohon lengkapi data Profil TPA Anda.
                     </div>
                 @endif
-            @endif --}}
+            @endif
 
             {{-- <div class="card mb-4" id="countdownCard">
                 <h5 class="card-header text-center">Pendaftaran FASI ditutup dalam</h5>
@@ -139,14 +139,14 @@
             </div>
 
 
-            {{-- <div class="card mb-5">
+            <div class="card mb-5">
                 <div class="card-header">
                     <h5>Jumlah Anggota Badko TKA-TPA Tiap Kalurahan</h5>
                 </div>
                 <div class="card-body px-5">
                     <canvas id="myPieChart" width="400" height="300" class="chartjs-render-monitor"></canvas>
                 </div>
-            </div> --}}
+            </div>
 
             {{-- <div class="card mb-5">
                 <div class="card-header">
