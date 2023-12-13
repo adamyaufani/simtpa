@@ -129,9 +129,9 @@
                         aria-valuemax="100" style="height:25px;">
                         <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%;"
                             id="progressBarValue">
-                            <span id="progressText"></span>
+                            <span id="terkumpul" style="margin-top:3px;"></span> (<span id="progressText"></span>)
                         </div>
-                        <span id="terkumpul" style="margin-top:3px;"></span>
+                        
                     </div>
                     <p class="">Masih kurang <span class="text-danger fw-bold" id="kebutuhanDanaText"></span> dari total kebutuhan <span class="text-success fw-bold">Rp. 24,000,000</span>. <br>Yuk bantu kami dengan menjadi donatur atau relawan donatur. <a href="https://wa.me/6285157683779?text=Salam Admin, saya ingin berdonasi untuk FASI" target="_blank">Klik di sini.</a></p>
                 </div>
