@@ -129,7 +129,7 @@
                         aria-valuemax="100" style="height:25px;">
                         <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%;"
                             id="progressBarValue">
-                            <span id="terkumpul" style="margin-top:3px;"></span> (<span id="progressText"></span>)
+                            </span> <span id="progressText"></span>
                         </div>
                         
                     </div>
@@ -352,7 +352,7 @@
             $('#progressBarValue').css('width', persentaseTerkumpul + '%');
 
             // Menampilkan persentase terkumpul dan jumlah dana di dalam progress bar
-            $('#progressText').text(persentaseTerkumpul.toFixed(2)   + '% ');
+            $('#progressText').text(' Rp. ' + terkumpul.toLocaleString() + ' ( ' +persentaseTerkumpul.toFixed(2)   + '% )');
 
             // Menghitung dan menampilkan kekurangan dana
             const kekuranganDana = kebutuhanDana - terkumpul;
