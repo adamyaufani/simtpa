@@ -51,9 +51,30 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.detail_student', $participant->student->id) }}">
-                                        {{ $participant->student->birth_date }}
-                                    </a>
+
+                                    @php
+                                    $lahir = \Carbon\Carbon::createFromFormat('Y-m-d', $participant->student->birth_date);
+                                    $tka = \Carbon\Carbon::createFromFormat('Y-m-d', '2017-07-01');
+                                    $tpa = \Carbon\Carbon::createFromFormat('Y-m-d', '2012-07-01');
+                                    $tqa = \Carbon\Carbon::createFromFormat('Y-m-d', '2009-07-01');
+                                
+                                    if ($lahir > $tka) {
+                                        $kategori = 'TKA';
+                                    } elseif ($lahir > $tpa) {
+                                        $kategori = 'TPA';
+                                    } elseif ($lahir > $tqa) {
+                                        $kategori = 'TQA';
+                                    } else {
+                                        // Tambahkan kategori default jika diperlukan
+                                        $kategori = 'Kategori Lainnya';
+                                    }
+                                @endphp
+                                
+                               
+                                    {{ \Carbon\Carbon::parse($participant->student->birth_date)->format('d F Y') }}
+
+                                    ( {{ $kategori }} )
+
                                 </td>
                                 <td>{{ $participant->student->user->userProfile->institution_name }}</td>
                             </tr>
