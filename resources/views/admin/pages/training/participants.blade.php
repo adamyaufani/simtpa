@@ -37,6 +37,7 @@
                         <tr>
                             <th style="width: 40%">Nama Event</th>
                             <th style="width: 30%">Peserta</th>
+                            <th style="width: 30%">Tgl Lahir</th>
                             <th style="width: 30%">TPA</th>
                         </tr>
                     </thead>
@@ -47,6 +48,11 @@
                                 <td>
                                     <a href="{{ route('admin.detail_student', $participant->student->id) }}">
                                         {{ $participant->student->name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.detail_student', $participant->student->id) }}">
+                                        {{ $participant->student->birth_date }}
                                     </a>
                                 </td>
                                 <td>{{ $participant->student->user->userProfile->institution_name }}</td>
