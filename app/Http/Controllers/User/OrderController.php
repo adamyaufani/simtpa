@@ -8,6 +8,7 @@ use App\Http\Requests\SelectPaymentMethodRequest;
 use App\Http\Requests\StoreParticipantRequest;
 use App\Mail\Admin\NewTransaction;
 use App\Models\Order;
+use App\Models\Training;
 use App\Models\Transaction;
 use App\Services\CartService;
 use App\Services\OrderService;
@@ -73,6 +74,18 @@ class OrderController extends Controller
 
         // $order = OrderService::createOrder(Arr::add($request->validated(), 'total_price', $request->total_price), $userId);
 
+        $training = Training::with('quotaPerOrg')->find($request->training_id);
+
+
+        if ($training->participant_type == 'santri' && count($request->validated()['student_id']) > $training->quotaPerOrg->quota) {
+            return redirect()->to(route('user.training_detail', $request->training_id))->with('error', 'Peserta yang anda daftarkan melebihi kuota anda.');
+        }
+
+        if ($training->participant_type == 'staff' && count($request->validated()['staff_id']) > $training->quotaPerOrg->quota) {
+            return redirect()->to(route('user.training_detail', $request->training_id))->with('error', 'Peserta yang anda daftarkan melebihi kuota anda.');
+        }
+
+
         CartService::addToCart($userId, $request);
 
 
@@ -136,7 +149,7 @@ class OrderController extends Controller
             }
         }
 
-        // dump($transaction);
+        // dd($transaction);
 
         // die();
 

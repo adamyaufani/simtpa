@@ -27,7 +27,7 @@ class TransactionService
 
     public static function transactionDetail($id)
     {
-        return Transaction::with(['user', 'orders.orderparticipants', 'orders.training', 'orders.orderparticipants.student'])
+        return Transaction::with(['user', 'orders.orderparticipants', 'orders.training', 'orders.orderparticipants.student', 'orders.orderparticipants.staff'])
             ->findOrFail($id);
     }
 }

@@ -14,6 +14,7 @@ class CartController extends Controller
     public function index()
     {
         $items = CartService::cartItems(Auth::id());
+        // dd($items);
         return view('user.pages.cart.index')->with(['orders' => $items]);
     }
 

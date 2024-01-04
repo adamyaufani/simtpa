@@ -68,17 +68,37 @@
                                                     {{ $order->training->name }}
                                                 </span><br>
                                                 <span class="text-dark">
-                                                    <ul>
-                                                        @foreach(
-                                                            $order->orderParticipants as $participant)
-                                                            <li>
-                                                                <a
-                                                                    href="{{ route('admin.detail_student',$participant->student->id) }}">
-                                                                    {{ $participant->student->name }}
-                                                                </a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
+                                                    @if(
+                                                        $order->training->participant_type == 'santri'
+                                                        )
+                                                        <ul>
+                                                            @foreach(
+                                                                $order->orderParticipants as $participant)
+                                                                <li>
+                                                                    <a
+                                                                        href="{{ route('admin.detail_student',$participant->student->id) }}">
+                                                                        {{ $participant->student->name }}
+                                                                    </a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+
+                                                    @elseif(
+                                                        $order->training->participant_type == 'staff'
+                                                        )
+                                                        <ul>
+                                                            @foreach(
+                                                                $order->orderParticipants as $participant)
+                                                                <li>
+                                                                    <a
+                                                                        href="{{ route('admin.detail_staff',$participant->staff->id) }}">
+                                                                        {{ $participant->staff->name }}
+                                                                    </a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    @endif
+
                                                 </span>
                                             @endforeach
                                         </div>

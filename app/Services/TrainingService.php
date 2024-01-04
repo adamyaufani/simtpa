@@ -186,4 +186,19 @@ class TrainingService
         // die();
         return $participants;
     }
+
+    public static function setStatus()
+    {
+        $training = static::$training;
+
+        if ($training->status == 1) {
+            $training->update([
+                'status' => 0
+            ]);
+        } else {
+            $training->update([
+                'status' => 1
+            ]);
+        }
+    }
 }

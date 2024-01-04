@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Enums\CostEnum;
 use App\Enums\GenderRequirementEnum;
+use App\Enums\ParticipantTypeEnum;
 use App\Enums\TrainingTypeEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
@@ -47,6 +48,7 @@ class StoreTrainingRequest extends FormRequest
             // 'price_onsite' => ['required_if:cost,paid', 'numeric', 'nullable'],
             'gender_requirement' => ['required', new Enum(GenderRequirementEnum::class)],
             'date_of_birth_requirement' => ['required', 'date'],
+            'participant_type' => ['required', new Enum(ParticipantTypeEnum::class)],
         ];
     }
 }

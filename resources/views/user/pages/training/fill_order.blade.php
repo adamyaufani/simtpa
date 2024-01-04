@@ -13,11 +13,20 @@
                     <input type="hidden" name="training_id" value="{{ $training->id }}">
                     <div class="col-9 me-3">
                         <h4>Data Peserta</h4>
-                        <a class="mb-3" target="_blank" href="{{ route('user.create_student') }}">
-                            Jika santri kosong, klik disini
-                            untuk menambahkan santri
-                            baru
-                        </a>
+                        @if($training->participant_type == 'santri')
+                            <a class="mb-3" target="_blank" href="{{ route('user.create_student') }}">
+                                Jika santri kosong, klik disini
+                                untuk menambahkan santri
+                                baru
+                            </a>
+                        @else
+                            <a class="mb-3" target="_blank" href="{{ route('user.create_staff') }}">
+                                Jika staff kosong, klik disini
+                                untuk menambahkan staff
+                                baru
+                            </a>
+                        @endif
+
                         <!-- peserta yang dimunculkan sesuai jenis kelamin yg dipilih saat create event -->
 
                         @for( $i = 1; $i <= $participants;$i++)
@@ -26,7 +35,9 @@
                                     <h5>Peserta {{ $i }}</h5>
                                     <div class="mb-3">
                                         <small class="form-label text-secondary"><b>Nama lengkap</b></small>
-                                        <select type="text" name="student_id[]" class="form-control select-student">
+                                        <select type="text"
+                                            name="{{ $training->participant_type == 'santri' ? 'student_id[]' : 'staff_id[]' }}"
+                                            class="form-control select-student">
                                             <option>Pilih peserta</option>
                                         </select>
                                     </div>
@@ -77,7 +88,7 @@
                 $('.select-student').select2({
                     theme: 'bootstrap-5',
                     ajax: {
-                        url: "{{ route('user.student_by_name') }}",
+                        url: "{{ $training->participant_type == 'santri' ? route('user.student_by_name') : route('user.staff_by_name') }}",
                         dataType: 'json',
                         delay: 250,
                         data: function (params) {

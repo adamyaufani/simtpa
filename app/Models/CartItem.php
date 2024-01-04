@@ -12,6 +12,7 @@ class CartItem extends Model
     protected $fillable = [
         'cart_id',
         'student_id',
+        'staff_id',
     ];
 
     public function cart()
@@ -22,5 +23,10 @@ class CartItem extends Model
     public function student()
     {
         return $this->belongsTo(Student::class);
+    }
+
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class);
     }
 }

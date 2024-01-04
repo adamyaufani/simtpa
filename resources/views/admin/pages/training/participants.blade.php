@@ -42,22 +42,43 @@
                     <tbody>
                         @foreach($participants as $participant)
                             <tr>
-                                <td>{{ $participant->order->training->name }}</td>
-                                <td>
-                                    <span>
-                                        <strong>Nama : </strong>
-                                        <a
-                                            href="{{ route('admin.detail_student',$participant->student->id) }}">
-                                            {{ $participant->student->name }}
-                                        </a>
-                                    </span><br>
-                                    <span>
-                                        <strong>
-                                            Asal Organisasi :
-                                        </strong>
-                                        {{ $participant->student->user->userProfile->institution_name }}
-                                    </span>
-                                </td>
+                                @if(
+                                    $participant->order->training->participant_type == 'santri')
+                                    <td>{{ $participant->order->training->name }}</td>
+                                    <td>
+                                        <span>
+                                            <strong>Nama : </strong>
+                                            <a
+                                                href="{{ route('admin.detail_student',$participant->student->id) }}">
+                                                {{ $participant->student->name }}
+                                            </a>
+                                        </span><br>
+                                        <span>
+                                            <strong>
+                                                Asal Organisasi :
+                                            </strong>
+                                            {{ $participant->student->user->userProfile->institution_name }}
+                                        </span>
+                                    </td>
+                                @elseif(
+                                    $participant->order->training->participant_type == 'staff')
+                                    <td>{{ $participant->order->training->name }}</td>
+                                    <td>
+                                        <span>
+                                            <strong>Nama : </strong>
+                                            <a
+                                                href="{{ route('admin.detail_staff',$participant->staff->id) }}">
+                                                {{ $participant->staff->name }}
+                                            </a>
+                                        </span><br>
+                                        <span>
+                                            <strong>
+                                                Asal Organisasi :
+                                            </strong>
+                                            {{ $participant->staff->user->userProfile->institution_name }}
+                                        </span>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

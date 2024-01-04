@@ -20,13 +20,26 @@
                                 <h6>Peserta</h6>
                                 <div class="card">
                                     <div class="card-body">
-                                        <ul class="list-group list-group-flush">
-                                            @foreach($order->orderparticipants as $participant)
-                                                <li class="list-group-item">
-                                                    <span>{{ $participant->student->name }}</span><br>
-                                                </li>
-                                            @endforeach
-                                        </ul>
+                                        @if(
+                                            $order->training->participant_type == 'santri')
+                                            <ul class="list-group list-group-flush">
+                                                @foreach($order->orderparticipants as $participant)
+                                                    <li class="list-group-item">
+                                                        <span>{{ $participant->student->name }}</span><br>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        @elseif(
+                                            $order->training->participant_type == 'staff'
+                                            )
+                                            <ul class="list-group list-group-flush">
+                                                @foreach($order->orderparticipants as $participant)
+                                                    <li class="list-group-item">
+                                                        <span>{{ $participant->staff->name }}</span><br>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach

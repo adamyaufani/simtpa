@@ -94,11 +94,20 @@ class OrderService
                     'training_id' => $training['training']['id'],
                 ]);
 
-                foreach ($training['items'] as $participant) {
-                    OrderParticipant::create([
-                        'student_id' => $participant['student_id'],
-                        'order_id' => $order->id,
-                    ]);
+                if ($training['training']['participant_type'] == 'santri') {
+                    foreach ($training['items'] as $participant) {
+                        OrderParticipant::create([
+                            'student_id' => $participant['student_id'],
+                            'order_id' => $order->id,
+                        ]);
+                    }
+                } else {
+                    foreach ($training['items'] as $participant) {
+                        OrderParticipant::create([
+                            'staff_id' => $participant['staff_id'],
+                            'order_id' => $order->id,
+                        ]);
+                    }
                 }
             }
 
@@ -240,9 +249,10 @@ class OrderService
                 'status' => "Lunas",
                 'payment_date' => now()
             ]);
+            return $order;
         }
 
-        return $order;
+        return null;
     }
 
     public static function fetch()

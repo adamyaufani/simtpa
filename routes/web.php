@@ -118,6 +118,7 @@ Route::middleware('auth.user')->group(function () {
 
     Route::group(['prefix' => 'staf-pengajar'], function () {
         Route::get('/', [StaffController::class, 'index'])->name('user.staff');
+        Route::get('staff_by_name', [StaffController::class, 'selectStaffByName'])->name('user.staff_by_name');
         Route::get('create', [StaffController::class, 'create'])->name('user.create_staff');
         Route::post('create', [StaffController::class, 'store'])->name('user.store_staff');
         Route::get('{id}', [StaffController::class, 'edit'])->name('user.staff_edit');
@@ -197,6 +198,7 @@ Route::prefix('admin')->group(function () {
             Route::delete('{id}', [TrainingController::class, 'destroy'])->name('admin.delete_training');
             Route::get('{id}/attendance', [AttendanceController::class, 'attendance'])->name('admin.training_attendance');
             Route::get('scan-attendance/{id}', [AttendanceController::class, 'scan'])->name('admin.scan_training_attendance');
+            Route::get('{id}/ubah-status-event', [TrainingController::class, 'changeEventStatus'])->name('admin.change_training_status');
         });
 
         Route::prefix('trainers')->group(function () {

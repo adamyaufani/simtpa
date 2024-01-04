@@ -62,6 +62,23 @@
                             {{ $errors->first('place') }}
                         </small>
                     </div>
+                    <div class="form-group">
+                        <label for="trainingPlace">Peserta</label>
+                        <select id=""
+                            class="form-control {{ $errors->has('gender_requirement') ? 'is-invalid' : '' }}"
+                            name="participant_type">
+                            <option value="">Pilih jenis peserta</option>
+                            @foreach($participantTypes as $participantType)
+                                <option value="{{ $participantType->value }}"
+                                    {{ old('participant_type') == $participantType->value ? 'selected' : '' }}>
+                                    {{ $participantType->value }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <small class="invalid-feedback">
+                            {{ $errors->first('participant_type') }}
+                        </small>
+                    </div>
                 </div>
             </div>
         </div>

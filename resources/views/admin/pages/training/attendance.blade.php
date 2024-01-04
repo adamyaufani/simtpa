@@ -51,10 +51,21 @@
                             <tr>
                                 <td></td>
                                 <td>
-                                    <a
-                                        href="{{ route('admin.detail_student',$participant->id) }}">
-                                        {{ $participant->student->name }}
-                                    </a>
+                                    @if(
+                                        $training->participant_type == 'santri')
+                                        <a
+                                            href="{{ route('admin.detail_student',$participant->id) }}">
+                                            {{ $participant->student->name }}
+                                        </a>
+                                    @elseif(
+                                        $training->participant_type == 'staff'
+                                        )
+                                        <a
+                                            href="{{ route('admin.detail_staff',$participant->staff->id) }}">
+                                            {{ $participant->staff->name }}
+                                        </a>
+                                    @endif
+
                                 </td>
                                 <td>
                                     <p>
