@@ -47,7 +47,7 @@ class StoreTrainingRequest extends FormRequest
             'price_normal' => ['required_if:cost,paid', 'numeric', 'nullable'],
             // 'price_onsite' => ['required_if:cost,paid', 'numeric', 'nullable'],
             'gender_requirement' => ['required', new Enum(GenderRequirementEnum::class)],
-            'date_of_birth_requirement' => ['required', 'date'],
+            'date_of_birth_requirement' => ['nullable', 'date'],
             'participant_type' => ['required', new Enum(ParticipantTypeEnum::class)],
         ];
     }

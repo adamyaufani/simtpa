@@ -54,15 +54,28 @@
     @foreach($data->orders as $training)
         <h4><strong>{{ $order->training->name }}</strong></h4>
         Peserta
-        <ul>
-            @foreach($training->orderParticipants as $participant)
-                <li>
-                    {{ $participant->student->name }}
-                    <br>
-                    {{ QrCode::size(120)->generate(route('admin.scan_training_attendance',$participant->id)) }}
-                </li>
-            @endforeach
-        </ul>
+        @if($training->participant_type == 'santri')
+            <ul>
+                @foreach($training->orderParticipants as $participant)
+                    <li>
+                        {{ $participant->student->name }}
+                        <br>
+                        {{ QrCode::size(120)->generate(route('admin.scan_training_attendance',$participant->id)) }}
+                    </li>
+                @endforeach
+            </ul>
+        @elseif($training->participant_type == 'staff' )
+            <ul>
+                @foreach($training->orderParticipants as $participant)
+                    <li>
+                        {{ $participant->staff->name }}
+                        <br>
+                        {{ QrCode::size(120)->generate(route('admin.scan_training_attendance',$participant->id)) }}
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+
     @endforeach
 </body>
 

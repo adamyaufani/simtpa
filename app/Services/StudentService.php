@@ -21,7 +21,7 @@ class StudentService
         DB::transaction(function () use ($newRequest, $userId) {
 
             $newStudent = Student::create(Arr::except($newRequest, ['birth_certificate', 'photo']));
-            dd($newRequest);
+            // dd($newRequest);
             if ($newRequest['birth_certificate'] != null) {
                 $file = $newRequest['birth_certificate'];
                 $originalName = $file->getClientOriginalName();

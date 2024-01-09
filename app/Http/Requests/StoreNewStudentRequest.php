@@ -34,7 +34,7 @@ class StoreNewStudentRequest extends FormRequest
             'address' => ['required', 'string'],
             'father_name' => ['required', 'string'],
             'mother_name' => ['required', 'string'],
-            'phone' => ['required', 'string'],
+            'phone' => ['nullable', 'string'],
             'school' => ['required', 'string'],
             'join_date' => ['required', 'date'],
             'status' => ['required', new Enum(StudentStatusEnum::class)],
