@@ -21,7 +21,8 @@ class HomeController extends Controller
             $query->whereRaw("FIND_IN_SET(?, category_id)", $request->category);
         })->get();
 
-        $categories = Category::all();
+        // $categories = Category::all();
+        $categories = Category::where('id', '!=', 3)->get();
 
         $numberOfUsersPerVillages = [];
 
