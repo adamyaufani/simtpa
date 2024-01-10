@@ -19,9 +19,13 @@ class HomeController extends Controller
     {
         $trainings = Training::when($request->has('category'), function ($query) use ($request) {
             $query->whereRaw("FIND_IN_SET(?, category_id)", $request->category);
-        })->get();
+        })
+            ->where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-        $categories = Category::all();
+        // $categories = Category::all();
+        $categories = Category::where('id', '!=', 3)->get();
 
         $numberOfUsersPerVillages = [];
 

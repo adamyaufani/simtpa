@@ -105,6 +105,7 @@
 
                     </td>
                 </tr>
+<<<<<<< HEAD
             </table>
 
             <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable">
@@ -313,6 +314,43 @@
 
 
 
+=======
+            @endforeach
+            <tr>
+                <td></td>
+                <td>total</td>
+                <td>{{ $data->payment_amount }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    @foreach($data->orders as $training)
+        <h4><strong>{{ $order->training->name }}</strong></h4>
+        Peserta
+        @if($training->participant_type == 'santri')
+            <ul>
+                @foreach($training->orderParticipants as $participant)
+                    <li>
+                        {{ $participant->student->name }}
+                        <br>
+                        {{ QrCode::size(120)->generate(route('admin.scan_training_attendance',$participant->id)) }}
+                    </li>
+                @endforeach
+            </ul>
+        @elseif($training->participant_type == 'staff' )
+            <ul>
+                @foreach($training->orderParticipants as $participant)
+                    <li>
+                        {{ $participant->staff->name }}
+                        <br>
+                        {{ QrCode::size(120)->generate(route('admin.scan_training_attendance',$participant->id)) }}
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+
+    @endforeach
+>>>>>>> upstream/master
 </body>
 
 </html>

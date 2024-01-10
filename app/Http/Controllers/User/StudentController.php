@@ -102,6 +102,8 @@ class StudentController extends Controller
 
         // dd($participantIds);
 
+        // dd($request->extraData);
+
         $trainer = Student::when($request->has('q'), function ($q) use ($request) {
             $q->where('name', 'LIKE', "%{$request->q}%");
         })
