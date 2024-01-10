@@ -16,6 +16,11 @@
                         {{ session()->get('success') }}
                     </div>
                 @endif
+                @if(session()->has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session()->get('error') }}
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-body row">
                         <div class="col-6">
@@ -36,7 +41,13 @@
                                         <ul class="list-group list-group-flush">
                                             @foreach($order->orderparticipants as $participant)
                                                 <li class="list-group-item">
-                                                    <span>{{ $participant->student->name }}</span><br>
+                                                    @if(
+                                                        $order->training->participant_type == 'santri')
+                                                        <span>{{ $participant->student->name }}</span><br>
+                                                    @elseif(
+                                                        $order->training->participant_type == 'staff')
+                                                        <span>{{ $participant->staff->name }}</span><br>
+                                                    @endif
                                                 </li>
                                             @endforeach
                                         </ul>

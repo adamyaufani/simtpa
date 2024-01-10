@@ -46,37 +46,44 @@
                             <tr>
                                 <td>{{ $participant->order->training->name }}</td>
                                 <td>
-                                    <a href="{{ route('admin.detail_student', $participant->student->id) }}">
-                                        {{ $participant->student->name }}
-                                    </a>
+                                   
                                 </td>
-                                <td>
-
-                                    @php
-                                    $lahir = \Carbon\Carbon::createFromFormat('Y-m-d', $participant->student->birth_date);
-                                    $tka = \Carbon\Carbon::createFromFormat('Y-m-d', '2017-07-01');
-                                    $tpa = \Carbon\Carbon::createFromFormat('Y-m-d', '2012-07-01');
-                                    $tqa = \Carbon\Carbon::createFromFormat('Y-m-d', '2009-07-01');
-                                
-                                    if ($lahir > $tka) {
-                                        $kategori = 'TKA';
-                                    } elseif ($lahir > $tpa) {
-                                        $kategori = 'TPA';
-                                    } elseif ($lahir > $tqa) {
-                                        $kategori = 'TQA';
-                                    } else {
-                                        // Tambahkan kategori default jika diperlukan
-                                        $kategori = 'Kategori Lainnya';
-                                    }
-                                @endphp
-                                
-                               
-                                    {{ \Carbon\Carbon::parse($participant->student->birth_date)->format('d F Y') }}
-
-                                    ( {{ $kategori }} )
-
-                                </td>
-                                <td>{{ $participant->student->user->userProfile->institution_name }}</td>
+                                @if($participant->order->training->participant_type == 'santri')
+                                    <td>{{ $participant->order->training->name }}</td>
+                                    <td>
+                                        <span>
+                                            <strong>Nama : </strong>
+                                            <a
+                                                href="{{ route('admin.detail_student',$participant->student->id) }}">
+                                                {{ $participant->student->name }}
+                                            </a>
+                                        </span><br>
+                                        <span>
+                                            <strong>
+                                                Asal Organisasi :
+                                            </strong>
+                                            {{ $participant->student->user->userProfile->institution_name }}
+                                        </span>
+                                    </td>
+                                @elseif(
+                                    $participant->order->training->participant_type == 'staff')
+                                    <td>{{ $participant->order->training->name }}</td>
+                                    <td>
+                                        <span>
+                                            <strong>Nama : </strong>
+                                            <a
+                                                href="{{ route('admin.detail_staff',$participant->staff->id) }}">
+                                                {{ $participant->staff->name }}
+                                            </a>
+                                        </span><br>
+                                        <span>
+                                            <strong>
+                                                Asal Organisasi :
+                                            </strong>
+                                            {{ $participant->staff->user->userProfile->institution_name }}
+                                        </span>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

@@ -62,6 +62,10 @@
                                             class="btn btn-primary btn-sm ml-2">
                                             peserta
                                         </a>
+                                        <a href="{{ route('admin.change_training_status',$training->id) }}"
+                                            class="btn btn-primary btn-sm ml-2">
+                                            {{ $training->status == 1? 'nonaktifkan event' : 'aktifkan event' }}
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

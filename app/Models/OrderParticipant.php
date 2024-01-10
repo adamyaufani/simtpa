@@ -12,6 +12,7 @@ class OrderParticipant extends Model
     protected $fillable = [
         'user_id',
         'student_id',
+        'staff_id',
         'order_id'
     ];
 
@@ -23,6 +24,11 @@ class OrderParticipant extends Model
     public function student()
     {
         return $this->belongsTo(Student::class);
+    }
+
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class);
     }
 
     public function eventAttendance()

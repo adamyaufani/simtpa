@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\GenderEnumEvent;
 use App\Enums\GenderRequirementEnum;
+use App\Enums\ParticipantTypeEnum;
 use App\Enums\TrainingTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreTrainingRequest;
@@ -30,8 +31,9 @@ class TrainingController extends Controller
     {
         $types = TrainingTypeEnum::cases();
         $genderRequirements = GenderRequirementEnum::cases();
+        $participantTypes = ParticipantTypeEnum::cases();
         return view('admin.pages.training.create')
-            ->with(compact('types', 'genderRequirements'));
+            ->with(compact('types', 'genderRequirements', 'participantTypes'));
     }
 
     public function store(StoreTrainingRequest $request): RedirectResponse
@@ -79,5 +81,12 @@ class TrainingController extends Controller
         $participants = TrainingService::trainingParticipants();
         return view('admin.pages.training.participants')
             ->with(compact('participants'));
+    }
+
+    public function changeEventStatus($id)
+    {
+        TrainingService::getTrainingById($id)->setStatus();
+
+        return redirect()->back()->with('success', 'Status event berhasil diperbarui');
     }
 }

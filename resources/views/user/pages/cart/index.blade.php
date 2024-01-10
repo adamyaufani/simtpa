@@ -20,12 +20,14 @@
                             <strong>{{ $order['training']['name'] }}</strong>
 
                             <ol>
-                                @foreach(
-                                    $order['items'] as $item)
-                                    <li class="list-group-item">
-                                        {{ $item['student']['name'] }}
-                                    </li>
-                                @endforeach
+                               
+                                    @foreach(
+                                        $order['items'] as $item)
+                                        <li class="list-group-item">
+                                            {{ $order['training']['participant_type'] == 'santri' ? $item['student']['name'] : $item['staff']['name'] }}
+                                        </li>
+                                    @endforeach
+                              
                             </ol>
                             
                             <div class="d-flex justify-content-between">
@@ -69,6 +71,8 @@
                         <a href="{{ route('user.buy_cart') }}" class="btn btn-success btn-md">
                             Lanjut bayar
                         </a>
+                       
+
                     </div>
                 </div>
             @else

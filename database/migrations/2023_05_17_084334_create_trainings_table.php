@@ -31,6 +31,8 @@ return new class extends Migration
             // $table->bigInteger('quota')->nullable();
             $table->enum('gender_requirement', ['laki-laki', 'perempuan', 'laki-laki dan perempuan'])->nullable();
             $table->date('date_of_birth_requirement')->nullable();
+            $table->tinyInteger('status')->default(1);
+            $table->enum('participant_type', ['staff', 'santri'])->default('santri')->nullable();
             $table->timestamps();
         });
 

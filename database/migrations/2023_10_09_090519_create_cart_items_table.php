@@ -17,12 +17,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('cart_id')->nullable();
             $table->unsignedBigInteger('student_id')->nullable();
+            $table->unsignedBigInteger('staff_id')->nullable();
             $table->timestamps();
         });
 
         Schema::table('cart_items', function (Blueprint $table) {
             $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('staff_id')->references('id')->on('staffs')->onDelete('cascade');
         });
     }
 

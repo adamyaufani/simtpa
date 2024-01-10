@@ -12,22 +12,28 @@
                     <input type="hidden" name="training_id" value="{{ $training->id }}">
                     <div class="col-9 me-3">
                         <h4>Data Peserta</h4>
-                        <div class="alert alert-warning"> <i class="bi bi-exclamation-triangle-fill text-danger"></i> Jika nama peserta tidak muncul maka ada beberapa kemungkinan :
-                            <ol>
-                                <li>Usia tidak sesuai</li>
-                                <li>Jenis kelamin tidak sesuai</li>
-                                <li>Sudah didaftarkan pada event lain.</li>
-                                <li>Data peserta belum ada pada database.</li>
-                            </p>
-                            </ol>
-                            <a class="btn btn-warning btn-sm" target="_blank" href="{{ route('user.create_student') }}">
-                                <i class="bi bi-plus"></i>
-                                Klik disini untuk menambahkan santri.
-                            </a>
-                        </div>
-                        <!-- peserta yang dimunculkan sesuai jenis kelamin yg dipilih saat create event -->
+                        
+                        @if($training->participant_type == 'santri')                           
 
+                            <div class="alert alert-warning"> <i class="bi bi-exclamation-triangle-fill text-danger"></i> Jika nama peserta tidak muncul maka ada beberapa kemungkinan :
+                                <ol>
+                                    <li>Usia tidak sesuai</li>
+                                    <li>Jenis kelamin tidak sesuai</li>
+                                    <li>Sudah didaftarkan pada event lain.</li>
+                                    <li>Data peserta belum ada pada database.</li>
+                                </p>
+                                </ol>
+                                <a class="btn btn-warning btn-sm" target="_blank" href="{{ route('user.create_student') }}">
+                                    <i class="bi bi-plus"></i>
+                                    Klik disini untuk menambahkan santri.
+                                </a>
+                            </div>
 
+                        @else
+                            <div class="alert alert-warning"> <i class="bi bi-exclamation-triangle-fill text-danger"></i> Jika nama peserta tidak muncul silakan tambahkan dulu nama Staf TPAnya ke sistem. <a class="btn btn-warning btn-sm" target="_blank" href="{{ route('user.create_staff') }}"><i class="bi bi-plus"></i>Tambah Staf.
+                                </a>
+                            </div>                           
+                        @endif
                         <!-- peserta yang dimunculkan sesuai jenis kelamin yg dipilih saat create event -->
 
                         @for ($i = 1; $i <= $participants; $i++)
@@ -36,7 +42,9 @@
                                     <h5>Peserta {{ $i }}</h5>
                                     <div class="mb-3">
                                         <small class="form-label text-secondary"><b>Nama lengkap</b></small>
-                                        <select type="text" name="student_id[]" class="form-control select-student">
+                                        <select type="text"
+                                            name="{{ $training->participant_type == 'santri' ? 'student_id[]' : 'staff_id[]' }}"
+                                            class="form-control select-student">
                                             <option>Pilih peserta</option>
                                         </select>
                                     </div>
@@ -86,7 +94,7 @@
                 $('.select-student').select2({
                     theme: 'bootstrap-5',
                     ajax: {
-                        url: "{{ route('user.student_by_name') }}",
+                        url: "{{ $training->participant_type == 'santri' ? route('user.student_by_name') : route('user.staff_by_name') }}",
                         dataType: 'json',
                         delay: 250,
                         data: function(params) {

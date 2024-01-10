@@ -28,6 +28,8 @@ class Training extends Model
         'cost',
         'gender_requirement',
         'date_of_birth_requirement',
+        'status',
+        'participant_type',
     ];
 
     protected $casts = [

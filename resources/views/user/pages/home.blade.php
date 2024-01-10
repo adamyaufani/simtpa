@@ -25,10 +25,10 @@
         <div class="col-lg-8 offset-lg-2 mb-5 mb-lg-0">
 
 
-            <div class="alert alert-danger d-flex flex-row align-items-center justify-content-between" role="alert">
+            {{-- <div class="alert alert-danger d-flex flex-row align-items-center justify-content-between" role="alert">
                 <p>Cetak Label Nama Peserta FASI 2023.</p>
                 <a class="btn btn-danger" href="{{ route('user.order_qr')  }}">Klik di sini</a>
-            </div>
+            </div> --}}
 
             @if (auth()->check())
                 @if ($completeProfileNotification == true)
@@ -70,11 +70,11 @@
                 </div>
             </div> --}}
 
-            <div class="card mb-5">
+            {{-- <div class="card mb-5">
                 <div class="card-header">
                     <h5>Laporan FASI 2023</h5>
                 </div>
-                {{-- <div class="card-body">
+                <div class="card-body">
                     <div class="row g-4">
                         
 
@@ -118,7 +118,7 @@
                         </div>
                     </div>
 
-                </div> --}}
+                </div>
 
 
                 <div class="card-body">
@@ -136,7 +136,7 @@
                     <p class="">Masih kurang <span class="text-danger fw-bold" id="kebutuhanDanaText"></span> dari total kebutuhan <span class="text-success fw-bold">Rp. 24,000,000</span>. <br>Yuk bantu kami dengan menjadi donatur atau relawan donatur. <a href="https://wa.me/6285157683779?text=Salam Admin, saya ingin berdonasi untuk FASI" target="_blank">Klik di sini.</a></p>
                 </div>
 
-            </div>
+            </div> --}}
 
 
             <div class="card mb-5">
@@ -258,7 +258,7 @@
             });
         </script>
 
-        <script>
+        {{-- <script>
             document.getElementById('ageCalculatorForm').addEventListener('submit', function(e) {
                 e.preventDefault();
 
@@ -298,12 +298,12 @@
                 hasilUsia.textContent = `Usia: ${usia} tahun, Kategori: ${kategori}`;
                 hasilUsia.className = `alert ${alertClass}`;
             });
-        </script>
+        </script> --}}
 
         <!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 
-        <script>
+        {{-- <script>
             function updateCountdown() {
                 // Tanggal target
                 const targetDate = new Date('December 3, 2023 24:00:00').getTime();
@@ -337,9 +337,9 @@
 
             // Panggil fungsi untuk pertama kali
             updateCountdown();
-        </script>
+        </script> --}}
 
-        <script>
+        {{-- <script>
             // Kebutuhan dan jumlah terkumpul
             const kebutuhanDana = 24000000;
             let terkumpul = 15000000;
@@ -359,7 +359,7 @@
             $('#kebutuhanDanaText').append(' Rp. ' + kekuranganDana.toLocaleString());
             $('#terkumpul').append(' Rp. ' + terkumpul.toLocaleString());
 
-        </script>
+        </script> --}}
     @endpush
 
 </x-user.layout>

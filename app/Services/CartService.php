@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Training;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +16,8 @@ class CartService
             ->with([
                 'training',
                 'items',
-                'items.student'
+                'items.student',
+                'items.staff'
             ])
             ->get();
 
@@ -40,15 +42,28 @@ class CartService
     {
         DB::transaction(function () use ($userId, $request) {
             $validated = $request->validated();
+            $training = Training::find($validated['training_id']);
+            // dd($validated);
+
             $cart = Cart::create([
                 'user_id' => $userId,
                 'training_id' => $validated['training_id'],
             ]);
-            foreach ($validated['student_id'] as $item) {
-                CartItem::create([
-                    'cart_id' => $cart->id,
-                    'student_id' => $item,
-                ]);
+
+            if ($training->participant_type == 'santri') {
+                foreach ($validated['student_id'] as $item) {
+                    CartItem::create([
+                        'cart_id' => $cart->id,
+                        'student_id' => $item,
+                    ]);
+                }
+            } else {
+                foreach ($validated['staff_id'] as $item) {
+                    CartItem::create([
+                        'cart_id' => $cart->id,
+                        'staff_id' => $item,
+                    ]);
+                }
             }
         });
     }

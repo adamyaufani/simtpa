@@ -60,9 +60,12 @@ class OrderController extends Controller
     public function confirmPayment($id)
     {
         $order = OrderService::confirmOrderPayment($id);
-        $user = User::find($order->user_id);
-        Mail::to($user->email)->send(new \App\Mail\User\PaymentConfirmed($user->id, $order->id));
-        return redirect()->back()->with('success', 'Transaksi berhasil dikonfirmasi');
+        if ($order) {
+            $user = User::find($order->user_id);
+            Mail::to($user->email)->send(new \App\Mail\User\PaymentConfirmed($user->id, $order->id));
+            return redirect()->back()->with('success', 'Transaksi berhasil dikonfirmasi');
+        }
+        return redirect()->back()->with('error', 'Transaksi sudah kedaluwarsa');
     }
 
     public function destroy($id)
