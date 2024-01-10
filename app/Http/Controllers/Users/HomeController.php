@@ -25,7 +25,13 @@ class HomeController extends Controller
             ->get();
 
         // $categories = Category::all();
-        $categories = Category::where('id', '!=', 3)->get();
+        $categories = Category::where([
+            ['id', '!=', 1],
+            ['id', '!=', 2],
+            ['id', '!=', 3],
+            ['id', '!=', 4],
+            ]
+            )->get();
 
         $numberOfUsersPerVillages = [];
 

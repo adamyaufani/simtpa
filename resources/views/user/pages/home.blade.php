@@ -22,7 +22,7 @@
     @endpush
 
     <div class="row gx-5"> 
-        <div class="col-lg-8 offset-lg-2 mb-5 mb-lg-0">
+        <div class="col-lg-8 mb-5 mb-lg-0">
 
 
             {{-- <div class="alert alert-danger d-flex flex-row align-items-center justify-content-between" role="alert">
@@ -139,14 +139,7 @@
             </div> --}}
 
 
-            <div class="card mb-5">
-                <div class="card-header">
-                    <h5>Jumlah Anggota Badko TKA-TPA Tiap Kalurahan</h5>
-                </div>
-                <div class="card-body px-5">
-                    <canvas id="myPieChart" width="400" height="300" class="chartjs-render-monitor"></canvas>
-                </div>
-            </div>
+          
 
             {{-- <div class="card mb-5">
                 <div class="card-header">
@@ -201,6 +194,16 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="card mb-5">
+                <div class="card-header">
+                    <h5>Jumlah Anggota Badko TKA-TPA Tiap Kalurahan</h5>
+                </div>
+                <div class="card-body px-5">
+                    <canvas id="myPieChart" width="400" height="300" class="chartjs-render-monitor"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 
