@@ -9,6 +9,7 @@ use App\Models\Training;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Village;
+use App\Services\NewsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -84,6 +85,8 @@ class HomeController extends Controller
             ];
         }
 
+        $news = NewsService::index();
+
         $event_paid = Transaction::where('status', 'Lunas')->count();
         $event_with_pending_payment = Transaction::where('status', null)->count();
         $users_cart = User::has('carts')->count();
@@ -95,6 +98,7 @@ class HomeController extends Controller
         // dd($user_with_pending_payment);
         return view('user.pages.home')
             ->with(compact(
+                'news',
                 'trainings',
                 'categories',
                 'numberOfUsersPerVillages',

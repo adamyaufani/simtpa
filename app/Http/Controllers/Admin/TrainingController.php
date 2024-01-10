@@ -21,7 +21,7 @@ class TrainingController extends Controller
 
     public function index(): View
     {
-        $trainings = Training::all();
+        $trainings = Training::orderBy('created_at', 'desc')->get();
 
         return view('admin.pages.training.index')
             ->with(compact('trainings'));

@@ -33,6 +33,8 @@ use App\Http\Controllers\User\StudentController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\LetterController as UserLetterController;
 use App\Http\Controllers\UserAgreementController;
+use App\Http\Controllers\Users\NewsController;
+
 // use App\Mail\Admin\NewTransaction;
 
 // use App\Mail\Admin\NewUserRegistration;
@@ -58,6 +60,7 @@ Route::get('login', [UserAuthController::class, 'form'])->name('user.login_form'
 Route::post('login', [UserAuthController::class, 'authenticate'])->name('user.login_attempt');
 Route::get('signup', [RegistrationController::class, 'form'])->name('user.registration_form');
 Route::post('signup', [RegistrationController::class, 'register'])->name('user.submit_registration');
+Route::get('news/{id}', [NewsController::class, 'show'])->name('user.news_detail');
 
 Route::get('forgot-password', [UserAuthController::class, 'askResetPasswordForm'])->name('user.ask_reset_password_form');
 Route::post('forgot-password', [UserAuthController::class, 'sendResetPasswordForm'])->name('user.send_reset_password_form');
