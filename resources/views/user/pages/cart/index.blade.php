@@ -24,7 +24,9 @@
                                     @foreach(
                                         $order['items'] as $item)
                                         <li class="list-group-item">
-                                            {{ $order['training']['participant_type'] == 'santri' ? $item['student']['name'] : $item['staff']['name'] }}
+
+                                            {{ $order['training']['participant_type']  }}
+                                       
                                         </li>
                                     @endforeach
                               
