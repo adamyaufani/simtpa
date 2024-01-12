@@ -35,7 +35,7 @@ class UpdateStaffRequest extends FormRequest
             // // 'length_of_islamic_education' => ['required', 'string'],
             'core_competency' => ['required', 'string'],
             'phone' => ['required', 'string'],
-            'email' => ['required', 'string'],
+            'email' => ['nullable', 'string'],
             'photo' => ['image', 'mimes:jpg,jpeg,png', 'max:1028'],       
         ];
     }
