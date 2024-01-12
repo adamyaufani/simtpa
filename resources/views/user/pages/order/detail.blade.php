@@ -1,44 +1,46 @@
 <x-user.layout>
-    <h4>Status Pembayaran</h4>
+    <h4>No. Tagihan :
+        {{ $data->id }}</h4>
     <div class="card">
         <div class="card-body row">
             <div class="col-12 col-md-6">
-                <h5><b>
-                        No. Tagihan :
-                        {{ $data->id }}
-                    </b>
-                </h5>
 
                 @foreach ($data->orders as $order)
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h5>{{ $order->training->name }}</h5>
-                        </div>
-                        <div class="card-body p-1">
-                            <ul class="list-group list-group-flush">
-                                @if(
-                                            $order->training->participant_type == 'santri')
-                                            <ul class="list-group list-group-flush">
-                                                @foreach($order->orderparticipants as $participant)
-                                                    <li class="list-group-item">
-                                                        <span>{{ $participant->student->name }}</span><br>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        @elseif(
-                                            $order->training->participant_type == 'staff'
-                                            )
-                                            <ul class="list-group list-group-flush">
-                                                @foreach($order->orderparticipants as $participant)
-                                                    <li class="list-group-item">
-                                                        <span>{{ $participant->staff->name }}</span><br>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
+                    @foreach ($order->orderparticipants as $participant)
+                        <div class="card mb-3">
+                            <div class="card-header text-center">
+                                <h5 class="mb-0">{{ $order->training->name }}</h5>
+                                    {{ $order->training->start_date->isoFormat('D MMMM Y, H:mm') }}
+                            </div>
+                            <div class="card-body text-center d-flex align-items-center justify-content-center"
+                                style="min-height:50vh">
+                                <div class="d-flex flex-column">
+                                    @if ($data->status == 'Lunas')
+                                        <h6 class="badge text-bg-success">E-Ticket</h6>
+
+                                        {{ QrCode::size(150)->generate(route('admin.scan_training_attendance', $participant->id)) }}
+                                    @endif
+                                    <h4 class="mt-2 mb-0">
+                                        @if ($order->training->participant_type == 'santri')
+                                            {{ $participant->student->name }}
+                                        @else
+                                            {{ $participant->staff->name }}
                                         @endif
-                            </ul>
+                                    </h4>
+                                    TPA {{ $data->user->userProfile->institution_name }}
+                                </div>
+                            </div>
+                            <div class="card-footer text-center text-muted">
+                                <small>
+                                    @if ($data->status == 'Lunas')
+                                        Screenhoot QR Code ini lalu tunjukkan ke petugas loket untuk discan.
+                                    @else
+                                        Tiket belum lunas.
+                                    @endif
+                                </small>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 @endforeach
             </div>
             <div class="col-12 col-md-6 mt-3 mt-md-0">
