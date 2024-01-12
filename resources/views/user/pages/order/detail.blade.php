@@ -74,10 +74,10 @@
                 <div class="card bg-light">
                     <div class="card-body">
                         <span class="text-secondary">
-                            Kirimkan foto bukti pembayaran Anda ke nomor : <strong>0856 256 3456</strong>
+                            Kirimkan foto bukti pembayaran Anda ke nomor : <strong>0851 5768 3779</strong>
                         </span><br>
 
-                        <a href="https://wa.me/628562563456?text=Salam,%20Saya%20ingin%20konfirmasi%20pembayaran%20Pendaftaran%20FASI%202023"
+                        <a href="https://wa.me/6285157683779?text=Salam,%20Saya%20ingin%20konfirmasi%20pembayaran%20Pendaftaran%20{{ $order->training->name }}"
                             class="btn btn-success mt-2"><i class="bi bi-whatsapp"></i> Chat Admin</a>
                     </div>
                 </div>
