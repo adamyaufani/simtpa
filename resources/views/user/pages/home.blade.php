@@ -204,21 +204,28 @@
                     <canvas id="myPieChart" width="400" height="300" class="chartjs-render-monitor"></canvas>
                 </div>
             </div>
-            <div class="row gx-5">
-                <div class="col-lg-12 mb-5 mb-lg-0 d-flex">
+     
+            {{-- <div class="card mb-5">
+                <div class="card-header">
+                    <h5>Berita Terbaru</h5>
+                </div>
+                <div class="card-body px-5">
+                    <ol>
                     @foreach($news as $info)
-                        <div class="card">
-                            <div class="card-body">
+                       <li>
                                 <a class="card-text"
                                     href="{{ route('user.news_detail', $info['id']) }}">
                                     {{ $info['title']['rendered'] }}
                                 </a>
-                            </div>
-                        </div>
+                            
+                            </li>
                     @endforeach
+                    </ol>
+
+                    {{ $news->links() }}
                 </div>
-                {{ $news->links() }}
-            </div>
+            </div> --}}
+           
         </div>
     </div>
 

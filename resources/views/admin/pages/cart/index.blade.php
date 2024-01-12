@@ -62,7 +62,12 @@
                                                 </span><br>
                                                 @foreach($cart->items as $item)
                                                     <span class="text-dark">
+
+                                                        @if ($cart->training->participant_type ==='staff')
+                                                        {{ $item->staff->name }}
+                                                        @else
                                                         {{ $item->student->name }}
+                                                        @endif
                                                     </span><br>
                                                 @endforeach
                                             @endforeach

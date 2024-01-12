@@ -35,7 +35,7 @@ class StoreNewStaffRequest extends FormRequest
             'length_of_islamic_education' => ['nullable', 'string'],
             'core_competency' => ['required', 'string'],
             'phone' => ['required', 'string', 'min:11','regex:/^628\d{8,}$/'],
-            'email' => ['required', 'string','email'],
+            'email' => ['nullable', 'string','email'],
             'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:1028'],     
         ];
     }
@@ -55,7 +55,7 @@ class StoreNewStaffRequest extends FormRequest
             'phone.required' => 'Telepon wajib diisi',
             'phone.min' => 'Nomor telepon terlalu pendek',
             'phone.regex' => 'Format nomor telepon tidak sesuai contoh, yang benar: 6285625674567',
-            'email.required' => 'Email wajib diisi',  
+            // 'email.required' => 'Email wajib diisi',  
             'photo.image' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
             'photo.mimes' => 'Akta harus berupa gambar dengan ekstensi .jpg, jpeg atau .png',           
             'photo.max' => 'Ukuran foto tidak boleh lebih dari 1 MB',            
