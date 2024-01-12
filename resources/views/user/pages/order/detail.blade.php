@@ -17,8 +17,8 @@
                                 <div class="d-flex flex-column">
                                     @if ($data->status == 'Lunas')
                                         <h6 class="badge text-bg-success">E-Ticket</h6>
-
-                                        {{ QrCode::size(150)->generate(route('admin.scan_training_attendance', $participant->id)) }}
+                                        
+                                        {{ QrCode::size(200)->generate(route('admin.scan_training_attendance', $participant->id)) }}
                                     @endif
                                     <h4 class="mt-2 mb-0">
                                         @if ($order->training->participant_type == 'santri')
