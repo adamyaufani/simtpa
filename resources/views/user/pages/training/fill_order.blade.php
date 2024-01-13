@@ -30,7 +30,7 @@
                             </div>
 
                         @else
-                            <div class="alert alert-warning"> <i class="bi bi-exclamation-triangle-fill text-danger"></i> Jika nama peserta tidak muncul silakan tambahkan dulu nama Staf TPAnya ke sistem. <a class="btn btn-warning btn-sm" target="_blank" href="{{ route('user.create_staff') }}"><i class="bi bi-plus"></i>Tambah Staf.
+                            <div class="alert alert-warning"> <i class="bi bi-exclamation-triangle-fill text-danger"></i> Jika nama peserta tidak muncul silakan tambahkan dulu nama Staf Pengajarnya ke sistem. <a class="btn btn-warning btn-sm" target="_blank" href="{{ route('user.create_staff') }}"><i class="bi bi-plus"></i>Tambah Staf.
                                 </a>
                             </div>                           
                         @endif

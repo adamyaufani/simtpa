@@ -14,8 +14,8 @@
                             <h4 class="mb-3">Pengurus TPA</h4>
                             <div>
                                 <a href="{{ route('user.create_staff') }}"
-                                    class="btn btn-primary btn-sm">
-                                    tambah staff baru
+                                    class="btn btn-primary btn-sm"> <i class="bi bi-plus"></i>
+                                    Tambah Staf Pengajar
                                 </a>
                             </div>
                         </div>

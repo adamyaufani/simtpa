@@ -8,7 +8,7 @@
 
     <x-slot:title>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Peserta Events</h1>
+            <h1 class="h3 mb-0 text-gray-800">Peserta Event</h1>
             {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
             </a> --}}
@@ -37,7 +37,6 @@
                         <tr>
                             <th style="width: 40%">Nama Event</th>
                             <th style="width: 30%">Peserta</th>
-                            <th style="width: 30%">Tgl Lahir</th>
                             <th style="width: 30%">TPA</th>
                         </tr>
                     </thead>
@@ -45,43 +44,27 @@
                         @foreach ($participants as $participant)
                             <tr>
                                 <td>{{ $participant->order->training->name }}</td>
-                                <td>
-                                   
-                                </td>
+                               
                                 @if($participant->order->training->participant_type == 'santri')
-                                    <td>{{ $participant->order->training->name }}</td>
+                                    <td>  <a
+                                        href="{{ route('admin.detail_student',$participant->student->id) }}">
+                                        {{ $participant->student->name }}
+                                    </a></td>
                                     <td>
-                                        <span>
-                                            <strong>Nama : </strong>
-                                            <a
-                                                href="{{ route('admin.detail_student',$participant->student->id) }}">
-                                                {{ $participant->student->name }}
-                                            </a>
-                                        </span><br>
-                                        <span>
-                                            <strong>
-                                                Asal Organisasi :
-                                            </strong>
+                                        
                                             {{ $participant->student->user->userProfile->institution_name }}
-                                        </span>
+                                       
                                     </td>
                                 @elseif(
                                     $participant->order->training->participant_type == 'staff')
-                                    <td>{{ $participant->order->training->name }}</td>
+                                    <td> <a
+                                        href="{{ route('admin.detail_staff',$participant->staff->id) }}">
+                                        {{ $participant->staff->name }}
+                                    </a></td>
                                     <td>
-                                        <span>
-                                            <strong>Nama : </strong>
-                                            <a
-                                                href="{{ route('admin.detail_staff',$participant->staff->id) }}">
-                                                {{ $participant->staff->name }}
-                                            </a>
-                                        </span><br>
-                                        <span>
-                                            <strong>
-                                                Asal Organisasi :
-                                            </strong>
+                                        
                                             {{ $participant->staff->user->userProfile->institution_name }}
-                                        </span>
+                                       
                                     </td>
                                 @endif
                             </tr>
@@ -105,10 +88,7 @@
 
         <script>
             const table = new DataTable('#dataTable', {
-                dom: 'Bfrtip',
-                buttons: [
-                    'excel'
-                ]
+               
             });
         </script>
     @endpush

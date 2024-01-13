@@ -20,11 +20,11 @@
     <div class="row mb-5">
         <div class="col-lg-12">
             <div class="d-flex justify-content-between">
-                <h4 class="mb-3">Staf TPA</h4>
+                <h4 class="mb-3">Staf Pengajar </h4>
                 <div>
                     <a href="{{ route('user.create_staff') }}" class="btn btn-primary btn-sm"><i
                             class="bi bi-plus"></i>
-                        Tambah Staf Baru
+                            Tambah Staf Pengajar
                     </a>
                 </div>
             </div>

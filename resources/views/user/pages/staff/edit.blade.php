@@ -2,7 +2,7 @@
 
     <div class="col-lg-12">
         <div class="d-flex flex-column">
-            <h4 class="mb-3">Edit Data Staff</h4>
+            <h4 class="mb-3">Edit Data Staf Pengajar</h4>
             <p class="mb-3">Yang diberi tanda * (bintang) wajib diisi.</p>
         </div>
         @if (session()->has('success'))

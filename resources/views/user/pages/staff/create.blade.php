@@ -14,7 +14,7 @@
 
         <div class="col-lg-12">
             <div class="d-flex flex-column">
-                <h4 class="mb-3">Tambah Staf</h4>
+                <h4 class="mb-3">Tambah Staf Pengajar</h4>
                 <p class="mb-3">Yang diberi tanda * (bintang) wajib diisi.</p>
             </div>
 

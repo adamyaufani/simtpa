@@ -88,7 +88,7 @@
                             <li class="nav-item">
                                 <a class="nav-link @if (url()->full() === route('user.staff')) active @endif"
                                     href="{{ route('user.staff') }}">
-                                    Staf
+                                    Staf Pengajar
                                 </a>
                             </li>
                             <li class="nav-item">
