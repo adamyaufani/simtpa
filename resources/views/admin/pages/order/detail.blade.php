@@ -64,7 +64,7 @@
   %0A%0A*Catatan:*%0A - Mohon membalas dengan *OK* untuk memastikan Anda sudah menerima pesan ini.%0A - Satu TPA setidaknya mengirimkan 1 orang perwakilan.%0A - Mohon tunjukkan undangan ini saat presensi.%0A%0ATerima kasih %F0%9F%98%8A %0ACS Badko TPA Kasihan" target="_blank" class="mt-3 btn btn-danger"><i class="fab fa-whatsapp"></i> Chat Undangan TM</a> --}}
                             @else
 
-                            <a href="https://api.whatsapp.com/send?phone={{ $data->user->userProfile->phone_number }}&text=Assalamualaikum *TPA {{ $data->user->userProfile->institution_name }}*, %0Anda memiliki tagihan nomor {{ $data->id }} yang belum dibayar.%0A%0AKlik di sini untuk melihat tagihannya {{ route('user.detail_order', $data->id) }} %0A%0A*Catatan:*%0A - Mohon membalas dengan *OK* untuk memastikan Anda sudah menerima pesan ini.%0A - Silakan abaikan pesan ini jika telah membayar.%0A%0ATerima kasih %F0%9F%98%8A %0ACS Badko TPA Kasihan" target="_blank" class="mt-3 btn btn-warning"><i class="fab fa-whatsapp"></i> Chat Peserta</a>
+                            <a href="https://api.whatsapp.com/send?phone={{ $data->user->userProfile->phone_number }}&text=Assalamualaikum *TPA {{ $data->user->userProfile->institution_name }}*, %0ABerikut ini tagihan nomor {{ $data->id }} yang belum dibayar.%0A%0AKlik di sini untuk melihat tagihannya {{ route('user.detail_order', $data->id) }} %0A%0A*Catatan:*%0A - Mohon membalas dengan *OK* untuk memastikan Anda sudah menerima pesan ini.%0A - Silakan abaikan pesan ini jika telah membayar.%0A%0ATerima kasih %F0%9F%98%8A %0ACS Badko TPA Kasihan" target="_blank" class="mt-3 btn btn-warning"><i class="fab fa-whatsapp"></i> Chat Peserta</a>
 
                             @endif
 
