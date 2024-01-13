@@ -178,7 +178,15 @@ class TrainingService
         // die();
         // return $trainings;
 
-        $participants = OrderParticipant::with('order')->get();
+        // $participants = OrderParticipant::with('order')->get();
+
+        $participants = OrderParticipant::with('order')
+            ->leftJoin('orders', 'order_participants.order_id', '=', 'orders.id')
+            ->leftJoin('trainings', 'orders.training_id', '=', 'trainings.id')
+            ->where('trainings.status', '=', 1)
+            ->get();
+
+        // dd($participants);
 
         // foreach ($participants as $participant) {
         //     dump($participant->order->training->name);
