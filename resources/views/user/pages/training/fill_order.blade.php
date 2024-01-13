@@ -5,12 +5,12 @@
             href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     @endpush
     <form action="{{ route('user.fill_order', $training->id) }}" method="POST">
-        <div class="col-12">
-            <section class="py-5" id="features">
-                <div class="container px-5 my-5 d-flex">
+       
+            <section class="py-5">
+                <div class="row">
                     @csrf
                     <input type="hidden" name="training_id" value="{{ $training->id }}">
-                    <div class="col-9 me-3">
+                    <div class="col-12 col-md-9">
                         <h4>Data Peserta</h4>
                         
                         @if($training->participant_type == 'santri')                           
@@ -78,7 +78,7 @@
                             <button class="btn btn-primary" type="submit">Tambahkan ke Keranjang</button>
                         </div>
                     </div>
-                </div>
+            
 
     </form>
 
