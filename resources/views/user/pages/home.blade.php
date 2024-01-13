@@ -117,21 +117,21 @@
                     @endforeach
                 </div>
             </div>
-            <div class="row gx-5">
-                <div class="col-lg-12 mb-5 mb-lg-0 d-flex">
-                    @foreach($news as $info)
-                        <div class="card">
-                            <div class="card-body">
-                                <a class="card-text"
+            {{-- <div class="row gx-5"> --}}
+            {{-- <div class="col-lg-12 mb-5 mb-lg-0 d-flex"> --}}
+            {{-- @foreach($news as $info) --}}
+            {{-- <div class="card"> --}}
+            {{-- <div class="card-body"> --}}
+            {{-- <a class="card-text"
                                     href="{{ route('user.news_detail', $info['id']) }}">
-                                    {{ $info['title']['rendered'] }}
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                {{ $news->links() }}
-            </div>
+            {{ $info['title']['rendered'] }}
+            </a> --}}
+            {{-- </div> --}}
+            {{-- </div> --}}
+            {{-- @endforeach --}}
+            {{-- </div> --}}
+            {{-- {{ $news->links() }} --}}
+            {{-- </div> --}}
         </div>
 
     </section>
