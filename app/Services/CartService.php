@@ -70,7 +70,7 @@ class CartService
 
     public static function cartIndexForAdmin()
     {
-        $users = User::with('carts')->where('verification_status', '=', 1)->get();
+        $users = User::has('carts')->where('verification_status', '=', 1)->get();
 
         // foreach ($users as $user) {
         //     dump($user->carts);
