@@ -61,48 +61,7 @@
                                 </td>
                                 <td class="">
 
-                                    <a href="https://api.whatsapp.com/send?phone={{ $user->userProfile->phone_number }}&text=Assalamualaikum *TPA {{ $user->userProfile->institution_name }}*, %0A %0A📢📢 Ikutilah Training untuk Guru Al Qur'an%0A%0A 
-
-dengan tema : *Kupas Tuntas Guru Al-Qur’an* %0A 
-Pemateri *Ustadz Akbar Sandro Yudho Dhiharso, S.Sos.I, M.S.I* %0A
-_(Pembina Tilawah Akbar Center, Trainer, Motivator)_ %0A%0A
-Dapatkan ilmu bermanfaat diantaranya :%0A 
-▪Posisi Strategis Guru Al-Quran%0A 
-▪Menjadi Guru Al-Quran yang Handal dan Profesional %0A 
-▪Mengatasi Kendala dan Tantangan Guru Al-Quran %0A%0A
-
-InsyaAllah diadakan pada :%0A 
-🗓 Ahad, 28 Januari 2024%0A 
-⏰ 08.00-11.30%0A 
-🏦 Pendopo TPQ Yaa Bunayya Keloran, Tirtonirmolo, Kasihan, Bantul%0A 
-%0A
-Fasilitas%0A
-▪Snack%0A
-▪Sertifikat Digital%0A
-
-💓Disediakan doorprize Al Qur'an Cantik bagi 12 peserta yang beruntung%0A%0A
-
-Investasi%0A
-Rp 20.000 (Anggota Badko Kasihan*)%0A
-Rp 25.000 (Non Anggota Badko Kasihan)%0A%0A
-
-*) Anggota Badko Kasihan adalah unit TPA yang berada di Kapanewon Kasihan yang 
-sudah terdata pada Pangkalan Data TPA https://tpa.badkokasihan.web.id %0A%0A
-
-⚠ Kehadiran Unit TPA akan dicatat sebagai keaktifan anggota Badko Kasihan%0A%0A
-
-⚠ Daftar sekarang juga! Kuota terbatas.%0A%0A
-
-📞 Informasi https://wa.me/6285157683779%0A%0A
-
-🖥 Pendaftaran online https://tpa.badkokasihan.web.id%0A%0A
-
-🤝Acara ini bekerjasama dengan TPQ Yaa Bunayya Keloran%0A%0A
-                                        
-                                        
-                                        
-                                      - Mohon membalas dengan *OK* untuk memastikan Anda sudah menerima pesan ini.%0A
-                                      Terima kasih %F0%9F%98%8A %0ACS Badko TPA Kasihan "
+                                    <a href="https://api.whatsapp.com/send?phone={{ $user->userProfile->phone_number }}&text=Assalamualaikum Wr Wb. %0A %0A Yth pengurus *TPA {{ $user->userProfile->institution_name }}*, %0A %0AMengharap keikutsertaan Ustadz/ah dalam acara *Training untuk Guru Al Qur'an 'Kupas Tuntas Guru Al-Qur’an,* yang akan diisi oleh *Ustadz Akbar Sandro Yudho Dhiharso, S.Sos.I, M.S.I* (Pembina Tilawah Akbar Center, Trainer dan Motivator) %0A%0AMateri :%0A▪Posisi Strategis Guru Al-Quran%0A ▪Menjadi Guru Al-Quran yang Handal dan Profesional %0A ▪Mengatasi Kendala dan Tantangan Guru Al-Quran %0A%0AInsyaAllah diadakan pada :%0A🗓 Ahad, 28 Januari 2024%0A⏰ 08.00-11.30%0A🏦 Pendopo TPQ Yaa Bunayya Keloran, Tirtonirmolo, Kasihan,Bantul%0A%0AFasilitas%0A▪Snack%0A▪Sertifikat Digital%0A%0AInvestasi%0ARp 20.000 (Anggota Badko Kasihan*)%0ARp 25.000 (Non Anggota Badko Kasihan)%0A%0A*) Anggota Badko Kasihan adalah unit TPA yang berada di Kapanewon Kasihan yang telah terdata pada Pangkalan Data TPA Rayon Kasihan %0A%0A⚠ Kehadiran Unit TPA akan dicatat sebagai keaktifan anggota Badko Kasihan%0A%0A📞 Informasi https://wa.me/6285157683779%0A%0A🖥 Pendaftaran online https://tpa.badkokasihan.web.id%0A%0A🤝Acara ini bekerjasama dengan TPQ Yaa Bunayya Keloran%0A💓Disediakan doorprize Al Qur'an Cantik bagi 10 peserta yang beruntung%0A%0AHormat Kami, %F0%9F%98%8A %0A Badko TKA-TPA Kasihan"
                                         target="_blank" class="mt-3 btn btn-warning"><i class="fab fa-whatsapp"></i>
                                         Chat Peserta</a>
 
