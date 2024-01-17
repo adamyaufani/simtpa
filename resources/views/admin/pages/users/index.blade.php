@@ -63,9 +63,9 @@
 
                                     <a href="https://api.whatsapp.com/send?phone={{ $user->userProfile->phone_number }}&text=Assalamualaikum *TPA {{ $user->userProfile->institution_name }}*, %0A %0A📢📢 Ikutilah Training untuk Guru Al Qur'an%0A%0A 
 
-dengan tema : *Kupas Tuntas Guru Al-Qur’an*%0A 
-Pemateri *Ustadz Akbar Sandro Yudho Dhiharso, S.Sos.I, M.S.I*%0A
-_(Pembina Tilawah Akbar Center, Trainer & Motivator)_%0A%0A
+dengan tema : *Kupas Tuntas Guru Al-Qur’an* %0A 
+Pemateri *Ustadz Akbar Sandro Yudho Dhiharso, S.Sos.I, M.S.I* %0A
+_(Pembina Tilawah Akbar Center, Trainer, Motivator)_ %0A%0A
 Dapatkan ilmu bermanfaat diantaranya :%0A 
 ▪Posisi Strategis Guru Al-Quran%0A 
 ▪Menjadi Guru Al-Quran yang Handal dan Profesional %0A 
@@ -101,7 +101,8 @@ sudah terdata pada Pangkalan Data TPA https://tpa.badkokasihan.web.id %0A%0A
                                         
                                         
                                         
-                                      - Mohon membalas dengan *OK* untuk memastikan Anda sudah menerima pesan ini.%0A "
+                                      - Mohon membalas dengan *OK* untuk memastikan Anda sudah menerima pesan ini.%0A
+                                      Terima kasih %F0%9F%98%8A %0ACS Badko TPA Kasihan "
                                         target="_blank" class="mt-3 btn btn-warning"><i class="fab fa-whatsapp"></i>
                                         Chat Peserta</a>
 
