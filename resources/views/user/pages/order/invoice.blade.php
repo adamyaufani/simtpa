@@ -54,7 +54,7 @@
     @foreach($data->orders as $training)
         <h4><strong>{{ $order->training->name }}</strong></h4>
         Peserta
-        @if($training->participant_type == 'santri')
+        @if($order->training->participant_type == 'santri')
             <ul>
                 @foreach($training->orderParticipants as $participant)
                     <li>
@@ -64,7 +64,7 @@
                     </li>
                 @endforeach
             </ul>
-        @elseif($training->participant_type == 'staff' )
+        @elseif($order->training->participant_type == 'staff' )
             <ul>
                 @foreach($training->orderParticipants as $participant)
                     <li>

@@ -33,6 +33,7 @@
                                 Keranjang
                             </a>
                         @endif
+                        <a class="nav-link" href="{{ route('public.certificate') }}">Sertifikat</a>
                     </div>
                 </div>
 
