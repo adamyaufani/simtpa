@@ -82,6 +82,11 @@
             <br>
             {{ $certificate->order->training->name }}
         </div>
+
+        <div>
+            <img src="{{ route('training.image').'?q='.$certificate->order->training->background_certificate }}"
+                alt="">
+        </div>
     </div>
 </body>
 

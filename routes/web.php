@@ -75,7 +75,6 @@ Route::get('events/{id}', [UserTrainingController::class, 'show'])->name('user.t
 
 Route::get('verifikasi/{id}', [HomeController::class, 'verification'])->name('user.verification');
 
-Route::get('sertifikat-lomba', [PublicCertificateController::class, 'index'])->name('public.certificate');
 Route::get('sertifikat-lomba/{id}/download', [PublicCertificateController::class, 'download'])->name('public.download_certificate');
 
 Route::middleware('auth.user')->group(function () {
@@ -149,6 +148,8 @@ Route::middleware('auth.user')->group(function () {
     });
 
     Route::get('piagam', [HomeController::class, 'charter'])->name('user.charter');
+
+    Route::get('sertifikat-lomba', [PublicCertificateController::class, 'index'])->name('public.certificate');
 });
 
 // Admin Routes

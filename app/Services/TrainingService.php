@@ -39,12 +39,21 @@ class TrainingService
             // dd($data);
 
             $training = Training::create($data);
+
             $file = $request['image'];
             $fileName = $file->getClientOriginalName();
             $fileLocation = 'trainings/training_banner' . '/' . $training['id'] . '/';
             Storage::putFileAs($fileLocation, $file, $fileName);
             $training->update([
                 'image' => $fileLocation . $fileName
+            ]);
+
+            $file = $request['background_certificate'];
+            $fileName = $file->getClientOriginalName();
+            $fileLocation = 'trainings/background_certificate' . '/' . $training['id'] . '/';
+            Storage::putFileAs($fileLocation, $file, $fileName);
+            $training->update([
+                'background_certificate' => $fileLocation . $fileName
             ]);
 
             TrainingTrainer::create([
@@ -90,6 +99,16 @@ class TrainingService
                 // $training->update([
                 //     'image' => $fileLocation . $fileName
                 // ]);
+            }
+
+            if ($request->has('background_certificate')) {
+                $file = $request['background_certificate'];
+                $fileName = $file->getClientOriginalName();
+                $fileLocation = 'trainings/background_certificate' . '/' . $training['id'] . '/';
+                Storage::putFileAs($fileLocation, $file, $fileName);
+                $training->update([
+                    'background_certificate' => $fileLocation . $fileName
+                ]);
             }
         });
     }

@@ -32,8 +32,10 @@
                                 <i class="bi bi bi-cart-check-fill"></i>
                                 Keranjang
                             </a>
+                            <a class="nav-link" href="{{ route('public.certificate') }}">
+                                Sertifikat
+                            </a>
                         @endif
-                        <a class="nav-link" href="{{ route('public.certificate') }}">Sertifikat</a>
                     </div>
                 </div>
 
