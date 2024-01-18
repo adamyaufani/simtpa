@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Users\CertificateController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\Public\CertificateController as PublicCertificateController;
 use App\Http\Controllers\User\AgreementController;
 use App\Http\Controllers\User\AuthController as UserAuthController;
 use App\Http\Controllers\User\OrderController as UserOrderController;
@@ -73,6 +74,9 @@ Route::get('t_image', [FileController::class, 'trainingBanner'])->name('training
 Route::get('events/{id}', [UserTrainingController::class, 'show'])->name('user.training_detail');
 
 Route::get('verifikasi/{id}', [HomeController::class, 'verification'])->name('user.verification');
+
+Route::get('sertifikat-lomba', [PublicCertificateController::class, 'index'])->name('public.certificate');
+Route::get('sertifikat-lomba/{id}/download', [PublicCertificateController::class, 'download'])->name('public.download_certificate');
 
 Route::middleware('auth.user')->group(function () {
     Route::get('logout', [UserAuthController::class, 'logout'])->name('user.logout');
@@ -231,8 +235,8 @@ Route::prefix('admin')->group(function () {
             Route::get('{id}/qr', [AdminOrderController::class, 'qr'])->name('admin.order_qr');
         });
 
-        Route::prefix('cerificates')->group(function () {
-            Route::get('/', [AdminCertificateController::class, 'index'])->name('admin.certificate_index');
+        Route::prefix('certificates')->group(function () {
+            // Route::get('/', [AdminCertificateController::class, 'index'])->name('admin.certificate_index');
             Route::get('settings', [AdminCertificateController::class, 'settingIndex'])->name('admin.certificate_setting_index');
             Route::get('settings/{id}', [AdminCertificateController::class, 'settingDetail'])->name('admin.certificate_setting_detail');
             Route::post('settings/{id}/preview', [AdminCertificateController::class, 'preview'])->name('admin.certificate_setting_preview');

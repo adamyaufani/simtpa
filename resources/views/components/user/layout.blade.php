@@ -57,7 +57,6 @@
 
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-
                     </div>
                 </div>
 
@@ -75,6 +74,8 @@
                             <a class="nav-link @if (url()->full() === route('user.org_list')) active @endif"
                                 href="{{ route('user.org_list') }}">Data TPA</a>
                         </li>
+
+                        <a class="nav-link" href="{{ route('public.certificate') }}">Sertifikat</a>
 
                         @if (auth()->check())
                             <li class="nav-item">
