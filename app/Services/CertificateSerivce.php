@@ -9,8 +9,19 @@ class CertificateSerivce
 
     public static function certificateIndex()
     {
+        $userId = auth()->user()->id;
+        // $userId = 2;
         $certificates = OrderParticipant::has('eventAttendance')
-            ->with('student', 'staff', 'order', 'order.training')
+            ->with([
+                'student',
+                'staff',
+                'order',
+                'order.training',
+                'order.transaction'
+            ])
+            ->whereHas('order.transaction', function ($q) use ($userId) {
+                $q->where('user_id', $userId);
+            })
             ->get();
         return $certificates;
     }

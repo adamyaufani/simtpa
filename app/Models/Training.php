@@ -25,6 +25,7 @@ class Training extends Model
         'description',
         // 'quota',
         'image',
+        'background_certificate',
         'cost',
         'gender_requirement',
         'date_of_birth_requirement',
@@ -49,6 +50,13 @@ class Training extends Model
     }
 
     protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Crypt::encryptString($value)
+        );
+    }
+
+    protected function backgroundCertificate(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => Crypt::encryptString($value)

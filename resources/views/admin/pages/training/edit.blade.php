@@ -48,6 +48,15 @@
                         </small>
                     </div>
                     <div class="form-group">
+                        <label for="trainingName">Background Sertifikat</label>
+                        <input name="background_certificate" type="file"
+                            class="form-control {{ $errors->has('background_certificate') ? 'is-invalid' : '' }}"
+                            id="trainingImage">
+                        <small class="invalid-feedback">
+                            {{ $errors->first('background_certificate') }}
+                        </small>
+                    </div>
+                    <div class="form-group">
                         <label for="trainingDescription">Deskripsi</label>
                         <textarea name="description"
                             class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"

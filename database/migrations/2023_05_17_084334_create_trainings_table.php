@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('category_id')->nullable();
             $table->string('name')->nullable();
             $table->text('image')->nullable();
+            $table->text('background_certificate')->nullable();
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
             $table->enum('cost', ['paid', 'free'])->nullable();
