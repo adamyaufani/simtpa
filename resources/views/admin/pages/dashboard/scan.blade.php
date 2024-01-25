@@ -29,7 +29,7 @@
                     // Kirim data ke backend menggunakan AJAX
                     $.ajax({
                         type: 'POST',
-                        url: encodeURIComponent(decodedText),
+                        url: 'https://tpa.badkokasihan.web.id/admin/event/scan-attendance/'encodeURIComponent(decodedText),
                         data: {},
                         success: function (response) {
                             alert(response.message);
