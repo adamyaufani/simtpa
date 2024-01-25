@@ -6,88 +6,60 @@
     {{-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
     <title>Document</title>
 
-    <style type='text/css'>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-        }
+  
 
-        body {
-            color: black;
-            /* display: table; */
-            font-family: Georgia, serif;
-            font-size: 24px;
-            text-align: center;
+    <style>
+        .piagam {
+            width:auto;
+            height:700px;
+            /* background-image : url('{{ route('training.image').'?q='.$certificate->order->training->background_certificate }}' ); */
+            background-image : url('{{ asset('img/piagam.jpg') }}' );
+            background-position: center top;
+            text-align:center;
+            background-size:contain;        
         }
-
-        .container {
-            border: 20px solid tan;
-            width: 750px;
-            height: 563px;
-            /* display: table-cell; */
-            vertical-align: middle;
+        .isi {
+            background-color: rgba(255,255,255, 0.2);
+            position:relative;
+            height:700px;
         }
-
-        .logo {
-            color: tan;
+        .nomor {
+            margin-top:200px;
         }
-
-        .marquee {
-            color: tan;
-            font-size: 48px;
-            margin: 20px;
+        .nama {
+            margin-top:60px;
+            font-size:24px;
         }
+        .alamat {
 
-        .assignment {
-            margin: 20px;
         }
-
-        .person {
-            border-bottom: 2px solid black;
-            font-size: 32px;
-            font-style: italic;
-            margin: 20px auto;
-            width: 400px;
+        .qr-code {
+            position:absolute;
+            bottom :70px;
+            left:130px;
         }
-
-        .reason {
-            margin: 20px;
-        }
-
     </style>
-</head>
+ 
 
-<body>
-    <div class="container">
-        <div class="logo">
-            Badko Kasihan
-        </div>
+    <div class="row gx-5">
+        <div class="col-lg-12 mb-5 mb-lg-0 p-5 bg-dark">
+            <div class="piagam">
+                <div class="isi d-flex flex-column">
+                  
+                    <h2 class='nama'>{{ $certificate->order->training->participant_type == 'santri' ? $certificate->student->name : $certificate->staff->name }} </h2>
+                    <h3 class='alamat h6'>atas partisipasinya sebagai peserta</h3>
+                    <h3 class='h5'>{{ $certificate->order->training->name }}</h3>
 
-        <div class="marquee">
-            Sertifikat
-        </div>
+                   
+                        
 
-        <div class="assignment">
-            Diberikan Kepada :
-        </div>
+                </div>
+            </div>
 
-        <div class="person">
-            {{ $certificate->order->training->participant_type == 'santri' ? $certificate->student->name : $certificate->staff->name }}
-        </div>
-
-        <div class="reason">
-            Sebagai peserta dalam
-            <br>
-            <br>
-            {{ $certificate->order->training->name }}
-        </div>
-
-        <div>
-            <img src="{{ route('training.image').'?q='.$certificate->order->training->background_certificate }}"
-                alt="">
         </div>
     </div>
+
 </body>
 
 </html>
+

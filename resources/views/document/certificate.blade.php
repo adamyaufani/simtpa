@@ -77,7 +77,7 @@
         </div>
 
         <div class="reason">
-            Sebagai peserta dalam
+            Sebagai peserta dalams
             <br>
             <br>
             {{ $training->name }}

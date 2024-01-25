@@ -173,6 +173,7 @@ Route::prefix('admin')->group(function () {
         Route::get('admin-images', [FileController::class, 'trainingBanner'])->name('admin.images');
         Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/scan', [DashboardController::class, 'scan'])->name('admin.dashboard');
 
         
 

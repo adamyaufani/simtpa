@@ -35,7 +35,7 @@ class CertificateController extends Controller
 
         // dd($certificate->order->training->background_certificate);
 
-        return view('public.certificate.layout', compact('certificate'));
+        // return view('public.certificate.layout', compact('certificate'));
 
         $pdf = PDF::loadView('public.certificate.layout', compact('certificate'));
 

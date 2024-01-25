@@ -25,4 +25,9 @@ class DashboardController extends Controller
         return view('admin.pages.training.participant-training')
             ->with(compact('trainings'));     
     }
+    public function scan()
+    {              
+
+        return view('admin.pages.dashboard.scan');    
+    }
 }
