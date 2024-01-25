@@ -2,7 +2,7 @@
 <head>
     <title>Html-Qrcode Demo</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" type="text/javascript">
+    <script src="{{ asset('js/html5-qrcode.min.js') }}"></script>
 </head>
 <body>
     <div id="qr-reader" style="width:500px"></div>
