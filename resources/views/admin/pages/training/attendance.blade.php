@@ -43,7 +43,7 @@
                             <th style="width: 5%"></th>
                             <th style="width: 25%">Nama</th>
                             <th style="width: 25%">Keterangan</th>
-                            <th style="width: 20%"></th>
+                            <th style="width: 20%">Hadir Pukul</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,28 +67,21 @@
                                     @endif
 
                                 </td>
-                                <td>
-                                    <p>
-                                        {{ $participant->eventAttendance->status ?? '' }}
-                                    </p>
+                                <td>                                  
+                                    {{ $participant->eventAttendance->status ?? '' }}                                    
                                 </td>
                                 <td>
-                                    <div class="d-flex">
+                                    @php 
+                                        $date = $participant->eventAttendance->created_at ?? '';
+                                 
+                                        if($date) {
+                                            $datecarbon = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date )->format('H:i:s');
+                                        } else {
+                                            $datecarbon = $date;
+                                        }
+                                        @endphp
 
-                                        {{-- <form
-                                            action="{{ route('admin.delete_training',$training->id) }}"
-                                        method="POST" onsubmit="return confirmSubmit()">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                        </form> --}}
-                                        {{-- <a href="{{ route('admin.training_attendance',$training->id) }}"
-                                        class="btn btn-primary btn-sm ml-2">
-                                        peserta
-                                        </a> --}}
-                                    </div>
+                                        {{ $datecarbon }}
                                 </td>
                             </tr>
                         @endforeach
