@@ -53,25 +53,74 @@ class AttendanceController extends Controller
     // }
 
     public function scan($id)
-{
-    $orderParticipant = OrderParticipant::with('order')->find($id);
+    {
+        
+        $orderParticipant = OrderParticipant::with('order')->find($id);
 
-    if ($orderParticipant) {
-        $attendance = EventAttendance::where('order_participant_id', $id);
+        // dd($orderParticipant->staff->gender);
 
-        if ($attendance->count() == 0) {
-            EventAttendance::create([
-                'order_participant_id' => $id,
-                'status' => 'Hadir'
-            ]);
+        if($orderParticipant->staff->gender == 'perempuan') {
+            $gelar ='Ustadzah';
+        } else {
+            $gelar ='Ustadz';
+        }
+        // dd($orderParticipant->order->training->participant_type);
 
-            return response()->json(['message' => 'Attendance recorded successfully']);
+        if ($orderParticipant) {
+            $attendance = EventAttendance::where('order_participant_id', $id);
+
+            if ($attendance->count() == 0) {
+                EventAttendance::create([
+                    'order_participant_id' => $id,
+                    'status' => 'Hadir'
+                ]);
+
+                $curl = curl_init();
+
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => 'https://api.fonnte.com/send',
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => '',
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_SSL_VERIFYPEER => FALSE,
+                        CURLOPT_TIMEOUT => 0,
+                        CURLOPT_FOLLOWLOCATION => true,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => 'POST',
+                        CURLOPT_POSTFIELDS => array(
+                            'target' => $orderParticipant->staff->phone,
+                            'message' => 'Assalamualaikum, '. $gelar .' ' . $orderParticipant->staff->name . '.
+Selamat mengikut acara *'. $orderParticipant->order->training->name .'*. 
+Semoga acara hari ini memberikan banyak manfaat dan meninggalkan kesan yang baik bagi '. $gelar .'.
+                            
+Selanjutnya, untuk meningkatkan kualitas pelayanan kami, mohon kesediaan '. $gelar .' ' . $orderParticipant->staff->name . ' untuk mengisi kuesioner berikut ini https://badkokasihan.web.id/kuesioner?id=' . $orderParticipant->staff->id . '. Setelah mengisi kuesioner,  '. $gelar .' akan diarahkan menuju link download sertifikat.
+
+Sampai jumpa pada acara Badko TKA-TPA Kasihan berikutnya.
+Terima kasih
+💓 Badko Rayon Kasihan',
+                            'countryCode' => '62', //optional
+                        ),
+                        CURLOPT_HTTPHEADER => array(
+                            'Authorization: nHypEJ4GhmFX4_tboRqk' //change TOKEN to your actual token
+                        ),
+                    ));
+                
+                    $response = curl_exec($curl);
+
+                    curl_close($curl);
+
+                    if($response) {
+                    
+                        return response()->json(['message' => 'Presensi Berhasil', 'status' => '1']);
+
+                    }    
+
+                
+            }
+
+            return response()->json(['message' => 'Peserta sudah presensi.', 'status' => '2']);
         }
 
-        return response()->json(['message' => 'Attendance already recorded']);
+        return response()->json(['message' => 'Peserta tidak ditemukan', 'status' => '3']);
     }
-
-    return response()->json(['message' => 'Participant not found']);
-}
-
 }
