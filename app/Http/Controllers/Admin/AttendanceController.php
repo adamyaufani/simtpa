@@ -76,14 +76,18 @@ class AttendanceController extends Controller
                         CURLOPT_POSTFIELDS => array(
                             'target' => $orderParticipant->staff->phone,
                             'message' => 'Assalamualaikum, '. $gelar .' ' . $orderParticipant->staff->name . '.
-Selamat mengikut acara *'. $orderParticipant->order->training->name .'*. 
-Semoga acara hari ini memberikan banyak manfaat dan meninggalkan kesan yang baik bagi '. $gelar .'.
-                            
-Selanjutnya, untuk meningkatkan kualitas pelayanan kami, mohon kesediaan '. $gelar .' ' . $orderParticipant->staff->name . ' untuk mengisi kuesioner berikut ini https://badkokasihan.web.id/kuesioner?id=' . $orderParticipant->staff->id . '. Setelah mengisi kuesioner,  '. $gelar .' akan diarahkan menuju link download sertifikat.
 
-Sampai jumpa pada acara Badko TKA-TPA Kasihan berikutnya.
-Terima kasih
-💓 Badko Rayon Kasihan',
+Selamat mengikut acara *'. $orderParticipant->order->training->name .'*. 
+
+Semoga acara hari ini bermanfaat dan meninggalkan kesan yang baik bagi '. $gelar .'.
+                            
+Selanjutnya mohon kesediaan '. $gelar .' untuk mengisi kuesioner berikut ini https://badkokasihan.web.id/kuesioner?id=' . $orderParticipant->staff->id . '. 
+
+Halaman download sertifikat akan muncul setelah kuesioner dikirimkan.
+
+Sampai jumpa pada acara Badko TKA-TPA Kasihan berikutnya. ☺
+
+*With 💓 Badko Rayon Kasihan*',
                             'countryCode' => '62', //optional
                         ),
                         CURLOPT_HTTPHEADER => array(

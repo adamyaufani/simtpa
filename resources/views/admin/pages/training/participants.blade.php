@@ -36,8 +36,9 @@
                     <thead>
                         <tr>
                             <th style="width: 40%">Nama Event</th>
-                            <th style="width: 30%">Peserta</th>
-                            <th style="width: 30%">TPA</th>
+                            <th style="width: 20%">Peserta</th>
+                            <th style="width: 25%">TPA</th>
+                            <th style="width: 15%">Telp</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,6 +56,11 @@
                                             {{ $participant->student->user->userProfile->institution_name }}
                                        
                                     </td>
+                                    <td>
+                                        
+                                            {{ $participant->student->phone }}
+                                       
+                                    </td>
                                 @elseif(
                                     $participant->order->training->participant_type == 'staff')
                                     <td> <a
@@ -64,6 +70,11 @@
                                     <td>
                                         
                                             {{ $participant->staff->user->userProfile->institution_name }}
+                                       
+                                    </td>
+                                    <td>
+                                        
+                                            {{ $participant->staff->phone }}
                                        
                                     </td>
                                 @endif
