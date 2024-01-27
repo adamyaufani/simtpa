@@ -47,6 +47,7 @@
                                 <td>{{ $participant->order->training->name }}</td>
                                
                                 @if($participant->order->training->participant_type == 'santri')
+                                   
                                     <td>  <a
                                         href="{{ route('admin.detail_student',$participant->student->id) }}">
                                         {{ $participant->student->name }}
@@ -63,9 +64,11 @@
                                     </td>
                                 @elseif(
                                     $participant->order->training->participant_type == 'staff')
+
+                                   
                                     <td> <a
                                         href="{{ route('admin.detail_staff',$participant->staff->id) }}">
-                                        {{ $participant->staff->name }}
+                                        {{  ($participant->staff->gender == 'perempuan') ?  'Ustadzah' :  'Ustadz'  }} {{ $participant->staff->name }}
                                     </a></td>
                                     <td>
                                         
